@@ -4,24 +4,33 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
 
-    public void StartLobby()
+    public AsyncOperation StartLobby()
     {
-        LoadLevel("Lobby");
+        return LoadLevel("Lobby");
     }
-    public void LoadLevel(string levelName)
+
+    public AsyncOperation LoadLevel(string levelName)
     {
         AsyncOperation ao = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         if (ao == null)
         {
             Debug.LogError("[GameManager] Unable to load level " + levelName);
-            return;
+            return null;
         }
+        return ao;
 
     }
 
-    public void UnloadLevel(string levelName)
+    public AsyncOperation UnloadLevel(string levelName)
     {
         AsyncOperation ao = SceneManager.UnloadSceneAsync(levelName);
+
+        if (ao == null)
+        {
+            Debug.LogError("[GameManager] Unable to unload level " + levelName);
+            return null;
+        }
+        return ao;
     }
 
 }
