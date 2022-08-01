@@ -4,7 +4,10 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
 
-
+    public void StartLobby()
+    {
+        LoadLevel("Lobby");
+    }
     public void LoadLevel(string levelName)
     {
         AsyncOperation ao = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
