@@ -3,7 +3,13 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    public GameStateMachine StateMachine;
 
+    private void Awake() //boot
+    {
+        StateMachine = new GameStateMachine();
+        StateMachine.Enter<BootState>();
+    }
     public AsyncOperation StartLobby()
     {
         return LoadLevel("Lobby");
