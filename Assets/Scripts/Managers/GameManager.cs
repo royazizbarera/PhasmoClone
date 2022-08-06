@@ -5,9 +5,11 @@ public class GameManager : Singleton<GameManager>
 {
     public GameStateMachine StateMachine;
 
+    [SerializeField]
+    private InputSystem _input;
     private void Awake() //boot
     {
-        StateMachine = new GameStateMachine();
+        StateMachine = new GameStateMachine(new AllServices(), _input);
         StateMachine.Enter<BootState>();
     }
     public AsyncOperation StartLobby()

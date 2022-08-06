@@ -6,11 +6,11 @@ public class GameStateMachine
     private Dictionary<Type, IExitableState> _states;
     private IExitableState _activeState;
 
-    public GameStateMachine()
+    public GameStateMachine(AllServices services, InputSystem _input)
     {
         _states = new Dictionary<Type, IExitableState>
         {
-            [typeof(BootState)] = new BootState(),
+            [typeof(BootState)] = new BootState(services, _input),
             [typeof(LoadLevelState)] = new LoadLevelState(),
             [typeof(GameFlowState)] = new GameFlowState()
         };

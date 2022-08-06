@@ -11,6 +11,8 @@ public class MoveControl : MonoBehaviour
     private float _curSpeedMultiplier = 1f;
     void Update()
     {
+        Debug.Log(AllServices.Container.Single<InputSystem>().Axis);
+
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         bool sprint = Input.GetKey(KeyCode.LeftShift);
