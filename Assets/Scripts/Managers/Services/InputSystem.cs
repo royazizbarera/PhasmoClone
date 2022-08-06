@@ -8,7 +8,7 @@ public class InputSystem : MonoBehaviour, IService
     public Vector2 Axis { get; private set; }
     public bool IsRunning = false;
 
-    public Action dropItemAction;
+    public Action PickUpItem, DropItem;
 
 
     private MainInputAction _mainInputAction;
@@ -31,11 +31,17 @@ public class InputSystem : MonoBehaviour, IService
     private void BindFuncs()
     {
         _mainInputAction.Player.DropItem.performed += DropItemCallback;
+        _mainInputAction.Player.Pickup.performed += PickUpItemCallBack;
     }
 
     private void DropItemCallback(InputAction.CallbackContext obj)
     {
-        dropItemAction.Invoke();
+        if(DropItem != null) DropItem.Invoke();
+    } 
+    
+    private void PickUpItemCallBack(InputAction.CallbackContext obj)
+    {
+        if (PickUpItem != null) PickUpItem.Invoke();
     }
 
 }

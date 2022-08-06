@@ -9,15 +9,19 @@ public class MoveControl : MonoBehaviour
     [SerializeField] private float _sprintMultiplier;
 
     private float _curSpeedMultiplier = 1f;
+
+    private InputSystem _inputSystem;
+    private void Awake()
+    {
+        _inputSystem = AllServices.Container.Single<InputSystem>();
+    }
     void Update()
     {
-        Debug.Log(AllServices.Container.Single<InputSystem>().Axis);
-
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         bool sprint = Input.GetKey(KeyCode.LeftShift);
-
         if (sprint) _curSpeedMultiplier = _sprintMultiplier;
+
         else _curSpeedMultiplier = 1f;
 
         Vector3 move = transform.right * x + transform.forward * z;
