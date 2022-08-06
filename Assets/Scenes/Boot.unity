@@ -689,7 +689,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name of Game
+  m_text: Spiritism
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72defa5e793506f499757892a927f468, type: 2}
   m_sharedMaterial: {fileID: -3177935435773185206, guid: 72defa5e793506f499757892a927f468, type: 2}
