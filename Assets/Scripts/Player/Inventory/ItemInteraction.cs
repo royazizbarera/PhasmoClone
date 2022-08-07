@@ -45,7 +45,9 @@ public class ItemInteraction : MonoBehaviour
     {
         // Assign reference
         pickedItem = item;
-        //item.gameObject.SetActive(false);
+
+        item.gameObject.SetActive(false);
+
         Rigidbody itemRB = item.gameObject.GetComponent<Rigidbody>();
         // Disable rigidbody and reset velocities
         itemRB.isKinematic = true;
