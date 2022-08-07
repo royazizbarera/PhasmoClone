@@ -11,9 +11,11 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        
-        _pickupableSlots.Capacity = _itemAmmount;
-        Debug.Log(_pickupableSlots.Count);
-        Debug.Log(_pickupableSlots.Capacity);
+        _pickupableSlots = new List<IPickupable>(_itemAmmount);
+        Debug.Log("Count = " + _pickupableSlots.Count);
+        Debug.Log("Capacity = " + _pickupableSlots.Capacity);
     }
+
+
+   // public void AddItem
 }
