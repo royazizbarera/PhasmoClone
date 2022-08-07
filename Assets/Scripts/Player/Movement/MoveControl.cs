@@ -17,19 +17,21 @@ public class MoveControl : MonoBehaviour
 
     private void Awake()
     {
-        //_inputSystem = AllServices.Container.Single<InputSystem>();
+        _inputSystem = AllServices.Container.Single<InputSystem>();
     }
     void Update()
     {
-        _xMove = Input.GetAxis("Horizontal");
-        _zMove = Input.GetAxis("Vertical");
-        bool sprint = Input.GetKey(KeyCode.LeftShift);
-
-        Vector3 move = CalculateMove(sprint);
-
+        InputMove();
+        Vector3 move = CalculateMove(_isSprinting);
         controller.Move(move * _speed * _curSpeedMultiplier * Time.deltaTime);
     }
 
+    private void InputMove()
+    {
+        _xMove = _inputSystem.Axis.x;
+        _zMove = _inputSystem.Axis.y;
+        _isSprinting = _inputSystem.IsRunning;
+    }
 
     private Vector3 CalculateMove(bool sprint)
     {
@@ -40,7 +42,4 @@ public class MoveControl : MonoBehaviour
         Vector3 result = transform.right * _xMove + transform.forward * _zMove;
         return result;
     }
-
-
-
 }

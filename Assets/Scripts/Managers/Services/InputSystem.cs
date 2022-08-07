@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class InputSystem : MonoBehaviour, IService
 {
     public Vector2 Axis { get; private set; }
+    public Vector2 CameraAxis { get; private set; }
     public bool IsRunning = false;
 
     public Action PickUpItem, DropItem;
@@ -24,6 +25,7 @@ public class InputSystem : MonoBehaviour, IService
 
     private void Update()
     {
+        CameraAxis = _mainInputAction.Player.Camera.ReadValue<Vector2>();
         Axis = _mainInputAction.Player.Movement.ReadValue<Vector2>();
         IsRunning = _mainInputAction.Player.Run.ReadValue<float>() == 1 ? true : false;
     }

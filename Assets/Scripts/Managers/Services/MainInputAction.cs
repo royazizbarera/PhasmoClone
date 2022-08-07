@@ -97,6 +97,14 @@ public class @MainInputAction : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Camera"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""e2fbacc0-624b-42bd-b6a6-6d311ab2ac69"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -253,6 +261,17 @@ public class @MainInputAction : IInputActionCollection, IDisposable
                     ""action"": ""Flashlight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98d40500-4f7c-4924-aaae-6be5ec9fba8f"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -277,6 +296,7 @@ public class @MainInputAction : IInputActionCollection, IDisposable
         m_Player_PrimaryUse = m_Player.FindAction("PrimaryUse", throwIfNotFound: true);
         m_Player_SecondaryUse = m_Player.FindAction("SecondaryUse", throwIfNotFound: true);
         m_Player_Flashlight = m_Player.FindAction("Flashlight", throwIfNotFound: true);
+        m_Player_Camera = m_Player.FindAction("Camera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -336,6 +356,7 @@ public class @MainInputAction : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_PrimaryUse;
     private readonly InputAction m_Player_SecondaryUse;
     private readonly InputAction m_Player_Flashlight;
+    private readonly InputAction m_Player_Camera;
     public struct PlayerActions
     {
         private @MainInputAction m_Wrapper;
@@ -350,6 +371,7 @@ public class @MainInputAction : IInputActionCollection, IDisposable
         public InputAction @PrimaryUse => m_Wrapper.m_Player_PrimaryUse;
         public InputAction @SecondaryUse => m_Wrapper.m_Player_SecondaryUse;
         public InputAction @Flashlight => m_Wrapper.m_Player_Flashlight;
+        public InputAction @Camera => m_Wrapper.m_Player_Camera;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -389,6 +411,9 @@ public class @MainInputAction : IInputActionCollection, IDisposable
                 @Flashlight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
                 @Flashlight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
                 @Flashlight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFlashlight;
+                @Camera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
+                @Camera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
+                @Camera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -423,6 +448,9 @@ public class @MainInputAction : IInputActionCollection, IDisposable
                 @Flashlight.started += instance.OnFlashlight;
                 @Flashlight.performed += instance.OnFlashlight;
                 @Flashlight.canceled += instance.OnFlashlight;
+                @Camera.started += instance.OnCamera;
+                @Camera.performed += instance.OnCamera;
+                @Camera.canceled += instance.OnCamera;
             }
         }
     }
@@ -448,5 +476,6 @@ public class @MainInputAction : IInputActionCollection, IDisposable
         void OnPrimaryUse(InputAction.CallbackContext context);
         void OnSecondaryUse(InputAction.CallbackContext context);
         void OnFlashlight(InputAction.CallbackContext context);
+        void OnCamera(InputAction.CallbackContext context);
     }
 }
