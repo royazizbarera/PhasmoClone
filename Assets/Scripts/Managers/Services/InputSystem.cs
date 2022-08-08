@@ -7,7 +7,7 @@ public class InputSystem : MonoBehaviour, IService
     public Vector2 CameraAxis { get; private set; }
     public bool IsRunning = false;
 
-    public Action PickUpItemAction, DropItemAction, MainUseAction, PrimaryUseAction, SecondaryUseAction;
+    public Action PickUpItemAction, DropItemAction, MainUseAction, PrimaryUseAction, SecondaryUseAction , SwitchItemAction;
 
 
     private MainInputAction _mainInputAction;
@@ -35,6 +35,7 @@ public class InputSystem : MonoBehaviour, IService
         _mainInputAction.Player.MainUse.performed += MainUseCallBack;
         _mainInputAction.Player.PrimaryUse.performed += PrimaryUseCallBack;
         _mainInputAction.Player.SecondaryUse.performed += SecondaryUseCallBack;
+        _mainInputAction.Player.SwitchItem.performed += SwitchItemUseCallBack;
     }
 
     private void DropItemCallback(InputAction.CallbackContext obj)
@@ -60,5 +61,10 @@ public class InputSystem : MonoBehaviour, IService
     private void SecondaryUseCallBack(InputAction.CallbackContext obj)
     {
         if (SecondaryUseAction != null) SecondaryUseAction.Invoke();
+    } 
+    
+    private void SwitchItemUseCallBack(InputAction.CallbackContext obj)
+    {
+        if (SwitchItemAction != null) SwitchItemAction.Invoke();
     }
 }

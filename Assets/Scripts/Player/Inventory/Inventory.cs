@@ -7,6 +7,11 @@ public class Inventory : MonoBehaviour
 {
     public IPickupable MainItem { get; private set;}
 
+    public bool IsInventoryFull
+    {
+        get { return (_currItemAmmount >= _maxItemAmmount);}
+        private set { }
+    }
 
     [SerializeField]
     private Transform _slot;
@@ -15,8 +20,8 @@ public class Inventory : MonoBehaviour
     private int _maxItemAmmount;
 
 
-    private List<IPickupable> _pickupableSlots;
-    private int _currItemAmmount;
+    private List<IPickupable> _pickupableSlots = new List<IPickupable>();
+    private int _currItemAmmount = 0;
 
     private int currMainItemSlot = 0;
 
@@ -32,26 +37,72 @@ public class Inventory : MonoBehaviour
     {
         if (_currItemAmmount < _maxItemAmmount)
         {
-            for (int slotNum = 0; slotNum < _maxItemAmmount; slotNum++)
+            int slotToPassNum = 0;
+            if (_pickupableSlots[currMainItemSlot] == null && MainItem == null)
             {
-                if (_pickupableSlots[slotNum] == null)
+                slotToPassNum = currMainItemSlot;
+            }
+            else
+            {
+                for (int slotNum = 0; slotNum < _maxItemAmmount; slotNum++)
                 {
-                    PickItem(itemToAdd);
-                    _pickupableSlots[slotNum] = itemToAdd;
-                    _currItemAmmount++;
-                    if(MainItem == null)
+                    if (_pickupableSlots[slotNum] == null)
                     {
-                        ChangeMainItem(slotNum);
+                        slotToPassNum = slotNum;
+                        break;
                     }
-                    return true;
                 }
             }
-            return false;
+
+            PickItemRb(itemToAdd);
+            _pickupableSlots[slotToPassNum] = itemToAdd;
+            _currItemAmmount++;
+
+            if (slotToPassNum == currMainItemSlot)
+            {
+                ChangeMainItem(slotToPassNum);
+            }
+            return true;
         }
         else return false;
     }
 
-    private void PickItem(IPickupable item)
+    public void ChangeMainItem(int slotNum)
+    {
+        if(_pickupableSlots[currMainItemSlot] != null) _pickupableSlots[currMainItemSlot].gameObject.SetActive(false);
+
+        currMainItemSlot = slotNum;
+        if (_pickupableSlots[currMainItemSlot] != null)
+        {
+            MainItem = _pickupableSlots[slotNum];
+            _pickupableSlots[currMainItemSlot].gameObject.SetActive(true);
+        }
+        else
+        {
+            MainItem = null;
+        }
+    }
+
+    public void SwitchMainItemSlot()
+    {
+        int newItemSlot = currMainItemSlot + 1;
+        if (newItemSlot >= _maxItemAmmount) newItemSlot = 0;
+
+        ChangeMainItem(newItemSlot);
+    }
+
+    public void DropMainItem()
+    {
+        if(MainItem != null)
+        {
+            DropItemRb(MainItem);
+            _currItemAmmount--;
+            _pickupableSlots[currMainItemSlot] = null;
+            MainItem = null;
+        }
+    }
+
+    private void PickItemRb(IPickupable item)
     {
         Rigidbody itemRB = item.gameObject.GetComponent<Rigidbody>();
         itemRB.isKinematic = true;
@@ -68,37 +119,7 @@ public class Inventory : MonoBehaviour
         item.gameObject.SetActive(false);
     }
 
-    public void ChangeMainItem(int slotNum)
-    {
-        if(_pickupableSlots[currMainItemSlot] != null) _pickupableSlots[currMainItemSlot].gameObject.SetActive(false);
-
-        currMainItemSlot = slotNum;
-        if (_pickupableSlots[currMainItemSlot] != null)
-        {
-            MainItem = _pickupableSlots[slotNum];
-            _pickupableSlots[currMainItemSlot].gameObject.SetActive(true);
-        }
-    }
-
-    public void AddCurrItemSlot()
-    {
-        int newItemSlot = currMainItemSlot + 1;
-        if (newItemSlot >= _maxItemAmmount) newItemSlot = 0;
-
-        ChangeMainItem(newItemSlot);
-    }
-
-    public void DropItem()
-    {
-        if(MainItem != null)
-        {
-            DropItem(MainItem);
-            _pickupableSlots[currMainItemSlot] = null;
-            MainItem = null;
-        }
-    }
-
-    private void DropItem(IPickupable item)
+    private void DropItemRb(IPickupable item)
     {
         item.gameObject.transform.SetParent(null);
 

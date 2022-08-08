@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 3653276440073768557}
   - component: {fileID: 3653276440073768556}
   - component: {fileID: 3653276440073768555}
+  - component: {fileID: 849278102149644677}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -298,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 3653276439611602499}
-  _sensitivity: 500
+  _sensitivity: 100
 --- !u!114 &3653276440073768558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,5 +353,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9378d13a4adc8d4aa519e6e19e39d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterCamera: {fileID: 3653276439611602500}
+  _rayCastGirth: 0.5
+  _rayCastWidth: 2.3
+--- !u!114 &849278102149644677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3653276440073768562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71accbe10dd48c4eb22c677bccf3ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _slot: {fileID: 3653276439420836898}
+  _maxItemAmmount: 3
