@@ -11,6 +11,7 @@ public class MoveControl : MonoBehaviour
     private float _curSpeedMultiplier = 1f;
 
     private InputSystem _inputSystem;
+    [SerializeField]private Transform cameraTransform;
 
     private float _xMove, _zMove;
     private bool _isSprinting;
@@ -18,6 +19,7 @@ public class MoveControl : MonoBehaviour
     private void Awake()
     {
         _inputSystem = AllServices.Container.Single<InputSystem>();
+        //cameraTransform = Camera.main.transform;
     }
     void Update()
     {
@@ -40,6 +42,7 @@ public class MoveControl : MonoBehaviour
         else _curSpeedMultiplier = 1f;
 
         Vector3 result = transform.right * _xMove + transform.forward * _zMove;
+        result = cameraTransform.forward * result.x + cameraTransform.right * -result.z;
         return result;
     }
 }
