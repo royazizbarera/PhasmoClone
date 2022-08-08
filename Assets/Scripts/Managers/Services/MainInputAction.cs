@@ -75,6 +75,14 @@ public class @MainInputAction : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""MainUse"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d82734a-b590-43ff-9615-a8ed4e5122f3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""PrimaryUse"",
                     ""type"": ""Button"",
                     ""id"": ""366715ee-9853-4205-ba1b-0717ad11a340"",
@@ -272,6 +280,17 @@ public class @MainInputAction : IInputActionCollection, IDisposable
                     ""action"": ""Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f65e35c-15f5-4711-a5c3-bfbc50a28b3e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MainUse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -293,6 +312,7 @@ public class @MainInputAction : IInputActionCollection, IDisposable
         m_Player_Journal = m_Player.FindAction("Journal", throwIfNotFound: true);
         m_Player_Pickup = m_Player.FindAction("Pickup", throwIfNotFound: true);
         m_Player_DropItem = m_Player.FindAction("DropItem", throwIfNotFound: true);
+        m_Player_MainUse = m_Player.FindAction("MainUse", throwIfNotFound: true);
         m_Player_PrimaryUse = m_Player.FindAction("PrimaryUse", throwIfNotFound: true);
         m_Player_SecondaryUse = m_Player.FindAction("SecondaryUse", throwIfNotFound: true);
         m_Player_Flashlight = m_Player.FindAction("Flashlight", throwIfNotFound: true);
@@ -353,6 +373,7 @@ public class @MainInputAction : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Journal;
     private readonly InputAction m_Player_Pickup;
     private readonly InputAction m_Player_DropItem;
+    private readonly InputAction m_Player_MainUse;
     private readonly InputAction m_Player_PrimaryUse;
     private readonly InputAction m_Player_SecondaryUse;
     private readonly InputAction m_Player_Flashlight;
@@ -368,6 +389,7 @@ public class @MainInputAction : IInputActionCollection, IDisposable
         public InputAction @Journal => m_Wrapper.m_Player_Journal;
         public InputAction @Pickup => m_Wrapper.m_Player_Pickup;
         public InputAction @DropItem => m_Wrapper.m_Player_DropItem;
+        public InputAction @MainUse => m_Wrapper.m_Player_MainUse;
         public InputAction @PrimaryUse => m_Wrapper.m_Player_PrimaryUse;
         public InputAction @SecondaryUse => m_Wrapper.m_Player_SecondaryUse;
         public InputAction @Flashlight => m_Wrapper.m_Player_Flashlight;
@@ -402,6 +424,9 @@ public class @MainInputAction : IInputActionCollection, IDisposable
                 @DropItem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropItem;
                 @DropItem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropItem;
                 @DropItem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDropItem;
+                @MainUse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainUse;
+                @MainUse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainUse;
+                @MainUse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMainUse;
                 @PrimaryUse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryUse;
                 @PrimaryUse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryUse;
                 @PrimaryUse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryUse;
@@ -439,6 +464,9 @@ public class @MainInputAction : IInputActionCollection, IDisposable
                 @DropItem.started += instance.OnDropItem;
                 @DropItem.performed += instance.OnDropItem;
                 @DropItem.canceled += instance.OnDropItem;
+                @MainUse.started += instance.OnMainUse;
+                @MainUse.performed += instance.OnMainUse;
+                @MainUse.canceled += instance.OnMainUse;
                 @PrimaryUse.started += instance.OnPrimaryUse;
                 @PrimaryUse.performed += instance.OnPrimaryUse;
                 @PrimaryUse.canceled += instance.OnPrimaryUse;
@@ -473,6 +501,7 @@ public class @MainInputAction : IInputActionCollection, IDisposable
         void OnJournal(InputAction.CallbackContext context);
         void OnPickup(InputAction.CallbackContext context);
         void OnDropItem(InputAction.CallbackContext context);
+        void OnMainUse(InputAction.CallbackContext context);
         void OnPrimaryUse(InputAction.CallbackContext context);
         void OnSecondaryUse(InputAction.CallbackContext context);
         void OnFlashlight(InputAction.CallbackContext context);
