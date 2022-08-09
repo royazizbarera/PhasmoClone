@@ -3,15 +3,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class InputSystem : MonoBehaviour, IService
 {
-
-    public bool IsControlLocked = false;
     public Vector2 Axis { get; private set; }
     public Vector2 CameraAxis { get; private set; }
     public bool IsRunning = false;
 
     public Action PickUpItemAction, DropItemAction, MainUseAction, PrimaryUseAction, SecondaryUseAction , SwitchItemAction;
 
-
+    public bool IsControlLocked { get; private set; }
     private MainInputAction _mainInputAction;
 
     private void Awake()
