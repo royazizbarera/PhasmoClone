@@ -37,12 +37,12 @@ public class InputSystem : MonoBehaviour, IService
         }
     }
 
-    private void LockControl()
+    public void LockControl()
     {
         IsControlLocked = true;
     } 
     
-    private void UnLockControl()
+    public void UnLockControl()
     {
         IsControlLocked = false;
     }
