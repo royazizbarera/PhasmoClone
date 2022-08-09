@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class MoveControl : MonoBehaviour
 {
-    [SerializeField] private CharacterController controller;
-    [SerializeField] private float _speed = 12f;
+    [SerializeField] private CharacterController _charController;
+
+    [SerializeField] private Transform _playerBody;
+    [SerializeField] private Transform _playerHead;
+    [SerializeField] private float _mouseSensitivity = 100f;
+
+    [SerializeField] private float _maxMoveSpeed = 12f;
     [SerializeField] private float _sprintMultiplier;
 
     private float _curSpeedMultiplier = 1f;
+    private float _mouseX, _mouseY;
+    private Vector2 mouseDelta;
+    private float _xRotation = 0f;
 
     private InputSystem _inputSystem;
+
     [SerializeField]private Transform cameraTransform;
 
     private float _xMove, _zMove;
@@ -23,9 +32,11 @@ public class MoveControl : MonoBehaviour
     }
     void Update()
     {
+        InputMouseMove();
         InputMove();
-        Vector3 move = CalculateMove(_isSprinting);
-        controller.Move(move * _speed * _curSpeedMultiplier * Time.deltaTime);
+
+        PlayerRotation();
+        PlayerMovement();
     }
 
     private void InputMove()
@@ -33,6 +44,13 @@ public class MoveControl : MonoBehaviour
         _xMove = _inputSystem.Axis.x;
         _zMove = _inputSystem.Axis.y;
         _isSprinting = _inputSystem.IsRunning;
+    }
+
+    private void InputMouseMove()
+    {
+        mouseDelta = _inputSystem.CameraAxis;
+        _mouseX = mouseDelta.x * _mouseSensitivity * Time.deltaTime;
+        _mouseY = mouseDelta.y * _mouseSensitivity * Time.deltaTime;
     }
 
     private Vector3 CalculateMove(bool sprint)
@@ -44,5 +62,21 @@ public class MoveControl : MonoBehaviour
         Vector3 result = transform.right * _xMove + transform.forward * _zMove;
         result = cameraTransform.forward * result.x + cameraTransform.right * -result.z;
         return result;
+    }
+
+    private void PlayerRotation()
+    {
+        _playerBody.Rotate(Vector3.up * _mouseX);
+
+        _xRotation -= _mouseY;
+        _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
+
+        _playerHead.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+    }
+
+    private void PlayerMovement()
+    {
+        Vector3 move = CalculateMove(_isSprinting);
+        _charController.Move(move * _maxMoveSpeed * _curSpeedMultiplier * Time.deltaTime);
     }
 }
