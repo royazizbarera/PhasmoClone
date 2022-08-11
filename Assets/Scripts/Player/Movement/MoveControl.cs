@@ -27,6 +27,11 @@ namespace Player.Movement
         private float _xMove, _zMove;
         private bool _isSprinting;
 
+
+        private void Awake()
+        {
+            
+        }
         private void Start()
         {
             _inputSystem = AllServices.Container.Single<InputSystem>();
