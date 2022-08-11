@@ -22,15 +22,15 @@ namespace Player.Movement
 
         private InputSystem _inputSystem;
 
-        [SerializeField] private Transform cameraTransform;
+        private Transform cameraTransform;
 
         private float _xMove, _zMove;
         private bool _isSprinting;
 
-        private void Awake()
+        private void Start()
         {
             _inputSystem = AllServices.Container.Single<InputSystem>();
-            //cameraTransform = Camera.main.transform;
+            cameraTransform = Camera.main.transform;
         }
         void Update()
         {

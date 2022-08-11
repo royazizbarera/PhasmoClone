@@ -48,6 +48,7 @@ namespace UI
 
             yield return new WaitUntil(() => ao.isDone);
 
+            
             Destroy(gameObject);
         }
     }
