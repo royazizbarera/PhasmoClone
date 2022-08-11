@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gravitation : MonoBehaviour
+namespace Player.Movement
 {
-    [SerializeField] private CharacterController controller;
-
-    [SerializeField] private float fallSpeed = -9.81f;
-
-    private Vector3 velocity;
-
-    void FixedUpdate()
+    public class Gravitation : MonoBehaviour
     {
-        velocity.y = fallSpeed;
-        controller.Move(velocity * Time.fixedDeltaTime);
+        [SerializeField] private CharacterController controller;
+
+        [SerializeField] private float fallSpeed = -9.81f;
+
+        private Vector3 velocity;
+
+        void FixedUpdate()
+        {
+            velocity.y = fallSpeed;
+            controller.Move(velocity * Time.fixedDeltaTime);
+        }
     }
 }

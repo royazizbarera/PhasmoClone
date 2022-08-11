@@ -1,82 +1,84 @@
-using System.Collections;
-using System.Collections.Generic;
+using Infrastructure;
 using UnityEngine;
 
-public class MoveControl : MonoBehaviour
+namespace Player.Movement
 {
-    [SerializeField] private CharacterController _charController;
-
-    [SerializeField] private Transform _playerBody;
-    [SerializeField] private Transform _playerHead;
-    [SerializeField] private float _mouseSensitivity = 100f;
-
-    [SerializeField] private float _maxMoveSpeed = 12f;
-    [SerializeField] private float _sprintMultiplier;
-
-    private float _curSpeedMultiplier = 1f;
-    private float _mouseX, _mouseY;
-    private Vector2 mouseDelta;
-    private float _xRotation = 0f;
-
-    private InputSystem _inputSystem;
-
-    [SerializeField]private Transform cameraTransform;
-
-    private float _xMove, _zMove;
-    private bool _isSprinting;
-
-    private void Awake()
+    public class MoveControl : MonoBehaviour
     {
-        _inputSystem = AllServices.Container.Single<InputSystem>();
-        //cameraTransform = Camera.main.transform;
-    }
-    void Update()
-    {
-        InputMouseMove();
-        InputMove();
+        [SerializeField] private CharacterController _charController;
 
-        PlayerRotation();
-        PlayerMovement();
-    }
+        [SerializeField] private Transform _playerBody;
+        [SerializeField] private Transform _playerHead;
+        [SerializeField] private float _mouseSensitivity = 100f;
 
-    private void InputMove()
-    {
-        _xMove = _inputSystem.Axis.x;
-        _zMove = _inputSystem.Axis.y;
-        _isSprinting = _inputSystem.IsRunning;
-    }
+        [SerializeField] private float _maxMoveSpeed = 12f;
+        [SerializeField] private float _sprintMultiplier;
 
-    private void InputMouseMove()
-    {
-        mouseDelta = _inputSystem.CameraAxis;
-        _mouseX = mouseDelta.x * _mouseSensitivity * Time.deltaTime;
-        _mouseY = mouseDelta.y * _mouseSensitivity * Time.deltaTime;
-    }
+        private float _curSpeedMultiplier = 1f;
+        private float _mouseX, _mouseY;
+        private Vector2 mouseDelta;
+        private float _xRotation = 0f;
 
-    private Vector3 CalculateMove(bool sprint)
-    {
-        if (sprint) _curSpeedMultiplier = _sprintMultiplier;
+        private InputSystem _inputSystem;
 
-        else _curSpeedMultiplier = 1f;
+        [SerializeField] private Transform cameraTransform;
 
-        Vector3 result = transform.right * _xMove + transform.forward * _zMove;
-        result = cameraTransform.forward * result.x + cameraTransform.right * -result.z;
-        return result;
-    }
+        private float _xMove, _zMove;
+        private bool _isSprinting;
 
-    private void PlayerRotation()
-    {
-        _playerBody.Rotate(Vector3.up * _mouseX);
+        private void Awake()
+        {
+            _inputSystem = AllServices.Container.Single<InputSystem>();
+            //cameraTransform = Camera.main.transform;
+        }
+        void Update()
+        {
+            InputMouseMove();
+            InputMove();
 
-        _xRotation -= _mouseY;
-        _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
+            PlayerRotation();
+            PlayerMovement();
+        }
 
-        _playerHead.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-    }
+        private void InputMove()
+        {
+            _xMove = _inputSystem.Axis.x;
+            _zMove = _inputSystem.Axis.y;
+            _isSprinting = _inputSystem.IsRunning;
+        }
 
-    private void PlayerMovement()
-    {
-        Vector3 move = CalculateMove(_isSprinting);
-        _charController.Move(move * _maxMoveSpeed * _curSpeedMultiplier * Time.deltaTime);
+        private void InputMouseMove()
+        {
+            mouseDelta = _inputSystem.CameraAxis;
+            _mouseX = mouseDelta.x * _mouseSensitivity * Time.deltaTime;
+            _mouseY = mouseDelta.y * _mouseSensitivity * Time.deltaTime;
+        }
+
+        private Vector3 CalculateMove(bool sprint)
+        {
+            if (sprint) _curSpeedMultiplier = _sprintMultiplier;
+
+            else _curSpeedMultiplier = 1f;
+
+            Vector3 result = transform.right * _xMove + transform.forward * _zMove;
+            result = cameraTransform.forward * result.x + cameraTransform.right * -result.z;
+            return result;
+        }
+
+        private void PlayerRotation()
+        {
+            _playerBody.Rotate(Vector3.up * _mouseX);
+
+            _xRotation -= _mouseY;
+            _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
+
+            _playerHead.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+        }
+
+        private void PlayerMovement()
+        {
+            Vector3 move = CalculateMove(_isSprinting);
+            _charController.Move(move * _maxMoveSpeed * _curSpeedMultiplier * Time.deltaTime);
+        }
     }
 }

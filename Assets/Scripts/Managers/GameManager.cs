@@ -1,44 +1,50 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Infrastructure.States;
+using Utilities;
+using Infrastructure;
 
-public class GameManager : Singleton<GameManager>
+namespace Managers
 {
-    public GameStateMachine StateMachine;
+    public class GameManager : Singleton<GameManager>
+    {
+        public GameStateMachine StateMachine;
 
-    [SerializeField]
-    private InputSystem _input;
-    private void Awake() //boot
-    {
-        StateMachine = new GameStateMachine(new AllServices(), _input);
-        StateMachine.Enter<BootState>();
-    }
-    public AsyncOperation StartLobby()
-    {
-        return LoadLevel("Lobby");
-    }
-
-    public AsyncOperation LoadLevel(string levelName)
-    {
-        AsyncOperation ao = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
-        if (ao == null)
+        [SerializeField]
+        private InputSystem _input;
+        private void Awake() //boot
         {
-            Debug.LogError("[GameManager] Unable to load level " + levelName);
-            return null;
+            StateMachine = new GameStateMachine(new AllServices(), _input);
+            StateMachine.Enter<BootState>();
         }
-        return ao;
-
-    }
-
-    public AsyncOperation UnloadLevel(string levelName)
-    {
-        AsyncOperation ao = SceneManager.UnloadSceneAsync(levelName);
-
-        if (ao == null)
+        public AsyncOperation StartLobby()
         {
-            Debug.LogError("[GameManager] Unable to unload level " + levelName);
-            return null;
+            return LoadLevel("Lobby");
         }
-        return ao;
-    }
 
+        public AsyncOperation LoadLevel(string levelName)
+        {
+            AsyncOperation ao = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
+            if (ao == null)
+            {
+                Debug.LogError("[GameManager] Unable to load level " + levelName);
+                return null;
+            }
+            return ao;
+
+        }
+
+        public AsyncOperation UnloadLevel(string levelName)
+        {
+            AsyncOperation ao = SceneManager.UnloadSceneAsync(levelName);
+
+            if (ao == null)
+            {
+                Debug.LogError("[GameManager] Unable to unload level " + levelName);
+                return null;
+            }
+            return ao;
+        }
+
+    }
 }

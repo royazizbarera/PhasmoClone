@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameFlowState : IState
+namespace Infrastructure.States
 {
-    public void Enter()
+    public class GameFlowState : IState
     {
+        public void Enter()
+        {
 
-    }
+        }
 
-    public void Exit()
-    {
+        public void Exit()
+        {
 
+        }
     }
 }

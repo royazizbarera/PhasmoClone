@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using Items.Logic;
 using UnityEngine;
 
-public class Flashlight : MonoBehaviour, IMainUsable
+namespace Items.ItemsLogic
 {
-    [SerializeField]
-    private Light _light;
-
-    public void OnMainUse()
+    public class Flashlight : MonoBehaviour, IMainUsable
     {
-        if (_light.enabled) _light.enabled = false;
-        else _light.enabled = true;
+        [SerializeField]
+        private Light _light;
+
+        public void OnMainUse()
+        {
+            if (_light.enabled) _light.enabled = false;
+            else _light.enabled = true;
+        }
     }
 }

@@ -1,5 +1,7 @@
-
-public static class AssetPath
+namespace Infrastructure.AssetsProvider
 {
-    
+    public static class AssetPath
+    {
+
+    }
 }

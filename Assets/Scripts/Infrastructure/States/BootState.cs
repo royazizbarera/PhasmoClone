@@ -1,29 +1,32 @@
 using UnityEngine;
 
-public class BootState : IState
+namespace Infrastructure.States
 {
-
-    private readonly AllServices _services;
-    private readonly InputSystem _inputSystem;
-    public BootState(AllServices services , InputSystem inputSystem)
+    public class BootState : IState
     {
-        _services = services;
-        _inputSystem = inputSystem;
 
-        RegisterServices();
-    }
+        private readonly AllServices _services;
+        private readonly InputSystem _inputSystem;
+        public BootState(AllServices services, InputSystem inputSystem)
+        {
+            _services = services;
+            _inputSystem = inputSystem;
+
+            RegisterServices();
+        }
 
 
-    public void Enter()
-    {
-    }
+        public void Enter()
+        {
+        }
 
-    public void Exit()
-    {
-    }
+        public void Exit()
+        {
+        }
 
-    private void RegisterServices()
-    {    
-        _services.RegisterSingle<InputSystem>(_inputSystem);
+        private void RegisterServices()
+        {
+            _services.RegisterSingle(_inputSystem);
+        }
     }
 }

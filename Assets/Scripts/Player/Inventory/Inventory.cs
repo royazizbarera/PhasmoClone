@@ -1,142 +1,144 @@
-using System.Collections;
+using Items.Logic;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+namespace Player.Inventory
 {
-    public IPickupable MainItem { get; private set;}
-
-    public bool IsInventoryFull
+    public class Inventory : MonoBehaviour
     {
-        get { return (_currItemAmmount >= _maxItemAmmount);}
-        private set { }
-    }
+        public IPickupable MainItem { get; private set; }
 
-    [SerializeField]
-    private Transform _slot;
-
-    [SerializeField]
-    private int _maxItemAmmount;
-
-
-    private List<IPickupable> _pickupableSlots = new List<IPickupable>();
-    private int _currItemAmmount = 0;
-
-    private int currMainItemSlot = 0;
-
-
-    private void Start()
-    {
-        ResizeSlots();
-        MainItem = null;
-    }
-
-
-    public bool AddItem(IPickupable itemToAdd)
-    {
-        if (_currItemAmmount < _maxItemAmmount)
+        public bool IsInventoryFull
         {
-            int slotToPassNum = 0;
-            if (_pickupableSlots[currMainItemSlot] == null && MainItem == null)
+            get { return _currItemAmmount >= _maxItemAmmount; }
+            private set { }
+        }
+
+        [SerializeField]
+        private Transform _slot;
+
+        [SerializeField]
+        private int _maxItemAmmount;
+
+
+        private List<IPickupable> _pickupableSlots = new List<IPickupable>();
+        private int _currItemAmmount = 0;
+
+        private int currMainItemSlot = 0;
+
+
+        private void Start()
+        {
+            ResizeSlots();
+            MainItem = null;
+        }
+
+
+        public bool AddItem(IPickupable itemToAdd)
+        {
+            if (_currItemAmmount < _maxItemAmmount)
             {
-                slotToPassNum = currMainItemSlot;
+                int slotToPassNum = 0;
+                if (_pickupableSlots[currMainItemSlot] == null && MainItem == null)
+                {
+                    slotToPassNum = currMainItemSlot;
+                }
+                else
+                {
+                    for (int slotNum = 0; slotNum < _maxItemAmmount; slotNum++)
+                    {
+                        if (_pickupableSlots[slotNum] == null)
+                        {
+                            slotToPassNum = slotNum;
+                            break;
+                        }
+                    }
+                }
+
+                PickItemRb(itemToAdd);
+                _pickupableSlots[slotToPassNum] = itemToAdd;
+                _currItemAmmount++;
+
+                if (slotToPassNum == currMainItemSlot)
+                {
+                    ChangeMainItem(slotToPassNum);
+                }
+                return true;
+            }
+            else return false;
+        }
+
+        public void ChangeMainItem(int slotNum)
+        {
+            if (_pickupableSlots[currMainItemSlot] != null) _pickupableSlots[currMainItemSlot].gameObject.SetActive(false);
+
+            currMainItemSlot = slotNum;
+            if (_pickupableSlots[currMainItemSlot] != null)
+            {
+                MainItem = _pickupableSlots[slotNum];
+                _pickupableSlots[currMainItemSlot].gameObject.SetActive(true);
             }
             else
             {
-                for (int slotNum = 0; slotNum < _maxItemAmmount; slotNum++)
-                {
-                    if (_pickupableSlots[slotNum] == null)
-                    {
-                        slotToPassNum = slotNum;
-                        break;
-                    }
-                }
+                MainItem = null;
             }
+        }
 
-            PickItemRb(itemToAdd);
-            _pickupableSlots[slotToPassNum] = itemToAdd;
-            _currItemAmmount++;
+        public void SwitchMainItemSlot()
+        {
+            int newItemSlot = currMainItemSlot + 1;
+            if (newItemSlot >= _maxItemAmmount) newItemSlot = 0;
 
-            if (slotToPassNum == currMainItemSlot)
+            ChangeMainItem(newItemSlot);
+        }
+
+        public void DropMainItem()
+        {
+            if (MainItem != null)
             {
-                ChangeMainItem(slotToPassNum);
+                DropItemRb(MainItem);
+                _currItemAmmount--;
+                _pickupableSlots[currMainItemSlot] = null;
+                MainItem = null;
             }
-            return true;
         }
-        else return false;
-    }
 
-    public void ChangeMainItem(int slotNum)
-    {
-        if(_pickupableSlots[currMainItemSlot] != null) _pickupableSlots[currMainItemSlot].gameObject.SetActive(false);
-
-        currMainItemSlot = slotNum;
-        if (_pickupableSlots[currMainItemSlot] != null)
+        private void PickItemRb(IPickupable item)
         {
-            MainItem = _pickupableSlots[slotNum];
-            _pickupableSlots[currMainItemSlot].gameObject.SetActive(true);
+            Rigidbody itemRB = item.gameObject.GetComponent<Rigidbody>();
+            itemRB.isKinematic = true;
+            itemRB.velocity = Vector3.zero;
+            itemRB.angularVelocity = Vector3.zero;
+
+            // Set Slot as a parent
+            item.gameObject.transform.SetParent(_slot);
+
+            // Reset position and rotation
+            item.gameObject.transform.localPosition = Vector3.zero;
+            item.gameObject.transform.localEulerAngles = Vector3.zero;
+
+            item.gameObject.SetActive(false);
         }
-        else
+
+        private void DropItemRb(IPickupable item)
         {
-            MainItem = null;
+            item.gameObject.transform.SetParent(null);
+
+            Rigidbody itemRB = item.gameObject.GetComponent<Rigidbody>();
+            itemRB.isKinematic = false;
+
+            itemRB.AddForce(item.gameObject.transform.up * 2, ForceMode.VelocityChange);
         }
-    }
 
-    public void SwitchMainItemSlot()
-    {
-        int newItemSlot = currMainItemSlot + 1;
-        if (newItemSlot >= _maxItemAmmount) newItemSlot = 0;
 
-        ChangeMainItem(newItemSlot);
-    }
-
-    public void DropMainItem()
-    {
-        if(MainItem != null)
+        private void ResizeSlots()
         {
-            DropItemRb(MainItem);
-            _currItemAmmount--;
-            _pickupableSlots[currMainItemSlot] = null;
-            MainItem = null;
+            for (int i = 0; i < _maxItemAmmount; i++)
+            {
+                _pickupableSlots.Add(null);
+            }
         }
+
+
     }
-
-    private void PickItemRb(IPickupable item)
-    {
-        Rigidbody itemRB = item.gameObject.GetComponent<Rigidbody>();
-        itemRB.isKinematic = true;
-        itemRB.velocity = Vector3.zero;
-        itemRB.angularVelocity = Vector3.zero;
-
-        // Set Slot as a parent
-        item.gameObject.transform.SetParent(_slot);
-
-        // Reset position and rotation
-        item.gameObject.transform.localPosition = Vector3.zero;
-        item.gameObject.transform.localEulerAngles = Vector3.zero;
-
-        item.gameObject.SetActive(false);
-    }
-
-    private void DropItemRb(IPickupable item)
-    {
-        item.gameObject.transform.SetParent(null);
-
-        Rigidbody itemRB = item.gameObject.GetComponent<Rigidbody>();
-        itemRB.isKinematic = false;
-
-        itemRB.AddForce(item.gameObject.transform.up * 2, ForceMode.VelocityChange);
-    }
-
-
-    private void ResizeSlots()
-    {
-        for (int i = 0; i < _maxItemAmmount; i++)
-        {
-            _pickupableSlots.Add(null);
-        }
-    }
-
-
 }

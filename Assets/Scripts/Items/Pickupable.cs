@@ -1,7 +1,11 @@
+using Items.Logic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class Pickupable : MonoBehaviour, IPickupable
+namespace Items
 {
+    [RequireComponent(typeof(Rigidbody))]
+    public class Pickupable : MonoBehaviour, IPickupable
+    {
 
+    }
 }
