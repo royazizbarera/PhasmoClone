@@ -16,12 +16,12 @@ namespace Infrastructure.States.GameStates
             _services = services;
             _coroutineRunner = coroutineRunner;
             _gameStateMachine = gameStateMachine;
+            RegisterServices();
         }
 
 
         public void Enter()
         {
-            RegisterServices();
             CheckLobbyScene();
         }
 

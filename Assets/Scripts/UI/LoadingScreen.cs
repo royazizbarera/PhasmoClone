@@ -4,6 +4,7 @@ using DG.Tweening;
 using Managers;
 using Infrastructure;
 using Infrastructure.States.GameStates;
+using Utilities.Constants;
 
 namespace UI
 {
@@ -35,7 +36,7 @@ namespace UI
                     SceneLoader sceneLoader = AllServices.Container.Single<SceneLoader>();
                     if (sceneLoader != null)
                     {
-                        sceneLoader.Load("Lobby", GameBootstrapper.Instance.StateMachine.Enter<LobbyState>);
+                        sceneLoader.Load(SceneNames.LobbyScene, GameBootstrapper.Instance.StateMachine.Enter<LobbyState>);
                     }
                     
                     yield return null;

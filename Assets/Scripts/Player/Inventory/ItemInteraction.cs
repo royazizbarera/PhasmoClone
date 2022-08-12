@@ -14,8 +14,8 @@ namespace Player.Inventory
         [SerializeField]
         private float _rayCastWidth = 2.3f;
 
-        [SerializeField]
-        private Camera _characterCamera;
+
+        private Camera _mainCamera;
 
         private Inventory _inventory;
         private InputSystem _inputSystem;
@@ -24,6 +24,7 @@ namespace Player.Inventory
         {
             _inventory = GetComponent<Inventory>();
             _inputSystem = AllServices.Container.Single<InputSystem>();
+            _mainCamera = Camera.main;
 
             _inputSystem.DropItemAction += DropItem;
             _inputSystem.PickUpItemAction += PickUpItem;
@@ -36,7 +37,7 @@ namespace Player.Inventory
 
         private void ClickOnItem()
         {
-            var ray = _characterCamera.ViewportPointToRay(Vector3.one * _rayCastGirth);
+            var ray = _mainCamera.ViewportPointToRay(Vector3.one * _rayCastGirth);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, _rayCastWidth))
@@ -88,7 +89,7 @@ namespace Player.Inventory
         private void PickUpItem()
         {
             if (_inventory.IsInventoryFull) return;
-            var ray = _characterCamera.ViewportPointToRay(Vector3.one * _rayCastGirth);
+            var ray = _mainCamera.ViewportPointToRay(Vector3.one * _rayCastGirth);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, _rayCastWidth))

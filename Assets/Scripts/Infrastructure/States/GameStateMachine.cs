@@ -1,3 +1,4 @@
+using Infrastructure.Factory;
 using Infrastructure.States.GameStates;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Infrastructure.States
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootState)] = new BootState(services , coroutineRunner, this),
-                [typeof(LobbyState)] = new LobbyState(),
+                [typeof(LobbyState)] = new LobbyState(this, services.Single<GameFactory>()),
                 [typeof(LoadLevelState)] = new LoadLevelState(),
                 [typeof(GameFlowState)] = new GameFlowState()
             };

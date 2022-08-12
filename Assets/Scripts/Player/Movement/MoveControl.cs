@@ -37,6 +37,7 @@ namespace Player.Movement
             _inputSystem = AllServices.Container.Single<InputSystem>();
             cameraTransform = Camera.main.transform;
         }
+
         void Update()
         {
             InputMouseMove();
@@ -67,7 +68,7 @@ namespace Player.Movement
             else _curSpeedMultiplier = 1f;
 
             Vector3 result = transform.right * _xMove + transform.forward * _zMove;
-            result = cameraTransform.forward * result.x + cameraTransform.right * -result.z;
+            result = cameraTransform.right * result.x + cameraTransform.forward * result.z;
             return result;
         }
 
