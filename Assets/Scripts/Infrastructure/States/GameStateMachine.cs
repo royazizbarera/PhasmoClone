@@ -9,11 +9,11 @@ namespace Infrastructure.States
         private Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
 
-        public GameStateMachine(AllServices services, InputSystem _input)
+        public GameStateMachine(AllServices services, ICoroutineRunner coroutineRunner)
         {
             _states = new Dictionary<Type, IExitableState>
             {
-                [typeof(BootState)] = new BootState(services, _input),
+                [typeof(BootState)] = new BootState(services , coroutineRunner),
                 [typeof(LoadLevelState)] = new LoadLevelState(),
                 [typeof(GameFlowState)] = new GameFlowState()
             };

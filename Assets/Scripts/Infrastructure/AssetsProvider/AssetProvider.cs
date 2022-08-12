@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Infrastructure.AssetsProvider
 {
-    public class AssetProvider : MonoBehaviour, IService
+    public class AssetProvider : IService
     {
         public GameObject Instantiate(string path, Vector3 at)
         {

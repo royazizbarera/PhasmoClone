@@ -4,7 +4,7 @@ using Utilities.Constants;
 
 namespace Infrastructure.Factory
 {
-    public class GameFactory : MonoBehaviour, IService
+    public class GameFactory :  IService
     {
         private readonly AssetProvider _assets;
 
@@ -19,6 +19,12 @@ namespace Infrastructure.Factory
             return gameObject;
         }
 
+        public GameObject CreateInputSystem()
+        {
+            GameObject gameObject = _assets.Instantiate(AssetPath.InputSystemPath);
+            return gameObject;
+        }
+     
         //public void CreateHud() =>
         //  InstantiateRegistered(AssetPath.HudPath);
 

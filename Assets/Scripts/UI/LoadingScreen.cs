@@ -2,6 +2,9 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using Managers;
+using Infrastructure;
+using Infrastructure.AssetsProvider;
+using Infrastructure.Factory;
 
 namespace UI
 {
@@ -29,7 +32,15 @@ namespace UI
                 if (i == _panelsToShow.Length - 1) // If loading screen 
                 {
                     yield return new WaitForSeconds(TimeToFade); // Wait until we see loading
-                    StartCoroutine(nameof(LoadLobby));
+
+                    SceneLoader sceneLoader = AllServices.Container.Single<SceneLoader>();
+                    if (sceneLoader != null)
+                    {
+                        Debug.Log("Start loading scene");
+                        sceneLoader.Load("Lobby");
+
+                    }
+                    
                     yield return null;
                 }
 
@@ -42,14 +53,14 @@ namespace UI
 
         }
 
-        private IEnumerator LoadLobby()
-        {
-            AsyncOperation ao = GameManager.Instance.StartLobby();
+        //private IEnumerator LoadLobby()
+        //{
+        //    AsyncOperation ao = GameManager.Instance.StartLobby();
 
-            yield return new WaitUntil(() => ao.isDone);
+        //    yield return new WaitUntil(() => ao.isDone);
 
             
-            Destroy(gameObject);
-        }
+        //    Destroy(gameObject);
+        //}
     }
 }

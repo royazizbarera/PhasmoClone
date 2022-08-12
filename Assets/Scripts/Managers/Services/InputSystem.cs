@@ -22,6 +22,7 @@ namespace Managers.Services
             _mainInputAction.Player.Enable();
 
             BindFuncs();
+            DontDestroyOnLoad(this);
         }
 
 

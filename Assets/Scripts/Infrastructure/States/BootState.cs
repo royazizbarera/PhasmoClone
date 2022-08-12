@@ -8,12 +8,11 @@ namespace Infrastructure.States
     public class BootState : IState
     {
         private readonly AllServices _services;
-        private readonly InputSystem _inputSystem;
-        public BootState(AllServices services, InputSystem inputSystem)
+        private readonly ICoroutineRunner _coroutineRunner;
+        public BootState(AllServices services, ICoroutineRunner coroutineRunner)
         {
             _services = services;
-            _inputSystem = inputSystem;
-
+            _coroutineRunner = coroutineRunner;
             RegisterServices();
         }
 
@@ -28,9 +27,10 @@ namespace Infrastructure.States
 
         private void RegisterServices()
         {
-            _services.RegisterSingle<InputSystem>(_inputSystem);
             _services.RegisterSingle<AssetProvider>(new AssetProvider());
+            _services.RegisterSingle<SceneLoader>(new SceneLoader(_coroutineRunner));
             _services.RegisterSingle<GameFactory>(new GameFactory(_services.Single<AssetProvider>()));
+            _services.RegisterSingle<InputSystem>(_services.Single<GameFactory>().CreateInputSystem().GetComponent<InputSystem>());
         }
     }
 }
