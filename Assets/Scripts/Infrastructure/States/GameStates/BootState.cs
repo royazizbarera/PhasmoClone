@@ -2,27 +2,32 @@ using Infrastructure.AssetsProvider;
 using Infrastructure.Factory;
 using Managers.Services;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace Infrastructure.States
+namespace Infrastructure.States.GameStates
 {
     public class BootState : IState
     {
+        private readonly GameStateMachine _gameStateMachine;
         private readonly AllServices _services;
         private readonly ICoroutineRunner _coroutineRunner;
-        public BootState(AllServices services, ICoroutineRunner coroutineRunner)
+        public BootState(AllServices services, ICoroutineRunner coroutineRunner, GameStateMachine gameStateMachine)
         {
             _services = services;
             _coroutineRunner = coroutineRunner;
-            RegisterServices();
+            _gameStateMachine = gameStateMachine;
         }
 
 
         public void Enter()
         {
+            RegisterServices();
+            CheckLobbyScene();
         }
 
         public void Exit()
         {
+            Debug.Log("exited Boote");
         }
 
         private void RegisterServices()
@@ -31,6 +36,14 @@ namespace Infrastructure.States
             _services.RegisterSingle<SceneLoader>(new SceneLoader(_coroutineRunner));
             _services.RegisterSingle<GameFactory>(new GameFactory(_services.Single<AssetProvider>()));
             _services.RegisterSingle<InputSystem>(_services.Single<GameFactory>().CreateInputSystem().GetComponent<InputSystem>());
+        }
+
+        private void CheckLobbyScene()
+        {
+            if (SceneManager.GetActiveScene().name == "Lobby")
+            {
+                _gameStateMachine.Enter<LobbyState>();
+            }
         }
     }
 }

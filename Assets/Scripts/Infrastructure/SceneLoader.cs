@@ -14,7 +14,7 @@ namespace Infrastructure
 
 
         public void Load(string name, Action onLoaded = null)
-        {
+        {     
             _coroutineRunner.StartCoroutine(LoadScene(name, onLoaded));
         }
 

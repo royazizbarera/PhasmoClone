@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Infrastructure.States
+namespace Infrastructure.States.GameStates
 {
-    public class GameFlowState : IState
+    public class LoadLevelState : IState
     {
         public void Enter()
         {

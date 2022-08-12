@@ -3,8 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using Managers;
 using Infrastructure;
-using Infrastructure.AssetsProvider;
-using Infrastructure.Factory;
+using Infrastructure.States.GameStates;
 
 namespace UI
 {
@@ -36,9 +35,7 @@ namespace UI
                     SceneLoader sceneLoader = AllServices.Container.Single<SceneLoader>();
                     if (sceneLoader != null)
                     {
-                        Debug.Log("Start loading scene");
-                        sceneLoader.Load("Lobby");
-
+                        sceneLoader.Load("Lobby", GameBootstrapper.Instance.StateMachine.Enter<LobbyState>);
                     }
                     
                     yield return null;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameRunner : MonoBehaviour
 {
@@ -11,6 +12,6 @@ public class GameRunner : MonoBehaviour
 
         if (bootstrapper != null) return;
 
-        Instantiate(BootstrapperPrefab);
+        bootstrapper = Instantiate(BootstrapperPrefab);
     }
 }

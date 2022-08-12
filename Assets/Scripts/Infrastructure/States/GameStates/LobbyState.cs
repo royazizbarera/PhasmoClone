@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Infrastructure.States
+namespace Infrastructure.States.GameStates
 {
-    public class LoadLevelState : IState
+    public class LobbyState : IState
     {
         public void Enter()
         {
-
+            Debug.Log("Lobby started");
         }
 
         public void Exit()
         {
-
         }
     }
 }
