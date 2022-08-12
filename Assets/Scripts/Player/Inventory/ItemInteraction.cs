@@ -24,8 +24,13 @@ namespace Player.Inventory
         {
             _inventory = GetComponent<Inventory>();
             _inputSystem = AllServices.Container.Single<InputSystem>();
-            _mainCamera = Camera.main;
 
+
+            _mainCamera = Camera.main;
+            if(_mainCamera == null)
+            {
+                Debug.Log("Huita");
+            }
             _inputSystem.DropItemAction += DropItem;
             _inputSystem.PickUpItemAction += PickUpItem;
             _inputSystem.SwitchItemAction += SwitchMainItem;
@@ -34,6 +39,15 @@ namespace Player.Inventory
             _inputSystem.MainUseAction += ClickOnItem;
         }
 
+        private void OnDestroy()
+        {
+            _inputSystem.DropItemAction -= DropItem;
+            _inputSystem.PickUpItemAction -= PickUpItem;
+            _inputSystem.SwitchItemAction -= SwitchMainItem;
+            _inputSystem.PrimaryUseAction -= PrimaryUse;
+            _inputSystem.SecondaryUseAction -= SecondaryUse;
+            _inputSystem.MainUseAction -= ClickOnItem;
+        }
 
         private void ClickOnItem()
         {

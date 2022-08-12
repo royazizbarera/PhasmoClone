@@ -59,6 +59,8 @@ namespace Player.Movement
             mouseDelta = _inputSystem.CameraAxis;
             _mouseX = mouseDelta.x * _mouseSensitivity * Time.deltaTime;
             _mouseY = mouseDelta.y * _mouseSensitivity * Time.deltaTime;
+
+           
         }
 
         private Vector3 CalculateMove(bool sprint)

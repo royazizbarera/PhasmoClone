@@ -4,5 +4,6 @@ namespace Utilities.Constants
     {
         public const string BootScene = "Boot";
         public const string LobbyScene = "Lobby";
+        public enum LevelNames {Turkwood};
     }
 }

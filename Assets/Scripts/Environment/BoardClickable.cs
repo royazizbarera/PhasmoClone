@@ -7,7 +7,7 @@ using Managers.Services;
 
 namespace Environment
 {
-    public class Board : MonoBehaviour, IClickable
+    public class BoardClickable : MonoBehaviour, IClickable
     {
         [SerializeField] private CinemachineVirtualCamera _boardCamera;
 
@@ -27,8 +27,13 @@ namespace Environment
         public void DecreasePriority()
         {
             _boardCamera.Priority = CameraPriorities.DisabledState;
-            _inputSystem.UnLockControl();
+            UnlockInputControl();
             Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        public void UnlockInputControl()
+        {
+            _inputSystem.UnLockControl();
         }
     }
 }

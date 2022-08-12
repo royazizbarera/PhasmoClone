@@ -16,7 +16,7 @@ namespace Infrastructure.States
             {
                 [typeof(BootState)] = new BootState(services , coroutineRunner, this),
                 [typeof(LobbyState)] = new LobbyState(this, services.Single<GameFactory>()),
-                [typeof(LoadLevelState)] = new LoadLevelState(),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, services.Single<GameFactory>()),
                 [typeof(GameFlowState)] = new GameFlowState()
             };
         }

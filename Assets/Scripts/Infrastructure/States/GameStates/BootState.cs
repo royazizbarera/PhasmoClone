@@ -40,10 +40,11 @@ namespace Infrastructure.States.GameStates
 
         private void CheckLobbyScene()
         {
-            if (SceneManager.GetActiveScene().name == "Lobby")
-            {
-                _gameStateMachine.Enter<LobbyState>();
-            }
+            _gameStateMachine.Enter<LobbyState>();
+            //if (SceneManager.GetActiveScene().name == "Lobby")
+            //{
+            //    _gameStateMachine.Enter<LobbyState>();
+            //}
         }
     }
 }
