@@ -19,6 +19,12 @@ namespace Infrastructure.Factory
             return gameObject;
         }
 
+        public GameObject CreateGhost(GameObject at)
+        {
+            GameObject gameObject = _assets.Instantiate(AssetPath.GhostPath, at.transform.position);
+            return gameObject;
+        }
+
         public GameObject CreateInputSystem()
         {
             GameObject gameObject = _assets.Instantiate(AssetPath.InputSystemPath);
