@@ -1053,9 +1053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac941ec5e772f2f4187b22db0ee12df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedLights:
-  - {fileID: 0}
-  - {fileID: 0}
-  rotationAxis: {fileID: 4637575925950180938}
-  xRotation: 5
-  isEnabled: 1
+  _connectedLights: []
+  _rotationAxis: {fileID: 4637575925950180938}
+  _enabledButtonAngle: 5
+  _isEnabled: 1
