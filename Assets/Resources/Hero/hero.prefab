@@ -168,10 +168,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _charController: {fileID: 5356674429432218448}
-  _playerBody: {fileID: 5356674429432218463}
+  _playerBody: {fileID: 3771156345009334793}
   _playerHead: {fileID: 5356674429432218462}
-  _mouseSensitivity: 100
-  _maxMoveSpeed: 4
+  _mouseSensitivity: 70
+  _maxMoveSpeed: 2.8
   _sprintMultiplier: 1.8
 --- !u!114 &3771156345009335287
 MonoBehaviour:

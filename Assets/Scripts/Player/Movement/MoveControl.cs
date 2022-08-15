@@ -59,8 +59,6 @@ namespace Player.Movement
             mouseDelta = _inputSystem.CameraAxis;
             _mouseX = mouseDelta.x * _mouseSensitivity * Time.deltaTime;
             _mouseY = mouseDelta.y * _mouseSensitivity * Time.deltaTime;
-
-           
         }
 
         private Vector3 CalculateMove(bool sprint)
@@ -70,10 +68,17 @@ namespace Player.Movement
             else _curSpeedMultiplier = 1f;
 
             Vector3 result = transform.right * _xMove + transform.forward * _zMove;
-            result = cameraTransform.right * result.x + cameraTransform.forward * result.z;
             return result;
         }
 
+        private Vector3 VectorToForward(Vector3 cameraTransform)
+        {
+            Vector3 returnVector;
+            returnVector.x = -cameraTransform.z;
+            returnVector.y = 0;
+            returnVector.z = cameraTransform.x;
+            return returnVector;
+        }
         private void PlayerRotation()
         {
             _playerBody.Rotate(Vector3.up * _mouseX);
