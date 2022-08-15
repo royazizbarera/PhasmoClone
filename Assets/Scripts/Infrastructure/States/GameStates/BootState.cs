@@ -27,7 +27,6 @@ namespace Infrastructure.States.GameStates
 
         public void Exit()
         {
-            Debug.Log("exited Boote");
         }
 
         private void RegisterServices()
