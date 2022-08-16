@@ -6,7 +6,7 @@ namespace Utilities.Constants
 {
     public static class LevelRooms
     {
-        public enum LevelRoomsEnum { Kitchen, Bedroom, MainRoom, NoRoom};
+        public enum LevelRoomsEnum { Kitchen, BedRoom, LivingRoom, BathRoom, NoRoom};
 
     }
 }

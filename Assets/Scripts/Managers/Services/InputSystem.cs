@@ -45,6 +45,9 @@ namespace Managers.Services
         public void LockControl()
         {
             IsControlLocked = true;
+            CameraAxis = Vector2.zero;
+            Axis = Vector2.zero;
+            IsRunning = false;
         }
 
         public void UnLockControl()
