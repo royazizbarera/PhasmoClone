@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Initial
   - GhostSpawnPoint
+  - Door
   layers:
   - Default
   - TransparentFX
