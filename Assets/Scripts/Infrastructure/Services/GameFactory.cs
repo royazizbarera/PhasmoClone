@@ -1,10 +1,9 @@
-using Infrastructure.AssetsProvider;
 using UnityEngine;
 using Utilities.Constants;
 
-namespace Infrastructure.Factory
+namespace Infrastructure.Services
 {
-    public class GameFactory :  IService
+    public class GameFactory : IService
     {
         private readonly AssetProvider _assets;
 
@@ -30,7 +29,7 @@ namespace Infrastructure.Factory
             GameObject gameObject = _assets.Instantiate(AssetPath.InputSystemPath);
             return gameObject;
         }
-     
+
         //public void CreateHud() =>
         //  InstantiateRegistered(AssetPath.HudPath);
 

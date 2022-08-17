@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Infrastructure.AssetsProvider
+namespace Infrastructure.Services
 {
     public class AssetProvider : IService
     {

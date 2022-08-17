@@ -1,4 +1,4 @@
-using Infrastructure.Factory;
+using Infrastructure.Services;
 using Infrastructure.States.GameStates;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace Infrastructure.States
             {
                 [typeof(BootState)] = new BootState(services , coroutineRunner, this),
                 [typeof(LobbyState)] = new LobbyState(this, services.Single<GameFactory>()),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, services.Single<GameFactory>()),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, services.Single<GameFactory>(), services.Single<LevelSetUp>(), services.Single<SceneLoader>()),
                 [typeof(GameFlowState)] = new GameFlowState()
             };
         }

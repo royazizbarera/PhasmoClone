@@ -3,6 +3,7 @@ using Infrastructure.States.GameStates;
 using Infrastructure;
 using Utilities.Constants;
 using Environment;
+using Infrastructure.Services;
 
 namespace UI
 {
@@ -16,12 +17,8 @@ namespace UI
         }
         public void LoadLevel()
         {
-            SceneLoader sceneLoader = AllServices.Container.Single<SceneLoader>();
-            if (sceneLoader != null)
-            {
-                _board.UnlockInputControl();
-                sceneLoader.Load(SceneNames.LevelNames.Turkwood.ToString(), GameBootstrapper.Instance.StateMachine.Enter<LoadLevelState>);
-            }
+            _board.UnlockInputControl();
+            GameBootstrapper.Instance.StateMachine.Enter<LoadLevelState>();
         }
     }
 }

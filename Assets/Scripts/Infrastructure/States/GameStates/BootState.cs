@@ -1,5 +1,4 @@
-using Infrastructure.AssetsProvider;
-using Infrastructure.Factory;
+using Infrastructure.Services;
 using Managers.Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,6 +30,7 @@ namespace Infrastructure.States.GameStates
 
         private void RegisterServices()
         {
+            _services.RegisterSingle<LevelSetUp>(new LevelSetUp());
             _services.RegisterSingle<AssetProvider>(new AssetProvider());
             _services.RegisterSingle<SceneLoader>(new SceneLoader(_coroutineRunner));
             _services.RegisterSingle<GameFactory>(new GameFactory(_services.Single<AssetProvider>()));
@@ -39,11 +39,11 @@ namespace Infrastructure.States.GameStates
 
         private void CheckLobbyScene()
         {
-            _gameStateMachine.Enter<LobbyState>();
-            //if (SceneManager.GetActiveScene().name == "Lobby")
-            //{
-            //    _gameStateMachine.Enter<LobbyState>();
-            //}
+            //_gameStateMachine.Enter<LobbyState>();
+            if (SceneManager.GetActiveScene().name == "Lobby")
+            {
+                _gameStateMachine.Enter<LobbyState>();
+            }
         }
     }
 }

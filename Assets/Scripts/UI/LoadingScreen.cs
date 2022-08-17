@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
-using Managers;
 using Infrastructure;
 using Infrastructure.States.GameStates;
 using Utilities.Constants;
+using Infrastructure.Services;
 
 namespace UI
 {
@@ -50,15 +50,5 @@ namespace UI
             }
 
         }
-
-        //private IEnumerator LoadLobby()
-        //{
-        //    AsyncOperation ao = GameManager.Instance.StartLobby();
-
-        //    yield return new WaitUntil(() => ao.isDone);
-
-            
-        //    Destroy(gameObject);
-        //}
     }
 }

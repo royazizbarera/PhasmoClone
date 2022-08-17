@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 285768918486367241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.9, z: 0.6}
   m_Children: []
   m_Father: {fileID: 5342821660987916120}
   m_RootOrder: 0
@@ -215,7 +215,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.25
+  m_Radius: 0.4088257
   m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 5342821660987916120}
   - component: {fileID: 1075119143}
   - component: {fileID: 1075119141}
+  - component: {fileID: 2581953983297744008}
   m_Layer: 0
   m_Name: ghost
   m_TagString: Untagged
@@ -293,3 +294,17 @@ MonoBehaviour:
   _attackState: {fileID: 598665392}
   _idleState: {fileID: 1297272175}
   _ghostStateMachine: {fileID: 1075119143}
+--- !u!114 &2581953983297744008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d18c2eedce000438db7e5e1c3a70eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onStateEnterActions: []
+  _onStateExitActions: []

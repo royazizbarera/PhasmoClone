@@ -30819,15 +30819,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6545073503029479647, guid: 862b63ef371aa42428e53b486373b426, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1e-45
+      value: 6.2115285e+22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545073503029479647, guid: 862b63ef371aa42428e53b486373b426, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.5551434e+31
       objectReference: {fileID: 0}
     - target: {fileID: 6545073503029479647, guid: 862b63ef371aa42428e53b486373b426, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -0.00000017151979
+      value: 893.7031
       objectReference: {fileID: 0}
     - target: {fileID: 6545073503029479647, guid: 862b63ef371aa42428e53b486373b426, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 4.5904e-41
+      value: 2.8572842e+32
       objectReference: {fileID: 0}
     - target: {fileID: 6545073503051679088, guid: 862b63ef371aa42428e53b486373b426, type: 3}
       propertyPath: m_RootOrder
@@ -31088,10 +31092,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6545073503029479647, guid: 862b63ef371aa42428e53b486373b426, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 2.8e-44
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 6545073503029479647, guid: 862b63ef371aa42428e53b486373b426, type: 3}
       propertyPath: m_BoundingSphereOverride.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545073503029479647, guid: 862b63ef371aa42428e53b486373b426, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 936034300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545073503029479647, guid: 862b63ef371aa42428e53b486373b426, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
       value: 4.5904e-41
       objectReference: {fileID: 0}
     - target: {fileID: 6545073503051679088, guid: 862b63ef371aa42428e53b486373b426, type: 3}
