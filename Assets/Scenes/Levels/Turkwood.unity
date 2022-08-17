@@ -15659,7 +15659,7 @@ PrefabInstance:
       objectReference: {fileID: 365010944}
     - target: {fileID: 511261372249423407, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
       propertyPath: PatrolPoints.Array.size
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 511261372249423407, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
       propertyPath: PatrolPoints.Array.data[0]
@@ -15717,6 +15717,22 @@ PrefabInstance:
       propertyPath: AllLevelRooms.Array.data[3]
       value: 
       objectReference: {fileID: 283679041}
+    - target: {fileID: 511261372249423407, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
+      propertyPath: PatrolPoints.Array.data[10]
+      value: 
+      objectReference: {fileID: 900608146}
+    - target: {fileID: 511261372249423407, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
+      propertyPath: PatrolPoints.Array.data[11]
+      value: 
+      objectReference: {fileID: 761737365}
+    - target: {fileID: 511261372249423407, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
+      propertyPath: PatrolPoints.Array.data[12]
+      value: 
+      objectReference: {fileID: 1544715092}
+    - target: {fileID: 511261372249423407, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
+      propertyPath: PatrolPoints.Array.data[13]
+      value: 
+      objectReference: {fileID: 733621047}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
 --- !u!1001 &1316940151432236882

@@ -10,9 +10,10 @@ public static class RandomGenerator
 
         HashSet<int> candidates = new HashSet<int>();
 
-        for(int i = 0; i < count*2; i++)
+        for(int i = 0; i < count * 2; i++)
         {
             candidates.Add(UnityEngine.Random.Range(min, max));
+            if (candidates.Count >= count) break;
         }
 
         List<int> result = candidates.ToList();

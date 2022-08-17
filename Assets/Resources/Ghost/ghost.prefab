@@ -280,6 +280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 205478300}
   _stoppingDistance: 0.3
+  _GhostRoom: 0
+  _divideNumberForRandom: 5
 --- !u!195 &205478300
 NavMeshAgent:
   m_ObjectHideFlags: 0
