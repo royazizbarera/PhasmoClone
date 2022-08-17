@@ -14,7 +14,7 @@ namespace GameFeatures
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Entered " + other.name);
+         //   Debug.Log("Entered " + other.name);
             if (other.GetComponent<Room>() != null)
             {
                 if (CurrRoom == LevelRooms.LevelRoomsEnum.NoRoom) CurrRoom = other.GetComponent<Room>().RoomType;

@@ -28,6 +28,11 @@ namespace Infrastructure.Services
         }
 
 
+        public Transform[] GetGhostPatrolPoints()
+        {
+            return _currLevelInfo.PatrolPoints;
+        }
+
         public void InitializeLevel()
         {
             _currLevelInfo = GameObject.FindObjectOfType<LevelInfo>();
@@ -45,8 +50,10 @@ namespace Infrastructure.Services
             _currRoom = _currLevelInfo.AllLevelRooms[randomLevelNum].RoomType;
             _currRoomTransform = _currLevelInfo.AllLevelRooms[randomLevelNum].transform;
 
-            Debug.Log("curr room = " + _currRoom.ToString());
+            //Debug.Log("curr room = " + _currRoom.ToString());
         }
+
+
 
     }
 }

@@ -6,6 +6,6 @@ using UnityEngine;
 public class LevelInfo : MonoBehaviour
 {
     public Room[] AllLevelRooms;
-    public Transform[] Points;
+    public Transform[] PatrolPoints;
 
 }
