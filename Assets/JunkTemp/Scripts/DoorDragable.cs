@@ -41,7 +41,7 @@ public class DoorDragable : MonoBehaviour, IDraggable
             // _direction = transform.position - 2 * transform.right;]
             //_direction = transform.position - 2 * transform.right;
             //_rb.AddForceAtPosition(20 * _pushDir, _direction);
-            if(_pushDir != Vector3.zero) Debug.Log(_pushDir);
+          //  if(_pushDir != Vector3.zero) Debug.Log(_pushDir);
 
            _rb.AddForce(_forceAmmount * _pushDir);
         }
