@@ -1,3 +1,4 @@
+using Items.Logic;
 using Infrastructure;
 using Items.Logic;
 using Managers.Services;
@@ -14,12 +15,15 @@ namespace Player.Inventory
         [SerializeField]
         private float _rayCastWidth = 2.3f;
 
+        [SerializeField]
+        private float _maxDistanceGrab = 1.5f;
 
         private Camera _mainCamera;
 
         private Inventory _inventory;
         private InputSystem _inputSystem;
 
+        private IDraggable _currDraggableItem;
         private void Start()
         {
             _inventory = GetComponent<Inventory>();
@@ -37,6 +41,7 @@ namespace Player.Inventory
             _inputSystem.PrimaryUseAction += PrimaryUse;
             _inputSystem.SecondaryUseAction += SecondaryUse;
             _inputSystem.MainUseAction += ClickOnItem;
+            _inputSystem.MainUseCanceledAction += CancelDraggItem;
         }
 
         private void OnDestroy()
@@ -47,6 +52,7 @@ namespace Player.Inventory
             _inputSystem.PrimaryUseAction -= PrimaryUse;
             _inputSystem.SecondaryUseAction -= SecondaryUse;
             _inputSystem.MainUseAction -= ClickOnItem;
+            _inputSystem.MainUseCanceledAction -= CancelDraggItem;
         }
 
         private void ClickOnItem()
@@ -57,10 +63,39 @@ namespace Player.Inventory
             if (Physics.Raycast(ray, out hit, _rayCastWidth))
             {
                 IClickable clickable = hit.transform.GetComponent<IClickable>();
+                _currDraggableItem = hit.transform.GetComponent<IDraggable>();
+
                 if (clickable != null)
                 {
                     clickable.OnClick();
                 }
+                if(_currDraggableItem != null)
+                {
+                    _currDraggableItem.OnDragBegin();
+                }
+            }
+        }
+
+        private void Update()
+        {
+            if(_currDraggableItem != null)
+            {
+                HoldObject();
+            }
+        }
+        private void HoldObject()
+        {
+            if (Vector3.Distance(_currDraggableItem.gameObject.transform.position, _mainCamera.transform.position) > _maxDistanceGrab)
+            {
+                CancelDraggItem();
+            }
+        }
+        private void CancelDraggItem()
+        {
+            if(_currDraggableItem != null)
+            {
+                _currDraggableItem.OnDragEnd();
+                _currDraggableItem = null;
             }
         }
 

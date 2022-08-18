@@ -62,6 +62,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "MainUseUp",
+                    "type": "Button",
+                    "id": "698d62f9-4945-41e9-bfd7-98c242639189",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "MainUse",
                     "type": "Button",
                     "id": "3d82734a-b590-43ff-9615-a8ed4e5122f3",
@@ -276,6 +284,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MainUse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "868d1283-c78b-4ad8-b20d-392aa5d8540f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MainUseUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

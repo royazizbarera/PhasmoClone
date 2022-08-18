@@ -11,7 +11,7 @@ namespace Managers.Services
         public Vector2 CameraAxis { get; private set; }
         public bool IsRunning = false;
 
-        public Action PickUpItemAction, DropItemAction, MainUseAction, PrimaryUseAction, SecondaryUseAction, SwitchItemAction;
+        public Action PickUpItemAction, DropItemAction, MainUseAction, MainUseCanceledAction, PrimaryUseAction, SecondaryUseAction, SwitchItemAction;
 
         public bool IsControlLocked { get; private set; }
         private MainInputAction _mainInputAction;
@@ -58,7 +58,10 @@ namespace Managers.Services
         {
             _mainInputAction.Player.DropItem.performed += DropItemCallback;
             _mainInputAction.Player.Pickup.performed += PickUpItemCallBack;
+
             _mainInputAction.Player.MainUse.performed += MainUseCallBack;
+            _mainInputAction.Player.MainUse.canceled += MainUseCanceledCallBack;
+
             _mainInputAction.Player.PrimaryUse.performed += PrimaryUseCallBack;
             _mainInputAction.Player.SecondaryUse.performed += SecondaryUseCallBack;
             _mainInputAction.Player.SwitchItem.performed += SwitchItemUseCallBack;
@@ -77,6 +80,11 @@ namespace Managers.Services
         private void MainUseCallBack(InputAction.CallbackContext obj)
         {
             if (MainUseAction != null) MainUseAction.Invoke();
+        }
+
+        private void MainUseCanceledCallBack(InputAction.CallbackContext obj)
+        {
+            if (MainUseCanceledAction != null) MainUseCanceledAction.Invoke();
         }
 
         private void PrimaryUseCallBack(InputAction.CallbackContext obj)
