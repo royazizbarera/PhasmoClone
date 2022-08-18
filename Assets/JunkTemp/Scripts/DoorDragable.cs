@@ -37,15 +37,11 @@ public class DoorDragable : MonoBehaviour, IDraggable
             _mouseX = _input.CameraAxis.x;
             _mouseY = _input.CameraAxis.y;
 
-            _pushDir = -_mouseX * _cam.transform.forward - _mouseY * _cam.transform.right;
-            // _direction = transform.position - 2 * transform.right;]
+            _pushDir = _mouseX * _cam.transform.right - _mouseY * _cam.transform.right;
             //_direction = transform.position - 2 * transform.right;
-            //_rb.AddForceAtPosition(20 * _pushDir, _direction);
-          //  if(_pushDir != Vector3.zero) Debug.Log(_pushDir);
-
-           _rb.AddForce(_forceAmmount * _pushDir);
+           // _rb.AddForceAtPosition(20 * _pushDir, _direction);
+           _rb.AddForce(_forceAmmount * _pushDir);;
         }
-        //GetComponent<Rigidbody>().AddForceAtPosition(20*push, direct);
     }
 
     public void OnDragBegin()
