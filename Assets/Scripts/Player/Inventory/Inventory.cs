@@ -1,5 +1,6 @@
 using Items.Logic;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Player.Inventory
@@ -122,14 +123,16 @@ namespace Player.Inventory
 
         private void DropItemRb(IPickupable item)
         {
+            item.gameObject.transform.SetParent(_slot.parent);
+            //EditorApplication.isPaused = true;
+            item.gameObject.transform.localPosition = new Vector3(0f, item.gameObject.transform.localPosition.y, 0f);
+          //  EditorApplication.isPaused = true;
             item.gameObject.transform.SetParent(null);
 
             Rigidbody itemRB = item.gameObject.GetComponent<Rigidbody>();
             itemRB.isKinematic = false;
-
             itemRB.AddForce(item.gameObject.transform.up * 2, ForceMode.VelocityChange);
         }
-
 
         private void ResizeSlots()
         {
