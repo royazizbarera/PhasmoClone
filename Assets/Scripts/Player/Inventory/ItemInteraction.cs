@@ -18,6 +18,9 @@ namespace Player.Inventory
         [SerializeField]
         private float _maxDistanceGrab = 1.5f;
 
+        [SerializeField]
+        private LayerMask _clickableItem;
+
         private Camera _mainCamera;
 
         private Inventory _inventory;
@@ -60,8 +63,9 @@ namespace Player.Inventory
             var ray = _mainCamera.ViewportPointToRay(Vector3.one * _rayCastGirth);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, _rayCastWidth))
+            if (Physics.Raycast(ray, out hit, _rayCastWidth, _clickableItem))
             {
+                Debug.DrawRay(hit.point, hit.normal, Color.green, 2, false);
                 IClickable clickable = hit.transform.GetComponent<IClickable>();
                 _currDraggableItem = hit.transform.GetComponent<IDraggable>();
 

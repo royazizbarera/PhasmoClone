@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3824858497917664174}
   - component: {fileID: -126472244909917966}
   - component: {fileID: 7493603128097734126}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Props_01_Wheel_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}

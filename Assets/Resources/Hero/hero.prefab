@@ -215,6 +215,9 @@ MonoBehaviour:
   _rayCastGirth: 0.5
   _rayCastWidth: 2.3
   _maxDistanceGrab: 4
+  _clickableItem:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &3771156345009335284
 MonoBehaviour:
   m_ObjectHideFlags: 0
