@@ -1,3 +1,4 @@
+using Items;
 using Items.Logic;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,10 +32,10 @@ namespace Ghosts.EnvIneraction
         private void InteractWithIPickupable()
         {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, _itemsThrowRadius);
-
+            Debug.Log("Check for interact");
             for(int i = 0; i< hitColliders.Length;i++)
             {
-                if(hitColliders[i] is IPickupable)
+                if(hitColliders[i].GetComponent<IPickupable>() != null)
                 {
                     Debug.Log("Find " + hitColliders[i].name);
                 }

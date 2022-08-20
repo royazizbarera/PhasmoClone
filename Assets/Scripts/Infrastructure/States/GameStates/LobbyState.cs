@@ -29,6 +29,7 @@ namespace Infrastructure.States.GameStates
         private void InitGameWorld()
         {
             GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(Tags.InitialPoint));
+            _gameFactory.CreateTargetUI();
         }
     }
 }

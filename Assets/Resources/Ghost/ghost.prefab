@@ -317,4 +317,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874206495b73a3341b14cc183eec8d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemsThrowRadius: 3
+  _itemsThrowRadius: 15

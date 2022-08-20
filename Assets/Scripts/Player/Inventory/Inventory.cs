@@ -113,11 +113,8 @@ namespace Player.Inventory
             // Set Slot as a parent
             item.gameObject.transform.SetParent(_slot);
 
-            Debug.Log("Pos before = " + item.gameObject.transform.localPosition);
             // Reset position and rotation
             item.gameObject.transform.localPosition = Vector3.zero;
-
-            Debug.Log("Pos after = " + item.gameObject.transform.localPosition);
             item.gameObject.transform.localEulerAngles = Vector3.zero;
 
             item.gameObject.SetActive(false);

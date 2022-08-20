@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Utilities.Constants;
 
@@ -27,6 +28,13 @@ namespace Infrastructure.Services
         public GameObject CreateInputSystem()
         {
             GameObject gameObject = _assets.Instantiate(AssetPath.InputSystemPath);
+            return gameObject;
+        }
+
+        public GameObject CreateTargetUI()
+        {
+            GameObject gameObject = _assets.Instantiate(AssetPath.TargetUIPath);
+           
             return gameObject;
         }
 
