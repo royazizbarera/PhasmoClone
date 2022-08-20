@@ -115,7 +115,6 @@ GameObject:
   - component: {fileID: 3771156345009335285}
   - component: {fileID: 3771156345009335284}
   - component: {fileID: 1470112796}
-  - component: {fileID: 801102722}
   m_Layer: 7
   m_Name: hero
   m_TagString: Untagged
@@ -243,43 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrRoom: 3
---- !u!114 &801102722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3771156345009335283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473ef225855aeca4997cad793877625e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCam: {fileID: 0}
-  GrabButton: Grab
-  ThrowButton: Throw
-  UseButton: Use
-  ObjectGrab:
-    m_FreezeRotation: 0
-    m_PickupRange: 3
-    m_ThrowStrength: 50
-    m_distance: 3
-    m_maxDistanceGrab: 4
-  ItemGrab:
-    m_FreezeRotation: 0
-    m_ItemPickupRange: 2
-    m_ItemThrow: 45
-    m_ItemDistance: 1
-    m_ItemMaxGrab: 2.5
-  DoorGrab:
-    m_DoorPickupRange: 2
-    m_DoorThrow: 10
-    m_DoorDistance: 2
-    m_DoorMaxGrab: 3
-  Tags:
-    m_InteractTag: Interact
-    m_InteractItemsTag: InteractItem
-    m_DoorsTag: Door
 --- !u!1 &3771156345257201992
 GameObject:
   m_ObjectHideFlags: 0

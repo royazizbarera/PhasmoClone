@@ -65,11 +65,8 @@ public class PatrolWalk : MonoBehaviour
 
     private void ChoosePoint()
     {
-        Debug.Log("All points should be " + (_patrolPoints.Length / _divideNumberForRandom));
         _randomPointsList = RandomGenerator.GenerateRandom((_patrolPoints.Length / _divideNumberForRandom), 0, _patrolPoints.Length - 1);
 
-        Debug.Log("All points = " + _randomPointsList.Count);
-        Debug.Log("Selected points = " + _randomPointsList[0]);
         Transform bestPoint = null;
         float bestDistance = float.MaxValue;
         float currDistanceToPoints;
