@@ -289,7 +289,7 @@ GameObject:
   m_Layer: 7
   m_Name: ItemSlot
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -300,13 +300,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3771156345610260236}
-  m_LocalRotation: {x: 0.6754873, y: -0.012867295, z: 0.011790702, w: 0.7371651}
-  m_LocalPosition: {x: 0.362, y: -0.343, z: 0.334}
+  m_LocalRotation: {x: 0, y: -0.01745245, z: 0, w: 0.99984777}
+  m_LocalPosition: {x: 0.324, y: -0.191, z: 0.358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5356674429432218462}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 85, y: -2, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -2, z: 0}
 --- !u!1 &3771156345620046995
 GameObject:
   m_ObjectHideFlags: 0

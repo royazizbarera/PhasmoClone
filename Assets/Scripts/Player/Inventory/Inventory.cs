@@ -21,6 +21,11 @@ namespace Player.Inventory
         [SerializeField]
         private int _maxItemAmmount;
 
+        [SerializeField]
+        private float _dropItemOffset = 0.5f;
+        [SerializeField]
+        private Vector2 _dropItemForce = new Vector2(3f, 1f);
+
 
         private List<IPickupable> _pickupableSlots = new List<IPickupable>();
         private int _currItemAmmount = 0;
@@ -125,13 +130,13 @@ namespace Player.Inventory
         {
             item.gameObject.transform.SetParent(_slot.parent);
             //EditorApplication.isPaused = true;
-            item.gameObject.transform.localPosition = new Vector3(0f, item.gameObject.transform.localPosition.y, 0f);
+            item.gameObject.transform.localPosition = new Vector3(0f, item.gameObject.transform.localPosition.y, _dropItemOffset);
           //  EditorApplication.isPaused = true;
             item.gameObject.transform.SetParent(null);
 
             Rigidbody itemRB = item.gameObject.GetComponent<Rigidbody>();
             itemRB.isKinematic = false;
-            itemRB.AddForce(item.gameObject.transform.up * 2, ForceMode.VelocityChange);
+            itemRB.AddForce(item.gameObject.transform.forward * _dropItemForce.x + item.gameObject.transform.up * _dropItemForce.y, ForceMode.VelocityChange);
         }
 
         private void ResizeSlots()
