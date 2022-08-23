@@ -9,13 +9,16 @@ namespace Ghosts.EnvIneraction
     public class GhostItemInteraction : MonoBehaviour
     {
         [SerializeField]
-        private float _itemsThrowRadius;
-        [SerializeField]
-        private float _itemsThrowPower;
+        private Ghost _ghostInfo;
 
+        private float _itemsThrowInterectionRadius;
+        private float _itemsThrowPower;
 
         private void Start()
         {
+            _itemsThrowPower = _ghostInfo.GhostData.ItemThrowPower;
+            _itemsThrowInterectionRadius = _ghostInfo.GhostData.ItemThrowRadiusOfInterrection;
+
             StartCoroutine(ItemInteraction());
         }
 
@@ -33,7 +36,7 @@ namespace Ghosts.EnvIneraction
 
         private void InteractWithIPickupable()
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, _itemsThrowRadius);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, _itemsThrowInterectionRadius);
             for(int i = 0; i< hitColliders.Length;i++)
             {
                 Pickupable item = hitColliders[i].GetComponent<Pickupable>();

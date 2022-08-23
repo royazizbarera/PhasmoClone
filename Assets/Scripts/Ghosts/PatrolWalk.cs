@@ -10,12 +10,13 @@ public class PatrolWalk : MonoBehaviour
     private NavMeshAgent _agent;
     [SerializeField]
     private float _stoppingDistance = 0.3f;
+    [SerializeField]
+    private Ghost _ghostInfo;
 
     public LevelRooms.LevelRoomsEnum _GhostRoom;
 
-    [SerializeField]
-    private int _divideNumberForRandom = 3;
-
+    private float _ghostNormalSpeed;
+    private int _patrolRandomMultiplier = 3;
     private Transform[] _patrolPoints;
     private LevelSetUp _levelSetUp;
 
@@ -24,15 +25,25 @@ public class PatrolWalk : MonoBehaviour
 
     private List<int> _randomPointsList;
     private bool _isStopped = true;
-    void Start()
+
+    private void Start()
     {
         _levelSetUp = AllServices.Container.Single<LevelSetUp>();
+        _patrolRandomMultiplier = _ghostInfo.GhostData.PatrolRandomMultiplier;
+        _ghostNormalSpeed = _ghostInfo.GhostData.GhostNormalSpeed;
+    }
+    private void OnEnable()
+    {
         _GhostRoom = _levelSetUp.CurrRoom;
         _patrolPoints = _levelSetUp.GetGhostPatrolPoints();
         _levelTransformPoint = _levelSetUp.CurrRoomTransform;
         StartPatrolling();
     }
 
+    private void OnDisable()
+    {
+        StopPatrolling();
+    }
     private void Update()
     {
         if (_isStopped) return;
@@ -46,7 +57,13 @@ public class PatrolWalk : MonoBehaviour
 
     public void StartPatrolling()
     {
+        _agent.speed = _ghostNormalSpeed;
         SwitchStopState(false);
+    }
+
+    private void StopPatrolling()
+    {
+        SwitchStopState(true);
     }
 
     public void SwitchStopState(bool isStopped)
@@ -54,8 +71,8 @@ public class PatrolWalk : MonoBehaviour
         _isStopped = isStopped;
         if (isStopped)
         {
-            _agent.isStopped = true;
             _agent.ResetPath();
+            _agent.isStopped = true;
         }
         else
         {
@@ -65,7 +82,7 @@ public class PatrolWalk : MonoBehaviour
 
     private void ChoosePoint()
     {
-        _randomPointsList = RandomGenerator.GenerateRandom((_patrolPoints.Length / _divideNumberForRandom), 0, _patrolPoints.Length - 1);
+        _randomPointsList = RandomGenerator.GenerateRandom((_patrolPoints.Length / _patrolRandomMultiplier), 0, _patrolPoints.Length - 1);
 
         Transform bestPoint = null;
         float bestDistance = float.MaxValue;

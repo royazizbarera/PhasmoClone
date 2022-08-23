@@ -8,14 +8,13 @@ public class MeshHandler : MonoBehaviour
     private GameObject _ghostMesh;
 
     [SerializeField]
+    private Ghost _ghostInfo;
+
     private float _minMeshActiveTime;
-    [SerializeField]
     private float _maxMeshActiveTime;
 
-    [SerializeField]
-    private float _minMeshFlickCD;  
-    [SerializeField]
-    private float _maxMeshFlickCD;
+    private float _minMeshDisabledTime;  
+    private float _maxMeshDisabledTime;
 
 
     private bool _isMeshActive = false;
@@ -23,9 +22,22 @@ public class MeshHandler : MonoBehaviour
 
     private void Start()
     {
+        _minMeshActiveTime = _ghostInfo.GhostData.MinMeshActiveTime;
+        _maxMeshActiveTime = _ghostInfo.GhostData.MaxMeshActiveTime;
+        _minMeshDisabledTime = _ghostInfo.GhostData.MinMeshDisabledTime;
+        _maxMeshDisabledTime = _ghostInfo.GhostData.MaxMeshDisabledTime;
+    }
+    private void OnEnable()
+    {
+        _isMeshActive = false;
         _ghostMesh.SetActive(false);
     }
 
+    private void OnDisable()
+    {
+        _ghostMesh.SetActive(true);
+        _isMeshActive = true;
+    }
     public void DisableMesh()
     {
         if (!enabled) return;
@@ -60,13 +72,11 @@ public class MeshHandler : MonoBehaviour
             SwitchMeshState();
 
             if (_isMeshActive) yield return new WaitForSeconds(Random.Range(_minMeshActiveTime, _maxMeshActiveTime));
-            else yield return new WaitForSeconds(Random.Range(_minMeshFlickCD, _maxMeshFlickCD));
+            else yield return new WaitForSeconds(Random.Range(_minMeshDisabledTime, _maxMeshDisabledTime));
         }
 
         yield return null;
     }
-
-
 
     private void SwitchMeshState()
     {
@@ -80,11 +90,5 @@ public class MeshHandler : MonoBehaviour
             _ghostMesh.SetActive(true);
             _isMeshActive = true;
         }
-    }
-
-    private void OnDisable()
-    {
-        _ghostMesh.SetActive(true);
-        _isMeshActive = true;
     }
 }
