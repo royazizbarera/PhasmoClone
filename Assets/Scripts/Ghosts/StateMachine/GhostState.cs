@@ -14,9 +14,10 @@ public abstract class GhostState : MonoBehaviour
 
     public void EnterState()
     {
+        Debug.Log("entered " + transform.name + " state");
         foreach(UnityEvent _currEvent in _onStateEnterActions)
         {
-            if (_currEvent != null) _currEvent.Invoke();
+            _currEvent?.Invoke();
         }
     }
 
@@ -24,7 +25,7 @@ public abstract class GhostState : MonoBehaviour
     {
         foreach (UnityEvent _currEvent in _onStateExitActions)
         {
-            if (_currEvent != null) _currEvent.Invoke();
+            _currEvent?.Invoke();
         }
     }
 }

@@ -15,7 +15,6 @@ public class GhostMood : MonoBehaviour
     {
         _ghostStateMachine.ChangeState(_idleState);
     }
-
     
     void GetAngry()
     {

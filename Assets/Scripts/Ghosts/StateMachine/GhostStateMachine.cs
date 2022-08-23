@@ -9,7 +9,7 @@ public class GhostStateMachine : MonoBehaviour
     {
         if (_currState == newState) return;
         if(_currState != null) _currState.ExitState();
-
+        Debug.Log("call");
         newState.EnterState();
         _currState = newState;
     }
