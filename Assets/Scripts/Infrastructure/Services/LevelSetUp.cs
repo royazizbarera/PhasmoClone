@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Utilities.Constants;
@@ -5,21 +6,21 @@ namespace Infrastructure.Services
 {
     public class LevelSetUp : IService
     {
-        public LevelRooms.LevelRoomsEnum CurrRoom
+
+        public Action OnLevelSetedUp;
+        public LevelRooms.LevelRoomsEnum CurrGhostRoom
         {
             get { return _currRoom; }
         }         
-        public Transform CurrRoomTransform
+        public Transform CurrGhostRoomTransform
         {
             get { return _currRoomTransform; }
         }
 
         private SceneNames.LevelNames _selectedMap;
-
         private Transform _currRoomTransform;
-        private LevelRooms.LevelRoomsEnum _currRoom;
-
-       
+        private LevelRooms.LevelRoomsEnum _currRoom = LevelRooms.LevelRoomsEnum.NoRoom;
+  
         private LevelInfo _currLevelInfo;
 
         public void ChooseMap(SceneNames.LevelNames selectedMap)
@@ -41,12 +42,18 @@ namespace Infrastructure.Services
                 Debug.LogWarning("Current level info = null!");
             }
             RandomizeCurrentRoom();
+            OnLevelSetedUp?.Invoke();
+        }
+
+        public void ResetLevel()
+        {
+            _currRoom = LevelRooms.LevelRoomsEnum.NoRoom;
+            _currRoomTransform = null;
         }
 
         private void RandomizeCurrentRoom()
         {
-            int randomLevelNum = Random.Range(0, _currLevelInfo.AllLevelRooms.Length);
-
+            int randomLevelNum = UnityEngine.Random.Range(0, _currLevelInfo.AllLevelRooms.Length);
             _currRoom = _currLevelInfo.AllLevelRooms[randomLevelNum].RoomType;
             _currRoomTransform = _currLevelInfo.AllLevelRooms[randomLevelNum].transform;
 

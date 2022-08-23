@@ -29,14 +29,11 @@ public class PatrolWalk : MonoBehaviour
     private void Start()
     {
         _levelSetUp = AllServices.Container.Single<LevelSetUp>();
-        _patrolRandomMultiplier = _ghostInfo.GhostData.PatrolRandomMultiplier;
-        _ghostNormalSpeed = _ghostInfo.GhostData.GhostNormalSpeed;
+        SetUpGhostData();
+        StartPatrolling();
     }
     private void OnEnable()
     {
-        _GhostRoom = _levelSetUp.CurrRoom;
-        _patrolPoints = _levelSetUp.GetGhostPatrolPoints();
-        _levelTransformPoint = _levelSetUp.CurrRoomTransform;
         StartPatrolling();
     }
 
@@ -110,5 +107,13 @@ public class PatrolWalk : MonoBehaviour
         else { Debug.Log("Curr destination = null"); }
     }
 
-  //  private void Is
+    private void SetUpGhostData()
+    {
+        _patrolRandomMultiplier = _ghostInfo.GhostData.PatrolRandomMultiplier;
+        _ghostNormalSpeed = _ghostInfo.GhostData.GhostNormalSpeed;
+
+        _GhostRoom = _levelSetUp.CurrGhostRoom;
+        _patrolPoints = _levelSetUp.GetGhostPatrolPoints();
+        _levelTransformPoint = _levelSetUp.CurrGhostRoomTransform;
+    }
 }

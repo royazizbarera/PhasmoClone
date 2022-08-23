@@ -6,6 +6,9 @@ namespace Infrastructure.Services
 {
     public class GameFactory : IService
     {
+
+        private GameObject _mainHero = null;
+        private GameObject _ghost = null;
         private readonly AssetProvider _assets;
 
         public GameFactory(AssetProvider assets)
@@ -24,7 +27,6 @@ namespace Infrastructure.Services
             GameObject gameObject = _assets.Instantiate(AssetPath.GhostPath, at.transform.position);
             return gameObject;
         }
-
         public GameObject CreateInputSystem()
         {
             GameObject gameObject = _assets.Instantiate(AssetPath.InputSystemPath);
