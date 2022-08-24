@@ -1,7 +1,6 @@
 using GameFeatures;
 using Infrastructure;
 using Infrastructure.Services;
-using System;
 using System.Collections;
 using UnityEngine;
 using Utilities.Constants;

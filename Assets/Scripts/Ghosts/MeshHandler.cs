@@ -8,7 +8,7 @@ public class MeshHandler : MonoBehaviour
     private GameObject _ghostMesh;
 
     [SerializeField]
-    private Ghost _ghostInfo;
+    private GhostInfo _ghostInfo;
 
     private float _minMeshActiveTime;
     private float _maxMeshActiveTime;

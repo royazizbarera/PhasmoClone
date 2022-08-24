@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4617bd6c37bdd464da2a919e3a9d757c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currPlayerRoom: {fileID: 0}
+  _currPlayerRoom: {fileID: 1470112796}
   _maxSanityValue: 100
   _houseSecondSanityMinus: 0.01
   _ghostRoomSecondSanityMinus: 1

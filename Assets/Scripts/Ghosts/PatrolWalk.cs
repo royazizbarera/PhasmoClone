@@ -11,7 +11,7 @@ public class PatrolWalk : MonoBehaviour
     [SerializeField]
     private float _stoppingDistance = 0.3f;
     [SerializeField]
-    private Ghost _ghostInfo;
+    private GhostInfo _ghostInfo;
 
     public LevelRooms.LevelRoomsEnum _GhostRoom;
 

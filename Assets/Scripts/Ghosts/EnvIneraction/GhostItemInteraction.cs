@@ -9,7 +9,7 @@ namespace Ghosts.EnvIneraction
     public class GhostItemInteraction : MonoBehaviour
     {
         [SerializeField]
-        private Ghost _ghostInfo;
+        private GhostInfo _ghostInfo;
 
         private float _itemsThrowInterectionRadius;
         private float _itemsThrowPower;
