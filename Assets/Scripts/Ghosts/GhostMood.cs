@@ -14,7 +14,7 @@ public class GhostMood : MonoBehaviour
     void Start()
     {
         _ghostStateMachine.ChangeState(_idleState);
-        Invoke(nameof(GetAngry), 2f);
+       // Invoke(nameof(GetAngry), 2f);
     }
     
     void GetAngry()

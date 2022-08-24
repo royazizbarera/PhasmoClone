@@ -58,7 +58,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _onStateExitActions: []
+      - m_Target: {fileID: -8925133462107946173}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  _onStateExitActions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8925133462107946173}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1056402794
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +115,7 @@ Transform:
   - {fileID: 1297272174}
   - {fileID: 598665391}
   m_Father: {fileID: 5342821660987916120}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1297272173
 GameObject:
@@ -149,7 +175,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _onStateExitActions: []
+      - m_Target: {fileID: 205478301}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  _onStateExitActions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 205478301}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2753050745535576107
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +231,36 @@ Transform:
   m_Children:
   - {fileID: 3385529592021856054}
   m_Father: {fileID: 5342821660987916120}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4406544567527002579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2697931173405724711}
+  m_Layer: 0
+  m_Name: GhostRayPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2697931173405724711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4406544567527002579}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.846, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5342821660987916120}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7874926961459402408
@@ -197,8 +279,8 @@ GameObject:
   - component: {fileID: -8925133462107946173}
   - component: {fileID: 293256165}
   - component: {fileID: 238534750}
-  - component: {fileID: 1499621083}
   - component: {fileID: 1403907066}
+  - component: {fileID: 1499621083}
   m_Layer: 0
   m_Name: ghost
   m_TagString: Untagged
@@ -217,6 +299,7 @@ Transform:
   m_LocalPosition: {x: 5.842115, y: 4.81883, z: 2.5525544}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2697931173405724711}
   - {fileID: 4673153893524147930}
   - {fileID: 1056402795}
   m_Father: {fileID: 0}
@@ -294,7 +377,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7874926961459402408}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02b2cc1a3b1e2bb42a3098f5774214ba, type: 3}
   m_Name: 
@@ -302,7 +385,8 @@ MonoBehaviour:
   _agent: {fileID: 205478300}
   _stoppingDistance: 0.3
   _ghostInfo: {fileID: 1499621083}
-  _lineOfSight: {fileID: 0}
+  _lineOfSight: {fileID: 1403907066}
+  _checkForLineCD: 0.5
 --- !u!114 &293256165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +414,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ghostMesh: {fileID: 2753050745535576107}
   _ghostInfo: {fileID: 1499621083}
+--- !u!114 &1403907066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c399aa02435035344a1695a91ed53a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rayStartTransform: {fileID: 2697931173405724711}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 1015
 --- !u!114 &1499621083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,21 +444,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GhostData: {fileID: 11400000, guid: 0567e6284d5676e45a852286a603f70b, type: 2}
   PlayerTransform: {fileID: 0}
---- !u!114 &1403907066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7874926961459402408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c399aa02435035344a1695a91ed53a4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 1015
 --- !u!1001 &3945419474563736600
 PrefabInstance:
   m_ObjectHideFlags: 0

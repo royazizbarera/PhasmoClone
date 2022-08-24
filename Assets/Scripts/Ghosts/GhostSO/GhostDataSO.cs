@@ -17,4 +17,6 @@ public class GhostDataSO : ScriptableObject
 
     public float MinMeshDisabledTime = 0.55f;
     public float MaxMeshDisabledTime = 0.9f;
+
+    public float MaxDistanceToPlayerAggre = 4f;
 }

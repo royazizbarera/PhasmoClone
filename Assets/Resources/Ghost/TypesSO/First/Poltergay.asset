@@ -21,3 +21,4 @@ MonoBehaviour:
   MaxMeshActiveTime: 0.18
   MinMeshDisabledTime: 0.55
   MaxMeshDisabledTime: 0.9
+  MaxDistanceToPlayerAggre: 20

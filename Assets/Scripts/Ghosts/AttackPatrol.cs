@@ -22,10 +22,9 @@ namespace Ghosts
         private float _checkForLineCD;
 
         private Transform _playerTransform;
-
         private PlayerCheckResult _playerCheckResult;
 
-        private bool _dataSetedUp;
+        private bool _dataSetedUp = false;
         private float _ghostAttackSpeed;
         private Transform[] _patrolPoints;
         private LevelSetUp _levelSetUp;
@@ -35,6 +34,7 @@ namespace Ghosts
         private int _randomPointNum;
         private bool _isAttacking = false;
         private bool _isFollowing = false;
+        private float _maxAggroDistance;
 
         private void OnEnable()
         {
@@ -54,8 +54,12 @@ namespace Ghosts
         private void Update()
         {
             if (!_isAttacking) return;
-            if (_isFollowing) return;
-
+            if (_isFollowing)
+            {
+                _currDestination = _playerTransform;
+                SetDestination();
+                return;
+            }
             if (_agent.remainingDistance <= _stoppingDistance || _currDestination == null)
             {
                 ChoosePoint();
@@ -66,9 +70,10 @@ namespace Ghosts
 
         public void StartAttackPatrolling()
         {
-            StartCoroutine(CheckForPlayerVisible());
+            _isFollowing = false;
             _agent.speed = _ghostAttackSpeed;
             SwitchAttackState(true);
+            StartCoroutine(CheckForPlayerVisible());
         }
 
         public void SwitchAttackState(bool isAttacking)
@@ -76,12 +81,12 @@ namespace Ghosts
             _isAttacking = isAttacking;
             if (isAttacking)
             {
-                _agent.ResetPath();
-                _agent.isStopped = true;
+                _agent.isStopped = false;
             }
             else
             {
-                _agent.isStopped = false;
+                _agent.ResetPath();
+                _agent.isStopped = true;
             }
         }
 
@@ -90,7 +95,13 @@ namespace Ghosts
             while (true)
             {
                 if (!_isAttacking) break;
-
+                _playerCheckResult = _lineOfSight.CheckForPlayer(_playerTransform);
+                if (_playerCheckResult.IsPlayerVisible && _playerCheckResult.DistanceToPlayer <= _maxAggroDistance)
+                {              
+                    _isFollowing = true;
+                }
+                else _isFollowing = false;
+                yield return new WaitForSeconds(_checkForLineCD);
             }
             yield return null;
         }
@@ -117,6 +128,7 @@ namespace Ghosts
         {
             _levelSetUp = AllServices.Container.Single<LevelSetUp>();
             _ghostAttackSpeed = _ghostInfo.GhostData.GhostAttackSpeed;
+            _maxAggroDistance = _ghostInfo.GhostData.MaxDistanceToPlayerAggre;
             _patrolPoints = _levelSetUp.GetGhostPatrolPoints();
             if (_ghostInfo.PlayerTransform != null) _playerTransform = _ghostInfo.PlayerTransform;
             else

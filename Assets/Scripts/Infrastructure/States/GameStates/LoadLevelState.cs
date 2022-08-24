@@ -44,7 +44,7 @@ namespace Infrastructure.States.GameStates
         {
             GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(Tags.InitialPoint));
             GameObject ghost = _gameFactory.CreateGhost(GameObject.FindWithTag(Tags.GhostInitialPoint));
-
+            ghost.GetComponent<GhostInfo>().SetUpGhost(hero.transform);
         }
     }
 }
