@@ -50,8 +50,8 @@ public class DoorDraggable : MonoBehaviour, IDraggable
         if (_isInterracting)
         {
             DraggDoor();
-            if (IsDoorClosed) { Debug.Log("Door is closed"); }
-            else if (IsDoorFullyOpened) Debug.Log("Door is fully opened");
+           // if (IsDoorClosed) { Debug.Log("Door is closed"); }
+           // else if (IsDoorFullyOpened) Debug.Log("Door is fully opened");
         }
     }
 
