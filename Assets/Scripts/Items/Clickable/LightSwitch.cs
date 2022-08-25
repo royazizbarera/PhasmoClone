@@ -30,4 +30,5 @@ public class LightSwitch : MonoBehaviour, IClickable
             _rotationAxis.Rotate(-_enabledButtonAngle, 0f, 0f);
         }
     }
+
 }
