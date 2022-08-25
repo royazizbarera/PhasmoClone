@@ -387,7 +387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2481584955801031590, guid: 611c420aab0ee8843ae1a8df0eb4cd5f, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2481584955801031590, guid: 611c420aab0ee8843ae1a8df0eb4cd5f, type: 3}
       propertyPath: m_TagString
@@ -577,7 +577,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.75, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 29.7, y: 1.0474284, z: -8.004969}
+  m_ConnectedAnchor: {x: 29.7, y: 1.0474281, z: -4.2889686}
   m_UseSpring: 0
   m_Spring:
     spring: 4
@@ -613,5 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ced68bfcda0b340ad57896c5db18b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDoorFullyOpened: 0
+  IsDoorClosed: 0
   _forceAmmount: 10
   _distance: 2.5
