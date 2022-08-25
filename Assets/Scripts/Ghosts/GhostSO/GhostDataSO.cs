@@ -9,7 +9,10 @@ public class GhostDataSO : ScriptableObject
     [Tooltip("The lower this number,the more time ghost will spend in his room")]
     public int PatrolRandomMultiplier = 5;
 
-    public float ItemThrowRadiusOfInterrection = 1.5f;
+    public float ItemThrowRadiusOfInterection = 1.5f;
+    public float DoorsTouchRadiusInterection = 2.5f;
+    public float ClickableTouchRadiusInterection = 2.5f;
+
     public float ItemThrowPower = 5f;
 
     public float MinMeshActiveTime = 0.12f;
