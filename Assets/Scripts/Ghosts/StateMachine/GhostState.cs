@@ -14,7 +14,6 @@ public abstract class GhostState : MonoBehaviour
 
     public void EnterState()
     {
-        Debug.Log("entered " + transform.name + " state");
         foreach(UnityEvent _currEvent in _onStateEnterActions)
         {
             _currEvent?.Invoke();

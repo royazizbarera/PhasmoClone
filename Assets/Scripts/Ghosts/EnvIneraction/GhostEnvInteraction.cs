@@ -46,7 +46,7 @@ namespace Ghosts.EnvIneraction
                 }
                 if(door != null)
                 {
-                    //Debug.Log(door.transform.name);
+                    door.GhostDrugDoor();
                 }
             }
         }

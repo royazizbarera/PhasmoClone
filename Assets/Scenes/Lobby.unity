@@ -27151,6 +27151,14 @@ PrefabInstance:
       propertyPath: m_Limits.min
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1446153468900178724, guid: 9a808c3d94be9da4ba5f1c0ebb3b18fd, type: 3}
+      propertyPath: _maxGhostsForcePower
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446153468900178724, guid: 9a808c3d94be9da4ba5f1c0ebb3b18fd, type: 3}
+      propertyPath: _minGhostsForcePower
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4413241596642161119, guid: 9a808c3d94be9da4ba5f1c0ebb3b18fd, type: 3}
       propertyPath: m_Name
       value: DoprDrag
