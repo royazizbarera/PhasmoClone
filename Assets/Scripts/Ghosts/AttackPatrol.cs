@@ -79,6 +79,7 @@ namespace Ghosts
         public void SwitchAttackState(bool isAttacking)
         {
             _isAttacking = isAttacking;
+            if (!_agent.isOnNavMesh) return;
             if (isAttacking)
             {
                 _agent.isStopped = false;

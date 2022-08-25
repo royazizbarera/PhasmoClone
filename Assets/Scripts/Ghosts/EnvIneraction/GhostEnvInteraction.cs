@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Ghosts.EnvIneraction
 {
-    public class GhostItemInteraction : MonoBehaviour
+    public class GhostEnvInteraction : MonoBehaviour
     {
         [SerializeField]
         private GhostInfo _ghostInfo;
@@ -27,22 +27,26 @@ namespace Ghosts.EnvIneraction
         {
             while (true)
             {
-                InteractWithIPickupable();
+                InteractWithItems();
                 yield return new WaitForSeconds(2f);
             }
 
         }
 
-
-        private void InteractWithIPickupable()
+        private void InteractWithItems()
         {
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, _itemsThrowInterectionRadius);
             for(int i = 0; i< hitColliders.Length;i++)
             {
                 Pickupable item = hitColliders[i].GetComponent<Pickupable>();
+                DoorDraggable door = hitColliders[i].GetComponent<DoorDraggable>();
                 if (item != null)
                 {
                     DropItemRb(item);
+                }
+                if(door != null)
+                {
+                    //Debug.Log(door.transform.name);
                 }
             }
         }

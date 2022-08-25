@@ -66,6 +66,7 @@ public class PatrolWalk : MonoBehaviour
     public void SwitchStopState(bool isStopped)
     {
         _isStopped = isStopped;
+        if (!_agent.isOnNavMesh) return;
         if (isStopped)
         {
             _agent.ResetPath();
