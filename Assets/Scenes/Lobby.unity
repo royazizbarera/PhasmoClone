@@ -21177,6 +21177,10 @@ PrefabInstance:
       value: DomeLight
       objectReference: {fileID: 0}
     - target: {fileID: 7241483348057632149, guid: cf88c4db128f2074b99773958bc42d01, type: 3}
+      propertyPath: m_Range
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241483348057632149, guid: cf88c4db128f2074b99773958bc42d01, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -21190,7 +21194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7241483348057632149, guid: cf88c4db128f2074b99773958bc42d01, type: 3}
       propertyPath: m_Intensity
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7241483348057632149, guid: cf88c4db128f2074b99773958bc42d01, type: 3}
       propertyPath: m_Shadows.m_Type
@@ -27309,6 +27313,10 @@ PrefabInstance:
       value: DomeLight (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7241483348057632149, guid: cf88c4db128f2074b99773958bc42d01, type: 3}
+      propertyPath: m_Range
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241483348057632149, guid: cf88c4db128f2074b99773958bc42d01, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -27322,7 +27330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7241483348057632149, guid: cf88c4db128f2074b99773958bc42d01, type: 3}
       propertyPath: m_Intensity
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7241483348057632149, guid: cf88c4db128f2074b99773958bc42d01, type: 3}
       propertyPath: m_Shadows.m_Type
