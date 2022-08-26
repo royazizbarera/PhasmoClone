@@ -1,3 +1,4 @@
+using Items.ItemsLogic;
 using Items.Logic;
 using System;
 using System.Collections;
@@ -24,11 +25,13 @@ public class EMF : MonoBehaviour, ISecUsable
     {
         if (_isEmfEnabled)
         {
+            TurnOff();
             StopCoroutine(nameof(CheckForInteractions));
             _isEmfEnabled = false;
         }
         else
         {
+            TurnOn();
             StartCoroutine(nameof(CheckForInteractions));
             _isEmfEnabled = true;
         }
@@ -58,6 +61,7 @@ public class EMF : MonoBehaviour, ISecUsable
 
     private void ShowLights()
     {
+        if (!_isEmfEnabled) return;
         for(int i = 0; i < _currEmfLvl; i++)
         {
             _lightPoints[i].gameObject.SetActive(true);
@@ -66,5 +70,17 @@ public class EMF : MonoBehaviour, ISecUsable
         {
             _lightPoints[i].gameObject.SetActive(false);
         }
+    }
+
+    private void TurnOn()
+    {
+        _currEmfLvl = 1;
+        ShowLights();
+    }
+
+    private void TurnOff()
+    {
+        _currEmfLvl = 0;
+        ShowLights();
     }
 }

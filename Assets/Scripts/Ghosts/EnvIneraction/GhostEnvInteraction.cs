@@ -1,13 +1,15 @@
 using Items;
+using Items.ItemsLogic;
 using Items.Logic;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ghosts.EnvIneraction
 {
     public class GhostEnvInteraction : MonoBehaviour
     {
+        [SerializeField]
+        private InteractionScript _interaction;
         [SerializeField]
         private GhostInfo _ghostInfo;
 
@@ -46,14 +48,11 @@ namespace Ghosts.EnvIneraction
             for(int i = 0; i< hitColliders.Length;i++)
             {
                 Pickupable item = hitColliders[i].GetComponent<Pickupable>();
-                DoorDraggable door = hitColliders[i].GetComponent<DoorDraggable>();
                 if (item != null)
                 {
+                    InteractionScript obj = Instantiate(_interaction, item.transform.position, Quaternion.identity);
+                    obj.EmfLvl = 2;
                     DropItemRb(item);
-                }
-                if(door != null)
-                {
-                    door.GhostDrugDoor();
                 }
             }
         } 
@@ -66,9 +65,12 @@ namespace Ghosts.EnvIneraction
                 DoorDraggable door = hitColliders[i].GetComponent<DoorDraggable>();
                 if(door != null)
                 {
+                    InteractionScript obj = Instantiate(_interaction, door.transform.position, Quaternion.identity);
+                    obj.EmfLvl = 3;
                     door.GhostDrugDoor();
                 }
             }
+
         }
 
         private void InteractWithClickable()
@@ -79,6 +81,8 @@ namespace Ghosts.EnvIneraction
                 IClickable clickable = hitColliders[i].GetComponent<IClickable>();
                 if (clickable != null)
                 {
+                    InteractionScript obj = Instantiate(_interaction, hitColliders[i].transform.position, Quaternion.identity);
+                    obj.EmfLvl = 3;
                     clickable.OnClick();
                 }
             }
