@@ -63,7 +63,11 @@ namespace Items.ItemsLogic
                 //Debug.Log(hit.transform.name + " hitted");
             }
         }
-
+        private void OnDisable()
+        {
+            _isReady = true;
+            _flash.enabled = false;
+        }
         IEnumerator Cooldown()
         {
             yield return new WaitForSeconds(_flashTime);
