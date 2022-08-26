@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class EMF : MonoBehaviour, ISecUsable
+public class EMF : MonoBehaviour, IMainUsable
 {
     [SerializeField]
     private Light[] _lightPoints;
@@ -16,7 +16,7 @@ public class EMF : MonoBehaviour, ISecUsable
     public const float EmfRadius = 2f;
     private const float EmfCheckCD = 0.2f;
 
-    public void OnSecUse()
+    public void OnMainUse()
     {
         SwitchEnable();
     }
@@ -25,15 +25,15 @@ public class EMF : MonoBehaviour, ISecUsable
     {
         if (_isEmfEnabled)
         {
-            TurnOff();
-            StopCoroutine(nameof(CheckForInteractions));
             _isEmfEnabled = false;
+            StopCoroutine(nameof(CheckForInteractions));
+            TurnOff();
         }
         else
         {
+            _isEmfEnabled = true;
             TurnOn();
             StartCoroutine(nameof(CheckForInteractions));
-            _isEmfEnabled = true;
         }
     }
 
@@ -54,14 +54,15 @@ public class EMF : MonoBehaviour, ISecUsable
         foreach (var hitCollider in hitColliders)
         {
             InteractionScript _interection = hitCollider.GetComponent<InteractionScript>();
-            if (_EmfLvlFound < _interection.EmfLvl) _EmfLvlFound = _interection.EmfLvl;
+            if(_interection) if (_EmfLvlFound < _interection.EmfLvl) _EmfLvlFound = _interection.EmfLvl;
+
         }
         _currEmfLvl = _EmfLvlFound;
     }
 
     private void ShowLights()
     {
-        if (!_isEmfEnabled) return;
+        if (!_isEmfEnabled) _currEmfLvl = 0;
         for(int i = 0; i < _currEmfLvl; i++)
         {
             _lightPoints[i].gameObject.SetActive(true);
@@ -83,4 +84,5 @@ public class EMF : MonoBehaviour, ISecUsable
         _currEmfLvl = 0;
         ShowLights();
     }
+
 }

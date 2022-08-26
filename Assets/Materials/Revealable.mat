@@ -106,15 +106,15 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - lightAngle: 0
+    - lightAngle: 50
     - strenghtScalar: 15
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - lightDirection: {r: -0.57804585, g: 0.3150511, b: 0.7527335, a: 0}
-    - lightPosition: {r: 26.974356, g: 1.4621928, b: -1.6423304, a: 0}
+    - lightDirection: {r: -0.5534867, g: 0.00000001590206, b: 0.8328587, a: 0}
+    - lightPosition: {r: 26.828367, g: 1.1176285, b: -10.172793, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &560786791262658334
 MonoBehaviour:

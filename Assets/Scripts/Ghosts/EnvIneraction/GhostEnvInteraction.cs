@@ -82,7 +82,7 @@ namespace Ghosts.EnvIneraction
                 if (clickable != null)
                 {
                     InteractionScript obj = Instantiate(_interaction, hitColliders[i].transform.position, Quaternion.identity);
-                    obj.EmfLvl = 3;
+                    obj.EmfLvl = 4;
                     clickable.OnClick();
                 }
             }
