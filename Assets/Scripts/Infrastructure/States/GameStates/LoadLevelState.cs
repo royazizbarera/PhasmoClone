@@ -36,7 +36,7 @@ namespace Infrastructure.States.GameStates
         {
             _levelSetUp.InitializeLevel();
             InstantiateAll();
-
+            _levelSetUp.OnLevelSetedUp.Invoke();
             _stateMachine.Enter<GameFlowState>();
         }
 
@@ -45,6 +45,7 @@ namespace Infrastructure.States.GameStates
             GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(Tags.InitialPoint));
             GameObject ghost = _gameFactory.CreateGhost(GameObject.FindWithTag(Tags.GhostInitialPoint));
             ghost.GetComponent<GhostInfo>().SetUpGhost(hero.transform);
+            _levelSetUp.GhostInfo = ghost.GetComponent<GhostInfo>();
         }
     }
 }

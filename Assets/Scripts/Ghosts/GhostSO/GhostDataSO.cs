@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Ghost", menuName = "ScriptableObjects/GhostData", order = 1)]
@@ -5,6 +7,8 @@ public class GhostDataSO : ScriptableObject
 {
     public float GhostNormalSpeed = 2;
     public float GhostAttackSpeed = 2;
+
+    public List<GhostEvidence.GhostEvidencesTypes> GhostEvidences;
 
     [Tooltip("The lower this number,the more time ghost will spend in his room")]
     public int PatrolRandomMultiplier = 5;
@@ -22,4 +26,5 @@ public class GhostDataSO : ScriptableObject
     public float MaxMeshDisabledTime = 0.9f;
 
     public float MaxDistanceToPlayerAggre = 4f;
+
 }

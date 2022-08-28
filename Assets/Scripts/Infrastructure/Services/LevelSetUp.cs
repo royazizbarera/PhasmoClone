@@ -17,6 +17,8 @@ namespace Infrastructure.Services
             get { return _currRoomTransform; }
         }
 
+        public GhostInfo GhostInfo;
+
         private SceneNames.LevelNames _selectedMap;
         private Transform _currRoomTransform;
         private LevelRooms.LevelRoomsEnum _currRoom = LevelRooms.LevelRoomsEnum.NoRoom;
@@ -42,7 +44,6 @@ namespace Infrastructure.Services
                 Debug.LogWarning("Current level info = null!");
             }
             RandomizeCurrentRoom();
-            OnLevelSetedUp?.Invoke();
         }
 
         public void ResetLevel()

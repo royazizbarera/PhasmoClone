@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GhostNormalSpeed: 2
   GhostAttackSpeed: 2
+  GhostEvidences: 00000000
   PatrolRandomMultiplier: 5
-  ItemThrowRadiusOfInterrection: 1.5
+  ItemThrowRadiusOfInterection: 1.5
+  DoorsTouchRadiusInterection: 2.5
+  ClickableTouchRadiusInterection: 2.5
   ItemThrowPower: 5
   MinMeshActiveTime: 0.12
   MaxMeshActiveTime: 0.18
