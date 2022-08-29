@@ -39,20 +39,20 @@ Shader "Custom/RevealShader"
     float _LightAngle;
     float _StrengthScalar;
 
-   void surf(Input IN, inout SurfaceOutputStandard o) {
-       float3 direction = normalize(_LightPosition - IN.worldPos);
-       float scale = dot(direction, _LightDirection);
-       float strength = scale - cos(_LightAngle * (3.14 / 360.0));
-       strength = min(max(strength * _StrengthScalar, 0), 1);
-       // Albedo comes from a texture tinted by color
-       fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
-       o.Albedo = c.rgb;
-       o.Emission = c.rgb * c.a * strength;
-       // Metallic and smoothness come from slider variables
-       o.Metallic = _Metallic;
-       o.Smoothness = _Glossiness;
-       o.Alpha = strength * c.a;
-   }
+    void surf(Input IN, inout SurfaceOutputStandard o) {
+        float3 direction = normalize(_LightPosition - IN.worldPos);
+        float scale = dot(direction, _LightDirection);
+        float strength = scale - cos(_LightAngle * (3.14 / 360.0));
+        strength = min(max(strength * _StrengthScalar, 0), 1);
+        // Albedo comes from a texture tinted by color
+        fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+        o.Albedo = c.rgb;
+        o.Emission = c.rgb * c.a * strength;
+        // Metallic and smoothness come from slider variables
+        o.Metallic = _Metallic;
+        o.Smoothness = _Glossiness;
+        o.Alpha = strength * c.a;
+    }
             ENDCG
         }
             FallBack "Diffuse"

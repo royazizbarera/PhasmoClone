@@ -109,12 +109,13 @@ Material:
     - lightAngle: 50
     - strenghtScalar: 15
     m_Colors:
+    - Color_64eec55fa6284b8c8316e158a2008080: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - lightDirection: {r: 0.05140277, g: -0.00000026035883, b: 0.99867845, a: 0}
-    - lightPosition: {r: 27.598892, g: 1.1176289, b: -10.530431, a: 0}
+    - lightDirection: {r: 0.034618482, g: -0.9993913, b: 0.004421369, a: 0}
+    - lightPosition: {r: 27.414957, g: 2.0690856, b: -2.3582053, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &560786791262658334
 MonoBehaviour:
