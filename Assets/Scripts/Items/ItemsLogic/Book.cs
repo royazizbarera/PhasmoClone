@@ -28,8 +28,6 @@ namespace Items.ItemsLogic
         [SerializeField] private float _increaseChancePerTick = 0.1f;
         [SerializeField] private float _tickTime = 5f;
 
-        [SerializeField] private int _tick = 0;
-
         [SerializeField] private float _curIncribeChance;
 
         [SerializeField] private bool _isInscribed = false;
@@ -71,7 +69,6 @@ namespace Items.ItemsLogic
                     else
                     {
                         _curIncribeChance += _increaseChancePerTick;
-                        _tick++;
                     }
                 }
             }

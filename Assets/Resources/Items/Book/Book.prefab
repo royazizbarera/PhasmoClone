@@ -168,7 +168,7 @@ MonoBehaviour:
   _currRoom: {fileID: 554475804871680336}
   _defaultInscribeChance: 1
   _increaseChancePerTick: 0.06
-  _tickTime: 0.5
+  _tickTime: 5
   _tick: 0
   _curIncribeChance: 0
   _isInscribed: 0
