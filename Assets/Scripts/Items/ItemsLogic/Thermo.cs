@@ -125,6 +125,11 @@ public class Thermo : MonoBehaviour, IMainUsable
         StopCoroutine(nameof(CheckTemperature));
     }
 
+    private void OnEnable()
+    {
+        if (_isThermoEnabled) StartCoroutine(nameof(CheckTemperature));
+    }
+
     private void SetUpInfo()
     {
         _ghostInfo = _levelSetUp.GhostInfo;
