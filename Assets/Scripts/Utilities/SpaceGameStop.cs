@@ -8,7 +8,9 @@ public class SpaceGameStop : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
+#if UNITY_EDITOR 
             EditorApplication.isPaused = true;
+#endif
         }
     }
 }
