@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 817084647595658050}
   - component: {fileID: 5906088673916096500}
   m_Layer: 8
-  m_Name: PhotoCamera
+  m_Name: PhotoCamera1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   _rayCastWidth: 5
   _rewardLayer:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 3072
 --- !u!65 &817084647595658050
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1443,7 +1443,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8055
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: f3fe73237f0239d479c81149b1802a97, type: 2}
   m_TargetDisplay: 0
