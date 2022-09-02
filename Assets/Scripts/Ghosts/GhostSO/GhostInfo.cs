@@ -4,12 +4,12 @@ using UnityEngine;
 public class GhostInfo : MonoBehaviour
 {
     public GhostDataSO GhostData;
-    public Transform PlayerTransform;
+    public Transform PlayerPoint;
 
     public Action GhostSetedUp;
-    public void SetUpGhost(Transform mainHero)
+    public void SetUpGhost(Transform playerTransformPoint)
     {
-        PlayerTransform = mainHero;
+        PlayerPoint = playerTransformPoint;
         GhostSetedUp?.Invoke();
     }
 }

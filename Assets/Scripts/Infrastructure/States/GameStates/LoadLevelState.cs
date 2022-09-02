@@ -1,4 +1,5 @@
 using Infrastructure.Services;
+using Player.Movement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,7 +45,7 @@ namespace Infrastructure.States.GameStates
         {
             GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(Tags.InitialPoint));
             GameObject ghost = _gameFactory.CreateGhost(GameObject.FindWithTag(Tags.GhostInitialPoint));
-            ghost.GetComponent<GhostInfo>().SetUpGhost(hero.transform);
+            ghost.GetComponent<GhostInfo>().SetUpGhost(hero.GetComponent<MoveControl>().GetPlayerHead());
             _levelSetUp.GhostInfo = ghost.GetComponent<GhostInfo>();
         }
     }

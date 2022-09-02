@@ -2,6 +2,7 @@ using Managers.Services;
 using Infrastructure;
 using UnityEngine;
 using System;
+using System.Collections;
 
 namespace Player.Movement
 {
@@ -11,6 +12,8 @@ namespace Player.Movement
 
         [SerializeField] private Transform _playerBody;
         [SerializeField] private Transform _playerHead;
+
+        [SerializeField] private Transform _playerBoneHead;
         [SerializeField] private float _mouseSensitivity = 100f;
 
         [SerializeField] private float _maxMoveSpeed = 12f;
@@ -18,26 +21,35 @@ namespace Player.Movement
 
         [SerializeField] private float _maxSprintDuration = 3.5f;
         [SerializeField] private float _sprintCD = 5f;
+
+        [SerializeField] private AnimationControl _animConrol;
+
         private float _sprintRestMultiplayer;
         private float _sprintRestWhileSprintingMultiplayer;
         private float _currSprintDuration = 0f;
 
         private float _curSpeedMultiplier = 1f;
         private float _mouseX, _mouseY;
-        private Vector2 mouseDelta;
+        private Vector2 _mouseDelta;
         private float _xRotation = 0f;
+        private Vector3 _headPosition;
+
+        private float _currFollowHeadTime = 0f;
 
         private const float Epsilon = 0.01f;
         private const float SprintCDDivider = 5f;
         private const float MinTimeForRest = 2f;
+        private const float FollowHeadTime = 2f;
         private InputSystem _inputSystem;
 
-        private float _timeFromLustSprint = 0f;
+        private float _timeFromLastSprint = 0f;
         private Transform cameraTransform;
         private float _xMove, _zMove;
         private bool _isSprintPressed;
         private bool _sprint = false;
 
+        private float _playerHeadOffset = 0f;
+        private bool _crouch = false;
         private bool _isSprintLocked = false;
 
         private void Start()
@@ -45,18 +57,30 @@ namespace Player.Movement
             _inputSystem = AllServices.Container.Single<InputSystem>();
             cameraTransform = Camera.main.transform;
             _sprintRestMultiplayer = (_maxSprintDuration / _sprintCD);
+            _inputSystem.CrouchAction += CrouchHandle;
+
+            _playerHeadOffset = _playerHead.position.y - _playerBoneHead.position.y;
         }
 
+        private void OnDestroy()
+        {
+            _inputSystem.CrouchAction -= CrouchHandle;
+        }
         void Update()
         {
             InputMouseMove();
             InputMove();
             SprintCalc();
+            FollowHead();
 
             PlayerRotation();
             PlayerMovement();
         }
 
+        public Transform GetPlayerHead()
+        {
+            return _playerHead;
+        }
         private void InputMove()
         {
             _xMove = _inputSystem.Axis.x;
@@ -66,9 +90,41 @@ namespace Player.Movement
 
         private void InputMouseMove()
         {
-            mouseDelta = _inputSystem.CameraAxis;
-            _mouseX = mouseDelta.x * _mouseSensitivity * Time.deltaTime;
-            _mouseY = mouseDelta.y * _mouseSensitivity * Time.deltaTime;
+            _mouseDelta = _inputSystem.CameraAxis;
+            _mouseX = _mouseDelta.x * _mouseSensitivity * Time.deltaTime;
+            _mouseY = _mouseDelta.y * _mouseSensitivity * Time.deltaTime;
+        }
+
+        private void CrouchHandle()
+        {
+            if (!_crouch)
+            {
+                if (!_animConrol.SitDown()) return;
+                _crouch = true;
+            }
+            else
+            {
+                if (!_animConrol.StandUp()) return;
+                _crouch = false;
+            }
+            _currFollowHeadTime = FollowHeadTime;
+        }
+
+        private void FollowHead()
+        {
+            if(_currFollowHeadTime > 0f)
+            {
+                SetHeadPosition();
+                _currFollowHeadTime -= Time.deltaTime;
+            }
+        }
+
+
+        private void SetHeadPosition()
+        {
+            _headPosition = _playerHead.position;
+            _headPosition.y = _playerBoneHead.position.y + _playerHeadOffset;
+            _playerHead.position = _headPosition;
         }
 
         private void SprintCalc()
@@ -86,7 +142,8 @@ namespace Player.Movement
                     if(_currSprintDuration >= _maxSprintDuration) _isSprintLocked = true;
                 }
                 _sprint = !_isSprintLocked;
-                if (_sprint) _timeFromLustSprint = 0f;
+                if (_sprint) _timeFromLastSprint = 0f;
+                else _timeFromLastSprint += Time.deltaTime;
             }
             else
             {
@@ -94,13 +151,13 @@ namespace Player.Movement
                 if (_currSprintDuration > Epsilon) MinusCurrSprintDuration();
                 else _isSprintLocked = false;
             }
-            _timeFromLustSprint += Time.deltaTime;
+            _timeFromLastSprint += Time.deltaTime;
         }
 
 
         private void MinusCurrSprintDuration()
         {
-            _sprintRestWhileSprintingMultiplayer = _timeFromLustSprint >= MinTimeForRest ? 1f : _timeFromLustSprint / SprintCDDivider;
+            _sprintRestWhileSprintingMultiplayer = _timeFromLastSprint >= MinTimeForRest ? 1f : _timeFromLastSprint / SprintCDDivider;
             if (_isSprintLocked) _currSprintDuration -= Time.deltaTime * _sprintRestMultiplayer;
             else _currSprintDuration -= Time.deltaTime * _sprintRestWhileSprintingMultiplayer;
             _currSprintDuration = Mathf.Max(0, _currSprintDuration);

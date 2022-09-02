@@ -11,7 +11,7 @@ namespace Managers.Services
         public Vector2 CameraAxis { get; private set; }
         public bool IsRunning = false;
 
-        public Action PickUpItemAction, DropItemAction, MainUseAction, MainUseCanceledAction, PrimaryUseAction, SecondaryUseAction, SwitchItemAction;
+        public Action PickUpItemAction, DropItemAction, MainUseAction, MainUseCanceledAction, PrimaryUseAction, SecondaryUseAction, SwitchItemAction , CrouchAction;
 
         public bool IsControlLocked { get; private set; }
         private MainInputAction _mainInputAction;
@@ -56,7 +56,7 @@ namespace Managers.Services
         }
         private void BindFuncs()
         {
-            _mainInputAction.Player.DropItem.performed += DropItemCallback;
+            _mainInputAction.Player.DropItem.performed += DropItemCallBack;
             _mainInputAction.Player.Pickup.performed += PickUpItemCallBack;
 
             _mainInputAction.Player.MainUse.performed += MainUseCallBack;
@@ -65,9 +65,16 @@ namespace Managers.Services
             _mainInputAction.Player.PrimaryUse.performed += PrimaryUseCallBack;
             _mainInputAction.Player.SecondaryUse.performed += SecondaryUseCallBack;
             _mainInputAction.Player.SwitchItem.performed += SwitchItemUseCallBack;
+
+            _mainInputAction.Player.Crouch.performed += CrouchCallBack;
         }
 
-        private void DropItemCallback(InputAction.CallbackContext obj)
+        private void CrouchCallBack(InputAction.CallbackContext obj)
+        {
+            if (CrouchAction != null) CrouchAction.Invoke();
+        }
+
+        private void DropItemCallBack(InputAction.CallbackContext obj)
         {
             if (DropItemAction != null) DropItemAction.Invoke();
         }

@@ -21,7 +21,7 @@ namespace Ghosts
         [SerializeField]
         private float _checkForLineCD;
 
-        private Transform _playerTransform;
+        private Transform _playerPoint;
         private PlayerCheckResult _playerCheckResult;
 
         private bool _dataSetedUp = false;
@@ -56,7 +56,7 @@ namespace Ghosts
             if (!_isAttacking) return;
             if (_isFollowing)
             {
-                _currDestination = _playerTransform;
+                _currDestination = _playerPoint;
                 SetDestination();
                 return;
             }
@@ -96,7 +96,7 @@ namespace Ghosts
             while (true)
             {
                 if (!_isAttacking) break;
-                _playerCheckResult = _lineOfSight.CheckForPlayer(_playerTransform);
+                _playerCheckResult = _lineOfSight.CheckForPlayer(_playerPoint);
                 if (_playerCheckResult.IsPlayerVisible && _playerCheckResult.DistanceToPlayer <= _maxAggroDistance)
                 {              
                     _isFollowing = true;
@@ -131,7 +131,7 @@ namespace Ghosts
             _ghostAttackSpeed = _ghostInfo.GhostData.GhostAttackSpeed;
             _maxAggroDistance = _ghostInfo.GhostData.MaxDistanceToPlayerAggre;
             _patrolPoints = _levelSetUp.GetGhostPatrolPoints();
-            if (_ghostInfo.PlayerTransform != null) _playerTransform = _ghostInfo.PlayerTransform;
+            if (_ghostInfo.PlayerPoint != null) _playerPoint = _ghostInfo.PlayerPoint;
             else
             {
                 _ghostInfo.GhostSetedUp += SetUpPlayerTranform;
@@ -140,7 +140,7 @@ namespace Ghosts
         }
         private void SetUpPlayerTranform()
         {
-            _playerTransform = _ghostInfo.PlayerTransform;
+            _playerPoint = _ghostInfo.PlayerPoint;
         }
 
     }
