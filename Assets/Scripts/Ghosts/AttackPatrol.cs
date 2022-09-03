@@ -24,6 +24,8 @@ namespace Ghosts
         private Transform _playerPoint;
         private PlayerCheckResult _playerCheckResult;
 
+        private WaitForSeconds _checkForLineWait;
+
         private bool _dataSetedUp = false;
         private float _ghostAttackSpeed;
         private Transform[] _patrolPoints;
@@ -102,7 +104,7 @@ namespace Ghosts
                     _isFollowing = true;
                 }
                 else _isFollowing = false;
-                yield return new WaitForSeconds(_checkForLineCD);
+                yield return _checkForLineWait;
             }
             yield return null;
         }
@@ -128,6 +130,7 @@ namespace Ghosts
         private void SetUpGhostData()
         {
             _levelSetUp = AllServices.Container.Single<LevelSetUp>();
+            _checkForLineWait = new WaitForSeconds(_checkForLineCD);
             _ghostAttackSpeed = _ghostInfo.GhostData.GhostAttackSpeed;
             _maxAggroDistance = _ghostInfo.GhostData.MaxDistanceToPlayerAggre;
             _patrolPoints = _levelSetUp.GetGhostPatrolPoints();

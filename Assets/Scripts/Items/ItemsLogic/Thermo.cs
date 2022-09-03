@@ -29,6 +29,7 @@ public class Thermo : MonoBehaviour, IMainUsable
     private int _minTemp = 1;
     private int _randMinNum, _ranMaxNum;
 
+    private WaitForSeconds CheckTempWaiting;
 
     private const float CheckTempCD = 1f;
     private const int MaxTemp = 29;
@@ -39,6 +40,7 @@ public class Thermo : MonoBehaviour, IMainUsable
 
     private void Start()
     {
+        CheckTempWaiting = new WaitForSeconds(CheckTempCD);
         _levelSetUp = AllServices.Container.Single<LevelSetUp>();
         _ghostRoom = _levelSetUp.CurrGhostRoom;
         _currTemperature = DefaultTemp;
@@ -68,7 +70,7 @@ public class Thermo : MonoBehaviour, IMainUsable
     {
         while (true)
         {
-            yield return new WaitForSeconds(CheckTempCD);
+            yield return CheckTempWaiting;
             CheckTemp();
         }
     }

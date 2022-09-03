@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 205478300}
   - component: {fileID: 1075119143}
   - component: {fileID: 1075119141}
+  - component: {fileID: 8451003892490384874}
   - component: {fileID: 205478301}
   - component: {fileID: -8925133462107946173}
   - component: {fileID: 293256165}
@@ -346,14 +347,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7874926961459402408}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 114a50ee0f25122499ed1af87108ce50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ghostInfo: {fileID: 0}
   _attackState: {fileID: 598665392}
   _idleState: {fileID: 1297272175}
   _ghostStateMachine: {fileID: 1075119143}
+--- !u!114 &8451003892490384874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d13f4db0ae9e141833ff76b2237115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostInfo: {fileID: 0}
+  _ghostMood: {fileID: 0}
+  _playerCurrentRoom: {fileID: 0}
+  _ghostRoom: 0
 --- !u!114 &205478301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,7 +462,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GhostData: {fileID: 11400000, guid: 0567e6284d5676e45a852286a603f70b, type: 2}
-  PlayerTransform: {fileID: 0}
+  GhostRoom: 0
+  PlayerPoint: {fileID: 0}
+  PlayerRoom: {fileID: 0}
+  FinalGhostAnger: 0
 --- !u!1001 &3945419474563736600
 PrefabInstance:
   m_ObjectHideFlags: 0
