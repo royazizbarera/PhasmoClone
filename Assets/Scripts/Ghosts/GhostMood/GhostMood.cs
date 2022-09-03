@@ -18,13 +18,11 @@ namespace Ghosts.GhostMood
 
         private SanityHandler _playerSanity;
         private float _ghostAnger = 0f;
-
         void Start()
         {
             _ghostStateMachine.ChangeState(_idleState);
             if (_ghostInfo.SetedUp) SetUp();
             else _ghostInfo.GhostSetedUp += SetUp;
-
         }
 
         private void Update()
