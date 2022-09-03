@@ -14,10 +14,17 @@ public class GhostDataSO : ScriptableObject
     public int PatrolRandomMultiplier = 5;
 
     public float StartGhostAnger = 0;
-    public float GhostAngerPlusPerSec = 0.2f;
+    public float GhostAngerPlusPerSec = 0.070f;
+    public float GhostAngerInGhostRoomPlusPerSec = 0.150f;
     public float MaxGhostAnger = 110f;
     public float StartLateGhostAnger = 70f;
 
+    public float PlayerSanityMinusPerSecond = 0.055f;
+    public float PlayerSanityMinusInGhostRoomPerSecond = 0.12f;
+
+    public float PlayerSanityMinusPerGhostInterection = 1f;
+    public float PlayerSanityMinusPerGhostGhostEvent = 5f;
+    public float PlayerSanityMinusPerHunt = 10f;
 
     public float MinSanityToAttack = 60f;
     public float MaxDistanceToPlayerAggre = 4f;

@@ -16,6 +16,8 @@ public class SanityHandler : MonoBehaviour
     [SerializeField,Tooltip("How much sanity is taken from the player when he is in the ghost room")]
     private float _ghostRoomSecondSanityMinus;
 
+    private WaitForSeconds WaitOneSecond = new WaitForSeconds(1f);
+    private GhostInfo _ghostInfo;
     private LevelSetUp _levelSetUp;
 
     private LevelRooms.LevelRoomsEnum _currGhostRoom = LevelRooms.LevelRoomsEnum.NoRoom;
@@ -28,15 +30,14 @@ public class SanityHandler : MonoBehaviour
     {
         _levelSetUp = AllServices.Container.Single<LevelSetUp>();
         Sanity = _maxSanityValue;
-        if (_levelSetUp.CurrGhostRoom == LevelRooms.LevelRoomsEnum.NoRoom) _levelSetUp.OnLevelSetedUp += SetUpLevelRoom;
-        else _currGhostRoom = _levelSetUp.CurrGhostRoom;
+        if (_levelSetUp.CurrGhostRoom == LevelRooms.LevelRoomsEnum.NoRoom) _levelSetUp.OnLevelSetedUp += SetUp;
+        else SetUp();
 
-        StartCoroutine(DropSanityWithTime());
     }
 
     private void OnDestroy()
     {
-        _levelSetUp.OnLevelSetedUp -= SetUpLevelRoom;
+        _levelSetUp.OnLevelSetedUp -= SetUp;
     }
 
     public void ChangeSanity(float ammountToAdd)
@@ -49,7 +50,7 @@ public class SanityHandler : MonoBehaviour
         while (true)
         {
             DropPlayerSanity();
-            yield return new WaitForSeconds(1f);
+            yield return WaitOneSecond;
         }
     }
 
@@ -60,9 +61,14 @@ public class SanityHandler : MonoBehaviour
         else ChangeSanity(-_houseSecondSanityMinus);
     }
 
-    private void SetUpLevelRoom()
+    private void SetUp()
     {
         _currGhostRoom = _levelSetUp.CurrGhostRoom;
+        _ghostInfo = _levelSetUp.GhostInfo;
+
+        _houseSecondSanityMinus = _ghostInfo.GhostData.PlayerSanityMinusPerSecond;
+        _ghostRoomSecondSanityMinus = _ghostInfo.GhostData.PlayerSanityMinusInGhostRoomPerSecond;
+        StartCoroutine(DropSanityWithTime());
     }
 
 }

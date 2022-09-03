@@ -8,17 +8,20 @@ public class GhostInfo : MonoBehaviour
     public LevelRooms.LevelRoomsEnum GhostRoom;
 
     public Transform PlayerPoint;
-
+    public SanityHandler PlayerSanity;
     public RoomIdentifire PlayerRoom;
-
+    public bool SetedUp = false;
     public float FinalGhostAnger = 0f;
 
     public Action GhostSetedUp;
-    public void SetUpGhost(Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom)
+    public void SetUpGhost(Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity)
     {
         PlayerPoint = playerTransformPoint;
         PlayerRoom = playerRoom;
+        PlayerSanity = playerSanity;
         GhostRoom = _ghostRoom;
+
         GhostSetedUp?.Invoke();
+        SetedUp = true;
     }
 }
