@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6503051e68a220a48a462ba6e63765d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 1347091813907772479}
+  _camera: {fileID: 8016375780855717762}
   _shotsLeftText: {fileID: 8706073711475481354}
   _flash: {fileID: 5050168128815424117}
   _flashTime: 0.05

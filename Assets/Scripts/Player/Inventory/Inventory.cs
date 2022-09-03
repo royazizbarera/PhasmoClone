@@ -103,6 +103,9 @@ namespace Player.Inventory
             if (MainItem != null)
             {
                 DropItemRb(MainItem);
+
+                IDroppable droppable = MainItem.gameObject.GetComponent<IDroppable>();
+                if (droppable != null) droppable.DropItem();  
                 _currItemAmmount--;
                 _pickupableSlots[currMainItemSlot] = null;
                 MainItem = null;

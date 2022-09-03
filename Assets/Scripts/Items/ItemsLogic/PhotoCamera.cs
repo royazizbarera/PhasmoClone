@@ -2,12 +2,13 @@ using Items.Logic;
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using System;
 
 namespace Items.ItemsLogic
 {
-    public class PhotoCamera : MonoBehaviour, IMainUsable
+    public class PhotoCamera : MonoBehaviour, IMainUsable, IDroppable
     {
-        [SerializeField] private Camera _camera;
+        [SerializeField] private GameObject _camera;
         [SerializeField] private TextMeshProUGUI _shotsLeftText;
 
         [SerializeField] private Light _flash;
@@ -25,6 +26,7 @@ namespace Items.ItemsLogic
         private void Start()
         {
             _shotsLeftText.text = _shotsLeft.ToString();
+            DisableCamera();
         }
 
         public void OnMainUse()
@@ -54,19 +56,16 @@ namespace Items.ItemsLogic
 
         private void CheckTargets()
         {
-            var ray = _camera.ViewportPointToRay(Vector3.one * _rayCastGirth);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, _rayCastWidth, _rewardLayer))
-            {
-                
-                //Debug.Log(hit.transform.name + " hitted");
-            }
+            
         }
         private void OnDisable()
         {
             _isReady = true;
             _flash.enabled = false;
+        }
+        private void OnEnable()
+        {
+            _camera.SetActive(true);
         }
         IEnumerator Cooldown()
         {
@@ -74,6 +73,16 @@ namespace Items.ItemsLogic
             _flash.enabled = false;
             yield return new WaitForSeconds(_cooldown);
             _isReady = true;
+        }
+
+        public void DropItem()
+        {
+            DisableCamera();
+        }
+
+        private void DisableCamera()
+        {
+            _camera.SetActive(false);
         }
     }    
 }
