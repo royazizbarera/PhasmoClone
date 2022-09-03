@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 238534750}
   - component: {fileID: 1403907066}
   - component: {fileID: 1499621083}
+  - component: {fileID: -2987137214255570710}
   m_Layer: 0
   m_Name: ghost
   m_TagString: Untagged
@@ -464,8 +465,24 @@ MonoBehaviour:
   GhostData: {fileID: 11400000, guid: 0567e6284d5676e45a852286a603f70b, type: 2}
   GhostRoom: 0
   PlayerPoint: {fileID: 0}
+  PlayerSanity: {fileID: 0}
   PlayerRoom: {fileID: 0}
+  SetedUp: 0
   FinalGhostAnger: 0
+--- !u!114 &-2987137214255570710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 649c149ed15a975438fe10a7bc9a2c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostOrbs: {fileID: 1972037039309670607, guid: 54604e6ea6b0c844583d05c8a0123e17, type: 3}
+  _ghostInfo: {fileID: 1499621083}
 --- !u!1001 &3945419474563736600
 PrefabInstance:
   m_ObjectHideFlags: 0

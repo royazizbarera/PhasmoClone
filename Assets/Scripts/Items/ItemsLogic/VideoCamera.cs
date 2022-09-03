@@ -11,7 +11,7 @@ namespace Items.ItemsLogic
         [SerializeField] private GameObject _camera;
         [SerializeField] private GameObject _cameraGreen;
 
-        private bool _normalMode = false;
+        private bool _normalMode = true;
 
         private void Start()
         {
