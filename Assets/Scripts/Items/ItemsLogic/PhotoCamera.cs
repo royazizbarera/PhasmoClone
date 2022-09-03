@@ -8,7 +8,7 @@ namespace Items.ItemsLogic
 {
     public class PhotoCamera : MonoBehaviour, IMainUsable, IDroppable
     {
-        [SerializeField] private GameObject _camera;
+        [SerializeField] private Camera _camera;
         [SerializeField] private TextMeshProUGUI _shotsLeftText;
 
         [SerializeField] private Light _flash;
@@ -21,11 +21,16 @@ namespace Items.ItemsLogic
         [SerializeField] private float _rayCastWidth = 5f;
         [SerializeField] private LayerMask _rewardLayer;
 
+        [SerializeField] private MeshRenderer _screenMesh;
+        [SerializeField] private Material _renderTextureMat;
+        [SerializeField] private RenderTexture _renderTexture;
+
         private bool _isReady = true;
 
         private void Start()
         {
             _shotsLeftText.text = _shotsLeft.ToString();
+            SetUpCamera();
             DisableCamera();
         }
 
@@ -65,7 +70,7 @@ namespace Items.ItemsLogic
         }
         private void OnEnable()
         {
-            _camera.SetActive(true);
+            _camera.gameObject.SetActive(true);
         }
         IEnumerator Cooldown()
         {
@@ -82,7 +87,13 @@ namespace Items.ItemsLogic
 
         private void DisableCamera()
         {
-            _camera.SetActive(false);
+            _camera.gameObject.SetActive(false);
+        }
+
+        private void SetUpCamera()
+        {
+            _camera.targetTexture = _renderTexture;
+            _screenMesh.material = _renderTextureMat;
         }
     }    
 }

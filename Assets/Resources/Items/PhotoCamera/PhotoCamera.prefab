@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 817084647595658050}
   - component: {fileID: 5906088673916096500}
   m_Layer: 8
-  m_Name: PhotoCamera1
+  m_Name: PhotoCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6503051e68a220a48a462ba6e63765d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 8016375780855717762}
+  _camera: {fileID: 1347091813907772479}
   _shotsLeftText: {fileID: 8706073711475481354}
   _flash: {fileID: 5050168128815424117}
   _flashTime: 0.05
@@ -300,6 +300,9 @@ MonoBehaviour:
   _rewardLayer:
     serializedVersion: 2
     m_Bits: 3072
+  _screenMesh: {fileID: 1876060040993484112}
+  _renderTextureMat: {fileID: 2100000, guid: e2dc4092041ea1346940acace3c397d2, type: 2}
+  _renderTexture: {fileID: 8400000, guid: f3fe73237f0239d479c81149b1802a97, type: 2}
 --- !u!65 &817084647595658050
 BoxCollider:
   m_ObjectHideFlags: 0

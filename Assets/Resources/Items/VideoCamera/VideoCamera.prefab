@@ -470,7 +470,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 8055
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 90f8d29a1f587d144b1500ec37f8f85c, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: dfb0a2cfa869ce947ba1f995cb2fa3a3, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1879,7 +1879,7 @@ GameObject:
   - component: {fileID: 4179676905045686324}
   - component: {fileID: 6034122028444378293}
   m_Layer: 8
-  m_Name: VideoCamera4
+  m_Name: VideoCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1941,9 +1941,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557a59ebe77e81343b6894a92913628f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderTextureMat: {fileID: 2100000, guid: 76508229df2ec064695584066c40758e, type: 2}
-  _camera: {fileID: 1329249130440866629}
-  _cameraGreen: {fileID: 8848255755012868890}
+  _renderTextureMat: {fileID: 2100000, guid: 1ea4f8eabe4277944afedf695a8eaec8, type: 2}
+  _camera: {fileID: 6751219407713703976}
+  _cameraGreen: {fileID: 97296734978797623}
+  _screenMesh: {fileID: 9086204198761895092}
+  _renderTexture: {fileID: 8400000, guid: dfb0a2cfa869ce947ba1f995cb2fa3a3, type: 2}
 --- !u!1 &7769032659168192156
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,7 +2173,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 16247
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 90f8d29a1f587d144b1500ec37f8f85c, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: dfb0a2cfa869ce947ba1f995cb2fa3a3, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -2273,7 +2275,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 76508229df2ec064695584066c40758e, type: 2}
+  - {fileID: 2100000, guid: 1ea4f8eabe4277944afedf695a8eaec8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -7,14 +7,20 @@ namespace Items.ItemsLogic
 {
     public class VideoCamera : MonoBehaviour, IMainUsable, IDroppable
 {
+        
+        [SerializeField] private Camera _camera;
+        [SerializeField] private Camera _cameraGreen;
+        [SerializeField] private MeshRenderer _screenMesh;
+        
+        
+        [SerializeField] private RenderTexture _renderTexture;
         [SerializeField] private Material _renderTextureMat;
-        [SerializeField] private GameObject _camera;
-        [SerializeField] private GameObject _cameraGreen;
 
         private bool _normalMode = true;
 
         private void Start()
         {
+            SetUpCamera();
             DisableCamera();
         }
         public void OnMainUse()
@@ -33,21 +39,21 @@ namespace Items.ItemsLogic
         private void SetNormalMode()
         {
             _renderTextureMat.color = Color.white;
-            _cameraGreen.SetActive(false);
-            _camera.SetActive(true);
+            _cameraGreen.gameObject.SetActive(false);
+            _camera.gameObject.SetActive(true);
             _normalMode = true;
         }
         private void SetGhostOrbMode()
         {
             _renderTextureMat.color = Color.green;
-            _camera.SetActive(false);
-            _cameraGreen.SetActive(true);
+            _camera.gameObject.SetActive(false);
+            _cameraGreen.gameObject.SetActive(true);
             _normalMode = false;
         }
         private void DisableCamera()
         {
-            _camera.SetActive(false);
-            _cameraGreen.SetActive(false);
+            _camera.gameObject.SetActive(false);
+            _cameraGreen.gameObject.SetActive(false);
         }
         private void OnEnable()
         {
@@ -58,6 +64,13 @@ namespace Items.ItemsLogic
         public void DropItem()
         {
             DisableCamera();
+        }
+
+        private void SetUpCamera()
+        {
+            _camera.targetTexture = _renderTexture;
+            _cameraGreen.targetTexture = _renderTexture;
+            _screenMesh.material = _renderTextureMat;
         }
     }
 }

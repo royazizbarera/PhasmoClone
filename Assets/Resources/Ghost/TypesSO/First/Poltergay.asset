@@ -14,8 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GhostNormalSpeed: 2
   GhostAttackSpeed: 2
-  GhostEvidences: 0000000005000000
+  GhostEvidences: 000000000400000005000000
   PatrolRandomMultiplier: 5
+  StartGhostAnger: 0
+  GhostAngerPlusPerSec: 0.2
+  GhostAngerInGhostRoomPlusPerSec: 0.15
+  MaxGhostAnger: 110
+  StartLateGhostAnger: 70
+  PlayerSanityMinusPerSecond: 0.055
+  PlayerSanityMinusInGhostRoomPerSecond: 0.12
+  PlayerSanityMinusPerGhostInterection: 1
+  PlayerSanityMinusPerGhostGhostEvent: 5
+  PlayerSanityMinusPerHunt: 10
+  MinSanityToAttack: 60
+  MaxDistanceToPlayerAggre: 20
+  AttackChanceCoef: 0.2
+  MinAttackCD: 40
+  DefaultInterectionChance: 5
+  InterectionsCoef: 0.2
+  GhostFindInerectionsCD: 2
+  GhostBetweenInterectionsCD: 4
   ItemThrowRadiusOfInterection: 1.5
   DoorsTouchRadiusInterection: 2.5
   ClickableTouchRadiusInterection: 2.5
@@ -24,4 +42,3 @@ MonoBehaviour:
   MaxMeshActiveTime: 0.18
   MinMeshDisabledTime: 0.55
   MaxMeshDisabledTime: 0.9
-  MaxDistanceToPlayerAggre: 20
