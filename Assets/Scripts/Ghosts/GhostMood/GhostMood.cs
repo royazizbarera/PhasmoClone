@@ -8,13 +8,16 @@ namespace Ghosts.GhostMood
     {
         [SerializeField]
         private GhostInfo _ghostInfo;
-
         [SerializeField]
         private GhostState _attackState, _idleState;
         [SerializeField]
         private GhostStateMachine _ghostStateMachine;
 
+        public bool IsHunting = false;
+
         private const int SanityDivider = 2;
+
+        private float _huntTime = 0f;
 
         private SanityHandler _playerSanity;
         private float _ghostAnger = 0f;
@@ -30,15 +33,26 @@ namespace Ghosts.GhostMood
             _ghostInfo.FinalGhostAnger = Mathf.Max(0f, _ghostAnger - _playerSanity.Sanity / SanityDivider);
         }
 
-        public void SetGhostAnger(float ghostAngerToAdd)
+        public void SetGhostAnger(float ghostAnger)
         {
-            _ghostAnger = ghostAngerToAdd;
+            _ghostAnger = ghostAnger;
         }
 
-        public void GetAngry()
+        public void StartHunting(float huntTime)
         {
+            _huntTime = huntTime;
+            IsHunting = true;
             _ghostStateMachine.ChangeState(_attackState);
+
+            Invoke(nameof(StopHunting), huntTime);
         }
+
+        public void StopHunting()
+        {
+            IsHunting = false;
+            _ghostStateMachine.ChangeState(_idleState);
+        }
+        
 
         private void SetUp()
         {

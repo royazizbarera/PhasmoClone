@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 1403907066}
   - component: {fileID: 1499621083}
   - component: {fileID: -2987137214255570710}
+  - component: {fileID: 5865089821569186404}
   m_Layer: 0
   m_Name: ghost
   m_TagString: Untagged
@@ -357,6 +358,7 @@ MonoBehaviour:
   _attackState: {fileID: 598665392}
   _idleState: {fileID: 1297272175}
   _ghostStateMachine: {fileID: 1075119143}
+  IsHunting: 0
 --- !u!114 &8451003892490384874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,8 +371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d13f4db0ae9e141833ff76b2237115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ghostInfo: {fileID: 0}
-  _ghostMood: {fileID: 0}
+  _ghostInfo: {fileID: 1499621083}
+  _ghostMood: {fileID: 1075119141}
   _playerCurrentRoom: {fileID: 0}
   _ghostRoom: 0
 --- !u!114 &205478301
@@ -467,6 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GhostData: {fileID: 11400000, guid: 0567e6284d5676e45a852286a603f70b, type: 2}
   GhostRoom: 0
+  LevelSize: 0
   PlayerPoint: {fileID: 0}
   PlayerSanity: {fileID: 0}
   PlayerRoom: {fileID: 0}
@@ -486,6 +489,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ghostOrbs: {fileID: 1972037039309670607, guid: 54604e6ea6b0c844583d05c8a0123e17, type: 3}
   _ghostInfo: {fileID: 1499621083}
+--- !u!114 &5865089821569186404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b7b7a2723ca5743ae2ebb2496bd401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostInfo: {fileID: 1499621083}
+  _ghostMood: {fileID: 1075119141}
+  _ghostAttackCheckCD: 15
 --- !u!1001 &3945419474563736600
 PrefabInstance:
   m_ObjectHideFlags: 0

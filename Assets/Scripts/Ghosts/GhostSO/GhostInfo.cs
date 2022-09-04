@@ -6,6 +6,7 @@ public class GhostInfo : MonoBehaviour
 {
     public GhostDataSO GhostData;
     public LevelRooms.LevelRoomsEnum GhostRoom;
+    public LevelSizeConst.LevelSize LevelSize;
 
     public Transform PlayerPoint;
     public SanityHandler PlayerSanity;
@@ -14,12 +15,14 @@ public class GhostInfo : MonoBehaviour
     public float FinalGhostAnger = 0f;
 
     public Action GhostSetedUp;
-    public void SetUpGhost(Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity)
+    public void SetUpGhost(Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity, LevelSizeConst.LevelSize levelSize)
     {
         PlayerPoint = playerTransformPoint;
         PlayerRoom = playerRoom;
         PlayerSanity = playerSanity;
+
         GhostRoom = _ghostRoom;
+        LevelSize = levelSize;
 
         GhostSetedUp?.Invoke();
         SetedUp = true;

@@ -6,11 +6,15 @@ namespace Infrastructure.Services
 {
     public class LevelSetUp : IService
     {
-
         public Action OnLevelSetedUp;
         public LevelRooms.LevelRoomsEnum CurrGhostRoom
         {
             get { return _currRoom; }
+        }  
+        
+        public LevelSizeConst.LevelSize CurrLevelSize
+        {
+            get { return _currLevelSize ; }
         }         
         public Transform CurrGhostRoomTransform
         {
@@ -24,6 +28,7 @@ namespace Infrastructure.Services
         private LevelRooms.LevelRoomsEnum _currRoom = LevelRooms.LevelRoomsEnum.NoRoom;
   
         private LevelInfo _currLevelInfo;
+        private LevelSizeConst.LevelSize _currLevelSize;
 
         public void ChooseMap(SceneNames.LevelNames selectedMap)
         {
@@ -56,12 +61,10 @@ namespace Infrastructure.Services
         {
             int randomLevelNum = UnityEngine.Random.Range(0, _currLevelInfo.AllLevelRooms.Length);
             _currRoom = _currLevelInfo.AllLevelRooms[randomLevelNum].RoomType;
+            _currLevelSize = _currLevelInfo.LevelSize;
             _currRoomTransform = _currLevelInfo.AllLevelRooms[randomLevelNum].transform;
 
             //Debug.Log("curr room = " + _currRoom.ToString());
         }
-
-
-
     }
 }
