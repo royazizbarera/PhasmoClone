@@ -420,6 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interaction: {fileID: 1907466690619057802, guid: 00b709e4c8a4358469c50620b17d9c49, type: 3}
   _ghostInfo: {fileID: 1499621083}
+  _interecMaxDistanceToPlayerSanity: 4
 --- !u!114 &238534750
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public static class RandomGenerator
+namespace Utilities
 {
-    public static List<int> GenerateRandom(int count, int min, int max)
+    public static class RandomGenerator
     {
-
-        HashSet<int> candidates = new HashSet<int>();
-
-        for(int i = 0; i < count * 2; i++)
+        public static List<int> GenerateRandom(int count, int min, int max)
         {
-            candidates.Add(UnityEngine.Random.Range(min, max));
-            if (candidates.Count >= count) break;
+
+            HashSet<int> candidates = new HashSet<int>();
+
+            for (int i = 0; i < count * 2; i++)
+            {
+                candidates.Add(UnityEngine.Random.Range(min, max));
+                if (candidates.Count >= count) break;
+            }
+
+            List<int> result = candidates.ToList();
+
+            return result;
         }
 
-        List<int> result = candidates.ToList();
+        public static bool CalculateChance(float chance) => UnityEngine.Random.Range(0f, 100f) <= chance;
 
-        return result;
     }
 }

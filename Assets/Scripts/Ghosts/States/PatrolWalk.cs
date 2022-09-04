@@ -4,6 +4,8 @@ using Infrastructure;
 using UnityEngine.AI;
 using System.Collections.Generic;
 using Utilities.Constants;
+using Utilities;
+
 public class PatrolWalk : MonoBehaviour
 {
     [SerializeField]
