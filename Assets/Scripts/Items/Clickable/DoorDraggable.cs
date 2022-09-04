@@ -11,6 +11,8 @@ public class DoorDraggable : MonoBehaviour, IDraggable
     public bool IsDoorFullyOpened = false;
     public bool IsDoorClosed = false;
 
+    public Transform FingerprintTransform;
+
     [SerializeField]
     private float _forceAmmount = 15f;
     [SerializeField]

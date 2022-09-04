@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 1865889820300120352}
   - component: {fileID: 1865889820300120355}
   - component: {fileID: 1865889820300120354}
+  - component: {fileID: 4832660074602135091}
   m_Layer: 0
   m_Name: Handprint1
   m_TagString: Untagged
@@ -108,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 1865889820300120364}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 13.383, y: 4.508247, z: -1.5644859}
-  m_LocalScale: {x: 0.2, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.1, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 1865889820934571633}
   - {fileID: 1865889820713824106}
@@ -165,6 +166,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4832660074602135091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865889820300120364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac82e5b2a0755404a97c291fa6d2e8d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeToDestroy: 15
 --- !u!1 &1865889820713824117
 GameObject:
   m_ObjectHideFlags: 0

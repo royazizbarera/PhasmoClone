@@ -11,6 +11,9 @@ namespace Ghosts.EnvIneraction
         [SerializeField]
         private InteractionScript _interaction;
         [SerializeField]
+        private GameObject _handprint;
+
+        [SerializeField]
         private GhostInfo _ghostInfo;
         [SerializeField, Tooltip("How close player should be to interection, to lost sanity")]
         private float _interecMaxDistanceToPlayerSanity = 4f;
@@ -35,6 +38,9 @@ namespace Ghosts.EnvIneraction
         private Vector3 _playerPos;
         private Vector3 _interectionPos;
         private bool _interected = false;
+
+        private float _leaveHandprintChance = 25f;
+        private bool _canLeaveHandprint = false;
 
         private float _ghostInterectCD = 0f;
 
@@ -126,6 +132,16 @@ namespace Ghosts.EnvIneraction
                 {
                     _interected = true;
                     InteractWithDoors(door);
+
+                    if (_canLeaveHandprint && door.FingerprintTransform != null)
+                    {
+                        if (RandomGenerator.CalculateChance(_leaveHandprintChance))
+                        {
+                            GameObject newFingerprint = Instantiate(_handprint, door.FingerprintTransform.position, door.FingerprintTransform.rotation);
+                            newFingerprint.transform.parent = door.transform;
+                        }
+                    }
+
                     return true;
                 }
             }
@@ -178,6 +194,7 @@ namespace Ghosts.EnvIneraction
             _maxInteractionRadius = 0f;
             _maxEMFLevel = 4;
             if (_ghostInfo.GhostData.GhostEvidences.Contains(GhostEvidence.GhostEvidencesTypes.EMF5)) _maxEMFLevel = 5;
+            if (_ghostInfo.GhostData.GhostEvidences.Contains(GhostEvidence.GhostEvidencesTypes.Fingerprints)) _canLeaveHandprint = true;
             WaitForCheckCD = new WaitForSeconds(_ghostInfo.GhostData.GhostFindInerectionsCD);
             _ghostInterectCD = _ghostInfo.GhostData.GhostBetweenInterectionsCD;
 
@@ -194,8 +211,6 @@ namespace Ghosts.EnvIneraction
             _defaultInteractionChance = _ghostInfo.GhostData.DefaultInterectionChance;
             _interactionCoef = _ghostInfo.GhostData.InterectionsCoef;
         }
-
-
         private void DropItemRb(IPickupable item)
         {
             Rigidbody itemRB = item.gameObject.GetComponent<Rigidbody>();
