@@ -22,6 +22,7 @@ namespace Ghosts
         private float _checkForLineCD;
 
         private Transform _playerPoint;
+        private Transform _heroTransform;
         private PlayerCheckResult _playerCheckResult;
 
         private WaitForSeconds _checkForLineWait;
@@ -93,9 +94,9 @@ namespace Ghosts
             while (true)
             {
                 if (!_isAttacking) break;
-                _playerCheckResult = _lineOfSight.CheckForPlayer(_playerPoint);
+                _playerCheckResult = _lineOfSight.CheckForPlayer(_playerPoint, _heroTransform);
                 if (_playerCheckResult.IsPlayerVisible && _playerCheckResult.DistanceToPlayer <= _maxAggroDistance)
-                {              
+                {
                     _isFollowing = true;
                 }
                 else _isFollowing = false;
@@ -127,7 +128,7 @@ namespace Ghosts
             _levelSetUp = AllServices.Container.Single<LevelSetUp>();
             _checkForLineWait = new WaitForSeconds(_checkForLineCD);
             _ghostAttackSpeed = _ghostInfo.GhostData.GhostAttackSpeed;
-            _maxAggroDistance = _ghostInfo.GhostData.MaxDistanceToPlayerAggre;
+            _maxAggroDistance = _ghostInfo.GhostData.MaxDistanceToPlayerAggr;
             _patrolPoints = _levelSetUp.GetGhostPatrolPoints();
             if (_ghostInfo.PlayerPoint != null) _playerPoint = _ghostInfo.PlayerPoint;
             else
@@ -139,6 +140,8 @@ namespace Ghosts
         private void SetUpPlayerTranform()
         {
             _playerPoint = _ghostInfo.PlayerPoint;
+            _heroTransform = _ghostInfo.PlayerTransform;
+           // _playerTransform = _ghostInfo.
         }
 
     }

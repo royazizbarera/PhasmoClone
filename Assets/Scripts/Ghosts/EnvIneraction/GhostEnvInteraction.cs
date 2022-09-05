@@ -181,10 +181,8 @@ namespace Ghosts.EnvIneraction
         private bool CalculateInteractionChance()
         { 
             float chance = _defaultInteractionChance + (_ghostInfo.FinalGhostAnger * _interactionCoef);
-            Debug.Log("Chance = " + chance);
             bool procked = RandomGenerator.CalculateChance(chance);
 
-            Debug.Log("Procked = " + procked);
             return procked;
         }
 

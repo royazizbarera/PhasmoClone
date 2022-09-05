@@ -13,6 +13,8 @@ namespace Player.Movement
         [SerializeField] private Transform _playerBody;
         [SerializeField] private Transform _playerHead;
 
+        [SerializeField] private Transform _playerHuntPoint;
+
         [SerializeField] private Transform _playerBoneHead;
         [SerializeField] private float _mouseSensitivity = 100f;
 
@@ -77,9 +79,9 @@ namespace Player.Movement
             PlayerMovement();
         }
 
-        public Transform GetPlayerHead()
+        public Transform GetPlayerHuntPoint()
         {
-            return _playerHead;
+            return _playerHuntPoint;
         }
         private void InputMove()
         {

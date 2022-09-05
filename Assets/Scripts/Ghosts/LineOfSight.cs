@@ -16,20 +16,22 @@ namespace Ghosts
         private Vector3 _rayDirection;
         private PlayerCheckResult _checkResult = new PlayerCheckResult();
 
-        public PlayerCheckResult CheckForPlayer(Transform playerTransform)
+        public PlayerCheckResult CheckForPlayer(Transform playerPoint , Transform heroTransform)
         {
-            _rayDirection = (playerTransform.position - _rayStartTransform.position);
+            _rayDirection = (playerPoint.position - _rayStartTransform.position);
             
             if(Physics.Raycast(_rayStartTransform.position, _rayDirection, out _ray, MaxDistance, _layerMask))
             {
                 Debug.DrawRay(_rayStartTransform.position, _rayDirection, Color.red, 1f);
-                if ( _ray.transform == playerTransform)
+                if ( _ray.transform == heroTransform)
                 {
+                    Debug.Log("Line of sight: player is visible");
                     _checkResult.IsPlayerVisible = true;
-                    _checkResult.DistanceToPlayer = Vector3.Distance(playerTransform.position, transform.position);
+                    _checkResult.DistanceToPlayer = Vector3.Distance(playerPoint.position, transform.position);
                 }
                 else
                 {
+                    Debug.Log(_ray.transform.name + " is blocking");
                     _checkResult.IsPlayerVisible = false;
                 }
             }

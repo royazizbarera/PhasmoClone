@@ -77,6 +77,7 @@ namespace Ghosts.GhostMood
             if (_playerSanity.Sanity < _ghostInfo.GhostData.MinSanityToAttack)
             {
                 float attackChance = _ghostInfo.FinalGhostAnger * _ghostData.AttackChanceCoef;
+
                 if (RandomGenerator.CalculateChance(attackChance) == true) return true;
             }
             return false;
@@ -90,6 +91,8 @@ namespace Ghosts.GhostMood
 
             _minHuntDuration = LevelSizeConst.MapMinHuntDuration(_levelSize.ToString());
             _maxHuntDuration = LevelSizeConst.MapMaxHuntDuration(_levelSize.ToString());
+
+            StartCoroutine(nameof(CheckForAttackInum));
         }
 
 

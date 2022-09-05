@@ -27,7 +27,7 @@ public class GhostDataSO : ScriptableObject
     public float PlayerSanityMinusPerHunt = 10f;
 
     public float MinSanityToAttack = 60f;
-    public float MaxDistanceToPlayerAggre = 4f;
+    public float MaxDistanceToPlayerAggr = 4f;
     [Tooltip("Higher the number, higher the chance for a ghost to attack")]
     public float AttackChanceCoef = 0.2f;
     public float MinAttackCD = 40f;
