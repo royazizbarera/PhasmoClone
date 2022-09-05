@@ -15,11 +15,16 @@ namespace Ghosts.EnvIneraction
 
         [SerializeField]
         private GhostInfo _ghostInfo;
+
+        [SerializeField]
+        private LayerMask _ghostInterectWithLayer;
         [SerializeField, Tooltip("How close player should be to interection, to lost sanity")]
         private float _interecMaxDistanceToPlayerSanity = 4f;
 
         [SerializeField]
         private float _ghostInteractionCDMultiplayer = 0.02f;
+
+
 
         private int _maxEMFLevel = 4;
         // private const float MaxInteractionRadius = 8f;
@@ -47,6 +52,11 @@ namespace Ghosts.EnvIneraction
         private WaitForSeconds WaitForCheckCD;
 
         private Collider[] hitColliders = new Collider[100];
+
+        private bool _interectedWithPickupable = false;
+        private bool _interectedWithClickable = false;
+        private bool _interectedWithDoor = false;
+
         private void Start()
         {
             SetUpInfo();
@@ -68,15 +78,23 @@ namespace Ghosts.EnvIneraction
 
         private void InteractSphereCheck()
         {
-            _hitColliderSize = Physics.OverlapSphereNonAlloc(transform.position, _maxInteractionRadius, hitColliders);
+            _hitColliderSize = Physics.OverlapSphereNonAlloc(transform.position, _maxInteractionRadius, hitColliders, _ghostInterectWithLayer);
+
+            ResetInterectedWith();
             for (int i = 0; i < _hitColliderSize; i++)
             {
-                if (CheckForPickupable(hitColliders[i])) return;
-                if (CheckForClickable(hitColliders[i])) return;
-                if (CheckForDoors(hitColliders[i])) return;
+                if (!_interectedWithPickupable) if (CheckForPickupable(hitColliders[i])) return; else _interectedWithPickupable = true;
+                if (!_interectedWithClickable) if (CheckForClickable(hitColliders[i])) return; else _interectedWithClickable = true;
+                if (!_interectedWithDoor) if (CheckForDoors(hitColliders[i])) return; else _interectedWithDoor = true;
             }
         }
 
+        private void ResetInterectedWith()
+        {
+            _interectedWithPickupable = false;
+            _interectedWithClickable = false;
+            _interectedWithDoor = false;
+        }
         private bool CheckForPickupable(Collider hitCollider)
         {
             Pickupable pickupable = hitCollider.GetComponent<Pickupable>();

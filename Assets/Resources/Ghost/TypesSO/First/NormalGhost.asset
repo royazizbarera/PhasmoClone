@@ -30,8 +30,8 @@ MonoBehaviour:
   MaxDistanceToPlayerAggre: 20
   AttackChanceCoef: 0.2
   MinAttackCD: 40
-  DefaultInterectionChance: 5
-  InterectionsCoef: 0.2
+  DefaultInterectionChance: 10
+  InterectionsCoef: 0.25
   GhostFindInerectionsCD: 2
   GhostBetweenInterectionsCD: 4
   ItemThrowRadiusOfInterection: 1.5
