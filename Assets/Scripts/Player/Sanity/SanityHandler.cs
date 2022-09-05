@@ -43,6 +43,7 @@ public class SanityHandler : MonoBehaviour
     public void ChangeSanity(float ammountToAdd)
     {
         Sanity += ammountToAdd;
+        Sanity = Mathf.Clamp(Sanity, 0, _maxSanityValue);
     }
 
     private IEnumerator DropSanityWithTime()
