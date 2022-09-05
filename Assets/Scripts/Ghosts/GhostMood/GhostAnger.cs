@@ -34,13 +34,11 @@ namespace Ghosts.GhostMood
 
         public void AddGhostAngerWithCalc(float ghostAngerToAdd)
         {
-            Debug.Log("Should add anger" + ghostAngerToAdd);
             _ghostAngerToAdd = ghostAngerToAdd;
             if (_ghostAnger > _ghostData.StartLateGhostAnger)
             {
                 _ghostAngerToAdd *= ((_ghostData.MaxGhostAnger - _ghostData.StartLateGhostAnger) - (_ghostAnger - _ghostData.StartLateGhostAnger)) / (_ghostData.MaxGhostAnger - _ghostData.StartLateGhostAnger);
             }
-            Debug.Log("After formula = " + _ghostAngerToAdd);
             _ghostAnger += _ghostAngerToAdd;
             _ghostMood.SetGhostAnger(_ghostAnger);
         }

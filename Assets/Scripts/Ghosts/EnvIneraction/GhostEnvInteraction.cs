@@ -83,9 +83,9 @@ namespace Ghosts.EnvIneraction
             ResetInterectedWith();
             for (int i = 0; i < _hitColliderSize; i++)
             {
-                if (!_interectedWithPickupable) if (CheckForPickupable(hitColliders[i])) return; else _interectedWithPickupable = true;
-                if (!_interectedWithClickable) if (CheckForClickable(hitColliders[i])) return; else _interectedWithClickable = true;
-                if (!_interectedWithDoor) if (CheckForDoors(hitColliders[i])) return; else _interectedWithDoor = true;
+                if (!_interectedWithPickupable) if (CheckForPickupable(hitColliders[i])) return;
+                if (!_interectedWithClickable) if (CheckForClickable(hitColliders[i])) return;
+                if (!_interectedWithDoor) if (CheckForDoors(hitColliders[i])) return;
             }
         }
 
@@ -100,6 +100,7 @@ namespace Ghosts.EnvIneraction
             Pickupable pickupable = hitCollider.GetComponent<Pickupable>();
             if (pickupable != null && Vector3.Distance(transform.position, hitCollider.transform.position) <= _itemsThrowInteractionRadius)
             {
+                _interectedWithPickupable = true;
                 if (CalculateInteractionChance() == true)
                 {
                     _interected = true;
@@ -123,6 +124,7 @@ namespace Ghosts.EnvIneraction
             IClickable clickable = hitCollider.GetComponent<IClickable>();
             if (clickable != null && Vector3.Distance(transform.position, hitCollider.transform.position) <= _clickableInteractionRadius)
             {
+                _interectedWithClickable = true;
                 if (CalculateInteractionChance() == true)
                 {
                     _interected = true;
@@ -146,6 +148,7 @@ namespace Ghosts.EnvIneraction
             DoorDraggable door = hitCollider.GetComponent<DoorDraggable>();
             if (door != null && Vector3.Distance(transform.position, hitCollider.transform.position) <= _doorsTouchInteractionRadius)
             {
+                _interectedWithDoor = true;
                 if (CalculateInteractionChance() == true)
                 {
                     _interected = true;
@@ -176,9 +179,13 @@ namespace Ghosts.EnvIneraction
 
 
         private bool CalculateInteractionChance()
-        {
+        { 
             float chance = _defaultInteractionChance + (_ghostInfo.FinalGhostAnger * _interactionCoef);
-            return RandomGenerator.CalculateChance(chance);
+            Debug.Log("Chance = " + chance);
+            bool procked = RandomGenerator.CalculateChance(chance);
+
+            Debug.Log("Procked = " + procked);
+            return procked;
         }
 
 
