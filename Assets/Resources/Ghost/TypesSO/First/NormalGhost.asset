@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 035a751c97309db4c840d995a05355bb, type: 3}
-  m_Name: Poltergay
+  m_Name: NormalGhost
   m_EditorClassIdentifier: 
   GhostNormalSpeed: 2
   GhostAttackSpeed: 2
   GhostEvidences: 00000000040000000500000002000000
   PatrolRandomMultiplier: 5
-  StartGhostAnger: 0
-  GhostAngerPlusPerSec: 0.2
+  StartGhostAnger: 30
+  GhostAngerPlusPerSec: 0.1
   GhostAngerInGhostRoomPlusPerSec: 0.15
   MaxGhostAnger: 110
   StartLateGhostAnger: 70

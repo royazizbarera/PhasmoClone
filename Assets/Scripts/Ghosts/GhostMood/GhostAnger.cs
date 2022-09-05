@@ -28,22 +28,19 @@ namespace Ghosts.GhostMood
 
         private void Start()
         {
-            _ghostData = _ghostInfo.GhostData;
-            _ghostAnger = _ghostInfo.GhostData.StartGhostAnger;
-            _ghostMood.SetGhostAnger(_ghostAnger);
-
-            _ghostRoom = _ghostInfo.GhostRoom;
-
-            if (_ghostRoom == LevelRooms.LevelRoomsEnum.NoRoom) _ghostInfo.GhostSetedUp += SetUp;
+            if (!_ghostInfo.SetedUp) _ghostInfo.GhostSetedUp += SetUp;
+            else { SetUp(); }
         }
 
         public void AddGhostAngerWithCalc(float ghostAngerToAdd)
         {
+            Debug.Log("Should add anger" + ghostAngerToAdd);
             _ghostAngerToAdd = ghostAngerToAdd;
             if (_ghostAnger > _ghostData.StartLateGhostAnger)
             {
                 _ghostAngerToAdd *= ((_ghostData.MaxGhostAnger - _ghostData.StartLateGhostAnger) - (_ghostAnger - _ghostData.StartLateGhostAnger)) / (_ghostData.MaxGhostAnger - _ghostData.StartLateGhostAnger);
             }
+            Debug.Log("After formula = " + _ghostAngerToAdd);
             _ghostAnger += _ghostAngerToAdd;
             _ghostMood.SetGhostAnger(_ghostAnger);
         }
@@ -66,8 +63,16 @@ namespace Ghosts.GhostMood
 
         private void SetUp()
         {
+            _ghostData = _ghostInfo.GhostData;
+            _ghostAnger = _ghostInfo.GhostData.StartGhostAnger;
+            _ghostMood.SetGhostAnger(_ghostAnger);
+
             _ghostRoom = _ghostInfo.GhostRoom;
+            _playerCurrentRoom = _ghostInfo.PlayerRoom;
             _ghostAngerWithTime = _ghostData.GhostAngerPlusPerSec;
+            _ghostAngerInGhostRoomWithTime = _ghostData.GhostAngerInGhostRoomPlusPerSec;
+
+            StartCoroutine(nameof(IncreaseAngerWithTime));
         }
     }
 }

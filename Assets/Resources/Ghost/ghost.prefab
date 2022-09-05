@@ -59,9 +59,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: -8925133462107946173}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+        m_TargetAssemblyTypeName: Ghosts.AttackPatrol, Assembly-CSharp
+        m_MethodName: StartAttackPatrolling
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -74,9 +74,9 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -8925133462107946173}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+        m_TargetAssemblyTypeName: Ghosts.AttackPatrol, Assembly-CSharp
+        m_MethodName: StopAttackPatrolling
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -165,7 +165,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 238534750}
         m_TargetAssemblyTypeName: MeshHandler, Assembly-CSharp
-        m_MethodName: ActivateMesh
+        m_MethodName: DisableMesh
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -349,16 +349,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7874926961459402408}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 114a50ee0f25122499ed1af87108ce50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ghostInfo: {fileID: 0}
+  _ghostInfo: {fileID: 1499621083}
   _attackState: {fileID: 598665392}
   _idleState: {fileID: 1297272175}
   _ghostStateMachine: {fileID: 1075119143}
   IsHunting: 0
+  _ghostAnger: 0
+  _ghostFinalAnger: 0
 --- !u!114 &8451003892490384874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +368,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7874926961459402408}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52d13f4db0ae9e141833ff76b2237115, type: 3}
   m_Name: 
@@ -398,7 +400,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7874926961459402408}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02b2cc1a3b1e2bb42a3098f5774214ba, type: 3}
   m_Name: 
@@ -432,7 +434,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7874926961459402408}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d64c02a8c1d41b543a70c907511f5820, type: 3}
   m_Name: 

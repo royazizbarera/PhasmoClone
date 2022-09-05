@@ -41,13 +41,8 @@ namespace Ghosts
         private void OnEnable()
         {
             if (!_dataSetedUp) SetUpGhostData();
-            StartAttackPatrolling();
         }
 
-        private void OnDisable()
-        {
-            StopAttackPatrolling();
-        }
 
         private void OnDestroy()
         {
@@ -109,7 +104,7 @@ namespace Ghosts
             yield return null;
         }
 
-        private void StopAttackPatrolling()
+        public void StopAttackPatrolling()
         {
             SwitchAttackState(false);
         }

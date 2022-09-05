@@ -20,7 +20,9 @@ namespace Ghosts.GhostMood
         private float _huntTime = 0f;
 
         private SanityHandler _playerSanity;
-        private float _ghostAnger = 0f;
+
+        public float _ghostAnger = 0f;
+        public float _ghostFinalAnger = 0f;
         void Start()
         {
             _ghostStateMachine.ChangeState(_idleState);
@@ -31,6 +33,7 @@ namespace Ghosts.GhostMood
         private void Update()
         {
             _ghostInfo.FinalGhostAnger = Mathf.Max(0f, _ghostAnger - _playerSanity.Sanity / SanityDivider);
+            _ghostFinalAnger = _ghostInfo.FinalGhostAnger;
         }
 
         public void SetGhostAnger(float ghostAnger)
