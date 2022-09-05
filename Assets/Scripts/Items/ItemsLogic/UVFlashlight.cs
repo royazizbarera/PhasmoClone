@@ -21,14 +21,14 @@ namespace Items.ItemsLogic
         {
             if (_isEnabled == false)
             {
-                _light.enabled = true;
                 _uvLight.EnableUVLight();
+                _light.enabled = true;
                 _isEnabled = true;
             }
             else
             {
-                _light.enabled = false;
                 _uvLight.DisableUVLight();
+                _light.enabled = false;
                 _isEnabled = false;
             }
         }

@@ -58,12 +58,14 @@ public class UVLight : MonoBehaviour
     public void DisableUVLight()
     {
         _revealableMaterial.SetFloat("lightAngle", 0f);
+        ChangeMaterialParameters();
         _isEnabled = false;
         StopCoroutine(nameof(CheckPosition));
     }
     public void EnableUVLight()
     {
         _revealableMaterial.SetFloat("lightAngle", _lightAngle);
+        ChangeMaterialParameters();
         _isEnabled = true;
         StartCoroutine(nameof(CheckPosition));
     }

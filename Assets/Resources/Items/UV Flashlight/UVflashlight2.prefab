@@ -7145,4 +7145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _light: {fileID: 2507987392342402943}
   _revealableMaterial: {fileID: 2100000, guid: f96c68bea613cb043bf9973f4312ddbc, type: 2}
-  _lightAngle: 360
+  _lightAngle: 40

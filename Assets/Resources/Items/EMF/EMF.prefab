@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 2238407732837850603}
   - component: {fileID: 4104077443799279905}
   - component: {fileID: 227187589786686064}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: emfmodel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
