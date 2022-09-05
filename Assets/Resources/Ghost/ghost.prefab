@@ -425,6 +425,9 @@ MonoBehaviour:
   _interaction: {fileID: 1907466690619057802, guid: 00b709e4c8a4358469c50620b17d9c49, type: 3}
   _handprint: {fileID: 1865889820300120364, guid: 8954caf1b6ba00f469fe5f8576fec3b6, type: 3}
   _ghostInfo: {fileID: 1499621083}
+  _ghostInterectWithLayer:
+    serializedVersion: 2
+    m_Bits: 768
   _interecMaxDistanceToPlayerSanity: 4
   _ghostInteractionCDMultiplayer: 0.02
 --- !u!114 &238534750
