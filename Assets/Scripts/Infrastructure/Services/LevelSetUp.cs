@@ -21,6 +21,7 @@ namespace Infrastructure.Services
             get { return _currRoomTransform; }
         }
 
+        public GameObject MainPlayer;
         public GhostInfo GhostInfo;
 
         private SceneNames.LevelNames _selectedMap;

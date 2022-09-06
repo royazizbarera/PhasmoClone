@@ -6,7 +6,6 @@ namespace Infrastructure.Services
 {
     public class GameFactory : IService
     {
-
         private GameObject _mainHero = null;
         private GameObject _ghost = null;
         private readonly AssetProvider _assets;
@@ -39,25 +38,6 @@ namespace Infrastructure.Services
            
             return gameObject;
         }
-
-        //public void CreateHud() =>
-        //  InstantiateRegistered(AssetPath.HudPath);
-
-        //private GameObject InstantiateRegistered(string prefabPath, Vector3 at)
-        //{
-        //    GameObject gameObject = _assets.Instantiate(path: prefabPath, at: at);
-
-        //    RegisterProgressWatchers(gameObject);
-        //    return gameObject;
-        //}
-
-        //private GameObject InstantiateRegistered(string prefabPath)
-        //{
-        //    GameObject gameObject = _assets.Instantiate(path: prefabPath);
-
-        //    RegisterProgressWatchers(gameObject);
-        //    return gameObject;
-        //}
 
     }
 }

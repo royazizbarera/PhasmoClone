@@ -98,11 +98,11 @@ namespace Player.Inventory
             ChangeMainItem(newItemSlot);
         }
 
-        public void DropMainItem()
+        public void DropMainItem(bool shouldThrow = true)
         {
             if (MainItem != null)
             {
-                DropItemRb(MainItem);
+                DropItemRb(MainItem, shouldThrow);
 
                 IDroppable droppable = MainItem.gameObject.GetComponent<IDroppable>();
                 if (droppable != null) droppable.DropItem();  
@@ -129,17 +129,20 @@ namespace Player.Inventory
             item.gameObject.SetActive(false);
         }
 
-        private void DropItemRb(IPickupable item)
+        private void DropItemRb(IPickupable item, bool shouldThrow = true)
         {
             item.gameObject.transform.SetParent(_slot.parent);
             //EditorApplication.isPaused = true;
-            item.gameObject.transform.localPosition = new Vector3(0f, item.gameObject.transform.localPosition.y, _dropItemOffset);
-          //  EditorApplication.isPaused = true;
+            if (shouldThrow)
+                item.gameObject.transform.localPosition = new Vector3(0f, item.gameObject.transform.localPosition.y, _dropItemOffset);
+            //  EditorApplication.isPaused = true;
             item.gameObject.transform.SetParent(null);
-
-            Rigidbody itemRB = item.gameObject.GetComponent<Rigidbody>();
-            itemRB.isKinematic = false;
-            itemRB.AddForce(item.gameObject.transform.forward * _dropItemForce.x + item.gameObject.transform.up * _dropItemForce.y, ForceMode.VelocityChange);
+            if (shouldThrow)
+            {
+                Rigidbody itemRB = item.gameObject.GetComponent<Rigidbody>();
+                itemRB.isKinematic = false;
+                itemRB.AddForce(item.gameObject.transform.forward * _dropItemForce.x + item.gameObject.transform.up * _dropItemForce.y, ForceMode.VelocityChange);
+            }
         }
 
         private void ResizeSlots()

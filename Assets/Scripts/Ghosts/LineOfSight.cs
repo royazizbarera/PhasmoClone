@@ -25,13 +25,11 @@ namespace Ghosts
                 Debug.DrawRay(_rayStartTransform.position, _rayDirection, Color.red, 1f);
                 if ( _ray.transform == heroTransform)
                 {
-                    Debug.Log("Line of sight: player is visible");
                     _checkResult.IsPlayerVisible = true;
                     _checkResult.DistanceToPlayer = Vector3.Distance(playerPoint.position, transform.position);
                 }
                 else
                 {
-                    Debug.Log(_ray.transform.name + " is blocking");
                     _checkResult.IsPlayerVisible = false;
                 }
             }
