@@ -3564,7 +3564,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-187184
+  m_Name: pb_Mesh-412798
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4975,7 +4975,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-187154
+  m_Name: pb_Mesh-412768
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13022,7 +13022,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-187240
+  m_Name: pb_Mesh-412854
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14113,7 +14113,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-187212
+  m_Name: pb_Mesh-412826
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -30385,6 +30385,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1775010316}
     m_Modifications:
+    - target: {fileID: 1909153461, guid: 1454c98d85c04a04eb33aad49a1f9b64, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.379
+      objectReference: {fileID: 0}
     - target: {fileID: 1316940152159413217, guid: 1454c98d85c04a04eb33aad49a1f9b64, type: 3}
       propertyPath: m_Name
       value: LevelTruck
