@@ -16,3 +16,4 @@ MonoBehaviour:
   Description: item description
   Price: 50
   MaxAmount: 4
+  MinAmount: 1
