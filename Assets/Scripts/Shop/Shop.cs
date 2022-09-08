@@ -38,7 +38,7 @@ public class Shop : MonoBehaviour
         if (_money.CheckForEnoughMoney(_itemsList.ItemsInfo[_curItem].Price) && _inventory._purchasedItemsAmount[_curItem] < _maxItems)
         {
             _money.SpendMoney(_itemsList.ItemsInfo[_curItem].Price);
-            _inventory._purchasedItemsAmount[_curItem] += 1;
+            _inventory.AddItem(_curItem);
             _amount.text = _inventory._purchasedItemsAmount[_curItem].ToString() + " / " + _maxItems.ToString();
         }
     }

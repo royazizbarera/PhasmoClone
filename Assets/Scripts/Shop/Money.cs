@@ -3,13 +3,17 @@ using TMPro;
 
 public class Money : MonoBehaviour
 {
+    [SerializeField] private JSONData _jsonData;
+
     [SerializeField] private float _money;
 
-    [SerializeField] private TextMeshProUGUI _shopMoney;
+    [SerializeField] private TextMeshProUGUI _shopMoneyTXT;
 
     private void Start()
     {
-        _shopMoney.text = "Money: " + _money.ToString();
+        _jsonData.LoadInfo();
+        _money = _jsonData._storedInfo.Money;
+        _shopMoneyTXT.text = "Money: " + _money.ToString();
     }
     public bool CheckForEnoughMoney(float amount)
     {
@@ -20,6 +24,8 @@ public class Money : MonoBehaviour
     public void SpendMoney(float amount)
     {
         _money -= amount;
-        _shopMoney.text = "Money: " + _money.ToString();
+        _shopMoneyTXT.text = "Money: " + _money.ToString();
+        _jsonData._storedInfo.Money = _money;
+        _jsonData.SaveInfo();
     }
 }
