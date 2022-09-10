@@ -880,10 +880,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6886034867935722583}
   - component: {fileID: 6886034867935722580}
-  - component: {fileID: 6886034867935722581}
   - component: {fileID: 6886034867935722582}
   - component: {fileID: 6886034867935722579}
-  - component: {fileID: 645644830}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -925,21 +923,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c648fbf6cf44e8442b28e88ae5c104ff, type: 2}
   - {fileID: 11400000, guid: 7f1a1cc9f30a3ae47a5087ec46d107f7, type: 2}
   - {fileID: 11400000, guid: bdd6dbca8176d084190586c550998f8d, type: 2}
---- !u!114 &6886034867935722581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6886034867935722600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c894aae070041d49a637824b7b8524a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _jsonData: {fileID: 645644830}
-  _money: 1000
-  _shopMoneyTXT: {fileID: 0}
 --- !u!114 &6886034867935722582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -974,21 +957,6 @@ MonoBehaviour:
   - {fileID: 6886034869687131256}
   - {fileID: 6886034869388341237}
   - {fileID: 6886034868562836407}
---- !u!114 &645644830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6886034867935722600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 680eb4355dd6d4a43a0540f35f608a9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _storedInfo:
-    Money: 0
-    ItemsAmount: 000000000000000000000000000000000000000000000000
 --- !u!1 &6886034867936698693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2204,6 +2172,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 6886034868981811667}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: LoadMoney
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6113,9 +6093,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3107a8ebdbffe34caf1f2b524ad9f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _money: {fileID: 6886034867935722581}
+  _money: {fileID: 0}
   _inventory: {fileID: 6886034867935722582}
   _itemMenu: {fileID: 6886034868075202055}
+  _shopMoneyTXT: {fileID: 6886034869257919552}
   _name: {fileID: 6886034868342232071}
   _description: {fileID: 6886034869777330216}
   _price: {fileID: 6886034869338366630}

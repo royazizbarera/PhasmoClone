@@ -17,10 +17,5 @@ namespace Infrastructure.Services
             var prefab = Resources.Load<GameObject>(path);
             return Object.Instantiate(prefab);
         }
-
-        internal GameObject Instantiate(object targetUIPath)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

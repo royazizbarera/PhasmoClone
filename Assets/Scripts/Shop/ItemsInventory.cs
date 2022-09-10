@@ -1,23 +1,24 @@
+using Infrastructure;
+using Infrastructure.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemsInventory : MonoBehaviour
 {
-    [SerializeField] JSONData _jsonData;
+    private DataSaveLoader _dataSaveLoader;
 
     public int[] _purchasedItemsAmount;
 
     private void Start()
     {
-        _jsonData.LoadInfo();
-        _purchasedItemsAmount = _jsonData._storedInfo.ItemsAmount;
+        _dataSaveLoader = AllServices.Container.Single<DataSaveLoader>();
+        _purchasedItemsAmount = _dataSaveLoader._storedInfo.ItemsAmount;
     }
     public void AddItem(int itemId)
     {
-        _purchasedItemsAmount[itemId] += 1;
+        _purchasedItemsAmount[itemId]++;
 
-        _jsonData._storedInfo.ItemsAmount = _purchasedItemsAmount;
-        _jsonData.SaveInfo();
+        _dataSaveLoader.SaveItemsAmount(_purchasedItemsAmount);
     }
 }

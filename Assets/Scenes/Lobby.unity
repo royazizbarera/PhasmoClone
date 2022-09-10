@@ -18098,17 +18098,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7665621457201294293, guid: c0376f38f6e735e48b8e9eec6ba3517c, type: 3}
   m_PrefabInstance: {fileID: 1533950961}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &645644830 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 645644830, guid: b402e8defb6d4dd4fa6ab4823f6c762d, type: 3}
-  m_PrefabInstance: {fileID: 6886034868609184375}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 680eb4355dd6d4a43a0540f35f608a9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &652586082
 Mesh:
   m_ObjectHideFlags: 0
@@ -27718,17 +27707,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1972037039309670604, guid: 54604e6ea6b0c844583d05c8a0123e17, type: 3}
   m_PrefabInstance: {fileID: 1744602781}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1744703418 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6886034869257919552, guid: b402e8defb6d4dd4fa6ab4823f6c762d, type: 3}
-  m_PrefabInstance: {fileID: 6886034868609184375}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1785672365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32071,14 +32049,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6886034867935722581, guid: b402e8defb6d4dd4fa6ab4823f6c762d, type: 3}
-      propertyPath: _shopMoneyTXT
-      value: 
-      objectReference: {fileID: 1744703418}
-    - target: {fileID: 6886034867935722582, guid: b402e8defb6d4dd4fa6ab4823f6c762d, type: 3}
-      propertyPath: _jsonData
-      value: 
-      objectReference: {fileID: 645644830}
     - target: {fileID: 6886034867935722583, guid: b402e8defb6d4dd4fa6ab4823f6c762d, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -32131,6 +32101,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1468687235}
+    - target: {fileID: 6886034868981811667, guid: b402e8defb6d4dd4fa6ab4823f6c762d, type: 3}
+      propertyPath: _money
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6886034869220412256, guid: b402e8defb6d4dd4fa6ab4823f6c762d, type: 3}
       propertyPath: m_Camera
       value: 

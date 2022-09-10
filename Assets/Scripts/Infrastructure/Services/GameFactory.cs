@@ -18,6 +18,7 @@ namespace Infrastructure.Services
         public GameObject CreateHero(GameObject at)
         {
             GameObject gameObject = _assets.Instantiate(AssetPath.HeroPath, at.transform.position);
+            _mainHero = gameObject;
             return gameObject;
         }
 
@@ -37,6 +38,11 @@ namespace Infrastructure.Services
             GameObject gameObject = _assets.Instantiate(AssetPath.TargetUIPath);
            
             return gameObject;
+        }
+
+        public GameObject GetMainHero()
+        {
+            return _mainHero;
         }
 
     }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Infrastructure.Services;
+using Infrastructure;
 
 public class Shop : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private ItemsInventory _inventory;
 
     [SerializeField] private Image _itemMenu;
+    [SerializeField] private TextMeshProUGUI _shopMoneyTXT;
 
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _description;
@@ -20,7 +23,18 @@ public class Shop : MonoBehaviour
 
     [SerializeField] private int _maxItems = 20;
 
+    private GameFactory _gameFactory;
+
     private int _curItem = 0;
+
+    private void Start()
+    {
+        _gameFactory = AllServices.Container.Single<GameFactory>();
+
+        _money = _gameFactory.GetMainHero().GetComponent<Money>();
+
+        _shopMoneyTXT.text = "Money: " + _money.GetMoney().ToString();
+    }
     public void OpenItemMenu(int itemId)
     {
         _itemMenu.gameObject.SetActive(true);
@@ -39,6 +53,7 @@ public class Shop : MonoBehaviour
         {
             _money.SpendMoney(_itemsList.ItemsInfo[_curItem].Price);
             _inventory.AddItem(_curItem);
+            _shopMoneyTXT.text = "Money: " + _money.GetMoney().ToString();
             _amount.text = _inventory._purchasedItemsAmount[_curItem].ToString() + " / " + _maxItems.ToString();
         }
     }
