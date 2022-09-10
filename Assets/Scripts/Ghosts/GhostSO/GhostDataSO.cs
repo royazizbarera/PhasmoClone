@@ -8,6 +8,7 @@ public class GhostDataSO : ScriptableObject
     public float GhostNormalSpeed = 2;
     public float GhostAttackSpeed = 2;
 
+    public string GhostDescription;
     public List<GhostEvidence.GhostEvidencesTypes> GhostEvidences;
 
     [Tooltip("The lower this number,the more time ghost will spend in his room")]

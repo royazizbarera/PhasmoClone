@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GhostNormalSpeed: 2
   GhostAttackSpeed: 2
+  GhostDescription: 
   GhostEvidences: 00000000040000000500000002000000
   PatrolRandomMultiplier: 5
   StartGhostAnger: 30
@@ -27,7 +28,7 @@ MonoBehaviour:
   PlayerSanityMinusPerGhostGhostEvent: 5
   PlayerSanityMinusPerHunt: 10
   MinSanityToAttack: 60
-  MaxDistanceToPlayerAggre: 20
+  MaxDistanceToPlayerAggr: 4
   AttackChanceCoef: 0.2
   MinAttackCD: 40
   DefaultInterectionChance: 10
