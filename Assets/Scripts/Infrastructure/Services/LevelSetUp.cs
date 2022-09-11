@@ -10,15 +10,19 @@ namespace Infrastructure.Services
         public LevelRooms.LevelRoomsEnum CurrGhostRoom
         {
             get { return _currRoom; }
-        }  
-        
+        }
+
         public LevelSizeConst.LevelSize CurrLevelSize
         {
-            get { return _currLevelSize ; }
-        }         
+            get { return _currLevelSize; }
+        }
         public Transform CurrGhostRoomTransform
         {
             get { return _currRoomTransform; }
+        }
+        public int[] AddedItems
+        {
+            get { return _addedItems; }
         }
 
         public GameObject MainPlayer;
@@ -31,16 +35,21 @@ namespace Infrastructure.Services
         private LevelInfo _currLevelInfo;
         private LevelSizeConst.LevelSize _currLevelSize;
 
+        private int[] _addedItems;
+
         public void ChooseMap(SceneNames.LevelNames selectedMap)
         {
             _selectedMap = selectedMap;
         }
-
-
+        public void SetAddedItems(int[] addedItems)
+        {
+            _addedItems = addedItems;
+        }
         public Transform[] GetGhostPatrolPoints()
         {
             return _currLevelInfo.PatrolPoints;
         }
+
 
         public void InitializeLevel()
         {

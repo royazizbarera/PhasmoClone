@@ -1,3 +1,5 @@
+using Infrastructure;
+using Infrastructure.Services;
 using TMPro;
 using UnityEngine;
 
@@ -14,9 +16,12 @@ public class PregameInventory : MonoBehaviour
 
     private int[] _addedItems;
 
+    private LevelSetUp _levelSetUp;
+
 
     private void Start()
     {
+        _levelSetUp = AllServices.Container.Single<LevelSetUp>();
         _minItems = new int[_itemLimits.Length];
         _maxItems = new int[_itemLimits.Length];
         _addedItems = new int[_itemLimits.Length];
@@ -48,5 +53,10 @@ public class PregameInventory : MonoBehaviour
             _addedItems[i] = 0;
             _itemLimits[i].text = _minItems[i].ToString() + "/" + _maxItems[i].ToString();
         }
+    }
+
+    public void SetUpAddedItems()
+    {
+        _levelSetUp.SetAddedItems(_addedItems);
     }
 }
