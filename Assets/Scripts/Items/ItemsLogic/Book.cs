@@ -91,7 +91,7 @@ namespace Items.ItemsLogic
         {
             _ghostInfo = _levelSetUp.GhostInfo;
             _ghostRoom = _levelSetUp.CurrGhostRoom;
-            if (_ghostInfo.GhostData.GhostEvidences.Contains(GhostEvidence.GhostEvidencesTypes.Book)) _couldBeWritten = true;
+            if (_ghostInfo.GhostData.GhostEvidences.Contains(GhostEvidence.GhostEvidencesTypes.GhostWriting)) _couldBeWritten = true;
         }
     }
 }
