@@ -7,8 +7,6 @@ public class GhostDataSO : ScriptableObject
 {
     public float GhostNormalSpeed = 2;
     public float GhostAttackSpeed = 2;
-
-    public string GhostDescription;
     public List<GhostEvidence.GhostEvidencesTypes> GhostEvidences;
 
     [Tooltip("The lower this number,the more time ghost will spend in his room")]
@@ -52,5 +50,7 @@ public class GhostDataSO : ScriptableObject
     public float MinMeshDisabledTime = 0.55f;
     public float MaxMeshDisabledTime = 0.9f;
 
+    [TextArea(5, 10)]
+    public string GhostDescription;
 
 }

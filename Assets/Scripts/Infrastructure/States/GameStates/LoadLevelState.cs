@@ -47,6 +47,7 @@ namespace Infrastructure.States.GameStates
         {
             GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(Tags.InitialPoint));
             GameObject ghost = _gameFactory.CreateGhost(GameObject.FindWithTag(Tags.GhostInitialPoint));
+            GameObject journal = _gameFactory.CreateJournal();
             ghost.GetComponent<GhostInfo>().SetUpGhost(hero.transform, hero.GetComponent<MoveControl>().GetPlayerHuntPoint(), _levelSetUp.CurrGhostRoom, hero.GetComponent<RoomIdentifire>(), hero.GetComponent<SanityHandler>(), _levelSetUp.CurrLevelSize);
             _levelSetUp.GhostInfo = ghost.GetComponent<GhostInfo>();
             _levelSetUp.MainPlayer = hero;
