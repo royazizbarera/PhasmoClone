@@ -11,7 +11,8 @@ namespace Managers.Services
         public Vector2 CameraAxis { get; private set; }
         public bool IsRunning = false;
 
-        public Action PickUpItemAction, DropItemAction, MainUseAction, MainUseCanceledAction, PrimaryUseAction, SecondaryUseAction, SwitchItemAction , CrouchAction;
+        public Action PickUpItemAction, DropItemAction, MainUseAction, MainUseCanceledAction,
+        PrimaryUseAction, SecondaryUseAction, SwitchItemAction , CrouchAction , JournalOpenAction;
 
         public bool IsControlLocked { get; private set; }
         private MainInputAction _mainInputAction;
@@ -67,8 +68,13 @@ namespace Managers.Services
             _mainInputAction.Player.SwitchItem.performed += SwitchItemUseCallBack;
 
             _mainInputAction.Player.Crouch.performed += CrouchCallBack;
+            _mainInputAction.Player.Journal.performed += JournalOpen;
         }
 
+        private void JournalOpen(InputAction.CallbackContext obj)
+        {
+            if (JournalOpenAction != null) JournalOpenAction.Invoke();
+        }
         private void CrouchCallBack(InputAction.CallbackContext obj)
         {
             if (CrouchAction != null) CrouchAction.Invoke();

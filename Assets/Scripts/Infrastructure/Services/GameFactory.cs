@@ -40,6 +40,12 @@ namespace Infrastructure.Services
             return gameObject;
         }
 
+        public GameObject CreateJournal()
+        {
+            GameObject gameObject = _assets.Instantiate(AssetPath.JournalPath);
+            return gameObject;
+        }
+
         public GameObject GetMainHero()
         {
             return _mainHero;

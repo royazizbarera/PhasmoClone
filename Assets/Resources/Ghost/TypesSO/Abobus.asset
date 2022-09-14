@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035a751c97309db4c840d995a05355bb, type: 3}
+  m_Name: Abobus
+  m_EditorClassIdentifier: 
+  GhostNormalSpeed: 2
+  GhostAttackSpeed: 2
+  GhostEvidences: 010000000400000003000000
+  PatrolRandomMultiplier: 5
+  StartGhostAnger: 30
+  GhostAngerPlusPerSec: 0.1
+  GhostAngerInGhostRoomPlusPerSec: 0.15
+  MaxGhostAnger: 110
+  StartLateGhostAnger: 70
+  PlayerSanityMinusPerSecond: 0.055
+  PlayerSanityMinusInGhostRoomPerSecond: 0.12
+  PlayerSanityMinusPerGhostInterection: 1
+  PlayerSanityMinusPerGhostGhostEvent: 5
+  PlayerSanityMinusPerHunt: 10
+  MinSanityToAttack: 60
+  MaxDistanceToPlayerAggr: 4
+  AttackChanceCoef: 0.2
+  MinAttackCD: 40
+  DefaultInterectionChance: 10
+  InterectionsCoef: 0.25
+  GhostFindInerectionsCD: 2
+  GhostBetweenInterectionsCD: 4
+  ItemThrowRadiusOfInterection: 1.5
+  DoorsTouchRadiusInterection: 2.5
+  ClickableTouchRadiusInterection: 2.5
+  ItemThrowPower: 5
+  MinMeshActiveTime: 0.12
+  MaxMeshActiveTime: 0.18
+  MinMeshDisabledTime: 0.55
+  MaxMeshDisabledTime: 0.9
+  GhostDescription: 'Abobus is one of the strongest ghosts of all time, he is godlike,
+    duniuslike and Nikita noob
+
+
+    Strengths: abobus
+
+
+    Weakness: No Weakness'
