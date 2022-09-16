@@ -1,4 +1,5 @@
 using System;
+using UI.Journal;
 using UnityEngine;
 using Utilities.Constants;
 
@@ -7,6 +8,7 @@ namespace Infrastructure.Services
     public class GameFactory : IService
     {
         private GameObject _mainHero = null;
+        private Journal _journal = null;
         private GameObject _ghost = null;
         private readonly AssetProvider _assets;
 
@@ -43,6 +45,7 @@ namespace Infrastructure.Services
         public GameObject CreateJournal()
         {
             GameObject gameObject = _assets.Instantiate(AssetPath.JournalPath);
+            _journal = gameObject.GetComponent<Journal>();
             return gameObject;
         }
 
@@ -50,6 +53,9 @@ namespace Infrastructure.Services
         {
             return _mainHero;
         }
-
+        public Journal GetJournal()
+        {
+            return _journal;
+        }
     }
 }

@@ -3,6 +3,9 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using System;
+using Infrastructure.Services;
+using Infrastructure;
+using UI.Journal;
 
 namespace Items.ItemsLogic
 {
@@ -20,15 +23,31 @@ namespace Items.ItemsLogic
         [SerializeField] private float _rayCastGirth = 0.5f;
         [SerializeField] private float _rayCastWidth = 5f;
         [SerializeField] private LayerMask _rewardLayer;
+        [SerializeField] private Transform _checkPoint;
+        [SerializeField] private float _checkRadius;
+
+        private string _snapshotPath;
+        private string _rewardName;
+        private float _rewardValue;
 
         [SerializeField] private MeshRenderer _screenMesh;
         [SerializeField] private Material _renderTextureMat;
         [SerializeField] private RenderTexture _renderTexture;
 
+        [SerializeField] private int resWidth = 400;
+        [SerializeField] private int resHeight = 300;
+
+        private Journal _journal;
+        private GameFactory _gameFactory;
         private bool _isReady = true;
+
+        private const float SnapshotDelay = 0.02f;
 
         private void Start()
         {
+            _gameFactory = AllServices.Container.Single<GameFactory>();
+            _journal = _gameFactory.GetJournal();
+
             _shotsLeftText.text = _shotsLeft.ToString();
             SetUpCamera();
             DisableCamera();
@@ -39,7 +58,6 @@ namespace Items.ItemsLogic
             if (CheckIfReady())
             {                
                 MakePhoto();
-                CheckTargets();
             }
         }
         private bool CheckIfReady()
@@ -54,15 +72,72 @@ namespace Items.ItemsLogic
             _shotsLeftText.text = _shotsLeft.ToString();
             _isReady = false;
 
-            StartCoroutine(nameof(Cooldown));
+            CheckTargets();
+            Invoke(nameof(TakeSnapshot), SnapshotDelay);
 
-            //Debug.Log("Photo");
+            StartCoroutine(nameof(Cooldown));
         }
 
         private void CheckTargets()
         {
-            
+            if (_journal == null)
+            {
+                _journal = _gameFactory.GetJournal();
+            }
+            if (_journal != null && _journal.CheckForEmptyPhotos())
+            {
+                Collider[] targets = Physics.OverlapCapsule(transform.position, _checkPoint.position, _checkRadius, _rewardLayer);
+                if (targets.Length != 0)
+                {
+                    Collider target = FindNearest(targets);
+                    if (target.GetComponent<PhotoReward>())
+                    {
+                        _rewardName = target.GetComponent<PhotoReward>().GetRewardName();
+                        _rewardValue = target.GetComponent<PhotoReward>().GetRewardValue();
+                    }
+                }
+                else
+                {
+                    _rewardName = null;
+                    _rewardValue = 0;
+                }
+            }
         }
+        private void TakeSnapshot()
+        {
+            Texture2D snapShot = _renderTexture.toTexture2D();
+            byte[] bytes = snapShot.EncodeToPNG();
+            string filename = ScreenShotName(resWidth, resHeight);
+            System.IO.File.WriteAllBytes(filename, bytes);
+            _snapshotPath = filename;
+
+            _journal.SendPhotoToJournal(_snapshotPath, _rewardName);
+        }
+        
+        private string ScreenShotName(int width, int height)
+        {
+            return string.Format("{0}/Resources/Snapshots/snap{1}.png",
+                                 Application.dataPath,
+                                 _journal.GetCurrentPhoto().ToString());
+        }
+        
+        
+        private Collider FindNearest(Collider[] targets)
+        {
+            float minDistance = Vector3.Distance(transform.position, targets[0].transform.position);
+            Collider nearestTarget = targets[0];
+            foreach (Collider target in targets)
+            {
+                float distance = Vector3.Distance(transform.position, target.transform.position);
+                if (minDistance > distance)
+                {
+                    minDistance = distance;
+                    nearestTarget = target;
+                }
+            }
+            return nearestTarget;
+        }
+
         private void OnDisable()
         {
             _isReady = true;

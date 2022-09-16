@@ -1,8 +1,10 @@
 using Infrastructure;
 using Managers.Services;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utilities.Constants;
 
 namespace UI.Journal
@@ -39,6 +41,16 @@ namespace UI.Journal
 
         [SerializeField]
         private GameObject _ghostsParent;
+
+        [Header("Photos")]
+        [SerializeField]
+        private Image[] _images;
+        [SerializeField]
+        private TextMeshProUGUI[] _rewardNameTXT;
+        [SerializeField]
+        private int _maxPhotos = 8;
+
+        private int _curPhoto = 0;
 
         private const float AlphaDisabledGhostType = 0.6f;
         private InputSystem _inputSystem;
@@ -90,6 +102,27 @@ namespace UI.Journal
         {
             if (_currentPage + 1 >= _totalPagesInBook) return;
             ChangeCurrentPage(_currentPage + 2);
+        }
+
+        public bool CheckForEmptyPhotos()
+        {
+            if (_curPhoto < _maxPhotos) return true;
+            else return false;
+        }
+        public int GetCurrentPhoto()
+        {
+            return _curPhoto;
+        }
+        public void SendPhotoToJournal(string path, string reward)
+        {
+            byte[] data = File.ReadAllBytes(path);
+            Texture2D tex = new Texture2D(400,300);
+            tex.LoadImage(data);
+            _images[_curPhoto].sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+            if (reward != null) _rewardNameTXT[_curPhoto].text = reward;
+            else _rewardNameTXT[_curPhoto].text = "";
+
+            _curPhoto++;
         }
 
 
