@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 53784486}
+  - component: {fileID: 1298601343}
   m_Layer: 0
   m_Name: Fingerprints
   m_TagString: Untagged
@@ -37,6 +38,19 @@ RectTransform:
   m_AnchoredPosition: {x: -462, y: 161.6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1298601343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53784485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf195e755bdacbd4fb3c806f87d70c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GhostEvidenceType: 2
 --- !u!1 &57323582
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +308,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5791265860770766}
+        m_TargetAssemblyTypeName: UI.Journal.Journal, Assembly-CSharp
+        m_MethodName: ChooseEvidence
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1298601343}
+          m_ObjectArgumentAssemblyTypeName: UI.Journal.GetEvidenceEnum, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &156525555
 GameObject:
@@ -344,6 +370,8 @@ GameObject:
   m_Component:
   - component: {fileID: 215833518}
   - component: {fileID: 215833519}
+  - component: {fileID: 1503473152}
+  - component: {fileID: 1503473155}
   m_Layer: 0
   m_Name: Abobus
   m_TagString: Untagged
@@ -420,6 +448,31 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!225 &1503473152
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215833517}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1503473155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215833517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55afc571b0bff914db7c6ec4ec040f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GhostDataInfo: {fileID: 11400000, guid: add056881a3e94b40a9f0f9b517d9ef7, type: 2}
 --- !u!1 &225838677
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +882,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 311765066}
+  - component: {fileID: 922846511}
   m_Layer: 0
   m_Name: FreezingTemp
   m_TagString: Untagged
@@ -857,6 +911,19 @@ RectTransform:
   m_AnchoredPosition: {x: -203, y: 161.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &922846511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311765065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf195e755bdacbd4fb3c806f87d70c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GhostEvidenceType: 0
 --- !u!1 &347206917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,6 +1412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 473158930}
+  - component: {fileID: 780664142}
   m_Layer: 0
   m_Name: GhostOrbs
   m_TagString: Untagged
@@ -1373,6 +1441,19 @@ RectTransform:
   m_AnchoredPosition: {x: -462, y: 108.3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &780664142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473158929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf195e755bdacbd4fb3c806f87d70c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GhostEvidenceType: 4
 --- !u!1 &486403640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,7 +1652,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5791265860770766}
+        m_TargetAssemblyTypeName: UI.Journal.Journal, Assembly-CSharp
+        m_MethodName: ChooseEvidence
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 780664142}
+          m_ObjectArgumentAssemblyTypeName: UI.Journal.GetEvidenceEnum, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &539409642
 GameObject:
@@ -2217,6 +2310,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 707216963}
+  - component: {fileID: 350142960}
   m_Layer: 0
   m_Name: GhostWriting
   m_TagString: Untagged
@@ -2245,6 +2339,19 @@ RectTransform:
   m_AnchoredPosition: {x: -204, y: 213}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &350142960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707216962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf195e755bdacbd4fb3c806f87d70c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GhostEvidenceType: 3
 --- !u!1 &734901920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,6 +2681,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 781973537}
+  - component: {fileID: 317346787}
   m_Layer: 0
   m_Name: EMF
   m_TagString: Untagged
@@ -2602,6 +2710,19 @@ RectTransform:
   m_AnchoredPosition: {x: -462, y: 213}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &317346787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781973536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf195e755bdacbd4fb3c806f87d70c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GhostEvidenceType: 1
 --- !u!1 &790542190
 GameObject:
   m_ObjectHideFlags: 0
@@ -2836,7 +2957,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5791265860770766}
+        m_TargetAssemblyTypeName: UI.Journal.Journal, Assembly-CSharp
+        m_MethodName: ChooseEvidence
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 350142960}
+          m_ObjectArgumentAssemblyTypeName: UI.Journal.GetEvidenceEnum, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &861720131
 GameObject:
@@ -2961,7 +3094,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5791265860770766}
+        m_TargetAssemblyTypeName: UI.Journal.Journal, Assembly-CSharp
+        m_MethodName: ChooseEvidence
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 922846511}
+          m_ObjectArgumentAssemblyTypeName: UI.Journal.GetEvidenceEnum, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &868784665
 GameObject:
@@ -4023,6 +4168,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1305951630}
   - component: {fileID: 1305951631}
+  - component: {fileID: 1443671569}
+  - component: {fileID: 1443671572}
   m_Layer: 0
   m_Name: Amogus
   m_TagString: Untagged
@@ -4099,6 +4246,31 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!225 &1443671569
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305951629}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1443671572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305951629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55afc571b0bff914db7c6ec4ec040f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GhostDataInfo: {fileID: 11400000, guid: bf0b6188df60a6645801a33e14c17144, type: 2}
 --- !u!1 &1413467868
 GameObject:
   m_ObjectHideFlags: 0
@@ -4222,7 +4394,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5791265860770766}
+        m_TargetAssemblyTypeName: UI.Journal.Journal, Assembly-CSharp
+        m_MethodName: ChooseEvidence
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 317346787}
+          m_ObjectArgumentAssemblyTypeName: UI.Journal.GetEvidenceEnum, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1444376275
 GameObject:
@@ -5556,6 +5740,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2073769544}
   - component: {fileID: 2073769545}
+  - component: {fileID: 805328522}
+  - component: {fileID: 805328523}
   m_Layer: 0
   m_Name: Poltergey
   m_TagString: Untagged
@@ -5632,6 +5818,31 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!225 &805328522
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073769543}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &805328523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073769543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55afc571b0bff914db7c6ec4ec040f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GhostDataInfo: {fileID: 11400000, guid: 0567e6284d5676e45a852286a603f70b, type: 2}
 --- !u!1 &2086503456
 GameObject:
   m_ObjectHideFlags: 0
@@ -7119,6 +7330,7 @@ MonoBehaviour:
   _ghostNameTXT: {fileID: 57323584}
   _ghostDescriptionTXT: {fileID: 1142571533}
   _ghostEvidencesTXT: {fileID: 457229835}
+  _ghostsParent: {fileID: 868784665}
 --- !u!1 &5791265996504924
 GameObject:
   m_ObjectHideFlags: 0
