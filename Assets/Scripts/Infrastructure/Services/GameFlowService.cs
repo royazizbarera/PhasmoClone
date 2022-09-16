@@ -1,22 +1,33 @@
 using Infrastructure;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameFlowService : IService
+namespace Infrastructure.Services
 {
-    private GhostDataSO _currentGhost;
-    private GhostDataSO _currentGhostChoosen;
-
-
-    public void SetUpGameFlowService(GhostDataSO currentLevelGhost)
+    public class GameFlowService : IService
     {
-        _currentGhost = currentLevelGhost;
-    }
+        public Action GameEndAction;
+        public GhostDataSO GhostDataSO
+        {
+            get { return _currentGhostSO; }
+        }
 
-    public void ChangeCurrentChoosenGhost(GhostDataSO ghostChoosen)
-    {
-        _currentGhostChoosen = ghostChoosen;
-    }
+        private GhostInfo _currentGhostInfo;
+        private GhostDataSO _currentGhostSO;
+        private GhostDataSO _currentGhostChoosenSO;
 
+        public void SetUpGameFlowService(GhostInfo currentLevelGhost)
+        {
+            _currentGhostInfo = currentLevelGhost;
+            _currentGhostSO = _currentGhostInfo.GhostData;
+        }
+
+        public void ChangeCurrentChoosenGhost(GhostDataSO ghostChoosen)
+        {
+            _currentGhostChoosenSO = ghostChoosen;
+        }
+
+    }
 }

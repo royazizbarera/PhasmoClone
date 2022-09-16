@@ -1,5 +1,5 @@
 using Infrastructure;
-using Managers.Services;
+using Infrastructure.Services;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -40,18 +40,21 @@ namespace UI.Journal
         [SerializeField]
         private GameObject _ghostsParent;
 
+        private GameFlowService _gameFlowService;
+
         private const float AlphaDisabledGhostType = 0.6f;
         private InputSystem _inputSystem;
         private int _totalNormalPages;
         private int _totalPagesInBook;
         private int _currentPage = 1;
 
-        private void Awake()
+        private void Start()
         {
             _totalNormalPages = _pages.Count;
             _totalPagesInBook = _pages.Count + _ghostsData.Count * 2;
 
             _inputSystem = AllServices.Container.Single<InputSystem>();
+            _gameFlowService = AllServices.Container.Single<GameFlowService>();
             _inputSystem.JournalOpenAction += ActivateJornal;
             _currentPage = 1;
             ChangeCurrentPage(_currentPage);
@@ -104,7 +107,7 @@ namespace UI.Journal
 
         public void ChooseGhost(GhostDataSO ghostDataInfo)
         {
-
+            _gameFlowService.ChangeCurrentChoosenGhost(ghostDataInfo);
         }
 
         private void CheckGhostsEvidences()

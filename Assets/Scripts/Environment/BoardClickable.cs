@@ -3,7 +3,7 @@ using Cinemachine;
 using Infrastructure;
 using Utilities.Constants;
 using Items.Logic;
-using Managers.Services;
+using Infrastructure.Services;
 
 namespace Environment
 {

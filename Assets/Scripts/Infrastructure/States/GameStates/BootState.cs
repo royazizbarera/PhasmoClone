@@ -1,5 +1,4 @@
 using Infrastructure.Services;
-using Managers.Services;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -34,6 +33,7 @@ namespace Infrastructure.States.GameStates
         private void RegisterServices()
         {
             _services.RegisterSingle<LevelSetUp>(new LevelSetUp());
+            _services.RegisterSingle<GameFlowService>(new GameFlowService());
             _services.RegisterSingle<AssetProvider>(new AssetProvider());
             _services.RegisterSingle<DataSaveLoader>(new DataSaveLoader());
             _services.RegisterSingle<SceneLoader>(new SceneLoader(_coroutineRunner));

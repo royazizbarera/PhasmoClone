@@ -27,13 +27,17 @@ namespace Ghosts
 
         private WaitForSeconds _checkForLineWait;
 
+        private bool _isGhostDisabled = false;
+
         private bool _dataSetedUp = false;
         private float _ghostAttackSpeed;
         private Transform[] _patrolPoints;
         private LevelSetUp _levelSetUp;
 
         private Transform _currDestination = null;
-        
+
+
+        private const float DisableTime = 3f;
         private int _randomPointNum;
         private bool _isAttacking = false;
         private bool _isFollowing = false;
@@ -52,6 +56,8 @@ namespace Ghosts
         private void Update()
         {
             if (!_isAttacking) return;
+            if (_isGhostDisabled) return;
+
             if (_isFollowing)
             {
                 _currDestination = _playerPoint;
@@ -63,16 +69,24 @@ namespace Ghosts
                 ChoosePoint();
                 SetDestination();
             }
+            CheckForKill();
         }
-
 
         public void StartAttackPatrolling()
         {
+            _isGhostDisabled = true;
             _isFollowing = false;
             _agent.speed = _ghostAttackSpeed;
             SwitchAttackState(true);
             StartCoroutine(CheckForPlayerVisible());
+            Invoke(nameof(EnableAttackAfterCD), DisableTime);
         }
+
+        public void StopAttackPatrolling()
+        {
+            SwitchAttackState(false);
+        }
+
 
         public void SwitchAttackState(bool isAttacking)
         {
@@ -94,23 +108,25 @@ namespace Ghosts
             while (true)
             {
                 if (!_isAttacking) break;
-                _playerCheckResult = _lineOfSight.CheckForPlayer(_playerPoint, _heroTransform);
-                if (_playerCheckResult.IsPlayerVisible && _playerCheckResult.DistanceToPlayer <= _maxAggroDistance)
+                if (!_isGhostDisabled)
                 {
-                    _isFollowing = true;
+                    _playerCheckResult = _lineOfSight.CheckForPlayer(_playerPoint, _heroTransform);
+                    if (_playerCheckResult.IsPlayerVisible && _playerCheckResult.DistanceToPlayer <= _maxAggroDistance)
+                    {
+                        _isFollowing = true;
+                    }
+                    else _isFollowing = false;
                 }
-                else _isFollowing = false;
                 yield return _checkForLineWait;
             }
             yield return null;
         }
 
-        public void StopAttackPatrolling()
+        private void CheckForKill()
         {
-            SwitchAttackState(false);
+            
         }
-
-
+        private void EnableAttackAfterCD() => _isGhostDisabled = false;
         private void ChoosePoint()
         {
             _randomPointNum = Random.Range(0, _patrolPoints.Length - 1);

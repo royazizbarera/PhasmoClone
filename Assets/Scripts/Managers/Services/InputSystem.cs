@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Managers.Services
+namespace Infrastructure.Services
 {
     public class InputSystem : MonoBehaviour, IService
     {
@@ -12,7 +12,7 @@ namespace Managers.Services
         public bool IsRunning = false;
 
         public Action PickUpItemAction, DropItemAction, MainUseAction, MainUseCanceledAction,
-        PrimaryUseAction, SecondaryUseAction, SwitchItemAction , CrouchAction , JournalOpenAction;
+        PrimaryUseAction, SecondaryUseAction, SwitchItemAction, CrouchAction, JournalOpenAction;
 
         public bool IsControlLocked { get; private set; }
         private MainInputAction _mainInputAction;
