@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GhostNormalSpeed: 2
   GhostAttackSpeed: 2
-  GhostEvidences: 030000000100000004000000
+  GhostEvidences: 010000000200000004000000
   PatrolRandomMultiplier: 5
   StartGhostAnger: 30
   GhostAngerPlusPerSec: 0.1
