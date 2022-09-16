@@ -10,16 +10,18 @@ namespace Infrastructure.States.GameStates
         private readonly GameStateMachine _stateMachine;
         private readonly LevelSetUp _levelSetUp;
         private readonly SceneLoader _sceneLoader;
+        private readonly GameFlowService _gameFlowService;
 
-        public GameFlowState(GameStateMachine stateMachine, LevelSetUp levelSetUp, SceneLoader sceneLoader)
+        public GameFlowState(GameStateMachine stateMachine, LevelSetUp levelSetUp, SceneLoader sceneLoader, GameFlowService gameFlowService)
         {
             _stateMachine = stateMachine;
+            _gameFlowService = gameFlowService;
             _levelSetUp = levelSetUp;
             _sceneLoader = sceneLoader;
         }
         public void Enter()
         {
-
+            _gameFlowService.SetUpGameFlowService(_levelSetUp.GhostInfo);
         }
 
         public void Exit()

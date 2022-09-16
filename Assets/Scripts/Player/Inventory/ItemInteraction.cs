@@ -1,7 +1,7 @@
 using Items.Logic;
 using Infrastructure;
-using Managers.Services;
 using UnityEngine;
+using Infrastructure.Services;
 
 namespace Player.Inventory
 {

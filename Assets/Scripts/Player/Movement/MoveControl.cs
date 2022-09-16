@@ -1,8 +1,8 @@
-using Managers.Services;
 using Infrastructure;
 using UnityEngine;
 using System;
 using System.Collections;
+using Infrastructure.Services;
 
 namespace Player.Movement
 {
