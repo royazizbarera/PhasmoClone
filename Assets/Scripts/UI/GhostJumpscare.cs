@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using Infrastructure;
+using Infrastructure.Services;
 using UnityEngine;
 
 public class GhostJumpscare : MonoBehaviour
@@ -7,11 +7,17 @@ public class GhostJumpscare : MonoBehaviour
     [SerializeField]
     private Animator _anim;
 
+    private GameFlowService _gameFlow;
     private const string Jumpscare = "Jumpscare";
     void Start()
     {
-        InvokeRepeating(nameof(CallJumpScare), 3f, 3f);
-      //  Invoke(nameof(CallJumpScare) , 3f);
+        _gameFlow = AllServices.Container.Single<GameFlowService>();
+        _gameFlow.GameEndAction += CallJumpScare;
+    }
+
+    private void OnDestroy()
+    {
+        _gameFlow.GameEndAction -= CallJumpScare;
     }
 
     private void CallJumpScare()

@@ -9,6 +9,7 @@ namespace Infrastructure.Services
     {
         private GameObject _mainHero = null;
         private Journal _journal = null;
+        private GameObject _jumpscare = null;
         private GameObject _ghost = null;
         private readonly AssetProvider _assets;
 
@@ -46,6 +47,13 @@ namespace Infrastructure.Services
         {
             GameObject gameObject = _assets.Instantiate(AssetPath.JournalPath);
             _journal = gameObject.GetComponent<Journal>();
+            return gameObject;
+        }
+
+        public GameObject CreateJumpscare()
+        {
+            GameObject gameObject = _assets.Instantiate(AssetPath.JumpscarePath);
+            _jumpscare = gameObject;
             return gameObject;
         }
 

@@ -21,6 +21,9 @@ namespace Ghosts
         [SerializeField]
         private float _checkForLineCD;
 
+        private bool _playerKilled = false;
+        private GameFlowService _gameFlow;
+
         private Transform _playerPoint;
         private Transform _heroTransform;
         private PlayerCheckResult _playerCheckResult;
@@ -36,13 +39,15 @@ namespace Ghosts
 
         private Transform _currDestination = null;
 
-
+        private const float DistanceToKill = 1f;
         private const float DisableTime = 3f;
         private int _randomPointNum;
         private bool _isAttacking = false;
         private bool _isFollowing = false;
         private float _maxAggroDistance;
 
+        private Vector3 _playerPointDistance;
+        private Vector3 _ghostPointDistance;
         private void OnEnable()
         {
             if (!_dataSetedUp) SetUpGhostData();
@@ -58,6 +63,7 @@ namespace Ghosts
             if (!_isAttacking) return;
             if (_isGhostDisabled) return;
 
+            CheckForKill();
             if (_isFollowing)
             {
                 _currDestination = _playerPoint;
@@ -69,7 +75,6 @@ namespace Ghosts
                 ChoosePoint();
                 SetDestination();
             }
-            CheckForKill();
         }
 
         public void StartAttackPatrolling()
@@ -124,7 +129,14 @@ namespace Ghosts
 
         private void CheckForKill()
         {
-            
+            _playerPointDistance = _heroTransform.position;
+            _ghostPointDistance = transform.position;
+
+            if ((Vector3.Distance(_playerPointDistance, _ghostPointDistance) < DistanceToKill) && !_playerKilled)
+            {
+                _gameFlow.GameEndAction?.Invoke();
+                _playerKilled = true;
+            }
         }
         private void EnableAttackAfterCD() => _isGhostDisabled = false;
         private void ChoosePoint()
@@ -142,6 +154,8 @@ namespace Ghosts
         private void SetUpGhostData()
         {
             _levelSetUp = AllServices.Container.Single<LevelSetUp>();
+            _gameFlow = AllServices.Container.Single<GameFlowService>();
+
             _checkForLineWait = new WaitForSeconds(_checkForLineCD);
             _ghostAttackSpeed = _ghostInfo.GhostData.GhostAttackSpeed;
             _maxAggroDistance = _ghostInfo.GhostData.MaxDistanceToPlayerAggr;

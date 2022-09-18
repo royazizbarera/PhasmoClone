@@ -36,6 +36,12 @@ namespace Ghosts.GhostMood
             GhostAttackCheckCD = new WaitForSeconds(_ghostAttackCheckCD);
         }
 
+        public void MakeGhostHunt()
+        {
+            StartHunting(CalculateAttackTime());
+        }
+
+
         private IEnumerator CheckForAttackInum()
         {
             while (true)
