@@ -8,7 +8,9 @@ namespace Infrastructure.Services
 {
     public class GameFlowService : IService
     {
-        public Action GameEndAction;
+        public Action GameOverAction;
+        public Action WinAction;
+
         public GhostDataSO GhostDataSO
         {
             get { return _currentGhostSO; }

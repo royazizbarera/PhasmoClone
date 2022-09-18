@@ -12,12 +12,12 @@ public class GhostJumpscare : MonoBehaviour
     void Start()
     {
         _gameFlow = AllServices.Container.Single<GameFlowService>();
-        _gameFlow.GameEndAction += CallJumpScare;
+        _gameFlow.GameOverAction += CallJumpScare;
     }
 
     private void OnDestroy()
     {
-        _gameFlow.GameEndAction -= CallJumpScare;
+        _gameFlow.GameOverAction -= CallJumpScare;
     }
 
     private void CallJumpScare()

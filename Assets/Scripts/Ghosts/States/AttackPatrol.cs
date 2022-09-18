@@ -63,10 +63,10 @@ namespace Ghosts
             if (!_isAttacking) return;
             if (_isGhostDisabled) return;
 
-            CheckForKill();
             if (_isFollowing)
             {
                 _currDestination = _playerPoint;
+                CheckForKill();
                 SetDestination();
                 return;
             }
@@ -134,7 +134,7 @@ namespace Ghosts
 
             if ((Vector3.Distance(_playerPointDistance, _ghostPointDistance) < DistanceToKill) && !_playerKilled)
             {
-                _gameFlow.GameEndAction?.Invoke();
+                _gameFlow.GameOverAction?.Invoke();
                 _playerKilled = true;
             }
         }
