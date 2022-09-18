@@ -13,12 +13,12 @@ namespace Infrastructure.Services
           _coroutineRunner = coroutineRunner;
 
 
-        public void Load(string name, Action onLoaded = null)
+        public void Load(string nextScene, Action onLoaded = null)
         {     
-            _coroutineRunner.StartCoroutine(LoadScene(name, onLoaded));
+            _coroutineRunner.StartCoroutine(LoadScene(nextScene, onLoaded));
         }
 
-        public IEnumerator LoadScene(string nextScene, Action onLoaded = null)
+        private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
         {
             if (SceneManager.GetActiveScene().name == nextScene)
             {

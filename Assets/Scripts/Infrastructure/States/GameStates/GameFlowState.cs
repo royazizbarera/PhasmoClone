@@ -18,6 +18,8 @@ namespace Infrastructure.States.GameStates
             _gameFlowService = gameFlowService;
             _levelSetUp = levelSetUp;
             _sceneLoader = sceneLoader;
+
+            _gameFlowService.FirstTimeSetUp(sceneLoader, stateMachine);
         }
         public void Enter()
         {
