@@ -50,6 +50,7 @@ namespace UI.Journal
         [SerializeField]
         private int _maxPhotos = 8;
 
+        private GameFlowService _gameFlowService;
         private int _curPhoto = 0;
 
         private const float AlphaDisabledGhostType = 0.6f;
@@ -64,6 +65,8 @@ namespace UI.Journal
             _totalPagesInBook = _pages.Count + _ghostsData.Count * 2;
 
             _inputSystem = AllServices.Container.Single<InputSystem>();
+            _gameFlowService = AllServices.Container.Single<GameFlowService>();
+
             _inputSystem.JournalOpenAction += ActivateJornal;
             _currentPage = 1;
             ChangeCurrentPage(_currentPage);
@@ -137,7 +140,7 @@ namespace UI.Journal
 
         public void ChooseGhost(GhostDataSO ghostDataInfo)
         {
-
+            _gameFlowService.ChangeCurrentChoosenGhost(ghostDataInfo);
         }
 
         private void CheckGhostsEvidences()

@@ -38,7 +38,7 @@ namespace Infrastructure.Services
             get { return _currentGhostSO; }
         }
 
-        private const float DelayBeforeGoToLobby = 5f;
+        private const float DelayBeforeGoToLobby = 2.5f;
 
         private GhostInfo _currentGhostInfo;
         private GhostDataSO _currentGhostSO;
@@ -55,30 +55,33 @@ namespace Infrastructure.Services
             _currentGhostChoosenSO = ghostChoosen;
         }
 
-        
+        public bool IsChooseCorrect()
+        {
+            if(_currentGhostChoosenSO != null)
+            {
+                return true;
+            }
+            return false;
+        }
         private void GameOverCall()
         {
-            Debug.Log("Game over");
             Died = true;
             _coroutineRunner.StartCoroutine(EndGame());
         } 
         private void WinGameCall()
         {
-            Debug.Log("Game over");
             Died = false;
             _coroutineRunner.StartCoroutine(EndGame());
         }
 
         private IEnumerator EndGame()
         {
-            Debug.Log("Game over");
             yield return new WaitForSeconds(DelayBeforeGoToLobby);
             ActivateLobby();
         }
 
         private void ActivateLobby()
         {
-            Debug.Log("Game over");
             _sceneLoader.Load(SceneNames.LobbyScene, _gameStateMachine.Enter<LobbyState>);
         }
     }
