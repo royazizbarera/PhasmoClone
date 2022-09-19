@@ -4,17 +4,23 @@ using Infrastructure;
 using Utilities.Constants;
 using Environment;
 using Infrastructure.Services;
+using Cinemachine;
 
 namespace UI
 {
     public class BoardMenu : MonoBehaviour
     {
-        private InputSystem _inputSystem;
+        [SerializeField] private CinemachineVirtualCamera _boardCamera;
 
         [SerializeField] private GameObject _mainScreen;
+        [SerializeField] private GameObject _levelResultScreen;
+
+        [SerializeField] private LevelResultsScreen _levelResults;
 
         private GameObject _currentScreen;
         private GameObject _previousScreen;
+
+        private InputSystem _inputSystem;
 
         private void Start()
         {
@@ -49,8 +55,29 @@ namespace UI
 
         private void LoadStartScreen()
         {
-            _currentScreen = _mainScreen;
-            _mainScreen.SetActive(true);
+            if (AllServices.Container.Single<GameFlowService>().IsGameEnded == true)
+            {
+                if (_mainScreen.activeInHierarchy) _mainScreen.SetActive(false);
+
+                LookAtBoard();
+                _currentScreen = _levelResultScreen;
+
+                _levelResults.LoadResults();
+
+                _levelResultScreen.SetActive(true);
+            }
+            else
+            {
+                _currentScreen = _mainScreen;
+                _mainScreen.SetActive(true);
+            }
+        }
+
+        private void LookAtBoard()
+        {
+            _boardCamera.Priority = CameraPriorities.ActiveState;
+            _inputSystem.LockControl();
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 }

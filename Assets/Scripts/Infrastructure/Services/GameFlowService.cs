@@ -11,6 +11,7 @@ namespace Infrastructure.Services
     public class GameFlowService : IService
     {
         public bool Died = false;
+        public bool IsGameEnded = false;
 
         public Action GameOverAction;
         public Action WinAction;
@@ -76,6 +77,7 @@ namespace Infrastructure.Services
 
         private IEnumerator EndGame()
         {
+            IsGameEnded = true;
             yield return new WaitForSeconds(DelayBeforeGoToLobby);
             ActivateLobby();
         }
