@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 1316940152157486369}
   - component: {fileID: 8408106892808595745}
   - component: {fileID: 1316940151356025206}
+  - component: {fileID: 1281875156865224431}
   m_Layer: 0
   m_Name: LevelTruck
   m_TagString: Untagged
@@ -589,6 +590,43 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1281875156865224431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316940152159413217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23ccad2736044fa448d23fd2bbc19cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemsList: {fileID: 1759176277863986304}
+  _items:
+  - {fileID: 7012607903909976189}
+  - {fileID: 3880201463293137143}
+  - {fileID: 4251861141339212938}
+  - {fileID: 2281777200051078591}
+  - {fileID: 5367917945051492739}
+  - {fileID: 5770041329173976699}
+  - {fileID: 6031126827037873357}
+  - {fileID: 6450833331087171380}
+  - {fileID: 2819838447252932256}
+  - {fileID: 2819838446974890698}
+  - {fileID: 9128264277046939839}
+  - {fileID: 456280967955182010}
+  - {fileID: 8571996458704790841}
+  - {fileID: 4801170591173118162}
+  - {fileID: 7121766092164954451}
+  - {fileID: 4583003704408743660}
+  - {fileID: 3190906799107537327}
+  - {fileID: 6291798435943198377}
+  - {fileID: 7445380219305313238}
+  - {fileID: 6511342563963261613}
+  - {fileID: 2573177065748612831}
+  - {fileID: 2315273992643659546}
+  _addedItems: 
 --- !u!1 &1316940152159413225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1327,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4393989962279155842}
-  - component: {fileID: 1287274879160855453}
   - component: {fileID: 1759176277863986304}
   m_Layer: 0
   m_Name: Items
@@ -1344,43 +1381,6 @@ Transform:
   m_Father: {fileID: 1316940152159780801}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1287274879160855453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3123749989649759559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23ccad2736044fa448d23fd2bbc19cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _itemsList: {fileID: 1759176277863986304}
-  _items:
-  - {fileID: 7012607903909976189}
-  - {fileID: 3880201463293137143}
-  - {fileID: 4251861141339212938}
-  - {fileID: 2281777200051078591}
-  - {fileID: 5367917945051492739}
-  - {fileID: 5770041329173976699}
-  - {fileID: 6031126827037873357}
-  - {fileID: 6450833331087171380}
-  - {fileID: 2819838447252932256}
-  - {fileID: 2819838446974890698}
-  - {fileID: 9128264277046939839}
-  - {fileID: 456280967955182010}
-  - {fileID: 8571996458704790841}
-  - {fileID: 4801170591173118162}
-  - {fileID: 7121766092164954451}
-  - {fileID: 4583003704408743660}
-  - {fileID: 3190906799107537327}
-  - {fileID: 6291798435943198377}
-  - {fileID: 7445380219305313238}
-  - {fileID: 6511342563963261613}
-  - {fileID: 2573177065748612831}
-  - {fileID: 2315273992643659546}
-  _addedItems: 
 --- !u!114 &1759176277863986304
 MonoBehaviour:
   m_ObjectHideFlags: 0
