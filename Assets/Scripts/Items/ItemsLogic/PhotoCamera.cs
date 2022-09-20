@@ -39,6 +39,7 @@ namespace Items.ItemsLogic
 
         private Journal _journal;
         private GameFactory _gameFactory;
+        private GameFlowService _gameFlowService;
         private bool _isReady = true;
 
         private const float SnapshotDelay = 0.02f;
@@ -46,6 +47,7 @@ namespace Items.ItemsLogic
         private void Start()
         {
             _gameFactory = AllServices.Container.Single<GameFactory>();
+            _gameFlowService = AllServices.Container.Single<GameFlowService>();
             _journal = _gameFactory.GetJournal();
 
             _shotsLeftText.text = _shotsLeft.ToString();
@@ -94,6 +96,7 @@ namespace Items.ItemsLogic
                     {
                         _rewardName = target.GetComponent<PhotoReward>().GetRewardName();
                         _rewardValue = target.GetComponent<PhotoReward>().GetRewardValue();
+                        _gameFlowService.AddPhotoReward(_rewardValue);
                     }
                 }
                 else

@@ -20,6 +20,13 @@ namespace Infrastructure.Services
         private GameStateMachine _gameStateMachine;
         private ICoroutineRunner _coroutineRunner;
 
+        private float[] _rewardValues = new float[7];
+
+        private float[] _objectives = new float[4];
+        private float _photoReward = 0f;
+        private float _totalReward = 0f;
+        private float _ghostReward = 30f;
+
         public GameFlowService(ICoroutineRunner coroutineRunner)
         {
             _coroutineRunner = coroutineRunner;
@@ -67,18 +74,35 @@ namespace Infrastructure.Services
 
         public float[] GetRewardValues()
         {
-            float[] rewardValues = new float[7];
+            _rewardValues[0] = _objectives[0]; //obj 1
+            _rewardValues[1] = _objectives[1]; //obj 2
+            _rewardValues[2] = _objectives[2]; //obj 3
+            _rewardValues[3] = _objectives[3]; //obj 4
+            _rewardValues[4] = _photoReward; //photo
 
-            for (int i = 0; i < rewardValues.Length; i++)
-            {
-                rewardValues[i] = 10f + i;
-            }
+            _rewardValues[5] = 0f; //insurance
 
-            return rewardValues;
+            if (CheckForCorrectGhost()) _rewardValues[6] = _ghostReward; //ghost
+            else _rewardValues[6] = 0f;
+
+            return _rewardValues;
+        }
+        public void AddPhotoReward(float value)
+        {
+            _photoReward += value;
         }
         public float GetTotalRewardValue()
         {
-            return 100f;
+            CalculateTotalReward();
+            return _totalReward;
+        }
+        private void CalculateTotalReward()
+        {
+            for (int i = 0; i < _rewardValues.Length; i++) _totalReward += _rewardValues[i];
+        }
+        private bool CheckForCorrectGhost()
+        {
+            return true;
         }
         private void GameOverCall()
         {
