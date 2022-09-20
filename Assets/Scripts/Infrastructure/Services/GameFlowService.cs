@@ -64,6 +64,22 @@ namespace Infrastructure.Services
             }
             return false;
         }
+
+        public float[] GetRewardValues()
+        {
+            float[] rewardValues = new float[7];
+
+            for (int i = 0; i < rewardValues.Length; i++)
+            {
+                rewardValues[i] = 10f + i;
+            }
+
+            return rewardValues;
+        }
+        public float GetTotalRewardValue()
+        {
+            return 100f;
+        }
         private void GameOverCall()
         {
             Died = true;
