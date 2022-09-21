@@ -8,7 +8,6 @@ using Infrastructure;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] private Money _money;
     [SerializeField] private ItemsInventory _inventory;
 
     [SerializeField] private Image _itemMenu;
@@ -24,16 +23,14 @@ public class Shop : MonoBehaviour
     [SerializeField] private int _maxItems = 20;
 
     private GameFactory _gameFactory;
-
+    private Money _money;
     private int _curItem = 0;
 
     private void Start()
     {
         _gameFactory = AllServices.Container.Single<GameFactory>();
 
-        _money = _gameFactory.GetMainHero().GetComponent<Money>();
-
-        _shopMoneyTXT.text = "Money: " + _money.GetMoney().ToString();
+        LoadMoney();
     }
     public void OpenItemMenu(int itemId)
     {
@@ -56,5 +53,25 @@ public class Shop : MonoBehaviour
             _shopMoneyTXT.text = "Money: " + _money.GetMoney().ToString();
             _amount.text = _inventory._purchasedItemsAmount[_curItem].ToString() + " / " + _maxItems.ToString();
         }
+    }
+
+    public void LoadMoney()
+    {
+        if (_money == null)
+        {
+            if (_gameFactory.GetMainHero() != null) _money = _gameFactory.GetMainHero().GetComponent<Money>();
+        }
+
+        if (_money != null) _shopMoneyTXT.text = "Money: " + _money.GetMoney().ToString();
+    }
+
+    public float CalculateItemsCost(int[] items)
+    {
+        float cost = 0;
+        for (int i = 0; i < items.Length; i++)
+        {
+            cost += items[i] * _itemsList.ItemsInfo[i].Price;
+        }
+        return cost;
     }
 }

@@ -20,12 +20,15 @@ namespace Infrastructure.Services
         private GameStateMachine _gameStateMachine;
         private ICoroutineRunner _coroutineRunner;
 
-        private float[] _rewardValues = new float[7];
+        private float[] _rewardValues = new float[6];
 
-        private float[] _objectives = new float[4];
+        private float[] _objectives = new float[3];
         private float _photoReward = 0f;
         private float _totalReward = 0f;
         private float _ghostReward = 30f;
+        private float _insuranceReward = 0f;
+        private float _deathCoef = 0.25f;
+        private float _difficultyCoef = 1f;
 
         public GameFlowService(ICoroutineRunner coroutineRunner)
         {
@@ -67,29 +70,39 @@ namespace Infrastructure.Services
         {
             if(_currentGhostChoosenSO != null)
             {
-                return true;
+                if (_currentGhostChoosenSO.name == _currentGhostSO.name)
+                {
+                    return true;
+                }
             }
             return false;
         }
 
         public float[] GetRewardValues()
         {
-            _rewardValues[0] = _objectives[0]; //obj 1
-            _rewardValues[1] = _objectives[1]; //obj 2
-            _rewardValues[2] = _objectives[2]; //obj 3
-            _rewardValues[3] = _objectives[3]; //obj 4
+            if (IsChooseCorrect()) _rewardValues[0] = _ghostReward; //obj 1 - ghost
+            else _rewardValues[0] = 0f;
+
+            _rewardValues[1] = _objectives[0]; //obj 2
+            _rewardValues[2] = _objectives[1]; //obj 3
+            _rewardValues[3] = _objectives[2]; //obj 4
+
             _rewardValues[4] = _photoReward; //photo
 
-            _rewardValues[5] = 0f; //insurance
-
-            if (CheckForCorrectGhost()) _rewardValues[6] = _ghostReward; //ghost
-            else _rewardValues[6] = 0f;
+            _rewardValues[5] = _insuranceReward; //insurance
 
             return _rewardValues;
         }
         public void AddPhotoReward(float value)
         {
             _photoReward += value;
+        }
+        public void CalculateInsurance(float itemsCost)
+        {
+            if (Died)
+            {
+                _insuranceReward = Mathf.Round(itemsCost / 2);
+            }
         }
         public float GetTotalRewardValue()
         {
@@ -99,11 +112,23 @@ namespace Infrastructure.Services
         private void CalculateTotalReward()
         {
             for (int i = 0; i < _rewardValues.Length; i++) _totalReward += _rewardValues[i];
-        }
-        private bool CheckForCorrectGhost()
+            if (Died) _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _deathCoef * _difficultyCoef + _insuranceReward);
+            else _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _difficultyCoef + _insuranceReward);
+        }   
+        public void ClearRewards()
         {
-            return true;
+            for (int i = 0; i < _rewardValues.Length; i++)
+            {
+                _rewardValues[i] = 0f;
+            }
+            for (int i = 0; i < _objectives.Length; i++)
+            {
+                _objectives[i] = 0f;
+            }
+            _photoReward = 0f;
+            _totalReward = 0f;
         }
+
         private void GameOverCall()
         {
             Died = true;

@@ -36,6 +36,19 @@ namespace Infrastructure.Services
             _storedInfo.Money = money;
             SaveInfo();
         }
+        public void AddMoney(float money)
+        {
+            _storedInfo.Money += money;
+            SaveInfo();
+        }
+        public void RemoveItems(int[] items)
+        {
+            for (int i = 0; i < items.Length; i++)
+            {
+                _storedInfo.ItemsAmount[i] -= items[i];
+            }
+            SaveInfo();
+        }
 
 
         [System.Serializable]
