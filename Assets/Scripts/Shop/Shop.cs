@@ -38,7 +38,7 @@ public class Shop : MonoBehaviour
 
         _name.text = _itemsList.ItemsInfo[itemId].Name;
         _description.text = _itemsList.ItemsInfo[itemId].Description;
-        _price.text = _itemsList.ItemsInfo[itemId].Price.ToString();
+        _price.text = "Price: " + _itemsList.ItemsInfo[itemId].Price.ToString() + " $";
         _amount.text = _inventory._purchasedItemsAmount[itemId].ToString() + " / " + _maxItems.ToString();
 
         _curItem = itemId;
@@ -50,7 +50,7 @@ public class Shop : MonoBehaviour
         {
             _money.SpendMoney(_itemsList.ItemsInfo[_curItem].Price);
             _inventory.AddItem(_curItem);
-            _shopMoneyTXT.text = "Money: " + _money.GetMoney().ToString();
+            _shopMoneyTXT.text = "Money: " + _money.GetMoney().ToString() + " $";
             _amount.text = _inventory._purchasedItemsAmount[_curItem].ToString() + " / " + _maxItems.ToString();
         }
     }
@@ -62,7 +62,7 @@ public class Shop : MonoBehaviour
             if (_gameFactory.GetMainHero() != null) _money = _gameFactory.GetMainHero().GetComponent<Money>();
         }
 
-        if (_money != null) _shopMoneyTXT.text = "Money: " + _money.GetMoney().ToString();
+        if (_money != null) _shopMoneyTXT.text = "Money: " + _money.GetMoney().ToString() + " $";
     }
 
     public float CalculateItemsCost(int[] items)
