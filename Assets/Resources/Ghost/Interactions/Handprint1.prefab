@@ -93,7 +93,9 @@ GameObject:
   - component: {fileID: 1865889820300120355}
   - component: {fileID: 1865889820300120354}
   - component: {fileID: 4832660074602135091}
-  m_Layer: 0
+  - component: {fileID: 5903789066755029917}
+  - component: {fileID: 7639725059366326652}
+  m_Layer: 10
   m_Name: Handprint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,6 +181,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 15
+--- !u!114 &5903789066755029917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865889820300120364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eee8b9efd8fa3a47a936a0977144d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 15
+  Name: Handprint
+--- !u!65 &7639725059366326652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865889820300120364}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.016919771}
+  m_Center: {x: 0, y: 0, z: 0.00013430913}
 --- !u!1 &1865889820713824117
 GameObject:
   m_ObjectHideFlags: 0

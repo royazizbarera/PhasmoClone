@@ -10,6 +10,9 @@ public class MeshHandler : MonoBehaviour
     [SerializeField]
     private GhostInfo _ghostInfo;
 
+    [SerializeField]
+    private PhotoReward _photoReward;
+
     private float _minMeshActiveTime;
     private float _maxMeshActiveTime;
 
@@ -83,11 +86,13 @@ public class MeshHandler : MonoBehaviour
         if (_isMeshActive)
         {
             _ghostMesh.SetActive(false);
+            _photoReward.enabled = false;
             _isMeshActive = false;
         }
         else
         {
             _ghostMesh.SetActive(true);
+            _photoReward.enabled = true;
             _isMeshActive = true;
         }
     }

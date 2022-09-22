@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace Items.ItemsLogic
 {
-    public class UVFlashlight : MonoBehaviour, IMainUsable
+    public class UVFlashlight : MonoBehaviour, IMainUsable, IDroppable
     {
         [SerializeField] private UVLight _uvLight;
 
@@ -31,6 +31,19 @@ namespace Items.ItemsLogic
                 _light.enabled = false;
                 _isEnabled = false;
             }
+        }
+        private void OnDisable()
+        {
+            _uvLight.DisableUVLight();
+        }
+        private void OnEnable()
+        {
+            if (_isEnabled) _uvLight.EnableUVLight();
+        }
+
+        public void DropItem()
+        {
+            if (_isEnabled) _uvLight.EnableUVLight();
         }
     }
 }

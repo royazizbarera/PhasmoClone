@@ -7,6 +7,8 @@ public class PhotoReward : MonoBehaviour
     [SerializeField] private float Value;
     [SerializeField] private string Name;
 
+    private bool _isPhotographed = false;
+
     public string GetRewardName()
     {
         return Name;
@@ -14,5 +16,13 @@ public class PhotoReward : MonoBehaviour
     public float GetRewardValue()
     {
         return Value;
+    }
+    public void Photograph()
+    {
+        _isPhotographed = true;
+    }
+    public bool CheckIfPhotographed()
+    {
+        return _isPhotographed;
     }
 }

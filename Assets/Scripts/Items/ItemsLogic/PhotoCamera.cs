@@ -94,9 +94,14 @@ namespace Items.ItemsLogic
                     Collider target = FindNearest(targets);
                     if (target.GetComponent<PhotoReward>())
                     {
-                        _rewardName = target.GetComponent<PhotoReward>().GetRewardName();
-                        _rewardValue = target.GetComponent<PhotoReward>().GetRewardValue();
-                        _gameFlowService.AddPhotoReward(_rewardValue);
+                        PhotoReward targetReward = target.GetComponent<PhotoReward>();
+                        if (targetReward.CheckIfPhotographed() == false)
+                        {
+                            _rewardName = targetReward.GetRewardName();
+                            _rewardValue = targetReward.GetRewardValue();
+                            targetReward.Photograph();
+                            _gameFlowService.AddPhotoReward(_rewardValue);
+                        }  
                     }
                 }
                 else
@@ -115,6 +120,7 @@ namespace Items.ItemsLogic
             _snapshotPath = filename;
 
             _journal.SendPhotoToJournal(_snapshotPath, _rewardName);
+            _rewardName = null;
         }
         
         private string ScreenShotName(int width, int height)

@@ -284,8 +284,11 @@ GameObject:
   - component: {fileID: 1499621083}
   - component: {fileID: -2987137214255570710}
   - component: {fileID: 5865089821569186404}
+  - component: {fileID: 8711796354620789087}
   - component: {fileID: 4359138492573950966}
-  m_Layer: 0
+  - component: {fileID: 4489104536002497239}
+  - component: {fileID: 5336173488307956086}
+  m_Layer: 11
   m_Name: ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,6 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ghostMesh: {fileID: 2753050745535576107}
   _ghostInfo: {fileID: 1499621083}
+  _photoReward: {fileID: 8711796354620789087}
 --- !u!114 &1403907066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +515,20 @@ MonoBehaviour:
   _ghostInfo: {fileID: 1499621083}
   _ghostMood: {fileID: 1075119141}
   _ghostAttackCheckCD: 15
+--- !u!114 &8711796354620789087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eee8b9efd8fa3a47a936a0977144d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 20
+  Name: Ghost
 --- !u!114 &4359138492573950966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,6 +542,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartAttack: 0
+--- !u!65 &4489104536002497239
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3508997, y: 1.4894233, z: 0.22551775}
+  m_Center: {x: 0.046491623, y: 0.24471164, z: 0.38724113}
+--- !u!54 &5336173488307956086
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1001 &3945419474563736600
 PrefabInstance:
   m_ObjectHideFlags: 0

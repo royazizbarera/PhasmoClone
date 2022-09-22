@@ -26,16 +26,6 @@ public class UVLight : MonoBehaviour
         DisableUVLight();
     }
 
-    private void OnEnable()
-    {
-        if (_isEnabled) EnableUVLight();
-    }
-
-    private void OnDisable()
-    {
-        DisableUVLight();
-    }
-
     IEnumerator CheckPosition()
     {
         while (true)

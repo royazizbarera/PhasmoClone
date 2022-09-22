@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace Items.ItemsLogic
 {
-    public class UVGlowstick : MonoBehaviour, IMainUsable
+    public class UVGlowstick : MonoBehaviour, IMainUsable, IDroppable
     {
         [SerializeField] private UVLight _uvLight;
 
@@ -28,6 +28,19 @@ namespace Items.ItemsLogic
                 _uvLight.EnableUVLight();
                 _glowBody.material = _glowOnMaterial;
             }
+        }
+
+        private void OnDisable()
+        {
+            _uvLight.DisableUVLight();
+        }
+        private void OnEnable()
+        {
+            if (_isEnabled) _uvLight.EnableUVLight();
+        }
+        public void DropItem()
+        {
+            if (_isEnabled) _uvLight.EnableUVLight();
         }
     }
 }

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   Name: Book
   Description: item description
-  Price: 15
+  Price: 40
   MaxAmount: 4
   MinAmount: 1
