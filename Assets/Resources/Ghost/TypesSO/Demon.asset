@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 035a751c97309db4c840d995a05355bb, type: 3}
-  m_Name: Abobus
+  m_Name: Demon
   m_EditorClassIdentifier: 
   GhostNormalSpeed: 2
-  GhostAttackSpeed: 2
-  GhostEvidences: 010000000300000004000000
+  GhostAttackSpeed: 2.5
+  GhostEvidences: 010000000400000003000000
   PatrolRandomMultiplier: 5
   StartGhostAnger: 30
-  GhostAngerPlusPerSec: 0.1
-  GhostAngerInGhostRoomPlusPerSec: 0.15
-  MaxGhostAnger: 110
-  StartLateGhostAnger: 70
+  GhostAngerPlusPerSec: 0.12
+  GhostAngerInGhostRoomPlusPerSec: 0.16
+  MaxGhostAnger: 115
+  StartLateGhostAnger: 75
   PlayerSanityMinusPerSecond: 0.055
   PlayerSanityMinusInGhostRoomPerSecond: 0.12
   PlayerSanityMinusPerGhostInterection: 1
   PlayerSanityMinusPerGhostGhostEvent: 5
   PlayerSanityMinusPerHunt: 10
-  MinSanityToAttack: 60
+  MinSanityToAttack: 80
   MaxDistanceToPlayerAggr: 4
-  AttackChanceCoef: 0.2
-  MinAttackCD: 40
+  AttackChanceCoef: 0.3
+  MinAttackCD: 30
   DefaultInterectionChance: 10
   InterectionsCoef: 0.25
   GhostFindInerectionsCD: 2
@@ -42,11 +42,13 @@ MonoBehaviour:
   MaxMeshActiveTime: 0.18
   MinMeshDisabledTime: 0.55
   MaxMeshDisabledTime: 0.9
-  GhostDescription: 'Abobus is one of the strongest ghosts of all time, he is godlike,
-    duniuslike and Nikita noob
+  GhostDescription: 'Demons are the most aggressive ghosts we''ve ever encountered.
+    Known to attack without reason. Be very careful!
 
 
-    Strengths: abobus
+    Strengths: Demons will
+    hunt  more than other ghosts
 
 
-    Weakness: No Weakness'
+    Weakness: Demons are afraid of Smudge sticks.
+    Smudging the ghost will prevent them from hunt for 1 minute. '

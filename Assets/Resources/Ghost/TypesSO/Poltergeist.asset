@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 035a751c97309db4c840d995a05355bb, type: 3}
-  m_Name: Amogus
+  m_Name: Poltergeist
   m_EditorClassIdentifier: 
-  GhostNormalSpeed: 2
+  GhostNormalSpeed: 2.2
   GhostAttackSpeed: 2
-  GhostEvidences: 010000000200000004000000
+  GhostEvidences: 000000000400000002000000
   PatrolRandomMultiplier: 5
   StartGhostAnger: 30
   GhostAngerPlusPerSec: 0.1
@@ -23,31 +23,32 @@ MonoBehaviour:
   StartLateGhostAnger: 70
   PlayerSanityMinusPerSecond: 0.055
   PlayerSanityMinusInGhostRoomPerSecond: 0.12
-  PlayerSanityMinusPerGhostInterection: 1
+  PlayerSanityMinusPerGhostInterection: 2
   PlayerSanityMinusPerGhostGhostEvent: 5
   PlayerSanityMinusPerHunt: 10
   MinSanityToAttack: 60
   MaxDistanceToPlayerAggr: 4
   AttackChanceCoef: 0.2
   MinAttackCD: 40
-  DefaultInterectionChance: 10
-  InterectionsCoef: 0.25
-  GhostFindInerectionsCD: 2
-  GhostBetweenInterectionsCD: 4
-  ItemThrowRadiusOfInterection: 1.5
+  DefaultInterectionChance: 15
+  InterectionsCoef: 0.35
+  GhostFindInerectionsCD: 1.7
+  GhostBetweenInterectionsCD: 3
+  ItemThrowRadiusOfInterection: 2
   DoorsTouchRadiusInterection: 2.5
   ClickableTouchRadiusInterection: 2.5
-  ItemThrowPower: 5
+  ItemThrowPower: 7
   MinMeshActiveTime: 0.12
   MaxMeshActiveTime: 0.18
   MinMeshDisabledTime: 0.55
   MaxMeshDisabledTime: 0.9
-  GhostDescription: 'AMOGUS TUTUTUTUTU TUTU TU TUTUTUTUTU TUTU Aga very strong amogus,
-    brother of abobus, but weaker
+  GhostDescription: 'Very famous ghosts. Known to manipulate objects around it to
+    spread fear into its victims.
 
 
-    Strenghts: Gen of abobus made amogus very
-    strong
+    Strengths: If you saw a poltergeist throw
+    an object, you will lose a lot of your sanity.
 
 
-    Weakness: He is not an abobus'
+    Weaknesses: They are easier
+    to find and less dangerous during hunts.'
