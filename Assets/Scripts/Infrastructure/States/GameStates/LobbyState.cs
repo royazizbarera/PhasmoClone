@@ -26,9 +26,9 @@ namespace Infrastructure.States.GameStates
         }
 
 
-        private void InitGameWorld()
+        private async void InitGameWorld()
         {
-            GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(Tags.InitialPoint));
+            GameObject hero = await _gameFactory.CreateHero(GameObject.FindWithTag(Tags.InitialPoint));
             _gameFactory.CreateTargetUI();
         }
     }

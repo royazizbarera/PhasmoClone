@@ -3,6 +3,7 @@ using Infrastructure.Services;
 using Player.Movement;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Utilities.Constants;
 
@@ -34,24 +35,32 @@ namespace Infrastructure.States.GameStates
         {
         }
 
-
         private void InitGameWorld()
         {
             _levelSetUp.InitializeLevel();
             InstantiateAll();
+        }
+
+        private void LevelCreatedEvent()
+        {
+            _levelSetUp.IsInitialized = true;
             _levelSetUp.OnLevelSetedUp.Invoke();
             _stateMachine.Enter<GameFlowState>();
         }
 
-        private void InstantiateAll()
+        private async void InstantiateAll()
         {
-            GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(Tags.InitialPoint));
-            GameObject ghost = _gameFactory.CreateGhost(GameObject.FindWithTag(Tags.GhostInitialPoint));
-            GameObject journal = _gameFactory.CreateJournal();
-            _gameFactory.CreateJumpscare();
+            GameObject hero = await _gameFactory.CreateHero(GameObject.FindWithTag(Tags.InitialPoint));
+            GameObject ghost = await _gameFactory.CreateGhost(GameObject.FindWithTag(Tags.GhostInitialPoint));
+            GameObject journal = await _gameFactory.CreateJournal();
+            await _gameFactory.CreateJumpscare();
+
             ghost.GetComponent<GhostInfo>().SetUpGhost(hero.transform, hero.GetComponent<MoveControl>().GetPlayerHuntPoint(), _levelSetUp.CurrGhostRoom, hero.GetComponent<RoomIdentifire>(), hero.GetComponent<SanityHandler>(), _levelSetUp.CurrLevelSize);
             _levelSetUp.GhostInfo = ghost.GetComponent<GhostInfo>();
+            if(_levelSetUp.GhostInfo == null) { Debug.Log("Here bochok potik"); }
             _levelSetUp.MainPlayer = hero;
+
+            LevelCreatedEvent();
         }
     }
 }

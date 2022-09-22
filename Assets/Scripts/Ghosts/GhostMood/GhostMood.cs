@@ -32,7 +32,8 @@ namespace Ghosts.GhostMood
 
         private void Update()
         {
-            _ghostInfo.FinalGhostAnger = Mathf.Max(0f, _ghostAnger - _playerSanity.Sanity / SanityDivider);
+            if(_playerSanity != null) _ghostInfo.FinalGhostAnger = Mathf.Max(0f, _ghostAnger - _playerSanity.Sanity / SanityDivider);
+
             _ghostFinalAnger = _ghostInfo.FinalGhostAnger;
         }
 

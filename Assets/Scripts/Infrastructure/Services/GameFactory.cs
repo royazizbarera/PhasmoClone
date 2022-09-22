@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UI.Journal;
 using UnityEngine;
 using Utilities.Constants;
@@ -18,41 +19,41 @@ namespace Infrastructure.Services
             _assets = assets;
         }
 
-        public GameObject CreateHero(GameObject at)
+        public async Task <GameObject> CreateHero(GameObject at)
         {
-            GameObject gameObject = _assets.Instantiate(AssetPath.HeroPath, at.transform.position);
+            GameObject gameObject = await _assets.Instantiate(AssetPath.HeroPath, at.transform.position);
             _mainHero = gameObject;
             return gameObject;
         }
 
-        public GameObject CreateGhost(GameObject at)
+        public async Task<GameObject> CreateGhost(GameObject at)
         {
-            GameObject gameObject = _assets.Instantiate(AssetPath.GhostPath, at.transform.position);
+            GameObject gameObject = await _assets.Instantiate(AssetPath.GhostPath, at.transform.position);
             return gameObject;
         }
-        public GameObject CreateInputSystem()
+        public async Task<GameObject> CreateInputSystem()
         {
-            GameObject gameObject = _assets.Instantiate(AssetPath.InputSystemPath);
+            GameObject gameObject = await _assets.Instantiate(AssetPath.InputSystemPath);
             return gameObject;
         }
 
-        public GameObject CreateTargetUI()
+        public async Task<GameObject> CreateTargetUI()
         {
-            GameObject gameObject = _assets.Instantiate(AssetPath.TargetUIPath);
+            GameObject gameObject = await _assets.Instantiate(AssetPath.TargetUIPath);
            
             return gameObject;
         }
 
-        public GameObject CreateJournal()
+        public async Task<GameObject> CreateJournal()
         {
-            GameObject gameObject = _assets.Instantiate(AssetPath.JournalPath);
+            GameObject gameObject = await _assets.Instantiate(AssetPath.JournalPath);
             _journal = gameObject.GetComponent<Journal>();
             return gameObject;
         }
 
-        public GameObject CreateJumpscare()
+        public async Task<GameObject> CreateJumpscare()
         {
-            GameObject gameObject = _assets.Instantiate(AssetPath.JumpscarePath);
+            GameObject gameObject = await _assets.Instantiate(AssetPath.JumpscarePath);
             _jumpscare = gameObject;
             return gameObject;
         }

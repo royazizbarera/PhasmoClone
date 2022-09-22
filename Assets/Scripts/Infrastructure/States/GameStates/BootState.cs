@@ -30,7 +30,7 @@ namespace Infrastructure.States.GameStates
         {
         }
 
-        private void RegisterServices()
+        private async void RegisterServices()
         {
             _services.RegisterSingle<LevelSetUp>(new LevelSetUp());
             _services.RegisterSingle<GameFlowService>(new GameFlowService(_coroutineRunner));
@@ -38,7 +38,9 @@ namespace Infrastructure.States.GameStates
             _services.RegisterSingle<DataSaveLoader>(new DataSaveLoader());
             _services.RegisterSingle<SceneLoader>(new SceneLoader(_coroutineRunner));
             _services.RegisterSingle<GameFactory>(new GameFactory(_services.Single<AssetProvider>()));
-            _services.RegisterSingle<InputSystem>(_services.Single<GameFactory>().CreateInputSystem().GetComponent<InputSystem>());      
+            GameObject inputSystemGameObject = await _services.Single<GameFactory>().CreateInputSystem();
+
+            _services.RegisterSingle<InputSystem>(inputSystemGameObject.GetComponent<InputSystem>());      
         }
         private void LoadGameInfo()
         {

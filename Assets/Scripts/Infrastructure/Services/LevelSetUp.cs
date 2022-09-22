@@ -25,9 +25,11 @@ namespace Infrastructure.Services
             get { return _addedItems; }
         }
 
+        public bool IsInitialized = false;
         public GameObject MainPlayer;
         public GhostInfo GhostInfo;
 
+        
         private SceneNames.LevelNames _selectedMap;
         private Transform _currRoomTransform;
         private LevelRooms.LevelRoomsEnum _currRoom = LevelRooms.LevelRoomsEnum.NoRoom;
@@ -65,6 +67,7 @@ namespace Infrastructure.Services
         {
             _currRoom = LevelRooms.LevelRoomsEnum.NoRoom;
             _currRoomTransform = null;
+            IsInitialized = false;
         }
 
         private void RandomizeCurrentRoom()

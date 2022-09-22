@@ -2,11 +2,11 @@ namespace Utilities.Constants
 {
     public static class AssetPath
     {
-        public const string HeroPath = "Hero/hero";
-        public const string GhostPath = "Ghost/ghost";
-        public const string InputSystemPath = "Infrastructure/Input/InputSystem";
-        public const string TargetUIPath = "UI/TargetCanvas";
-        public const string JournalPath = "UI/JournalCanvas";
-        public const string JumpscarePath = "UI/JumpScareUI";
+        public const string HeroPath = "Hero";
+        public const string GhostPath = "Ghost";
+        public const string InputSystemPath = "InputSystem";
+        public const string TargetUIPath = "TargetCanvas";
+        public const string JournalPath = "JournalCanvas";
+        public const string JumpscarePath = "JumpScareUI";
     }
 }

@@ -30,8 +30,8 @@ public class SanityHandler : MonoBehaviour
     {
         _levelSetUp = AllServices.Container.Single<LevelSetUp>();
         Sanity = _maxSanityValue;
-        if (_levelSetUp.CurrGhostRoom == LevelRooms.LevelRoomsEnum.NoRoom) _levelSetUp.OnLevelSetedUp += SetUp;
-        else SetUp();
+        if (_levelSetUp.IsInitialized) { SetUp();  Debug.Log("Initialized"); }
+        else _levelSetUp.OnLevelSetedUp += SetUp;
 
     }
 
@@ -66,6 +66,8 @@ public class SanityHandler : MonoBehaviour
     {
         _currGhostRoom = _levelSetUp.CurrGhostRoom;
         _ghostInfo = _levelSetUp.GhostInfo;
+
+        if (_ghostInfo == null) Debug.Log("Ghost info = null");
 
         _houseSecondSanityMinus = _ghostInfo.GhostData.PlayerSanityMinusPerSecond;
         _ghostRoomSecondSanityMinus = _ghostInfo.GhostData.PlayerSanityMinusInGhostRoomPerSecond;
