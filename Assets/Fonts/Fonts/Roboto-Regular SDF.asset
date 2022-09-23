@@ -59,9 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Roboto-Regular SDF
   m_EditorClassIdentifier: 
-  hashCode: 2003208237
+  hashCode: -955500245
   material: {fileID: 2661478799154292797}
-  materialHashCode: -771309843
+  materialHashCode: 1555322923
   m_Version: 1.1.0
   m_SourceFontFileGUID: 42b521ef7a66253498c04d46ea732b26
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 42b521ef7a66253498c04d46ea732b26, type: 3}

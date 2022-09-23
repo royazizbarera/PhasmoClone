@@ -24,13 +24,17 @@ namespace Infrastructure.Services
         {
             get { return _addedItems; }
         }
+        public SceneNames.LevelNames SelectedMap
+        {
+            get { return _selectedMap; }
+        }
 
         public bool IsInitialized = false;
         public GameObject MainPlayer;
         public GhostInfo GhostInfo;
 
         
-        private SceneNames.LevelNames _selectedMap;
+        private SceneNames.LevelNames _selectedMap = SceneNames.LevelNames.Turkwood;
         private Transform _currRoomTransform;
         private LevelRooms.LevelRoomsEnum _currRoom = LevelRooms.LevelRoomsEnum.NoRoom;
   
