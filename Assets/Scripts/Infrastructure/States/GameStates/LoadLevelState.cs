@@ -15,14 +15,16 @@ namespace Infrastructure.States.GameStates
         private readonly GameFactory _gameFactory;
         private readonly LevelSetUp _levelSetUp;
         private readonly SceneLoader _sceneLoader;
+        private readonly StaticDataService _staticDataService;
         private GameStateMachine gameStateMachine;
 
-        public LoadLevelState(GameStateMachine stateMachine, GameFactory gameFactory, LevelSetUp levelSetUp, SceneLoader sceneLoader)
+        public LoadLevelState(GameStateMachine stateMachine, GameFactory gameFactory, LevelSetUp levelSetUp, SceneLoader sceneLoader, StaticDataService staticDataService)
         {
             _stateMachine = stateMachine;
             _gameFactory = gameFactory;
             _levelSetUp = levelSetUp;
             _sceneLoader = sceneLoader;
+            _staticDataService = staticDataService;
         }
 
         public void Enter()
@@ -55,7 +57,7 @@ namespace Infrastructure.States.GameStates
             GameObject journal = await _gameFactory.CreateJournal();
             await _gameFactory.CreateJumpscare();
 
-            ghost.GetComponent<GhostInfo>().SetUpGhost(hero.transform, hero.GetComponent<MoveControl>().GetPlayerHuntPoint(), _levelSetUp.CurrGhostRoom, hero.GetComponent<RoomIdentifire>(), hero.GetComponent<SanityHandler>(), _levelSetUp.CurrLevelSize);
+            ghost.GetComponent<GhostInfo>().SetUpGhost(_staticDataService.GetRandomGhost(),hero.transform, hero.GetComponent<MoveControl>().GetPlayerHuntPoint(), _levelSetUp.CurrGhostRoom, hero.GetComponent<RoomIdentifire>(), hero.GetComponent<SanityHandler>(), _levelSetUp.CurrLevelSize);
             _levelSetUp.GhostInfo = ghost.GetComponent<GhostInfo>();
             if(_levelSetUp.GhostInfo == null) { Debug.Log("Here bochok potik"); }
             _levelSetUp.MainPlayer = hero;

@@ -17,8 +17,10 @@ public class GhostInfo : MonoBehaviour
     public float FinalGhostAnger = 0f;
 
     public Action GhostSetedUp;
-    public void SetUpGhost(Transform playerTransform, Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity, LevelSizeConst.LevelSize levelSize)
+    public void SetUpGhost(GhostDataSO currGhostData, Transform playerTransform, Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity, LevelSizeConst.LevelSize levelSize)
     {
+        GhostData = currGhostData;
+
         PlayerTransform = playerTransform;
         PlayerPoint = playerTransformPoint;
 

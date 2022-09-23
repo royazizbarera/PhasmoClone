@@ -59,7 +59,8 @@ namespace Ghosts.EnvIneraction
 
         private void Start()
         {
-            SetUpInfo();
+            if (_ghostInfo.SetedUp) SetUpInfo();
+            else  _ghostInfo.GhostSetedUp += SetUpInfo; 
             StartCoroutine(ItemInteraction());
         }
 

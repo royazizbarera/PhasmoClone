@@ -32,6 +32,7 @@ namespace Infrastructure.States.GameStates
 
         private async void RegisterServices()
         {
+            RegisterStaticDataService();
             _services.RegisterSingle<LevelSetUp>(new LevelSetUp());
             _services.RegisterSingle<GameFlowService>(new GameFlowService(_coroutineRunner));
             _services.RegisterSingle<AssetProvider>(new AssetProvider());
@@ -42,6 +43,14 @@ namespace Infrastructure.States.GameStates
 
             _services.RegisterSingle<InputSystem>(inputSystemGameObject.GetComponent<InputSystem>());      
         }
+
+        private void RegisterStaticDataService()
+        {
+            StaticDataService staticData = new StaticDataService();
+            staticData.Load();
+            _services.RegisterSingle(staticData);
+        }
+
         private void LoadGameInfo()
         {
             _dataSaveLoader = _services.Single<DataSaveLoader>();
