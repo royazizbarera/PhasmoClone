@@ -20,6 +20,10 @@ public class SanityViewer : MonoBehaviour
         else SetUp();
     }
 
+    private void OnDestroy()
+    {
+        _levelSetUp.OnLevelSetedUp -= SetUp;
+    }
     private IEnumerator UpdateSanity()
     {
         while (true)
