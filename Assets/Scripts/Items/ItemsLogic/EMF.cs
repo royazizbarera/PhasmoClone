@@ -13,8 +13,8 @@ public class EMF : MonoBehaviour, IMainUsable
     private int _currEmfLvl = 1;
     private int _EmfLvlFound = 1;
 
-    public const float EmfRadius = 2f;
-    private const float EmfCheckCD = 0.2f;
+    public const float EmfRadius = 1.5f;
+    private const float EmfCheckCD = 0.1f;
 
     public void OnMainUse()
     {
@@ -41,9 +41,9 @@ public class EMF : MonoBehaviour, IMainUsable
     {
         while (true)
         {
+            yield return new WaitForSeconds(EmfCheckCD);
             CheckForInter();
             ShowLights();
-            yield return new WaitForSeconds(EmfCheckCD);
         }
     }
 
