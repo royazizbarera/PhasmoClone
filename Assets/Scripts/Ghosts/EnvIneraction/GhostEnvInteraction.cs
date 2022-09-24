@@ -44,7 +44,7 @@ namespace Ghosts.EnvIneraction
         private Vector3 _interectionPos;
         private bool _interected = false;
 
-        private float _leaveHandprintChance = 25f;
+        private float _leaveHandprintChance = 35f;
         private bool _canLeaveHandprint = false;
 
         private float _ghostInterectCD = 0f;
