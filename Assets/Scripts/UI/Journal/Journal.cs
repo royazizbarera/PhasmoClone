@@ -57,10 +57,12 @@ namespace UI.Journal
         private InputSystem _inputSystem;
         private int _totalNormalPages;
         private int _totalPagesInBook;
-        private int _currentPage = 1;
+        private int _currentPage = 3;
 
         private void Awake()
         {
+            _book.SetActive(false);
+
             _totalNormalPages = _pages.Count;
             _totalPagesInBook = _pages.Count + _ghostsData.Count * 2;
 
@@ -68,8 +70,8 @@ namespace UI.Journal
             _gameFlowService = AllServices.Container.Single<GameFlowService>();
 
             _inputSystem.JournalOpenAction += ActivateJornal;
-            _currentPage = 1;
-            ChangeCurrentPage(_currentPage);
+
+            ChangeCurrentPage(1);
         }
 
         private void OnDestroy()
