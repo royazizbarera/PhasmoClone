@@ -8,17 +8,16 @@ namespace Infrastructure.Services
     public class DataSaveLoader : IService
     {
 
-        public StoredInfo _storedInfo;
+        public StoredInfo _storedInfo = new StoredInfo();
 
         [ContextMenu("Load")]
         public void LoadInfo()
         {
             if (!File.Exists(Application.streamingAssetsPath + "/data.json"))
             {
-                File.Create(Application.streamingAssetsPath + "/data.json");
-                Debug.Log("Create");
+                CreateNewFile();
             }
-            _storedInfo = JsonUtility.FromJson<StoredInfo>(File.ReadAllText(Application.streamingAssetsPath + "/data.json"));
+            else _storedInfo = JsonUtility.FromJson<StoredInfo>(File.ReadAllText(Application.streamingAssetsPath + "/data.json"));
         }
         [ContextMenu("Save")]
         public void SaveInfo()
@@ -49,13 +48,26 @@ namespace Infrastructure.Services
             }
             SaveInfo();
         }
+        private void CreateNewFile()
+        {
+            var file = File.Create(Application.streamingAssetsPath + "/data.json");
+            file.Close();
+
+            _storedInfo.Money = 100f;
+            for (int i = 0; i < _storedInfo.ItemsAmount.Length; i++)
+            {
+                _storedInfo.ItemsAmount[i] = 0;
+            }
+
+            File.WriteAllText(Application.streamingAssetsPath + "/data.json", JsonUtility.ToJson(_storedInfo));
+        }
 
 
         [System.Serializable]
         public class StoredInfo
         {
-            public float Money = 0f;
-            public int[] ItemsAmount;
+            public float Money = 100f;
+            public int[] ItemsAmount = new int[10];
         }
     }
 }
