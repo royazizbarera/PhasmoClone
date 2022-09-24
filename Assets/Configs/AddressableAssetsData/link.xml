@@ -1,0 +1,107 @@
+<linker>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.LegacyResourcesProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.MeshFilter" preserve="all" />
+    <type fullname="UnityEngine.Mesh" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Light" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.SkinnedMeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.RectTransform" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+    <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
+    <type fullname="UnityEngine.Animator" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.UI.Toggle" preserve="all" />
+    <type fullname="UnityEngine.UI.Image" preserve="all" />
+    <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
+    <type fullname="UnityEngine.UI.ToggleGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.Button" preserve="all" />
+    <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
+  </assembly>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="GhostDataSO" preserve="all" />
+    <type fullname="GhostJumpscare" preserve="all" />
+    <type fullname="DontDestroyOnLoad" preserve="all" />
+    <type fullname="SpaceGameStop" preserve="all" />
+    <type fullname="Player.Movement.MoveControl" preserve="all" />
+    <type fullname="GameFeatures.RoomIdentifire" preserve="all" />
+    <type fullname="Ghosts.GhostMood.AttackChecker" preserve="all" />
+    <type fullname="UI.Journal.Journal" preserve="all" />
+    <type fullname="Player.Inventory.ItemInteraction" preserve="all" />
+    <type fullname="Ghosts.GhostMood.GhostMood" preserve="all" />
+    <type fullname="GhostTypeUI" preserve="all" />
+    <type fullname="Money" preserve="all" />
+    <type fullname="GhostStateMachine" preserve="all" />
+    <type fullname="IdleState" preserve="all" />
+    <type fullname="Ghosts.AttackPatrol" preserve="all" />
+    <type fullname="SpawnGhostOrbs" preserve="all" />
+    <type fullname="ObjectDestroyer" preserve="all" />
+    <type fullname="AttackState" preserve="all" />
+    <type fullname="MeshHandler" preserve="all" />
+    <type fullname="Player.Inventory.Inventory" preserve="all" />
+    <type fullname="Infrastructure.Services.InputSystem" preserve="all" />
+    <type fullname="Player.AnimationControl" preserve="all" />
+    <type fullname="Ghosts.LineOfSight" preserve="all" />
+    <type fullname="Ghosts.GhostMood.GhostAnger" preserve="all" />
+    <type fullname="UI.Journal.GetEvidenceEnum" preserve="all" />
+    <type fullname="PatrolWalk" preserve="all" />
+    <type fullname="SanityHandler" preserve="all" />
+    <type fullname="DebugAttack" preserve="all" />
+    <type fullname="GhostTriggerPoint" preserve="all" />
+    <type fullname="Utilities.CursorLock" preserve="all" />
+    <type fullname="GhostInfo" preserve="all" />
+    <type fullname="Items.ItemsLogic.InteractionScript" preserve="all" />
+    <type fullname="Ghosts.EnvIneraction.GhostEnvInteraction" preserve="all" />
+    <type fullname="Player.Movement.Gravitation" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.InputSystem, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.InputSystem.PlayerInput" preserve="all" />
+    <type fullname="UnityEngine.InputSystem.InputActionAsset" preserve="all" />
+  </assembly>
+  <assembly fullname="Cinemachine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Cinemachine.CinemachineVirtualCamera" preserve="all" />
+    <type fullname="Cinemachine.CinemachinePipeline" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="TMPro.TMP_FontAsset" preserve="all" />
+    <type fullname="TMPro.TextMeshProUGUI" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Font" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.SphereCollider" preserve="all" />
+    <type fullname="UnityEngine.CharacterController" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.AIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AI.NavMeshAgent" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.ParticleSystem" preserve="all" />
+    <type fullname="UnityEngine.ParticleSystemRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
+    <type fullname="UnityEngine.Canvas" preserve="all" />
+    <type fullname="UnityEngine.CanvasGroup" preserve="all" />
+  </assembly>
+</linker>
