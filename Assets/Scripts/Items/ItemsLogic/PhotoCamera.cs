@@ -75,7 +75,7 @@ namespace Items.ItemsLogic
             _isReady = false;
 
             CheckTargets();
-            Invoke(nameof(TakeSnapshot), SnapshotDelay);
+            if (_journal != null && _journal.CheckForEmptyPhotos()) Invoke(nameof(TakeSnapshot), SnapshotDelay);
 
             StartCoroutine(nameof(Cooldown));
         }
