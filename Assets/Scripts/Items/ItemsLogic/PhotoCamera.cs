@@ -91,8 +91,8 @@ namespace Items.ItemsLogic
                 Collider[] targets = Physics.OverlapCapsule(transform.position, _checkPoint.position, _checkRadius, _rewardLayer);
                 if (targets.Length != 0)
                 {
-                    Collider target = FindNearest(targets);
-                    if (target.GetComponent<PhotoReward>())
+                    Collider target = FindNearestPhotable(targets);
+                    if (target != null)
                     {
                         PhotoReward targetReward = target.GetComponent<PhotoReward>();
                         if (targetReward.CheckIfPhotographed() == false)
@@ -131,17 +131,26 @@ namespace Items.ItemsLogic
         }
         
         
-        private Collider FindNearest(Collider[] targets)
+        private Collider FindNearestPhotable(Collider[] targets)
         {
-            float minDistance = Vector3.Distance(transform.position, targets[0].transform.position);
-            Collider nearestTarget = targets[0];
+            float minDistance = Mathf.Infinity;
+            Collider nearestTarget = null;
             foreach (Collider target in targets)
             {
-                float distance = Vector3.Distance(transform.position, target.transform.position);
-                if (minDistance > distance)
+                if (target.GetComponent<PhotoReward>())
                 {
-                    minDistance = distance;
-                    nearestTarget = target;
+                    PhotoReward targetReward = target.GetComponent<PhotoReward>();
+                    if (targetReward.enabled == true && !targetReward.CheckIfPhotographed())
+                    {
+                        {
+                            float distance = Vector3.Distance(transform.position, target.transform.position);
+                            if (minDistance > distance)
+                            {
+                                minDistance = distance;
+                                nearestTarget = target;
+                            }
+                        }
+                    }
                 }
             }
             return nearestTarget;

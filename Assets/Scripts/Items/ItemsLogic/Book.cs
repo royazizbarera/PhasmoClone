@@ -33,8 +33,11 @@ namespace Items.ItemsLogic
         [SerializeField] private bool _isInscribed = false;
         [SerializeField] private bool _couldBeWritten = false;
 
+        [SerializeField] private PhotoReward _photoReward;
+
         private void Start()
         {
+            _photoReward.enabled = false;
             _curIncribeChance = _defaultInscribeChance;
 
             _levelSetUp = AllServices.Container.Single<LevelSetUp>();
@@ -63,6 +66,7 @@ namespace Items.ItemsLogic
                     if (RandomizeInscription(_curIncribeChance))
                     {
                         ChangeMaterial();
+                        _photoReward.enabled = true;
                         _isInscribed = true;
                         StopCoroutine(nameof(WriteBook));
                     }
