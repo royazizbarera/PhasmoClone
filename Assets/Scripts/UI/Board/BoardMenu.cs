@@ -26,6 +26,8 @@ namespace UI
         private InputSystem _inputSystem;
         private LevelSetUp _levelSetUp;
 
+        private bool _isStarted = false;
+
         private void Start()
         {
             _inputSystem = AllServices.Container.Single<InputSystem>();
@@ -54,8 +56,12 @@ namespace UI
         }
         public void LoadLevel()
         {
-            _inputSystem.UnLockControl();
-            GameBootstrapper.Instance.StateMachine.Enter<LoadLevelState>();
+            if (!_isStarted)
+            {
+                _isStarted = true;
+                _inputSystem.UnLockControl();
+                GameBootstrapper.Instance.StateMachine.Enter<LoadLevelState>();
+            }
         }
 
         public void ChooseMap(GetLevelName levelName)

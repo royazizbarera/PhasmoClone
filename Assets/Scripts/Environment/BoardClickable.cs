@@ -12,6 +12,7 @@ namespace Environment
         [SerializeField] private CinemachineVirtualCamera _boardCamera;
 
         private InputSystem _inputSystem;
+        private bool _isInBoard = false;
 
         private void Start()
         {
@@ -19,15 +20,20 @@ namespace Environment
         }
         public void OnClick()
         {
-            _boardCamera.Priority = CameraPriorities.ActiveState;
-            _inputSystem.LockControl();
-            Cursor.lockState = CursorLockMode.Confined;
+            if (!_isInBoard)
+            {
+                _boardCamera.Priority = CameraPriorities.ActiveState;
+                _inputSystem.LockControl();
+                _isInBoard = true;
+                Cursor.lockState = CursorLockMode.Confined;
+            }
         }
 
         public void DecreasePriority()
         {
             _boardCamera.Priority = CameraPriorities.DisabledState;
             UnlockInputControl();
+            _isInBoard = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
 
