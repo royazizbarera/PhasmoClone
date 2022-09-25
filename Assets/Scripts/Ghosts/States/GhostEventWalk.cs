@@ -1,16 +1,15 @@
-using UnityEngine;
-using Infrastructure.Services;
 using Infrastructure;
-using UnityEngine.AI;
-using Utilities.Constants;
+using Infrastructure.Services;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Ghosts
 {
-    public class AttackPatrol : MonoBehaviour
+    public class GhostEventWalk : MonoBehaviour
     {
         [SerializeField]
-        private NavMeshAgent _agent;
+        private UnityEngine.AI.NavMeshAgent _agent;
         [SerializeField]
         private float _stoppingDistance = 0.3f;
         [SerializeField]
@@ -22,7 +21,6 @@ namespace Ghosts
         private float _checkForLineCD;
 
         private bool _playerKilled = false;
-        private GameFlowService _gameFlow;
 
         private Transform _playerPoint;
         private Transform _heroTransform;
@@ -42,25 +40,28 @@ namespace Ghosts
         private const float DistanceToKill = 1f;
         private const float DisableTime = 3f;
         private int _randomPointNum;
-        private bool _isAttacking = false;
+        private bool _isInGhostEvent = false;
         private bool _isFollowing = false;
         private float _maxAggroDistance;
+        private bool _subscribedToGhostSetUp = false;
 
         private Vector3 _playerPointDistance;
         private Vector3 _ghostPointDistance;
-        private void OnEnable()
+
+        private void Start()
         {
-            if (!_dataSetedUp) SetUpGhostData();
+             SetUpGhostData();
         }
 
 
         private void OnDestroy()
         {
-            _ghostInfo.GhostSetedUp -= SetUpParams;
+            if(_subscribedToGhostSetUp)
+            _ghostInfo.GhostSetedUp -= SetUpGhostInfo;
         }
         private void Update()
         {
-            if (!_isAttacking) return;
+            if (!_isInGhostEvent) return;
             if (_isGhostDisabled) return;
 
             if (_isFollowing)
@@ -77,28 +78,26 @@ namespace Ghosts
             }
         }
 
-        public void StartAttackPatrolling()
+        public void StartGhostEvent()
         {
             _isGhostDisabled = true;
             _isFollowing = false;
             _agent.speed = _ghostAttackSpeed;
-            SwitchAttackState(true);
-            StartCoroutine(nameof(CheckForPlayerVisible));
-            Invoke(nameof(EnableAttackAfterCD), DisableTime);
+            SwitchGhostEventState(true);
+            StartCoroutine(CheckForPlayerVisible());
         }
 
-        public void StopAttackPatrolling()
+        public void StopGhostEvent()
         {
-            SwitchAttackState(false);
-            StopCoroutine(nameof(CheckForPlayerVisible));
+            SwitchGhostEventState(false);
         }
 
 
-        public void SwitchAttackState(bool isAttacking)
+        public void SwitchGhostEventState(bool isGhostEvent)
         {
-            _isAttacking = isAttacking;
+            _isInGhostEvent = isGhostEvent;
             if (!_agent.isOnNavMesh) return;
-            if (isAttacking)
+            if (isGhostEvent)
             {
                 _agent.isStopped = false;
             }
@@ -113,16 +112,14 @@ namespace Ghosts
         {
             while (true)
             {
-                if (!_isAttacking) break;
-                if (!_isGhostDisabled)
-                {
+                if (!_isInGhostEvent) break;
+
                     _playerCheckResult = _lineOfSight.CheckForPlayer(_playerPoint, _heroTransform);
                     if (_playerCheckResult.IsPlayerVisible && _playerCheckResult.DistanceToPlayer <= _maxAggroDistance)
                     {
                         _isFollowing = true;
                     }
                     else _isFollowing = false;
-                }
                 yield return _checkForLineWait;
             }
             yield return null;
@@ -135,11 +132,9 @@ namespace Ghosts
 
             if ((Vector3.Distance(_playerPointDistance, _ghostPointDistance) < DistanceToKill) && !_playerKilled)
             {
-                _gameFlow.GameOverAction?.Invoke();
                 _playerKilled = true;
             }
         }
-        private void EnableAttackAfterCD() => _isGhostDisabled = false;
         private void ChoosePoint()
         {
             _randomPointNum = Random.Range(0, _patrolPoints.Length - 1);
@@ -155,18 +150,19 @@ namespace Ghosts
         private void SetUpGhostData()
         {
             _levelSetUp = AllServices.Container.Single<LevelSetUp>();
-            _gameFlow = AllServices.Container.Single<GameFlowService>();
 
             _checkForLineWait = new WaitForSeconds(_checkForLineCD);
             _patrolPoints = _levelSetUp.GetGhostPatrolPoints();
-            if (_ghostInfo.SetedUp) SetUpParams();
+
+            if (_ghostInfo.SetedUp) { SetUpGhostInfo(); _subscribedToGhostSetUp = false; }
             else
             {
-                _ghostInfo.GhostSetedUp += SetUpParams;
+                _subscribedToGhostSetUp = true;
+                _ghostInfo.GhostSetedUp += SetUpGhostInfo;
             }
             _dataSetedUp = true;
         }
-        private void SetUpParams()
+        private void SetUpGhostInfo()
         {
             _playerPoint = _ghostInfo.PlayerPoint;
             _heroTransform = _ghostInfo.PlayerTransform;
@@ -175,6 +171,5 @@ namespace Ghosts
             _maxAggroDistance = _ghostInfo.GhostData.MaxDistanceToPlayerAggr;
             // _playerTransform = _ghostInfo.
         }
-
     }
 }

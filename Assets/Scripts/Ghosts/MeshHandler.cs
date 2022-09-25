@@ -30,6 +30,11 @@ public class MeshHandler : MonoBehaviour
         _minMeshDisabledTime = _ghostInfo.GhostData.MinMeshDisabledTime;
         _maxMeshDisabledTime = _ghostInfo.GhostData.MaxMeshDisabledTime;
     }
+    private void Update()
+    {
+        if (_isMeshActive && !_photoReward.enabled) _photoReward.enabled = true;
+        if (!_isMeshActive && _photoReward.enabled) _photoReward.enabled = false;
+    }
     private void OnEnable()
     {
         _isMeshActive = false;
@@ -50,6 +55,15 @@ public class MeshHandler : MonoBehaviour
         _isMeshActive = false;
     }
 
+    public void GhostEventMesh()
+    {
+        if (!enabled) return;
+
+        _isAttacking = false;
+        _isMeshActive = true;
+        _ghostMesh.SetActive(true);
+    }
+
     public void AttackStateMesh()
     {
         if (!enabled) return;
@@ -58,13 +72,6 @@ public class MeshHandler : MonoBehaviour
         StartCoroutine(AttackStateMeshCoroutine());
     }
 
-    public void ActivateMesh()
-    {
-        if (!enabled) return;
-
-        _isMeshActive = true;
-        _ghostMesh.SetActive(true);
-    }
 
     private IEnumerator AttackStateMeshCoroutine()
     {
@@ -86,13 +93,11 @@ public class MeshHandler : MonoBehaviour
         if (_isMeshActive)
         {
             _ghostMesh.SetActive(false);
-            _photoReward.enabled = false;
             _isMeshActive = false;
         }
         else
         {
             _ghostMesh.SetActive(true);
-            _photoReward.enabled = true;
             _isMeshActive = true;
         }
     }

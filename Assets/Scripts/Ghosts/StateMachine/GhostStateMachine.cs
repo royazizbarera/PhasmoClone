@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GhostStateMachine : MonoBehaviour
 {
-    private GhostState _currState;
+    public GhostState _currState;
     public void ChangeState(GhostState newState)
     {
         if (_currState == newState) return;

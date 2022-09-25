@@ -14,7 +14,8 @@ namespace Ghosts.GhostMood
         private GhostInfo _ghostInfo;
         [SerializeField]
         private GhostMood _ghostMood;
-
+        [SerializeField]
+        private GhostStateMachine _ghostState;
         [SerializeField]
         private float _ghostAttackCheckCD = 15f;
 
@@ -68,6 +69,9 @@ namespace Ghosts.GhostMood
 
         private void StartHunting(float attackTime)
         {
+            if (!(_ghostState._currState is IdleState)) return;
+
+            if(_ghostState._currState)
             _attackInCD = true;
             _ghostMood.StartHunting(attackTime);
             Invoke(nameof(ReloadAttackCD), _ghostData.MinAttackCD);

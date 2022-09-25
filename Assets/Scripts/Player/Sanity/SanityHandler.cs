@@ -21,6 +21,7 @@ public class SanityHandler : MonoBehaviour
     private LevelSetUp _levelSetUp;
 
     private LevelRooms.LevelRoomsEnum _currGhostRoom = LevelRooms.LevelRoomsEnum.NoRoom;
+    private bool _isSubscribedToOnLevelSetedUp = false;
 
     // public float Sanity { get; private set; }
     public float Sanity;
@@ -28,15 +29,18 @@ public class SanityHandler : MonoBehaviour
 
     private void Start()
     {
+        if(_levelSetUp != null) _levelSetUp.OnLevelSetedUp -= SetUp;
+
         _levelSetUp = AllServices.Container.Single<LevelSetUp>();
         Sanity = _maxSanityValue;
-        if (_levelSetUp.IsInitialized) { SetUp();  Debug.Log("Initialized"); }
-        else _levelSetUp.OnLevelSetedUp += SetUp;
+        if (_levelSetUp.IsInitialized) { SetUp(); _isSubscribedToOnLevelSetedUp = false; }
+        else {_levelSetUp.OnLevelSetedUp += SetUp; _isSubscribedToOnLevelSetedUp = true; }
 
     }
 
     private void OnDestroy()
     {
+        if(_isSubscribedToOnLevelSetedUp)
         _levelSetUp.OnLevelSetedUp -= SetUp;
     }
 
