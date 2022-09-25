@@ -265,21 +265,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7874926961459402408}
-        m_TargetAssemblyTypeName: MeshHandler, Assembly-CSharp
-        m_MethodName: 
+  _onStateExitActions:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 652688699}
+        m_TargetAssemblyTypeName: Ghosts.GhostEventWalk, Assembly-CSharp
+        m_MethodName: StopGhostEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _onStateExitActions:
-  - m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2753050745535576107
 GameObject:
   m_ObjectHideFlags: 0

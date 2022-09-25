@@ -93,7 +93,7 @@ namespace Ghosts
         }
 
 
-        public void SwitchGhostEventState(bool isGhostEvent)
+        private void SwitchGhostEventState(bool isGhostEvent)
         {
             _isInGhostEvent = isGhostEvent;
             if (!_agent.isOnNavMesh) return;
