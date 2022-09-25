@@ -1,7 +1,4 @@
-using Infrastructure;
-using Infrastructure.Services;
-using System.Collections;
-using System.Collections.Generic;
+using Ghosts.Mood;
 using UnityEngine;
 
 namespace Ghosts
@@ -9,50 +6,33 @@ namespace Ghosts
     public class GhostEventWalk : MonoBehaviour
     {
         [SerializeField]
+        private GhostMood _ghostMood;
+
+        [SerializeField]
         private UnityEngine.AI.NavMeshAgent _agent;
         [SerializeField]
-        private float _stoppingDistance = 0.3f;
+        private float _stoppingDistance = 1f;
         [SerializeField]
         private GhostInfo _ghostInfo;
-
         [SerializeField]
-        private LineOfSight _lineOfSight;
-        [SerializeField]
-        private float _checkForLineCD;
+        private float _ghostSpeed = 2f;
 
-        private bool _playerKilled = false;
+
+        private const float MinTimeGhostEvent = 4f;
+        private const float MaxTimeGhostEvent = 8f;
+
+        private float _timeOfCurrentGhostEvent;
+        private float _durationOfGhostEvent;
 
         private Transform _playerPoint;
-        private Transform _heroTransform;
-        private PlayerCheckResult _playerCheckResult;
 
-        private WaitForSeconds _checkForLineWait;
-
-        private bool _isGhostDisabled = false;
-
-        private bool _dataSetedUp = false;
-        private float _ghostAttackSpeed;
-        private Transform[] _patrolPoints;
-        private LevelSetUp _levelSetUp;
-
-        private Transform _currDestination = null;
-
-        private const float DistanceToKill = 1f;
-        private const float DisableTime = 3f;
-        private int _randomPointNum;
         private bool _isInGhostEvent = false;
-        private bool _isFollowing = false;
-        private float _maxAggroDistance;
         private bool _subscribedToGhostSetUp = false;
-
-        private Vector3 _playerPointDistance;
-        private Vector3 _ghostPointDistance;
 
         private void Start()
         {
              SetUpGhostData();
         }
-
 
         private void OnDestroy()
         {
@@ -62,36 +42,25 @@ namespace Ghosts
         private void Update()
         {
             if (!_isInGhostEvent) return;
-            if (_isGhostDisabled) return;
+            if (IsGhostEventTimeOver()) StopGhostEventState();
 
-            if (_isFollowing)
+            SetDestination();
+            if (Vector3.Distance(transform.position, _playerPoint.position)  <= _stoppingDistance)
             {
-                _currDestination = _playerPoint;
-                CheckForKill();
-                SetDestination();
-                return;
-            }
-            if (_agent.remainingDistance <= _stoppingDistance || _currDestination == null)
-            {
-                ChoosePoint();
-                SetDestination();
+                GhostDissapear();
             }
         }
 
         public void StartGhostEvent()
         {
-            _isGhostDisabled = true;
-            _isFollowing = false;
-            _agent.speed = _ghostAttackSpeed;
+            _agent.speed = _ghostSpeed;
+            _timeOfCurrentGhostEvent = 0f;
+            _durationOfGhostEvent = Random.Range(MinTimeGhostEvent, MaxTimeGhostEvent);
+
             SwitchGhostEventState(true);
-            StartCoroutine(CheckForPlayerVisible());
         }
 
-        public void StopGhostEvent()
-        {
-            SwitchGhostEventState(false);
-        }
-
+        public void StopGhostEvent() => SwitchGhostEventState(false);
 
         private void SwitchGhostEventState(bool isGhostEvent)
         {
@@ -108,68 +77,40 @@ namespace Ghosts
             }
         }
 
-        private IEnumerator CheckForPlayerVisible()
-        {
-            while (true)
-            {
-                if (!_isInGhostEvent) break;
+        private void StopGhostEventState() => _ghostMood.StopGhostEvent();
 
-                    _playerCheckResult = _lineOfSight.CheckForPlayer(_playerPoint, _heroTransform);
-                    if (_playerCheckResult.IsPlayerVisible && _playerCheckResult.DistanceToPlayer <= _maxAggroDistance)
-                    {
-                        _isFollowing = true;
-                    }
-                    else _isFollowing = false;
-                yield return _checkForLineWait;
-            }
-            yield return null;
+        private void GhostDissapear()
+        {
+            StopGhostEventState();
         }
 
-        private void CheckForKill()
+        private bool IsGhostEventTimeOver()
         {
-            _playerPointDistance = _heroTransform.position;
-            _ghostPointDistance = transform.position;
+            _timeOfCurrentGhostEvent += Time.deltaTime;
 
-            if ((Vector3.Distance(_playerPointDistance, _ghostPointDistance) < DistanceToKill) && !_playerKilled)
-            {
-                _playerKilled = true;
-            }
+            if (_timeOfCurrentGhostEvent >= _durationOfGhostEvent) return true;
+            else return false;
         }
-        private void ChoosePoint()
-        {
-            _randomPointNum = Random.Range(0, _patrolPoints.Length - 1);
-            _currDestination = _patrolPoints[_randomPointNum];
-        }
+
 
         private void SetDestination()
         {
-            if (_currDestination != null) _agent.SetDestination(_currDestination.position);
-            else { Debug.Log("Curr destination = null"); }
+            _agent.SetDestination(_playerPoint.position);
         }
+
 
         private void SetUpGhostData()
         {
-            _levelSetUp = AllServices.Container.Single<LevelSetUp>();
-
-            _checkForLineWait = new WaitForSeconds(_checkForLineCD);
-            _patrolPoints = _levelSetUp.GetGhostPatrolPoints();
-
             if (_ghostInfo.SetedUp) { SetUpGhostInfo(); _subscribedToGhostSetUp = false; }
             else
             {
                 _subscribedToGhostSetUp = true;
                 _ghostInfo.GhostSetedUp += SetUpGhostInfo;
             }
-            _dataSetedUp = true;
         }
         private void SetUpGhostInfo()
         {
             _playerPoint = _ghostInfo.PlayerPoint;
-            _heroTransform = _ghostInfo.PlayerTransform;
-
-            _ghostAttackSpeed = _ghostInfo.GhostData.GhostAttackSpeed;
-            _maxAggroDistance = _ghostInfo.GhostData.MaxDistanceToPlayerAggr;
-            // _playerTransform = _ghostInfo.
         }
     }
 }

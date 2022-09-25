@@ -3,7 +3,7 @@ using Utilities.Constants;
 using GameFeatures;
 using System.Collections;
 
-namespace Ghosts.GhostMood
+namespace Ghosts.Mood
 {
     public class GhostAnger : MonoBehaviour
     {

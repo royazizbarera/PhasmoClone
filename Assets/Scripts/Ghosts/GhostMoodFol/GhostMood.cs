@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Ghosts.GhostMood
+namespace Ghosts.Mood
 {
     public class GhostMood : MonoBehaviour
     {
         [SerializeField]
         private GhostInfo _ghostInfo;
         [SerializeField]
-        private GhostState _attackState, _idleState;
+        private GhostState _attackState, _idleState, _ghostEventState;
         [SerializeField]
         private GhostStateMachine _ghostStateMachine;
 
+        private bool _subscribedToGhostSetUp = false;
         public bool IsHunting = false;
 
         private const int SanityDivider = 2;
@@ -26,8 +25,13 @@ namespace Ghosts.GhostMood
         void Start()
         {
             _ghostStateMachine.ChangeState(_idleState);
-            if (_ghostInfo.SetedUp) SetUp();
-            else _ghostInfo.GhostSetedUp += SetUp;
+            if (_ghostInfo.SetedUp) { SetUp(); _subscribedToGhostSetUp = false; }
+            else { _ghostInfo.GhostSetedUp += SetUp; _subscribedToGhostSetUp = true; }
+        }
+
+        private void OnDestroy()
+        {
+            if (_subscribedToGhostSetUp) _ghostInfo.GhostSetedUp -= SetUp;
         }
 
         private void Update()
@@ -56,7 +60,16 @@ namespace Ghosts.GhostMood
             IsHunting = false;
             _ghostStateMachine.ChangeState(_idleState);
         }
-        
+
+        public void StartGhostEvent()
+        {
+            _ghostStateMachine.ChangeState(_ghostEventState);
+        }
+
+        public void StopGhostEvent()
+        {
+            _ghostStateMachine.ChangeState(_idleState);
+        }
 
         private void SetUp()
         {

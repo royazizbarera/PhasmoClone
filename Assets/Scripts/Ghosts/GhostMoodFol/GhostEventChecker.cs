@@ -4,12 +4,10 @@ using UnityEngine;
 using Utilities;
 using Utilities.Constants;
 
-namespace Ghosts.GhostMood
+namespace Ghosts.Mood
 {
-    public class AttackChecker : MonoBehaviour
+    public class GhostEventChecker : MonoBehaviour
     {
-        private const int MinAttackDurationDivider = 6;
-        private const int MaxAttackDurationDivider = 3;
         [SerializeField]
         private GhostInfo _ghostInfo;
         [SerializeField]
@@ -17,9 +15,10 @@ namespace Ghosts.GhostMood
         [SerializeField]
         private GhostStateMachine _ghostState;
         [SerializeField]
-        private float _ghostAttackCheckCD = 15f;
+        private float _ghostEventCheckCD = 15f;
 
         private bool _attackInCD = false;
+        private bool _subscribedToGhostSetUp = false;
         private GhostDataSO _ghostData;
 
         private LevelSizeConst.LevelSize _levelSize;
@@ -31,62 +30,51 @@ namespace Ghosts.GhostMood
         private WaitForSeconds GhostAttackCheckCD;
         void Start()
         {
-            if (_ghostInfo.SetedUp) SetUp();
-            else _ghostInfo.GhostSetedUp += SetUp;
+            if (_ghostInfo.SetedUp) {  SetUp(); _subscribedToGhostSetUp = false; }
+            else { _ghostInfo.GhostSetedUp += SetUp; _subscribedToGhostSetUp = true; }
 
-            GhostAttackCheckCD = new WaitForSeconds(_ghostAttackCheckCD);
+            GhostAttackCheckCD = new WaitForSeconds(_ghostEventCheckCD);
         }
 
-        public void MakeGhostHunt()
+        private void OnDestroy()
         {
-            StartHunting(CalculateAttackTime());
+            if (_subscribedToGhostSetUp) _ghostInfo.GhostSetedUp -= SetUp;
+        }
+
+        public void MakeGhostEvent()
+        {
+            StartGhostEvent();
         }
 
 
-        private IEnumerator CheckForAttackInum()
+        private IEnumerator CheckForGhostEventInum()
         {
             while (true)
             {
                 yield return GhostAttackCheckCD;
-                CheckForAttack();
+                CheckForGhostEvent();
             }
         }
 
-        private void CheckForAttack()
+        private void CheckForGhostEvent()
         {
             if (_attackInCD) return;
 
-            if (ShouldHunt())
-            {
-                StartHunting(CalculateAttackTime());
-            }
+            if (ShouldDoGhostEvent()) StartGhostEvent();
         }
 
-        private float CalculateAttackTime()
-        {
-            return UnityEngine.Random.Range(_minHuntDuration + _ghostInfo.FinalGhostAnger / MinAttackDurationDivider, _maxHuntDuration + _ghostInfo.FinalGhostAnger / MaxAttackDurationDivider);
-        }
-
-        private void StartHunting(float attackTime)
+        private void StartGhostEvent()
         {
             if (!(_ghostState._currState is IdleState)) return;
-
-            if(_ghostState._currState)
-            _attackInCD = true;
-            _ghostMood.StartHunting(attackTime);
-            Invoke(nameof(ReloadAttackCD), _ghostData.MinAttackCD);
+            _ghostMood.StartGhostEvent();
         }
 
-        private void ReloadAttackCD()
-        {
-            _attackInCD = false;
-        }
 
-        private bool ShouldHunt()
+        private bool ShouldDoGhostEvent()
         {
             if (_playerSanity.Sanity < _ghostInfo.GhostData.MinSanityToAttack)
             {
-                float attackChance = _ghostInfo.FinalGhostAnger * _ghostData.AttackChanceCoef;
+                float attackChance = _ghostInfo.FinalGhostAnger * _ghostData.GhostEventChanceCoef;
 
                 if (RandomGenerator.CalculateChance(attackChance) == true) return true;
             }
@@ -102,9 +90,7 @@ namespace Ghosts.GhostMood
             _minHuntDuration = LevelSizeConst.MapMinHuntDuration(_levelSize.ToString());
             _maxHuntDuration = LevelSizeConst.MapMaxHuntDuration(_levelSize.ToString());
 
-            StartCoroutine(nameof(CheckForAttackInum));
+            StartCoroutine(nameof(CheckForGhostEventInum));
         }
-
-
     }
 }

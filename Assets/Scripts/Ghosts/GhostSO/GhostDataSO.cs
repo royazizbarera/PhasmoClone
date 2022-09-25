@@ -30,7 +30,8 @@ public class GhostDataSO : ScriptableObject
     [Tooltip("Higher the number, higher the chance for a ghost to attack")]
     public float AttackChanceCoef = 0.2f;
     public float MinAttackCD = 40f;
-
+    [Tooltip("Higher the number, higher the chance for a ghost to attack")]
+    public float  GhostEventChanceCoef = 0.2f;
 
     public float DefaultInterectionChance = 5f;
     public float InterectionsCoef = 0.2f;

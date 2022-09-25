@@ -265,6 +265,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 652688699}
+        m_TargetAssemblyTypeName: Ghosts.GhostEventWalk, Assembly-CSharp
+        m_MethodName: StartGhostEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onStateExitActions:
   - m_PersistentCalls:
       m_Calls:
@@ -358,17 +370,19 @@ GameObject:
   - component: {fileID: 8451003892490384874}
   - component: {fileID: 205478301}
   - component: {fileID: -8925133462107946173}
+  - component: {fileID: 652688699}
   - component: {fileID: 293256165}
   - component: {fileID: 238534750}
   - component: {fileID: 1403907066}
   - component: {fileID: 1499621083}
   - component: {fileID: -2987137214255570710}
+  - component: {fileID: 6122911376710045331}
   - component: {fileID: 5865089821569186404}
   - component: {fileID: 8711796354620789087}
   - component: {fileID: 4359138492573950966}
+  - component: {fileID: 2899112494535937462}
   - component: {fileID: 4489104536002497239}
   - component: {fileID: 5336173488307956086}
-  - component: {fileID: 652688699}
   m_Layer: 11
   m_Name: ghost
   m_TagString: Untagged
@@ -444,6 +458,7 @@ MonoBehaviour:
   _ghostInfo: {fileID: 1499621083}
   _attackState: {fileID: 598665392}
   _idleState: {fileID: 1297272175}
+  _ghostEventState: {fileID: 3211572793094475652}
   _ghostStateMachine: {fileID: 1075119143}
   IsHunting: 0
   _ghostAnger: 0
@@ -497,6 +512,23 @@ MonoBehaviour:
   _ghostInfo: {fileID: 1499621083}
   _lineOfSight: {fileID: 1403907066}
   _checkForLineCD: 0.25
+--- !u!114 &652688699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffee3c4ef7cc0a9469d4362bf3a51582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostMood: {fileID: 1075119141}
+  _agent: {fileID: 205478300}
+  _stoppingDistance: 1
+  _ghostInfo: {fileID: 1499621083}
+  _ghostSpeed: 2
 --- !u!114 &293256165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,6 +615,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ghostOrbs: {fileID: 1972037039309670607, guid: 54604e6ea6b0c844583d05c8a0123e17, type: 3}
   _ghostInfo: {fileID: 1499621083}
+--- !u!114 &6122911376710045331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25413171e2dd0a14ebee608fdb9ac573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ghostInfo: {fileID: 1499621083}
+  _ghostMood: {fileID: 1075119141}
+  _ghostState: {fileID: 1075119143}
+  _ghostEventCheckCD: 15
 --- !u!114 &5865089821569186404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,7 +645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ghostInfo: {fileID: 1499621083}
   _ghostMood: {fileID: 1075119141}
-  _ghostState: {fileID: 0}
+  _ghostState: {fileID: 1075119143}
   _ghostAttackCheckCD: 15
 --- !u!114 &8711796354620789087
 MonoBehaviour:
@@ -626,6 +674,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartAttack: 0
+--- !u!114 &2899112494535937462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b3d4fedb642d449ac264056c562492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartEvent: 0
 --- !u!65 &4489104536002497239
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -655,23 +716,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &652688699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7874926961459402408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffee3c4ef7cc0a9469d4362bf3a51582, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _agent: {fileID: 0}
-  _stoppingDistance: 0.3
-  _ghostInfo: {fileID: 0}
-  _lineOfSight: {fileID: 0}
-  _checkForLineCD: 0
 --- !u!1001 &3945419474563736600
 PrefabInstance:
   m_ObjectHideFlags: 0
