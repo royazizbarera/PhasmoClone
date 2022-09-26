@@ -67,7 +67,7 @@ namespace Infrastructure.Services
         public class StoredInfo
         {
             public float Money = 100f;
-            public int[] ItemsAmount = new int[10];
+            public int[] ItemsAmount = new int[20];
         }
     }
 }
