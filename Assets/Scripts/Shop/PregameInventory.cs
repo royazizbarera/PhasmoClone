@@ -28,7 +28,8 @@ public class PregameInventory : MonoBehaviour
     }
     public void AddItem(int itemId)
     {
-        if (_inventory._purchasedItemsAmount[itemId] >= (_minItems[itemId] + _addedItems[itemId]) && (_minItems[itemId] + _addedItems[itemId] < _maxItems[itemId]))
+        //if (_inventory._purchasedItemsAmount[itemId] >= (_minItems[itemId] + _addedItems[itemId]) && (_minItems[itemId] + _addedItems[itemId] < _maxItems[itemId]))
+        if (_inventory._purchasedItemsAmount[itemId] > _addedItems[itemId] && (_minItems[itemId] + _addedItems[itemId] < _maxItems[itemId]))
         {
             _addedItems[itemId] += 1;
 
