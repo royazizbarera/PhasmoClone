@@ -71,6 +71,11 @@ namespace Ghosts.Mood
             _ghostStateMachine.ChangeState(_idleState);
         }
 
+        public void SmudgeEffect()
+        {
+
+        }
+
         private void SetUp()
         {
             _playerSanity = _ghostInfo.PlayerSanity;
