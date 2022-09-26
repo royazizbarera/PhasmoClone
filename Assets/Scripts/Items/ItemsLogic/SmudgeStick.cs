@@ -6,7 +6,8 @@ namespace Items.ItemsLogic
 {
     public class SmudgeStick : MonoBehaviour, IMainUsable
     {
-
+        [SerializeField]
+        private ParticleSystem _smokeParts;
         public void OnMainUse()
         {
             

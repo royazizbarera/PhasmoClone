@@ -1269,7 +1269,7 @@ MonoBehaviour:
   _playerHead: {fileID: 5356674429432218462}
   _playerHuntPoint: {fileID: 722472481}
   _playerBoneHead: {fileID: 6553239020943734200}
-  _mouseSensitivity: 40
+  _mouseSensitivity: 32
   _maxMoveSpeed: 2.8
   _sprintMultiplier: 1.8
   _maxSprintDuration: 3.5
