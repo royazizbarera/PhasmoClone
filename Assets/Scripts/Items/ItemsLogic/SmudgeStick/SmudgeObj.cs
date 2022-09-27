@@ -8,21 +8,28 @@ public class SmudgeObj : MonoBehaviour
 {
     [SerializeField]
     private LayerMask _enemyLayer;
+    [SerializeField]
+    private float TriggerDistance = 1.7f;
+    [SerializeField]
+    private float _timeToDissapear = 3f;
+    [SerializeField, Tooltip("Should this object dissapear in given time?")]
+    private bool _shouldDissapear = true;
 
-    private const float TriggerDistance = 3f;
     private void OnEnable()
     {
+        if (_shouldDissapear) Destroy(this.gameObject, _timeToDissapear);
+
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, TriggerDistance, _enemyLayer);
         foreach (var hitCollider in hitColliders)
         {
             GhostMood ghostMood = hitCollider.GetComponent<GhostMood>();
             if (ghostMood) ghostMood.SmudgeEffect();
-
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         GhostMood ghostMood = other.GetComponent<GhostMood>();
-        if (ghostMood) ghostMood.SmudgeEffect();
+
+        if (ghostMood) { Debug.Log("Trigger found collider"); ghostMood.SmudgeEffect(); }
     }
 }

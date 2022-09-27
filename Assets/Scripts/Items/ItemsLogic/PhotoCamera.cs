@@ -95,6 +95,7 @@ namespace Items.ItemsLogic
                     if (target != null)
                     {
                         PhotoReward targetReward = target.GetComponent<PhotoReward>();
+                        Debug.Log(targetReward.GetRewardName());
                         if (targetReward.CheckIfPhotographed() == false)
                         {
                             _rewardName = targetReward.GetRewardName();
@@ -137,9 +138,9 @@ namespace Items.ItemsLogic
             Collider nearestTarget = null;
             foreach (Collider target in targets)
             {
-                if (target.GetComponent<PhotoReward>())
+                PhotoReward targetReward = target.GetComponent<PhotoReward>();
+                if (targetReward)
                 {
-                    PhotoReward targetReward = target.GetComponent<PhotoReward>();
                     if (targetReward.enabled == true && !targetReward.CheckIfPhotographed())
                     {
                         {

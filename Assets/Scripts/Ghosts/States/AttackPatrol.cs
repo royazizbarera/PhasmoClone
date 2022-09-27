@@ -21,6 +21,7 @@ namespace Ghosts
         [SerializeField]
         private float _checkForLineCD;
 
+        private const float SmudgeEffectTime = 5f;
         private bool _playerKilled = false;
         private GameFlowService _gameFlow;
 
@@ -34,6 +35,7 @@ namespace Ghosts
 
         private bool _dataSetedUp = false;
         private float _ghostAttackSpeed;
+        private bool _underSmudgeEffect = false;
         private Transform[] _patrolPoints;
         private LevelSetUp _levelSetUp;
 
@@ -63,7 +65,7 @@ namespace Ghosts
             if (!_isAttacking) return;
             if (_isGhostDisabled) return;
 
-            if (_isFollowing)
+            if (_isFollowing && !_underSmudgeEffect)
             {
                 _currDestination = _playerPoint;
                 CheckForKill();
@@ -109,6 +111,16 @@ namespace Ghosts
             }
         }
 
+        public void SmudgeEffect()
+        {
+            _underSmudgeEffect = true;
+            Invoke(nameof(StopSmudgeEffect), SmudgeEffectTime);
+        }
+
+        private void StopSmudgeEffect()
+        {
+            _underSmudgeEffect = false;
+        }
         private IEnumerator CheckForPlayerVisible()
         {
             while (true)
@@ -130,6 +142,7 @@ namespace Ghosts
 
         private void CheckForKill()
         {
+            if (_underSmudgeEffect) return;
             _playerPointDistance = _heroTransform.position;
             _ghostPointDistance = transform.position;
 

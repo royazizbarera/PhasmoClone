@@ -21,6 +21,7 @@ namespace Ghosts.Mood
         private float _ghostAttackCheckCD = 15f;
 
         private bool _attackInCD = false;
+        private bool _underSmudgeEffect = false;
         private bool _subscribedToGhostSetUp = false;
 
         private GhostDataSO _ghostData;
@@ -50,6 +51,13 @@ namespace Ghosts.Mood
             StartHunting(CalculateAttackTime());
         }
 
+        public void SmudgeEffect(float smudgeTime)
+        {
+            _underSmudgeEffect = true;
+            Invoke(nameof(StopSmudgeEffect), smudgeTime);
+        }
+
+        private void StopSmudgeEffect() => _underSmudgeEffect = false;
 
         private IEnumerator CheckForAttackInum()
         {
@@ -62,7 +70,7 @@ namespace Ghosts.Mood
 
         private void CheckForAttack()
         {
-            if (_attackInCD) return;
+            if (_attackInCD || _underSmudgeEffect) return;
 
             if (ShouldHunt())
             {

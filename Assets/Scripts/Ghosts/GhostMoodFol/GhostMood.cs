@@ -10,11 +10,16 @@ namespace Ghosts.Mood
         private GhostState _attackState, _idleState, _ghostEventState;
         [SerializeField]
         private GhostStateMachine _ghostStateMachine;
-
-        private bool _subscribedToGhostSetUp = false;
-        public bool IsHunting = false;
-
+        [SerializeField]
+        private AttackChecker _attackChecker;
+        [SerializeField]
+        private AttackPatrol _attackPatrol;
         private const int SanityDivider = 2;
+        private const float SmudgeTime = 140f;
+
+        public bool IsHunting = false;
+        private bool _subscribedToGhostSetUp = false;
+        private bool _isUnderSmudgeEffect = false;
 
         private float _huntTime = 0f;
 
@@ -73,7 +78,11 @@ namespace Ghosts.Mood
 
         public void SmudgeEffect()
         {
-
+            _attackChecker.SmudgeEffect(SmudgeTime);
+            if(_ghostStateMachine._currState is AttackState)
+            {
+                _attackPatrol.SmudgeEffect();
+            }
         }
 
         private void SetUp()

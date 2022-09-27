@@ -13,9 +13,12 @@ namespace Items.ItemsLogic
         private ParticleSystem _smokeParts;
         [SerializeField]
         private GameObject _sticksParent;
+        [SerializeField]
+        private float _smudgeEffectTime = 4f;
 
         private const float TimeBetweenSmudgeObjects = 0.5f;
         private bool _isUsed = false;
+        private bool _isSmudging = false;
 
         private WaitForSeconds _waitSpawnTime;
 
@@ -28,25 +31,44 @@ namespace Items.ItemsLogic
         {
             if (!_isUsed)
             {
-                _smokeParts.Play();
+                ChangeSmudgeEffect(true);
                 _isUsed = true;
-                StartCoroutine(nameof(Smudging));
             }
         }
 
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    if(other.)
-        //}
-
+        private void StopSmudging()
+        {
+            ChangeSmudgeEffect(false);
+        }
         private IEnumerator Smudging()
         {
             while (true)
             {
-                Instantiate(_smudgeObj.gameObject, transform.position, Quaternion.identity);
-                yield return _waitSpawnTime;
+                if (_isSmudging)
+                {
+                    Instantiate(_smudgeObj.gameObject, transform.position, Quaternion.identity);
+                    yield return _waitSpawnTime;
+                }
             }
            
+        }
+
+        private void ChangeSmudgeEffect(bool isSmudging)
+        {
+            _isSmudging = isSmudging;
+            _smudgeObj.gameObject.SetActive(isSmudging);
+            _sticksParent.SetActive(isSmudging);
+            if (isSmudging)
+            {
+                _smokeParts.Play();
+                StartCoroutine(nameof(Smudging));
+                Invoke(nameof(StopSmudging), _smudgeEffectTime);
+            }
+            else
+            {
+                _smokeParts.Stop();
+                StopCoroutine(nameof(Smudging));
+            }
         }
     }
 }
