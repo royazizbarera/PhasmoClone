@@ -1272,7 +1272,7 @@ MonoBehaviour:
   _mouseSensitivity: 32
   _maxMoveSpeed: 2.8
   _sprintMultiplier: 1.8
-  _maxSprintDuration: 3.5
+  _maxSprintDuration: 3
   _sprintCD: 5
   _animConrol: {fileID: 557557249}
 --- !u!114 &3771156345009335287
