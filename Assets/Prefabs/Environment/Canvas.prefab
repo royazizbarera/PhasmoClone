@@ -10262,6 +10262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4dc2fb2fe9dc424bbbae63f9d5594a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cheatButton: {fileID: 1082957900232611876}
 --- !u!1 &6886034867936698693
 GameObject:
   m_ObjectHideFlags: 0

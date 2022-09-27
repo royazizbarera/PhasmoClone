@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Cheats : MonoBehaviour
 {
+    [SerializeField] private GameObject _cheatButton;
+
     private DataSaveLoader _dataSaveLoader;
     private GameFactory _gameFactory;
 
@@ -13,6 +15,9 @@ public class Cheats : MonoBehaviour
     {
         _dataSaveLoader = AllServices.Container.Single<DataSaveLoader>();
         _gameFactory = AllServices.Container.Single<GameFactory>();
+
+        if (Application.isEditor) _cheatButton.SetActive(true);
+        else _cheatButton.SetActive(false);
     }
 
     public void AddMoney(float money)
