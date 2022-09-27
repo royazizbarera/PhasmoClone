@@ -30,4 +30,9 @@ public class Money : MonoBehaviour
     {
         return _money;
     }
+
+    public void LoadMoney()
+    {
+        _money = _dataSaveLoader._storedInfo.Money;
+    }
 }
