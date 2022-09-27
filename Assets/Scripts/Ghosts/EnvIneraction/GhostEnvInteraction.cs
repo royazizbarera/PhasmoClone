@@ -64,6 +64,21 @@ namespace Ghosts.EnvIneraction
             StartCoroutine(ItemInteraction());
         }
 
+        public void CloseMainDoors()
+        {
+            foreach(DoorDraggable door in _ghostInfo.MainDoors)
+            {
+                door.LockTheDoor();
+            }
+        }
+
+        public void OpenMainDoors()
+        {
+            foreach (DoorDraggable door in _ghostInfo.MainDoors)
+            {
+                door.UnlockTheDoor();
+            }
+        }
         private IEnumerator ItemInteraction()
         {
             while (true)

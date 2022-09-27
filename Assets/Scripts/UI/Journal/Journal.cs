@@ -170,8 +170,9 @@ namespace UI.Journal
 
         private void ActivateJornal()
         {
-            if (_book.activeInHierarchy) _book.SetActive(false);
-            else _book.SetActive(true);
+
+            if (_book.activeInHierarchy) { _book.SetActive(false); _inputSystem.UnLockControl(); Cursor.lockState = CursorLockMode.Locked; }
+            else { _book.SetActive(true); _inputSystem.LockControl(); Cursor.lockState = CursorLockMode.Confined; }
         }
 
         private void ActivatePage(int pageNum, bool enable = true)

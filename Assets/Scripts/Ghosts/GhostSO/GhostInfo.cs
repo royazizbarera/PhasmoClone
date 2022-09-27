@@ -10,14 +10,14 @@ public class GhostInfo : MonoBehaviour
 
     public Transform PlayerPoint;
     public Transform PlayerTransform;
-
+    public DoorDraggable[] MainDoors;
     public SanityHandler PlayerSanity;
     public RoomIdentifire PlayerRoom;
     public bool SetedUp = false;
     public float FinalGhostAnger = 0f;
 
     public Action GhostSetedUp;
-    public void SetUpGhost(GhostDataSO currGhostData, Transform playerTransform, Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity, LevelSizeConst.LevelSize levelSize)
+    public void SetUpGhost(GhostDataSO currGhostData, Transform playerTransform, Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity, LevelSizeConst.LevelSize levelSize, DoorDraggable[] mainDoors)
     {
         GhostData = currGhostData;
 
@@ -29,6 +29,8 @@ public class GhostInfo : MonoBehaviour
 
         GhostRoom = _ghostRoom;
         LevelSize = levelSize;
+
+        MainDoors = mainDoors;
 
         GhostSetedUp?.Invoke();
         SetedUp = true;

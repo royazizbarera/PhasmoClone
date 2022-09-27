@@ -20,6 +20,10 @@ namespace Infrastructure.Services
         {
             get { return _currRoomTransform; }
         }
+        public DoorDraggable[] MainDoors
+        {
+            get { return _mainDoors; }
+        }
         public int[] AddedItems
         {
             get { return _addedItems; }
@@ -33,7 +37,7 @@ namespace Infrastructure.Services
         public GameObject MainPlayer;
         public GhostInfo GhostInfo;
 
-        
+        private DoorDraggable[] _mainDoors;
         private SceneNames.LevelNames _selectedMap = SceneNames.LevelNames.Turkwood;
         private Transform _currRoomTransform;
         private LevelRooms.LevelRoomsEnum _currRoom = LevelRooms.LevelRoomsEnum.NoRoom;
@@ -80,7 +84,7 @@ namespace Infrastructure.Services
             _currRoom = _currLevelInfo.AllLevelRooms[randomLevelNum].RoomType;
             _currLevelSize = _currLevelInfo.LevelSize;
             _currRoomTransform = _currLevelInfo.AllLevelRooms[randomLevelNum].transform;
-
+            _mainDoors = _currLevelInfo.MainDoors;
             //Debug.Log("curr room = " + _currRoom.ToString());
         }
     }

@@ -1,8 +1,6 @@
 using Items.Logic;
-using Infrastructure;
-using UnityEngine;
-using System;
 using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(HingeJoint))]
 public class DoorDraggable : MonoBehaviour, IDraggable
@@ -17,15 +15,19 @@ public class DoorDraggable : MonoBehaviour, IDraggable
     [SerializeField]
     private float _distance = 3f;
 
+    private Collider _collider;
+    private Rigidbody _rb;
+
     private Camera _cam;
     private bool _isInterracting = false;
-    private Rigidbody _rb;
+    private bool _isDoorLocked = false;
     private HingeJoint _hingeJoint;
     private float _openedRotation; // Rotation of the door, when it is fully opened
 
     private float doorCurrRotation;
-    private const float MinGhostsForcePower = 6f;
-    private const float MaxGhostsForcePower = 13f;
+    private const float MinGhostsForcePower = 7f;
+    private const float MaxGhostsForcePower = 17f;
+    private const float CloseDoorForcePower = 250f;
     private const float MinGhostForceTime = 1.2f;
     private const float MaxGhostForceTime = 3f;
 
@@ -37,12 +39,11 @@ public class DoorDraggable : MonoBehaviour, IDraggable
     {
         _cam = Camera.main;
     }
-
-
     void Start()
     {
         _hingeJoint = GetComponent<HingeJoint>();
         _rb = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
         _openedRotation = _hingeJoint.limits.max * _hingeJoint.axis.y;
         if (_openedRotation < -1f) _openedRotation += 360f;
         StartCoroutine(CheckDoorState());
@@ -50,7 +51,7 @@ public class DoorDraggable : MonoBehaviour, IDraggable
 
     void FixedUpdate()
     {
-        if (_isInterracting)
+        if (_isInterracting && !_isDoorLocked)
         {
             DraggDoor();
            // if (IsDoorClosed) { Debug.Log("Door is closed"); }
@@ -60,14 +61,44 @@ public class DoorDraggable : MonoBehaviour, IDraggable
 
     public void GhostDrugDoor()
     {
-        _hingeJoint.useMotor = true;
-        var motor = _hingeJoint.motor;
-        motor.targetVelocity = GenerateForce() * (float)GenerateDirection();
-        motor.force = MotorForce;
-        _hingeJoint.motor = motor;
-        Invoke(nameof(StopDruggingDoor), UnityEngine.Random.Range(MinGhostForceTime, MaxGhostForceTime));
+        GhostInterrectWithDoor(GenerateForce(), (float)GenerateDirection(), UnityEngine.Random.Range(MinGhostForceTime, MaxGhostForceTime));
     }
 
+    public void LockTheDoor()
+    {
+        StartCoroutine(nameof(CloseDoorCoroutine));
+    }
+
+    public void UnlockTheDoor()
+    {
+        _rb.isKinematic = false;
+        _isDoorLocked = false;
+    }
+
+    private IEnumerator CloseDoorCoroutine()
+    {
+        _collider.enabled = false;
+        _isDoorLocked = true;
+        GhostInterrectWithDoor(CloseDoorForcePower, -1f, 1f);
+
+        while (true)
+        {
+            Debug.Log("Closing coroutine");
+            if (IsDoorFullyClosed()) { EnableCollider(); yield break; }
+            yield return null;
+        }
+    }
+
+    private void EnableCollider() { _collider.enabled = true; _rb.isKinematic = true; }
+    private void GhostInterrectWithDoor(float force, float direction, float time)
+    {
+        _hingeJoint.useMotor = true;
+        var motor = _hingeJoint.motor;
+        motor.targetVelocity = force * direction;
+        motor.force = MotorForce;
+        _hingeJoint.motor = motor;
+        Invoke(nameof(StopDruggingDoor), time);
+    }
     private void StopDruggingDoor()
     {
         var motor = _hingeJoint.motor;
@@ -113,7 +144,9 @@ public class DoorDraggable : MonoBehaviour, IDraggable
             IsDoorClosed = false;
             IsDoorFullyOpened = false;
         }
-    } 
+    }
+
+    private bool IsDoorFullyClosed() => (Mathf.Abs(transform.localEulerAngles.y) <= Epsilon);
 
     private void DraggDoor()
     {

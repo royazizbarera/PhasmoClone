@@ -30,6 +30,6 @@ public class SmudgeObj : MonoBehaviour
     {
         GhostMood ghostMood = other.GetComponent<GhostMood>();
 
-        if (ghostMood) { Debug.Log("Trigger found collider"); ghostMood.SmudgeEffect(); }
+        if (ghostMood) {ghostMood.SmudgeEffect(); }
     }
 }

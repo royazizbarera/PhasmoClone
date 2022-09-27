@@ -7,5 +7,5 @@ public class LevelInfo : MonoBehaviour
     public LevelSizeConst.LevelSize LevelSize;
     public Room[] AllLevelRooms;
     public Transform[] PatrolPoints;
-
+    public DoorDraggable[] MainDoors;
 }

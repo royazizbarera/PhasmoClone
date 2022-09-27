@@ -11198,6 +11198,7 @@ MonoBehaviour:
   FingerprintTransform: {fileID: 252810905}
   _forceAmmount: 10
   _distance: 2
+  _collider: {fileID: 0}
 --- !u!59 &1292873460
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -16953,6 +16954,7 @@ MonoBehaviour:
   FingerprintTransform: {fileID: 698091964}
   _forceAmmount: 10
   _distance: 2
+  _collider: {fileID: 0}
 --- !u!59 &1922622798
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -18513,6 +18515,7 @@ MonoBehaviour:
   FingerprintTransform: {fileID: 142168101}
   _forceAmmount: 10
   _distance: 2
+  _collider: {fileID: 0}
 --- !u!59 &1000010301235924
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -18760,6 +18763,7 @@ MonoBehaviour:
   FingerprintTransform: {fileID: 94435763}
   _forceAmmount: 10
   _distance: 2.5
+  _collider: {fileID: 0}
 --- !u!59 &1000010671982129
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -19564,6 +19568,7 @@ MonoBehaviour:
   FingerprintTransform: {fileID: 473728019}
   _forceAmmount: 10
   _distance: 2.5
+  _collider: {fileID: 65000009736561953}
 --- !u!1 &1000011569342303
 GameObject:
   m_ObjectHideFlags: 0
@@ -19673,6 +19678,7 @@ MonoBehaviour:
   FingerprintTransform: {fileID: 1546822803}
   _forceAmmount: 10
   _distance: 2.5
+  _collider: {fileID: 0}
 --- !u!59 &1000011782126299
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -19990,6 +19996,7 @@ MonoBehaviour:
   FingerprintTransform: {fileID: 56999305}
   _forceAmmount: 10
   _distance: 2
+  _collider: {fileID: 0}
 --- !u!59 &1000012235469338
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -20181,6 +20188,7 @@ MonoBehaviour:
   FingerprintTransform: {fileID: 0}
   _forceAmmount: 10
   _distance: 2
+  _collider: {fileID: 0}
 --- !u!1 &1000012282454309
 GameObject:
   m_ObjectHideFlags: 0
@@ -20706,6 +20714,7 @@ MonoBehaviour:
   FingerprintTransform: {fileID: 1790626185}
   _forceAmmount: 10
   _distance: 2.5
+  _collider: {fileID: 65000012693936019}
 --- !u!1 &1000013276937763
 GameObject:
   m_ObjectHideFlags: 0
@@ -20810,6 +20819,7 @@ MonoBehaviour:
   FingerprintTransform: {fileID: 0}
   _forceAmmount: 10
   _distance: 2
+  _collider: {fileID: 0}
 --- !u!1 &1000013300547801
 GameObject:
   m_ObjectHideFlags: 0
@@ -30080,6 +30090,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 511261372249423407, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
+      propertyPath: MainDoors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 511261372249423407, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
       propertyPath: Points.Array.data[0]
       value: 
       objectReference: {fileID: 1046111952}
@@ -30119,6 +30133,14 @@ PrefabInstance:
       propertyPath: Points.Array.data[9]
       value: 
       objectReference: {fileID: 365010944}
+    - target: {fileID: 511261372249423407, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
+      propertyPath: MainDoors.Array.data[0]
+      value: 
+      objectReference: {fileID: 1000013256056798}
+    - target: {fileID: 511261372249423407, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
+      propertyPath: MainDoors.Array.data[1]
+      value: 
+      objectReference: {fileID: 1000011551788920}
     - target: {fileID: 511261372249423407, guid: 1b459e1967e900e45a6fc2e1fcf9718f, type: 3}
       propertyPath: PatrolPoints.Array.size
       value: 14
