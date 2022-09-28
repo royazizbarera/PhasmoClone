@@ -93,8 +93,8 @@ namespace Player.Movement
         private void InputMouseMove()
         {
             _mouseDelta = _inputSystem.CameraAxis;
-            _mouseX = _mouseDelta.x * _mouseSensitivity * Time.deltaTime;
-            _mouseY = _mouseDelta.y * _mouseSensitivity * Time.deltaTime;
+            _mouseX = _mouseDelta.x * _mouseSensitivity;
+            _mouseY = _mouseDelta.y * _mouseSensitivity;
         }
 
         private void CrouchHandle()
@@ -178,7 +178,7 @@ namespace Player.Movement
         {
             _playerBody.Rotate(Vector3.up * _mouseX);
 
-            _xRotation -= _mouseY;
+            _xRotation -= _mouseY ;
             _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
 
             _playerHead.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);

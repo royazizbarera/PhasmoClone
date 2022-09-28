@@ -17,7 +17,7 @@ namespace Infrastructure.States.GameStates
             _coroutineRunner = coroutineRunner;
             _gameStateMachine = gameStateMachine;
             RegisterServices();
-
+            LockFPS();
             LoadGameInfo();
         }
 
@@ -49,6 +49,11 @@ namespace Infrastructure.States.GameStates
             StaticDataService staticData = new StaticDataService();
             staticData.Load();
             _services.RegisterSingle(staticData);
+        }
+
+        private void LockFPS()
+        {
+            Application.targetFrameRate = 200;
         }
 
         private void LoadGameInfo()
