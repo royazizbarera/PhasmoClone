@@ -26,7 +26,7 @@ namespace Infrastructure.States
             IState state = ChangeState<TState>();
             state.Enter();
         }
-
+        public IExitableState GetCurrentState() => _activeState;
         private TState ChangeState<TState>() where TState : class, IExitableState
         {
             _activeState?.Exit();

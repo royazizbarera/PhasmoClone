@@ -1,7 +1,8 @@
 using GameFeatures;
+using Infrastructure.States.GameStates;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using Utilities.Constants;
 
 public class AmbientSounds : MonoBehaviour
@@ -11,6 +12,8 @@ public class AmbientSounds : MonoBehaviour
 
     [SerializeField] private AudioSource _outsideAudioSource;
     [SerializeField] private AudioSource _insideAudioSource;
+
+    [SerializeField] private AudioMixerGroup _audioMixer;
 
     private RoomIdentifire _roomIdentifire;
 
@@ -27,6 +30,9 @@ public class AmbientSounds : MonoBehaviour
 
         _outsideAudioSource.volume = _activeVolume;
         _insideAudioSource.volume = _inactiveVolume;
+
+        if (GameBootstrapper.Instance.StateMachine.GetCurrentState() is LobbyState) _audioMixer.audioMixer.SetFloat("AmbientVolume", -20f);
+        else _audioMixer.audioMixer.SetFloat("AmbientVolume", -0f);
 
         StartCoroutine(nameof(CheckPlayerPosition));
     }
