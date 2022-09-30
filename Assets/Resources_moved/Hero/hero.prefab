@@ -1405,7 +1405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c31337343948f4e89577e6fd1d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeVolume: 0.2
+  _activeOutsideVolume: 1
+  _activeInsideVolume: 1
   _inactiveVolume: 0
   _outsideAudioSource: {fileID: -7771994718844410900}
   _insideAudioSource: {fileID: 8591747699755616406}

@@ -7,8 +7,9 @@ using Utilities.Constants;
 
 public class AmbientSounds : MonoBehaviour
 {   
-    [SerializeField] private float _activeVolume = 0.3f;
-    [SerializeField] private float _inactiveVolume = 0.05f;
+    [SerializeField] private float _activeOutsideVolume = 1f;
+    [SerializeField] private float _activeInsideVolume = 1f;
+    [SerializeField] private float _inactiveVolume = 0f;
 
     [SerializeField] private AudioSource _outsideAudioSource;
     [SerializeField] private AudioSource _insideAudioSource;
@@ -28,7 +29,7 @@ public class AmbientSounds : MonoBehaviour
     {
         _roomIdentifire = GetComponent<RoomIdentifire>();
 
-        _outsideAudioSource.volume = _activeVolume;
+        _outsideAudioSource.volume = _activeOutsideVolume;
         _insideAudioSource.volume = _inactiveVolume;
 
         if (GameBootstrapper.Instance.StateMachine.GetCurrentState() is LobbyState) _audioMixer.audioMixer.SetFloat("AmbientVolume", -20f);
@@ -60,26 +61,26 @@ public class AmbientSounds : MonoBehaviour
     {
         for (int i = 0; i < _fadeSteps; i++)
         {
-            _outsideAudioSource.volume -= (_activeVolume - _inactiveVolume) / _fadeSteps;
-            _insideAudioSource.volume += (_activeVolume - _inactiveVolume) / _fadeSteps;
+            _outsideAudioSource.volume -= (_activeOutsideVolume - _inactiveVolume) / _fadeSteps;
+            _insideAudioSource.volume += (_activeInsideVolume - _inactiveVolume) / _fadeSteps;
 
             yield return new WaitForSeconds(_fadeTime / _fadeSteps);
         }
 
-        _insideAudioSource.volume = _activeVolume;
+        _insideAudioSource.volume = _activeInsideVolume;
         _outsideAudioSource.volume = _inactiveVolume;
     }
     IEnumerator SetOutsideSoundVolumes()
     {
         for (int i = 0; i < _fadeSteps; i++)
         {
-            _insideAudioSource.volume -= (_activeVolume - _inactiveVolume) / _fadeSteps;
-            _outsideAudioSource.volume += (_activeVolume - _inactiveVolume) / _fadeSteps;
+            _insideAudioSource.volume -= (_activeInsideVolume - _inactiveVolume) / _fadeSteps;
+            _outsideAudioSource.volume += (_activeOutsideVolume - _inactiveVolume) / _fadeSteps;
 
             yield return new WaitForSeconds(_fadeTime / _fadeSteps);
         }
 
-        _outsideAudioSource.volume = _activeVolume;
+        _outsideAudioSource.volume = _activeOutsideVolume;
         _insideAudioSource.volume = _inactiveVolume;
     }
 }

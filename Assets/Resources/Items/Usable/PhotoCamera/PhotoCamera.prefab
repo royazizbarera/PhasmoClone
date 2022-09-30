@@ -344,12 +344,12 @@ MonoBehaviour:
   _checkPoint: {fileID: 1624523287202250840}
   _checkRadius: 1
   _screenMesh: {fileID: 1876060040993484112}
-  _renderTextureMat: {fileID: 2100000, guid: e2dc4092041ea1346940acace3c397d2, type: 2}
-  _renderTexture: {fileID: 8400000, guid: f3fe73237f0239d479c81149b1802a97, type: 2}
+  _renderTextureMat: {fileID: 2100000, guid: 32aa85d41663a7a41aa1303e5268b4b3, type: 2}
+  _renderTexture: {fileID: 8400000, guid: d6d9d4032b013ec4ab601179bba3dc77, type: 2}
   resWidth: 400
   resHeight: 300
   _switchSound: {fileID: 8300000, guid: 2c3e46ebfc8940c4fb215811b9b0dc52, type: 3}
-  _volume: 0.2
+  _volume: 0.25
 --- !u!65 &817084647595658050
 BoxCollider:
   m_ObjectHideFlags: 0

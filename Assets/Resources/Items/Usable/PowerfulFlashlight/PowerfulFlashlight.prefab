@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 2298840731036411209}
-  _switchSound: {fileID: 8300000, guid: 8c3e850d5a4801b4b856d054af93854e, type: 3}
-  _volume: 0.2
+  _switchSound: {fileID: 8300000, guid: 74bebe4561d6f74489fc0ad0a6dc2b81, type: 3}
+  _volume: 0.9
 --- !u!54 &7854196876542157025
 Rigidbody:
   m_ObjectHideFlags: 0
