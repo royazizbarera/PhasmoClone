@@ -37,6 +37,13 @@ namespace Items.ItemsLogic
         [SerializeField] private int resWidth = 400;
         [SerializeField] private int resHeight = 300;
 
+        [SerializeField]
+        private AudioClip _switchSound;
+        [SerializeField]
+        private float _volume;
+
+        private AudioSource _audioSource;
+
         private Journal _journal;
         private GameFactory _gameFactory;
         private GameFlowService _gameFlowService;
@@ -49,6 +56,8 @@ namespace Items.ItemsLogic
             _gameFactory = AllServices.Container.Single<GameFactory>();
             _gameFlowService = AllServices.Container.Single<GameFlowService>();
             _journal = _gameFactory.GetJournal();
+
+            _audioSource = GetComponent<AudioSource>();
 
             _shotsLeftText.text = _shotsLeft.ToString();
             SetUpCamera();
@@ -70,6 +79,7 @@ namespace Items.ItemsLogic
         private void MakePhoto()
         {   
             _flash.enabled = true;
+            _audioSource.PlayOneShot(_switchSound, _volume);
             _shotsLeft -= 1;
             _shotsLeftText.text = _shotsLeft.ToString();
             _isReady = false;
