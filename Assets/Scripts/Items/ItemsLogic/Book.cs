@@ -35,6 +35,13 @@ namespace Items.ItemsLogic
 
         [SerializeField] private PhotoReward _photoReward;
 
+        [SerializeField]
+        private AudioClip _switchSound;
+        [SerializeField]
+        private float _volume;
+
+        private AudioSource _audioSource;
+
         private void Start()
         {
             _photoReward.enabled = false;
@@ -46,6 +53,8 @@ namespace Items.ItemsLogic
             if (_ghostRoom == LevelRooms.LevelRoomsEnum.NoRoom) _levelSetUp.OnLevelSetedUp += SetUpInfo;
 
             if (_couldBeWritten) StartCoroutine(nameof(WriteBook));
+
+            _audioSource = GetComponent<AudioSource>();
         }
         private void OnEnable()
         {
@@ -82,7 +91,8 @@ namespace Items.ItemsLogic
              _meshMaterials = _bookMeshRenderer.materials;
              _meshMaterials[1] = _inscribedMaterials[Random.Range(0, _inscribedMaterials.Length)];
              _bookMeshRenderer.materials = _meshMaterials;
-             _isInscribed = true;
+            _audioSource.PlayOneShot(_switchSound, _volume);
+            _isInscribed = true;
         }
         
         private bool RandomizeInscription(float chance)
