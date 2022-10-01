@@ -6,6 +6,8 @@ namespace Items
     [RequireComponent(typeof(Rigidbody))]
     public class Pickupable : MonoBehaviour, IPickupable
     {
-
+        private void Start()
+        {
+        }
     }
 }

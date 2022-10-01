@@ -11,14 +11,19 @@ namespace UI
 {
     public class BoardMenu : MonoBehaviour
     {
-        [SerializeField] private CinemachineVirtualCamera _boardCamera;
+        [SerializeField] 
+        private CinemachineVirtualCamera _boardCamera;
 
-        [SerializeField] private GameObject _mainScreen;
-        [SerializeField] private GameObject _levelResultScreen;
+        [SerializeField] 
+        private GameObject _mainScreen;
+        [SerializeField] 
+        private GameObject _levelResultScreen;
 
-        [SerializeField] private LevelResultsScreen _levelResults;
+        [SerializeField]
+        private LevelResultsScreen _levelResults;
 
-        [SerializeField] private TextMeshProUGUI _levelNameTXT;
+        [SerializeField]
+        private TextMeshProUGUI _levelNameTXT;
 
         private GameObject _currentScreen;
         private GameObject _previousScreen;

@@ -8,23 +8,36 @@ namespace Player.Movement
 {
     public class MoveControl : MonoBehaviour
     {
-        [SerializeField] private CharacterController _charController;
+        [SerializeField]
+        private CharacterController _charController;
 
-        [SerializeField] private Transform _playerBody;
-        [SerializeField] private Transform _playerHead;
+        [SerializeField]
+        private Transform _playerBody;
+        [SerializeField]
+        private Transform _playerHead;
 
-        [SerializeField] private Transform _playerHuntPoint;
+        [SerializeField] 
+        private Transform _playerHuntPoint;
 
-        [SerializeField] private Transform _playerBoneHead;
-        [SerializeField] private float _mouseSensitivity = 100f;
+        [SerializeField] 
+        private Transform _playerBoneHead;
+        [SerializeField] 
+        private float _mouseSensitivity = 100f;
 
-        [SerializeField] private float _maxMoveSpeed = 12f;
-        [SerializeField] private float _sprintMultiplier;
+        [SerializeField]
+        private float _maxMoveSpeed = 12f;
+        [SerializeField]
+        private float _sprintMultiplier;
 
-        [SerializeField] private float _maxSprintDuration = 3.5f;
-        [SerializeField] private float _sprintCD = 5f;
+        [SerializeField]
+        private float _maxSprintDuration = 3.5f;
+        [SerializeField] 
+        private float _sprintCD = 5f;
 
-        [SerializeField] private AnimationControl _animConrol;
+        [SerializeField]
+        private AnimationControl _animConrol;
+        [SerializeField]
+        private AudioSource _breathingAudio;
 
         private float _sprintRestMultiplayer;
         private float _sprintRestWhileSprintingMultiplayer;
@@ -141,7 +154,11 @@ namespace Player.Movement
                 else
                 {
                     _currSprintDuration += Time.deltaTime;
-                    if(_currSprintDuration >= _maxSprintDuration) _isSprintLocked = true;
+                    if (_currSprintDuration >= _maxSprintDuration)
+                    {
+                        _breathingAudio.Play();
+                        _isSprintLocked = true;
+                    }
                 }
                 _sprint = !_isSprintLocked;
                 if (_sprint) _timeFromLastSprint = 0f;
