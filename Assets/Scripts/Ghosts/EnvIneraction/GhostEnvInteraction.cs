@@ -24,6 +24,8 @@ namespace Ghosts.EnvIneraction
         [SerializeField]
         private float _ghostInteractionCDMultiplayer = 0.02f;
 
+        [SerializeField]
+        private AudioClip _doorInterectionSound;
 
 
         private int _maxEMFLevel = 4;
@@ -188,6 +190,8 @@ namespace Ghosts.EnvIneraction
         {
             if (door != null)
             {
+                AudioHelper.PlayClipAtPoint(_doorInterectionSound, door.transform.position, 0.8f);
+
                 InstantiateInteraction(door.transform.position);
                 door.GhostDrugDoor();
             }

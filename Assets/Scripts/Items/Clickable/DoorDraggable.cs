@@ -83,7 +83,6 @@ public class DoorDraggable : MonoBehaviour, IDraggable
 
         while (true)
         {
-            Debug.Log("Closing coroutine");
             if (IsDoorFullyClosed()) { EnableCollider(); yield break; }
             yield return null;
         }

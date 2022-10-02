@@ -16,28 +16,33 @@ namespace Player.Movement
         [SerializeField]
         private Transform _playerHead;
 
-        [SerializeField] 
+        [SerializeField]
         private Transform _playerHuntPoint;
 
-        [SerializeField] 
+        [SerializeField]
         private Transform _playerBoneHead;
-        [SerializeField] 
+        [SerializeField]
         private float _mouseSensitivity = 100f;
 
         [SerializeField]
-        private float _maxMoveSpeed = 12f;
+        private float _normalMoveSpeed = 2.8f;
         [SerializeField]
         private float _sprintMultiplier;
 
         [SerializeField]
         private float _maxSprintDuration = 3.5f;
-        [SerializeField] 
+        [SerializeField]
         private float _sprintCD = 5f;
 
         [SerializeField]
         private AnimationControl _animConrol;
         [SerializeField]
         private AudioSource _breathingAudio;
+        [SerializeField]
+        private AudioSource _footstepsAudio;
+
+        [SerializeField]
+        private AudioSource _footstepsFastAudio;
 
         private float _sprintRestMultiplayer;
         private float _sprintRestWhileSprintingMultiplayer;
@@ -47,7 +52,9 @@ namespace Player.Movement
         private float _mouseX, _mouseY;
         private Vector2 _mouseDelta;
         private float _xRotation = 0f;
+
         private Vector3 _headPosition;
+        private Vector3 _currSpeed;
 
         private float _currFollowHeadTime = 0f;
 
@@ -127,7 +134,7 @@ namespace Player.Movement
 
         private void FollowHead()
         {
-            if(_currFollowHeadTime > 0f)
+            if (_currFollowHeadTime > 0f)
             {
                 SetHeadPosition();
                 _currFollowHeadTime -= Time.deltaTime;
@@ -181,7 +188,7 @@ namespace Player.Movement
             else _currSprintDuration -= Time.deltaTime * _sprintRestWhileSprintingMultiplayer;
             _currSprintDuration = Mathf.Max(0, _currSprintDuration);
         }
-        
+
 
         private Vector3 VectorToForward(Vector3 cameraTransform)
         {
@@ -195,7 +202,7 @@ namespace Player.Movement
         {
             _playerBody.Rotate(Vector3.up * _mouseX);
 
-            _xRotation -= _mouseY ;
+            _xRotation -= _mouseY;
             _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
 
             _playerHead.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
@@ -203,10 +210,13 @@ namespace Player.Movement
 
         private void PlayerMovement()
         {
-            Vector3 move = CalculateMove(_sprint);
-            _charController.Move(move * _maxMoveSpeed * _curSpeedMultiplier * Time.deltaTime);
-        }
+            Vector3 moveDir = CalculateMove(_sprint);
+            _currSpeed = moveDir * _normalMoveSpeed * _curSpeedMultiplier;
 
+            if (_currSpeed.magnitude > 0) AdjustFootstepsAudio(_curSpeedMultiplier);
+            else AdjustFootstepsAudio(_curSpeedMultiplier, true);
+            _charController.Move(_currSpeed * Time.deltaTime);
+        }
 
         private Vector3 CalculateMove(bool sprint)
         {
@@ -216,6 +226,26 @@ namespace Player.Movement
 
             Vector3 result = transform.right * _xMove + transform.forward * _zMove;
             return result;
+        }
+
+        private void AdjustFootstepsAudio(float playerSpeed, bool disable = false)
+        {
+            if (disable)
+            {
+                if (_footstepsAudio.isPlaying) _footstepsAudio.Pause();
+                if (_footstepsFastAudio.isPlaying) _footstepsFastAudio.Pause();
+                return;
+            }
+            if (playerSpeed <= 1)
+            {
+                if (_footstepsFastAudio.isPlaying) _footstepsFastAudio.Pause();
+                if (!_footstepsAudio.isPlaying) _footstepsAudio.Play();
+            }
+            else
+            {
+                if (_footstepsAudio.isPlaying) _footstepsAudio.Pause();
+                if (!_footstepsFastAudio.isPlaying) _footstepsFastAudio.Play();
+            }
         }
     }
 }
