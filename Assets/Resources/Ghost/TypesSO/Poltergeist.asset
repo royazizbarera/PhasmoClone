@@ -17,12 +17,12 @@ MonoBehaviour:
   GhostEvidences: 000000000400000002000000
   PatrolRandomMultiplier: 5
   StartGhostAnger: 30
-  GhostAngerPlusPerSec: 0.1
-  GhostAngerInGhostRoomPlusPerSec: 0.15
+  GhostAngerPlusPerSec: 0.14
+  GhostAngerInGhostRoomPlusPerSec: 0.2
   MaxGhostAnger: 110
   StartLateGhostAnger: 70
-  PlayerSanityMinusPerSecond: 0.07
-  PlayerSanityMinusInGhostRoomPerSecond: 0.14
+  PlayerSanityMinusPerSecond: 0.1
+  PlayerSanityMinusInGhostRoomPerSecond: 0.18
   PlayerSanityMinusPerGhostInterection: 2
   PlayerSanityMinusPerGhostGhostEvent: 5
   PlayerSanityMinusPerHunt: 10
@@ -30,6 +30,7 @@ MonoBehaviour:
   MaxDistanceToPlayerAggr: 4
   AttackChanceCoef: 0.2
   MinAttackCD: 40
+  GhostEventChanceCoef: 0.2
   DefaultInterectionChance: 15
   InterectionsCoef: 0.38
   GhostFindInerectionsCD: 1.8
