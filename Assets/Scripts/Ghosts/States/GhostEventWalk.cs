@@ -11,12 +11,15 @@ namespace Ghosts
         [SerializeField]
         private UnityEngine.AI.NavMeshAgent _agent;
         [SerializeField]
-        private float _stoppingDistance = 1f;
-        [SerializeField]
         private GhostInfo _ghostInfo;
+
+        [SerializeField]
+        private float _stoppingDistance = 1f;
         [SerializeField]
         private float _ghostSpeed = 2f;
 
+        [SerializeField]
+        private AudioSource _poofAudioSource;
 
         private const float MinTimeGhostEvent = 4f;
         private const float MaxTimeGhostEvent = 8f;
@@ -47,7 +50,7 @@ namespace Ghosts
             SetDestination();
             if (Vector3.Distance(transform.position, _playerPoint.position)  <= _stoppingDistance)
             {
-                GhostDissapear();
+                GhostPoofDissapear();
             }
         }
 
@@ -79,8 +82,9 @@ namespace Ghosts
 
         private void StopGhostEventState() => _ghostMood.StopGhostEvent();
 
-        private void GhostDissapear()
+        private void GhostPoofDissapear()
         {
+            _poofAudioSource.Play();
             StopGhostEventState();
         }
 

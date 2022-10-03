@@ -28,6 +28,7 @@ namespace Ghosts
         private Transform _playerPoint;
         private Transform _heroTransform;
         private PlayerCheckResult _playerCheckResult;
+        private AudioControl _audioControl;
 
         private WaitForSeconds _checkForLineWait;
 
@@ -35,27 +36,32 @@ namespace Ghosts
 
         private bool _dataSetedUp = false;
         private float _ghostAttackSpeed;
+        private float _distanceToPlayer = 0f;
+
         private bool _underSmudgeEffect = false;
         private Transform[] _patrolPoints;
         private LevelSetUp _levelSetUp;
 
         private Transform _currDestination = null;
 
-        private const float DistanceToKill = 1f;
-        private const float DisableTime = 3f;
         private int _randomPointNum;
         private bool _isAttacking = false;
         private bool _isFollowing = false;
         private float _maxAggroDistance;
+        private float _heartBeatVolumePercent = 0f;
 
         private Vector3 _playerPointDistance;
         private Vector3 _ghostPointDistance;
+
+        private const float MaxVolumeDistanceHeartBeat = 2f;
+        private const float MinVolumeDistanceHeartBeat = 7f;
+
+        private const float DistanceToKill = 1f;
+        private const float DisableTime = 3f;
         private void OnEnable()
         {
             if (!_dataSetedUp) SetUpGhostData();
         }
-
-
         private void OnDestroy()
         {
             _ghostInfo.GhostSetedUp -= SetUpParams;
@@ -65,6 +71,8 @@ namespace Ghosts
             if (!_isAttacking) return;
             if (_isGhostDisabled) return;
 
+            CheckDistanceToPlayer();
+            SetHeartBeatVolume();
             if (_isFollowing && !_underSmudgeEffect)
             {
                 _currDestination = _playerPoint;
@@ -102,10 +110,12 @@ namespace Ghosts
             if (!_agent.isOnNavMesh) return;
             if (isAttacking)
             {
+                _audioControl.StartHeartBeat();
                 _agent.isStopped = false;
             }
             else
             {
+                _audioControl.StopHeartBeat();
                 _agent.ResetPath();
                 _agent.isStopped = true;
             }
@@ -140,13 +150,29 @@ namespace Ghosts
             yield return null;
         }
 
+        private void CheckDistanceToPlayer()
+        {
+            _distanceToPlayer = Vector3.Distance(_playerPointDistance, _ghostPointDistance);
+        }
+
+        private void SetHeartBeatVolume()
+        {
+            // Calculate heart beat volume percent, where if _distanceToPlayer <= MaxVolumeDistanceHeartBeat => 100%, and if _distanceToPlayer >= MinVolumeDistanceHeartBeat => 0%
+            _heartBeatVolumePercent = ((_distanceToPlayer - MaxVolumeDistanceHeartBeat) * 100) / (MinVolumeDistanceHeartBeat - MaxVolumeDistanceHeartBeat);
+            _heartBeatVolumePercent = 100f - _heartBeatVolumePercent;
+            _heartBeatVolumePercent = Mathf.Clamp(_heartBeatVolumePercent, 0f, 100f);
+
+            _audioControl.SetHeartBeatVolume(_heartBeatVolumePercent);
+        }
+
+
         private void CheckForKill()
         {
             if (_underSmudgeEffect) return;
             _playerPointDistance = _heroTransform.position;
             _ghostPointDistance = transform.position;
 
-            if ((Vector3.Distance(_playerPointDistance, _ghostPointDistance) < DistanceToKill) && !_playerKilled)
+            if ((_distanceToPlayer < DistanceToKill) && !_playerKilled)
             {
                 _gameFlow.GameOverAction?.Invoke();
                 _playerKilled = true;
@@ -181,8 +207,10 @@ namespace Ghosts
         }
         private void SetUpParams()
         {
+            _audioControl = _ghostInfo.MainHero.GetComponent<AudioControl>();
+
             _playerPoint = _ghostInfo.PlayerPoint;
-            _heroTransform = _ghostInfo.PlayerTransform;
+            _heroTransform = _ghostInfo.MainHero.transform;
 
             _ghostAttackSpeed = _ghostInfo.GhostData.GhostAttackSpeed;
             _maxAggroDistance = _ghostInfo.GhostData.MaxDistanceToPlayerAggr;

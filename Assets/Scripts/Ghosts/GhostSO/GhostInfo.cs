@@ -8,8 +8,9 @@ public class GhostInfo : MonoBehaviour
     public LevelRooms.LevelRoomsEnum GhostRoom;
     public LevelSizeConst.LevelSize LevelSize;
 
+    public GameObject MainHero;
     public Transform PlayerPoint;
-    public Transform PlayerTransform;
+
     public DoorDraggable[] MainDoors;
     public SanityHandler PlayerSanity;
     public RoomIdentifire PlayerRoom;
@@ -17,11 +18,11 @@ public class GhostInfo : MonoBehaviour
     public float FinalGhostAnger = 0f;
 
     public Action GhostSetedUp;
-    public void SetUpGhost(GhostDataSO currGhostData, Transform playerTransform, Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity, LevelSizeConst.LevelSize levelSize, DoorDraggable[] mainDoors)
+    public void SetUpGhost(GhostDataSO currGhostData, GameObject mainHero, Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity, LevelSizeConst.LevelSize levelSize, DoorDraggable[] mainDoors)
     {
         GhostData = currGhostData;
 
-        PlayerTransform = playerTransform;
+        MainHero = mainHero;
         PlayerPoint = playerTransformPoint;
 
         PlayerRoom = playerRoom;

@@ -5,16 +5,27 @@ using UnityEngine;
 using UnityEngine.Audio;
 using Utilities.Constants;
 
-public class AmbientSounds : MonoBehaviour
-{   
-    [SerializeField] private float _activeOutsideVolume = 1f;
-    [SerializeField] private float _activeInsideVolume = 1f;
-    [SerializeField] private float _inactiveVolume = 0f;
+public class AudioControl : MonoBehaviour
+{
+    [SerializeField]
+    private float _activeOutsideVolume = 1f;
+    [SerializeField]
+    private float _activeInsideVolume = 1f;
+    [SerializeField]
+    private float _heartBeatMaxVolume = 1f;
 
-    [SerializeField] private AudioSource _outsideAudioSource;
-    [SerializeField] private AudioSource _insideAudioSource;
+    [SerializeField]
+    private float _inactiveVolume = 0f;
 
-    [SerializeField] private AudioMixerGroup _audioMixer;
+    [SerializeField]
+    private AudioSource _outsideAudioSource;
+    [SerializeField]
+    private AudioSource _insideAudioSource;
+    [SerializeField]
+    private AudioSource _heartBeatSource;
+
+    [SerializeField]
+    private AudioMixerGroup _audioMixer;
 
     private RoomIdentifire _roomIdentifire;
 
@@ -32,14 +43,24 @@ public class AmbientSounds : MonoBehaviour
         _outsideAudioSource.volume = _activeOutsideVolume;
         _insideAudioSource.volume = _inactiveVolume;
 
-        if (GameBootstrapper.Instance.StateMachine.GetCurrentState() is LobbyState) _audioMixer.audioMixer.SetFloat("AmbientVolume", -20f);
+        if (GameBootstrapper.Instance.StateMachine.GetCurrentState() is LobbyState) _audioMixer.audioMixer.SetFloat("AmbientVolume", -25f);
         else _audioMixer.audioMixer.SetFloat("AmbientVolume", -0f);
 
         StartCoroutine(nameof(CheckPlayerPosition));
     }
 
+    public void StartHeartBeat()
+    {
+        _heartBeatSource.Play();
+        _heartBeatSource.volume = 0;
+    }
+
+    public void SetHeartBeatVolume(float percent) => _heartBeatSource.volume = (percent * _heartBeatMaxVolume) / 100f;
+    public void StopHeartBeat() => _heartBeatSource.Stop();
+
+
     IEnumerator CheckPlayerPosition()
-    {   
+    {
         while (true)
         {
             if (_roomIdentifire.CurrRoom == LevelRooms.LevelRoomsEnum.NoRoom && _inHouse)
@@ -83,4 +104,5 @@ public class AmbientSounds : MonoBehaviour
         _outsideAudioSource.volume = _activeOutsideVolume;
         _insideAudioSource.volume = _inactiveVolume;
     }
+
 }
