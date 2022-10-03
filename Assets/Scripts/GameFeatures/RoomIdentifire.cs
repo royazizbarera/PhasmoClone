@@ -28,7 +28,7 @@ namespace GameFeatures
             {
                 if (CurrRoom == other.GetComponent<Room>().RoomType)
                 {
-                    if (_nextRoom != LevelRooms.LevelRoomsEnum.NoRoom && _nextRoom != CurrRoom)
+                    if (_nextRoom != LevelRooms.LevelRoomsEnum.NoRoom)// && _nextRoom != CurrRoom)
                     {
                         CurrRoom = _nextRoom;
                     }

@@ -1,3 +1,5 @@
+using Infrastructure;
+using Infrastructure.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +8,15 @@ namespace Utilities
 {
     public class CursorLock : MonoBehaviour
     {
+        private GameFlowService _gameFlowService;
         private bool cursorLock;
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            cursorLock = true;
+            if (AllServices.Container.Single<GameFlowService>().IsGameEnded == false)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                cursorLock = true;
+            }
         }
         void Update()
         {
@@ -18,15 +24,25 @@ namespace Utilities
             {
                 if (cursorLock)
                 {
-                    Cursor.lockState = CursorLockMode.Confined;
-                    cursorLock = false;
+                    UnlockCursor();
                 }
                 else
                 {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    cursorLock = true;
+                    LockCursor();
                 }
             }
+        }
+
+        private void UnlockCursor()
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            cursorLock = false;
+        }
+
+        public void LockCursor()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            cursorLock = true;
         }
     }
 }
