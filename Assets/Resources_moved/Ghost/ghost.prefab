@@ -603,6 +603,7 @@ MonoBehaviour:
   _interecMaxDistanceToPlayerSanity: 4
   _ghostInteractionCDMultiplayer: 0.02
   _doorInterectionSound: {fileID: 8300000, guid: c68bc05f5b4d27341b621e238e01bfb1, type: 3}
+  _mainDoorClosedSound: {fileID: 8300000, guid: 0423a7362c9bf9848afbf377d0fbaba5, type: 3}
 --- !u!114 &238534750
 MonoBehaviour:
   m_ObjectHideFlags: 0

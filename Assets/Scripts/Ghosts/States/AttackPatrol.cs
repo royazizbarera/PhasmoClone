@@ -152,12 +152,13 @@ namespace Ghosts
 
         private void CheckDistanceToPlayer()
         {
-            _distanceToPlayer = Vector3.Distance(_playerPointDistance, _ghostPointDistance);
+            _distanceToPlayer = Vector3.Distance(_heroTransform.position, transform.position);
         }
 
         private void SetHeartBeatVolume()
         {
             // Calculate heart beat volume percent, where if _distanceToPlayer <= MaxVolumeDistanceHeartBeat => 100%, and if _distanceToPlayer >= MinVolumeDistanceHeartBeat => 0%
+
             _heartBeatVolumePercent = ((_distanceToPlayer - MaxVolumeDistanceHeartBeat) * 100) / (MinVolumeDistanceHeartBeat - MaxVolumeDistanceHeartBeat);
             _heartBeatVolumePercent = 100f - _heartBeatVolumePercent;
             _heartBeatVolumePercent = Mathf.Clamp(_heartBeatVolumePercent, 0f, 100f);
@@ -169,8 +170,6 @@ namespace Ghosts
         private void CheckForKill()
         {
             if (_underSmudgeEffect) return;
-            _playerPointDistance = _heroTransform.position;
-            _ghostPointDistance = transform.position;
 
             if ((_distanceToPlayer < DistanceToKill) && !_playerKilled)
             {

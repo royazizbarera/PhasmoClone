@@ -27,6 +27,8 @@ namespace Ghosts.EnvIneraction
         [SerializeField]
         private AudioClip _doorInterectionSound;
 
+        [SerializeField]
+        private AudioClip _mainDoorClosedSound;
 
         private int _maxEMFLevel = 4;
         // private const float MaxInteractionRadius = 8f;
@@ -70,6 +72,7 @@ namespace Ghosts.EnvIneraction
         {
             foreach(DoorDraggable door in _ghostInfo.MainDoors)
             {
+                AudioHelper.PlayClipAtPoint(_mainDoorClosedSound, door.transform.position, 0.8f);
                 door.LockTheDoor();
             }
         }

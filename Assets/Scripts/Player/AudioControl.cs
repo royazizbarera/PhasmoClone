@@ -43,7 +43,7 @@ public class AudioControl : MonoBehaviour
         _outsideAudioSource.volume = _activeOutsideVolume;
         _insideAudioSource.volume = _inactiveVolume;
 
-        if (GameBootstrapper.Instance.StateMachine.GetCurrentState() is LobbyState) _audioMixer.audioMixer.SetFloat("AmbientVolume", -25f);
+        if (GameBootstrapper.Instance.StateMachine.GetCurrentState() is LobbyState) _audioMixer.audioMixer.SetFloat("AmbientVolume", -20f);
         else _audioMixer.audioMixer.SetFloat("AmbientVolume", -0f);
 
         StartCoroutine(nameof(CheckPlayerPosition));
