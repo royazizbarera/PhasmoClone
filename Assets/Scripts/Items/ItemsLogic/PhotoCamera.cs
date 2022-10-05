@@ -6,6 +6,7 @@ using System;
 using Infrastructure.Services;
 using Infrastructure;
 using UI.Journal;
+using System.IO;
 
 namespace Items.ItemsLogic
 {
@@ -105,7 +106,7 @@ namespace Items.ItemsLogic
                     if (target != null)
                     {
                         PhotoReward targetReward = target.GetComponent<PhotoReward>();
-                        Debug.Log(targetReward.GetRewardName());
+
                         if (targetReward.CheckIfPhotographed() == false)
                         {
                             _rewardName = targetReward.GetRewardName();
@@ -127,7 +128,10 @@ namespace Items.ItemsLogic
             Texture2D snapShot = _renderTexture.toTexture2D();
             byte[] bytes = snapShot.EncodeToPNG();
             string filename = ScreenShotName(resWidth, resHeight);
-            System.IO.File.WriteAllBytes(filename, bytes);
+
+            if (Directory.Exists(Application.streamingAssetsPath + "/Snapshots") == false) Directory.CreateDirectory(Application.streamingAssetsPath + "/Snapshots");
+
+            File.WriteAllBytes(filename, bytes);
             _snapshotPath = filename;
 
             _journal.SendPhotoToJournal(_snapshotPath, _rewardName);
@@ -136,8 +140,8 @@ namespace Items.ItemsLogic
         
         private string ScreenShotName(int width, int height)
         {
-            return string.Format("{0}/Resources/Snapshots/snap{1}.png",
-                                 Application.dataPath,
+            return string.Format("{0}/Snapshots/snap{1}.png",
+                                 Application.streamingAssetsPath,
                                  _journal.GetCurrentPhoto().ToString());
         }
         
