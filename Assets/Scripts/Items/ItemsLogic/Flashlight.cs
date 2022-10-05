@@ -1,3 +1,5 @@
+using Infrastructure;
+using Infrastructure.Services;
 using Items.Logic;
 using UnityEngine;
 
@@ -7,19 +9,22 @@ namespace Items.ItemsLogic
     {
         [SerializeField]
         private Light _light;
+        [SerializeField]
+        private AudioClip _audioClip;
+        [SerializeField]
+        private float _audioVolume = 0.6f;
 
-        private AudioSource _audioSource;
+        private AudioManager _audioManager;
 
         private void Start()
         {
-            _audioSource = GetComponent<AudioSource>();
+            _audioManager = AllServices.Container.Single<AudioManager>();
         }
         public void OnMainUse()
         {
             if (_light.enabled) _light.enabled = false;
             else _light.enabled = true;
-
-            _audioSource.Play();
+            _audioManager.PlaySound(_audioClip, _audioVolume);
         }
     }
 }

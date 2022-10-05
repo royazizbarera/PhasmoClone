@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
+using Infrastructure.Services;
+using Infrastructure;
 
 public class SettingsScreen : MonoBehaviour
 {
@@ -13,8 +15,11 @@ public class SettingsScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _volumeTXT;
     private const float Epsilon = 0.001f;
 
+    private AudioManager _audioManager;
+
     void Start()
     {
+        _audioManager = AllServices.Container.Single<AudioManager>();
         LoadVolume();
     }
 
@@ -44,9 +49,7 @@ public class SettingsScreen : MonoBehaviour
     private void ChangeVolume(float volume)
     {
         _volumeTXT.text = (int)(volume * 100) + "%";
-
-        volume = CalculateMixerVolume(volume);
-        _audioMixer.audioMixer.SetFloat("SoundsVolume", volume);
+        _audioManager.SetSoundVolume(volume * 100f);
     }
 
     private float CalculateMixerVolume(float volume)

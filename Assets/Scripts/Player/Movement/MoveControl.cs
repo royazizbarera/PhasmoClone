@@ -82,6 +82,12 @@ namespace Player.Movement
             _inputSystem.CrouchAction += CrouchHandle;
 
             _playerHeadOffset = _playerHead.position.y - _playerBoneHead.position.y;
+
+            _footstepsAudio.volume = 0f;
+            _footstepsAudio.Play();
+
+            _footstepsFastAudio.volume = 0f;
+            _footstepsFastAudio.Play();
         }
 
         private void OnDestroy()
@@ -232,19 +238,19 @@ namespace Player.Movement
         {
             if (disable)
             {
-                if (_footstepsAudio.isPlaying) _footstepsAudio.Pause();
-                if (_footstepsFastAudio.isPlaying) _footstepsFastAudio.Pause();
+                 _footstepsAudio.volume = 0f;
+                 _footstepsFastAudio.volume = 0f;
                 return;
             }
             if (playerSpeed <= 1)
             {
-                if (_footstepsFastAudio.isPlaying) _footstepsFastAudio.Pause();
-                if (!_footstepsAudio.isPlaying) _footstepsAudio.Play();
+                 _footstepsFastAudio.volume = 0f;
+                 _footstepsAudio.volume = 1f;
             }
             else
             {
-                if (_footstepsAudio.isPlaying) _footstepsAudio.Pause();
-                if (!_footstepsFastAudio.isPlaying) _footstepsFastAudio.Play();
+                _footstepsAudio.volume = 0f;
+                _footstepsFastAudio.volume = 1f;
             }
         }
     }

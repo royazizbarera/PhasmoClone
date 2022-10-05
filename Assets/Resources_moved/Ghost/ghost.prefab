@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GhostData: {fileID: 11400000, guid: 0567e6284d5676e45a852286a603f70b, type: 2}
-  GhostRoom: 0
+  GhostRoom: 24
   LevelSize: 0
   MainHero: {fileID: 0}
   PlayerPoint: {fileID: 0}

@@ -1,11 +1,13 @@
 using GameFeatures;
+using Infrastructure;
+using Infrastructure.Services;
 using Infrastructure.States.GameStates;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using Utilities.Constants;
 
-public class AudioControl : MonoBehaviour
+public class PlayerAudioControl : MonoBehaviour
 {
     [SerializeField]
     private float _activeOutsideVolume = 1f;
@@ -31,6 +33,7 @@ public class AudioControl : MonoBehaviour
 
     private WaitForSeconds WaitForSeconds = new WaitForSeconds(0.5f);
 
+    private AudioManager _audioManager;
     private bool _inHouse = false;
 
     private int _fadeSteps = 10;
@@ -38,13 +41,14 @@ public class AudioControl : MonoBehaviour
 
     private void Start()
     {
+        _audioManager = AllServices.Container.Single<AudioManager>();
         _roomIdentifire = GetComponent<RoomIdentifire>();
 
         _outsideAudioSource.volume = _activeOutsideVolume;
         _insideAudioSource.volume = _inactiveVolume;
 
-        if (GameBootstrapper.Instance.StateMachine.GetCurrentState() is LobbyState) _audioMixer.audioMixer.SetFloat("AmbientVolume", -20f);
-        else _audioMixer.audioMixer.SetFloat("AmbientVolume", -0f);
+        if (GameBootstrapper.Instance.StateMachine.GetCurrentState() is LobbyState) _audioManager.SetAmbientVolume(40f);
+        else _audioManager.SetAmbientVolume(100f);
 
         StartCoroutine(nameof(CheckPlayerPosition));
     }

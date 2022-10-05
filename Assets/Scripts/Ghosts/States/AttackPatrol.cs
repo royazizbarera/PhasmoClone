@@ -28,7 +28,7 @@ namespace Ghosts
         private Transform _playerPoint;
         private Transform _heroTransform;
         private PlayerCheckResult _playerCheckResult;
-        private AudioControl _audioControl;
+        private PlayerAudioControl _audioControl;
 
         private WaitForSeconds _checkForLineWait;
 
@@ -206,7 +206,7 @@ namespace Ghosts
         }
         private void SetUpParams()
         {
-            _audioControl = _ghostInfo.MainHero.GetComponent<AudioControl>();
+            _audioControl = _ghostInfo.MainHero.GetComponent<PlayerAudioControl>();
 
             _playerPoint = _ghostInfo.PlayerPoint;
             _heroTransform = _ghostInfo.MainHero.transform;
