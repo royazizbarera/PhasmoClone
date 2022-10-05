@@ -37,6 +37,12 @@ namespace Infrastructure.Services
             return gameObject;
         }
 
+        public async Task<GameObject> CreateAudioManager()
+        {
+            GameObject gameObject = await _assets.Instantiate(AssetPath.AudioManagerPath);
+            return gameObject;
+        }
+
         public async Task<GameObject> CreateTargetUI()
         {
             GameObject gameObject = await _assets.Instantiate(AssetPath.TargetUIPath);
@@ -57,6 +63,7 @@ namespace Infrastructure.Services
             _jumpscare = gameObject;
             return gameObject;
         }
+
 
         public GameObject GetMainHero()
         {

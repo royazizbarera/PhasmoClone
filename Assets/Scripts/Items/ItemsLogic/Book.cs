@@ -35,11 +35,6 @@ namespace Items.ItemsLogic
 
         [SerializeField] private PhotoReward _photoReward;
 
-        [SerializeField]
-        private AudioClip _switchSound;
-        [SerializeField]
-        private float _volume;
-
         private AudioSource _audioSource;
 
         private void Start()
@@ -91,7 +86,7 @@ namespace Items.ItemsLogic
              _meshMaterials = _bookMeshRenderer.materials;
              _meshMaterials[1] = _inscribedMaterials[Random.Range(0, _inscribedMaterials.Length)];
              _bookMeshRenderer.materials = _meshMaterials;
-            _audioSource.PlayOneShot(_switchSound, _volume);
+            _audioSource.Play();
             _isInscribed = true;
         }
         

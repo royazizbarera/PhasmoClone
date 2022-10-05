@@ -15,11 +15,6 @@ namespace Items.ItemsLogic
         [SerializeField]
         public Material _revealableMaterial;
 
-        [SerializeField]
-        private AudioClip _switchSound;
-        [SerializeField]
-        private float _volume;
-
         private AudioSource _audioSource;
 
         private bool _isEnabled = false;
@@ -43,7 +38,7 @@ namespace Items.ItemsLogic
                 _isEnabled = false;
             }
 
-            _audioSource.PlayOneShot(_switchSound, _volume);
+            _audioSource.Play();
         }
         private void OnDisable()
         {

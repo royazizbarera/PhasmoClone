@@ -6984,7 +6984,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7
+  m_VersionIndex: 19
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -7137,8 +7137,6 @@ MonoBehaviour:
   _uvLight: {fileID: 6478076201140614161}
   _light: {fileID: 2507987392342402943}
   _revealableMaterial: {fileID: 2100000, guid: 53f93ad3ec988444abffce416195038a, type: 2}
-  _switchSound: {fileID: 8300000, guid: 8c3e850d5a4801b4b856d054af93854e, type: 3}
-  _volume: 0.6
 --- !u!114 &6478076201140614161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7164,9 +7162,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6248479932512277681, guid: 2602fa6c3be779343a289a41e5744fda, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 8c3e850d5a4801b4b856d054af93854e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

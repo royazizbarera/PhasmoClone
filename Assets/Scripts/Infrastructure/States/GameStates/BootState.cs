@@ -39,9 +39,12 @@ namespace Infrastructure.States.GameStates
             _services.RegisterSingle<DataSaveLoader>(new DataSaveLoader());
             _services.RegisterSingle<SceneLoader>(new SceneLoader(_coroutineRunner));
             _services.RegisterSingle<GameFactory>(new GameFactory(_services.Single<AssetProvider>()));
-            GameObject inputSystemGameObject = await _services.Single<GameFactory>().CreateInputSystem();
 
-            _services.RegisterSingle<InputSystem>(inputSystemGameObject.GetComponent<InputSystem>());      
+            GameObject inputSystemGameObject = await _services.Single<GameFactory>().CreateInputSystem();
+            _services.RegisterSingle<InputSystem>(inputSystemGameObject.GetComponent<InputSystem>());
+
+            GameObject audioManager = await _services.Single<GameFactory>().CreateAudioManager();
+            _services.RegisterSingle<AudioManager>(audioManager.GetComponent<AudioManager>());
         }
 
         private void RegisterStaticDataService()

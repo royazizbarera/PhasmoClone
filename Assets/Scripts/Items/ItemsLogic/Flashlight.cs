@@ -8,11 +8,6 @@ namespace Items.ItemsLogic
         [SerializeField]
         private Light _light;
 
-        [SerializeField]
-        private AudioClip _switchSound;
-        [SerializeField]
-        private float _volume;
-
         private AudioSource _audioSource;
 
         private void Start()
@@ -24,7 +19,7 @@ namespace Items.ItemsLogic
             if (_light.enabled) _light.enabled = false;
             else _light.enabled = true;
 
-            _audioSource.PlayOneShot(_switchSound, _volume);
+            _audioSource.Play();
         }
     }
 }

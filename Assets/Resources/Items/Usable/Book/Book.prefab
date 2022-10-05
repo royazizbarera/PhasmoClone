@@ -178,8 +178,6 @@ MonoBehaviour:
   _isInscribed: 0
   _couldBeWritten: 0
   _photoReward: {fileID: 7702693104501307762}
-  _switchSound: {fileID: 8300000, guid: c70bbe719e037d74286615885ca0d379, type: 3}
-  _volume: 1
 --- !u!114 &554475804871680336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,8 +215,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6248479932512277681, guid: 2602fa6c3be779343a289a41e5744fda, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: c70bbe719e037d74286615885ca0d379, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -227,10 +225,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 2
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

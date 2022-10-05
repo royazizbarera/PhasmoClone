@@ -72,6 +72,7 @@ namespace Ghosts.EnvIneraction
         {
             foreach(DoorDraggable door in _ghostInfo.MainDoors)
             {
+                Debug.Log("Should play maybe");
                 AudioHelper.PlayClipAtPoint(_mainDoorClosedSound, door.transform.position, 0.8f);
                 door.LockTheDoor();
             }

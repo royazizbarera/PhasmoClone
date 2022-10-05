@@ -143,8 +143,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 2298840731036411209}
-  _switchSound: {fileID: 8300000, guid: 74bebe4561d6f74489fc0ad0a6dc2b81, type: 3}
-  _volume: 0.9
 --- !u!54 &7854196876542157025
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,8 +182,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6248479932512277681, guid: 2602fa6c3be779343a289a41e5744fda, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 74bebe4561d6f74489fc0ad0a6dc2b81, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
