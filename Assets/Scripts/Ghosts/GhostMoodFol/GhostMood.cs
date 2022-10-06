@@ -1,3 +1,5 @@
+using Infrastructure;
+using Infrastructure.Services;
 using UnityEngine;
 
 namespace Ghosts.Mood
@@ -24,11 +26,13 @@ namespace Ghosts.Mood
         private float _huntTime = 0f;
 
         private SanityHandler _playerSanity;
+        private GameObjectivesService _gameObjectives;
 
         public float _ghostAnger = 0f;
         public float _ghostFinalAnger = 0f;
         void Start()
         {
+            _gameObjectives = AllServices.Container.Single<GameObjectivesService>();
             _ghostStateMachine.ChangeState(_idleState);
             if (_ghostInfo.SetedUp) { SetUp(); _subscribedToGhostSetUp = false; }
             else { _ghostInfo.GhostSetedUp += SetUp; _subscribedToGhostSetUp = true; }
@@ -78,6 +82,7 @@ namespace Ghosts.Mood
 
         public void SmudgeEffect()
         {
+            _gameObjectives.GhostSmudged();
             _attackChecker.SmudgeEffect(SmudgeTime);
             if(_ghostStateMachine._currState is AttackState)
             {

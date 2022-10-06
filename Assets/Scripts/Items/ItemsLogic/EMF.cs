@@ -1,3 +1,5 @@
+using Infrastructure;
+using Infrastructure.Services;
 using Items.ItemsLogic;
 using Items.Logic;
 using System;
@@ -16,6 +18,12 @@ public class EMF : MonoBehaviour, IMainUsable
     public const float EmfRadius = 1.5f;
     private const float EmfCheckCD = 0.1f;
 
+    private GameObjectivesService _gameObjectives;
+
+    private void Start()
+    {
+        _gameObjectives = AllServices.Container.Single<GameObjectivesService>();
+    }
     public void OnMainUse()
     {
         SwitchEnable();
@@ -57,6 +65,7 @@ public class EMF : MonoBehaviour, IMainUsable
             if(_interection) if (_EmfLvlFound < _interection.EmfLvl) _EmfLvlFound = _interection.EmfLvl;
 
         }
+        if (_EmfLvlFound >= 2) _gameObjectives.EMFLevelFound(_EmfLvlFound);
         _currEmfLvl = _EmfLvlFound;
     }
 

@@ -24,11 +24,15 @@ public class LevelResultsScreen : MonoBehaviour
     private GameFlowService _gameFlowService;
     private LevelSetUp _levelSetUp;
     private DataSaveLoader _dataSaveLoader;
-    public void LoadResults()
+
+    private void Start()
     {
         _gameFlowService = AllServices.Container.Single<GameFlowService>();
         _levelSetUp = AllServices.Container.Single<LevelSetUp>();
         _dataSaveLoader = AllServices.Container.Single<DataSaveLoader>();
+    }
+    public void LoadResults()
+    {
 
         float itemsCost = _shop.CalculateItemsCost(_levelSetUp.AddedItems);
         _gameFlowService.CalculateInsurance(itemsCost);

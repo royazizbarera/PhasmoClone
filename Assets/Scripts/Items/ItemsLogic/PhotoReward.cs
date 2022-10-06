@@ -1,3 +1,5 @@
+using Infrastructure;
+using Infrastructure.Services;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +11,11 @@ public class PhotoReward : MonoBehaviour
 
     private bool _isPhotographed = false;
 
+    private GameObjectivesService _gameObjectives;
+    private void Start()
+    {
+        _gameObjectives = AllServices.Container.Single<GameObjectivesService>();
+    }
     public string GetRewardName()
     {
         return Name;
@@ -19,6 +26,7 @@ public class PhotoReward : MonoBehaviour
     }
     public void Photograph()
     {
+         _gameObjectives.PhotoTaken(Name);
         _isPhotographed = true;
     }
     public bool CheckIfPhotographed()

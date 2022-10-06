@@ -82,7 +82,7 @@ public class PatrolWalk : MonoBehaviour
 
     private void ChoosePoint()
     {
-        _randomPointsList = RandomGenerator.GenerateRandom((_patrolPoints.Length / _patrolRandomMultiplier), 0, _patrolPoints.Length - 1);
+        _randomPointsList = RandomGenerator.GenerateRandom((_patrolPoints.Length / _patrolRandomMultiplier), 0, _patrolPoints.Length);
 
         Transform bestPoint = null;
         float bestDistance = float.MaxValue;

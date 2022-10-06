@@ -7,14 +7,14 @@ namespace Utilities
 {
     public static class RandomGenerator
     {
-        public static List<int> GenerateRandom(int count, int min, int max)
+        public static List<int> GenerateRandom(int count, int minInclusive, int maxExclusive)
         {
 
             HashSet<int> candidates = new HashSet<int>();
 
             for (int i = 0; i < count * 2; i++)
             {
-                candidates.Add(UnityEngine.Random.Range(min, max));
+                candidates.Add(UnityEngine.Random.Range(minInclusive, maxExclusive));
                 if (candidates.Count >= count) break;
             }
 

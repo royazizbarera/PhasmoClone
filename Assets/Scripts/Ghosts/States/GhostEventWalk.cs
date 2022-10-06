@@ -1,4 +1,6 @@
 using Ghosts.Mood;
+using Infrastructure;
+using Infrastructure.Services;
 using UnityEngine;
 
 namespace Ghosts
@@ -32,6 +34,7 @@ namespace Ghosts
         private bool _isInGhostEvent = false;
         private bool _subscribedToGhostSetUp = false;
 
+        private GameObjectivesService _gameObjectives;
         private void Start()
         {
              SetUpGhostData();
@@ -80,7 +83,11 @@ namespace Ghosts
             }
         }
 
-        private void StopGhostEventState() => _ghostMood.StopGhostEvent();
+        private void StopGhostEventState()
+        {
+            _gameObjectives.GhostEventWitnessed();
+            _ghostMood.StopGhostEvent();
+        }
 
         private void GhostPoofDissapear()
         {
@@ -105,6 +112,7 @@ namespace Ghosts
 
         private void SetUpGhostData()
         {
+            _gameObjectives = AllServices.Container.Single<GameObjectivesService>();
             if (_ghostInfo.SetedUp) { SetUpGhostInfo(); _subscribedToGhostSetUp = false; }
             else
             {
