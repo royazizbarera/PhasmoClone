@@ -13,7 +13,7 @@ public class DoorDraggable : MonoBehaviour, IDraggable
     [SerializeField]
     private float _forceAmmount = 15f;
     [SerializeField]
-    private float _distance = 3f;
+    private float _distance = 1.5f;
 
     private Collider _collider;
     private Rigidbody _rb;
@@ -149,9 +149,11 @@ public class DoorDraggable : MonoBehaviour, IDraggable
 
     private void DraggDoor()
     {
-        Ray playerAim = _cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray playerAim = _cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
         Vector3 nextPos = _cam.transform.position + playerAim.direction * _distance;
         Vector3 currPos = transform.position;
+
         _rb.velocity = (nextPos - currPos) * _forceAmmount;
     }
 

@@ -175,8 +175,8 @@ Rigidbody:
   m_GameObject: {fileID: 2770012612503637016}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 10
+  m_AngularDrag: 80
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -233,8 +233,8 @@ MonoBehaviour:
   IsDoorFullyOpened: 0
   IsDoorClosed: 0
   FingerprintTransform: {fileID: 2770419976044922750}
-  _forceAmmount: 10
-  _distance: 2.5
+  _forceAmmount: 20
+  _distance: 1.5
 --- !u!1 &2770012612779613366
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,8 +345,8 @@ Rigidbody:
   m_GameObject: {fileID: 2770012612779613366}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 10
+  m_AngularDrag: 80
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -403,8 +403,8 @@ MonoBehaviour:
   IsDoorFullyOpened: 0
   IsDoorClosed: 0
   FingerprintTransform: {fileID: 2770419976204159716}
-  _forceAmmount: 10
-  _distance: 2.5
+  _forceAmmount: 20
+  _distance: 1.5
 --- !u!1 &2770419976044922751
 GameObject:
   m_ObjectHideFlags: 0
