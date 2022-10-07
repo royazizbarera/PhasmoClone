@@ -25543,7 +25543,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9272727, y: 1}
+    m_SensorSize: {x: 1.8593041, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -35160,14 +35160,6 @@ PrefabInstance:
     - target: {fileID: 4360355057582129581, guid: 4bad91519a666a345a3400e2ee8671f3, type: 3}
       propertyPath: m_Name
       value: Main Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360355057582129584, guid: 4bad91519a666a345a3400e2ee8671f3, type: 3}
-      propertyPath: near clip plane
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4360355057582129584, guid: 4bad91519a666a345a3400e2ee8671f3, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 375
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bad91519a666a345a3400e2ee8671f3, type: 3}

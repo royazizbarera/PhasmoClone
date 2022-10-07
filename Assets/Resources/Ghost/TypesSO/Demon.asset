@@ -53,3 +53,4 @@ MonoBehaviour:
 
     Weakness: Demons are afraid of Smudge sticks.
     Smudging the ghost will prevent them from hunt for 1 minute. '
+  _emf: {fileID: 5570669887009615765, guid: a1d17fc7dadadee49a959a1f9a632e45, type: 3}

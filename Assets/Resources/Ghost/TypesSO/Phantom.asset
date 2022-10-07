@@ -10,45 +10,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 035a751c97309db4c840d995a05355bb, type: 3}
-  m_Name: Shade
+  m_Name: Phantom
   m_EditorClassIdentifier: 
   GhostNormalSpeed: 2
-  GhostAttackSpeed: 2
-  GhostEvidences: 010000000300000002000000
+  GhostAttackSpeed: 3.3
+  GhostEvidences: 000000000400000003000000
   PatrolRandomMultiplier: 5
-  StartGhostAnger: 20
-  GhostAngerPlusPerSec: 0.11
+  StartGhostAnger: 30
+  GhostAngerPlusPerSec: 0.12
   GhostAngerInGhostRoomPlusPerSec: 0.16
   MaxGhostAnger: 110
   StartLateGhostAnger: 70
-  PlayerSanityMinusPerSecond: 0.08
-  PlayerSanityMinusInGhostRoomPerSecond: 0.16
+  PlayerSanityMinusPerSecond: 0.07
+  PlayerSanityMinusInGhostRoomPerSecond: 0.14
   PlayerSanityMinusPerGhostInterection: 1
   PlayerSanityMinusPerGhostGhostEvent: 5
   PlayerSanityMinusPerHunt: 10
   MinSanityToAttack: 60
   MaxDistanceToPlayerAggr: 4
-  AttackChanceCoef: 0.17
+  AttackChanceCoef: 0.25
   MinAttackCD: 40
   GhostEventChanceCoef: 0.2
-  DefaultInterectionChance: 12
-  InterectionsCoef: 0.26
+  DefaultInterectionChance: 15
+  InterectionsCoef: 0.3
   GhostFindInerectionsCD: 2
   GhostBetweenInterectionsCD: 4
   ItemThrowRadiusOfInterection: 1.5
   DoorsTouchRadiusInterection: 2.5
   ClickableTouchRadiusInterection: 2.5
   ItemThrowPower: 5
-  MinMeshActiveTime: 0.12
-  MaxMeshActiveTime: 0.18
-  MinMeshDisabledTime: 0.55
-  MaxMeshDisabledTime: 0.9
-  GhostDescription: 'Shade is a very shy ghosts. They are afraid of people, unactive
-    , and attack very rarely.
-
-
-    Strenghts: Shades are much harder to find.
-
-
-    Weakness:
-    Shades are slower and more quite than other ghosts.'
+  MinMeshActiveTime: 0.1
+  MaxMeshActiveTime: 0.16
+  MinMeshDisabledTime: 0.8
+  MaxMeshDisabledTime: 1.5
+  GhostDescription: "Phantom are very dangerous ghosts. It is hard to see phantom
+    during the hunt and they are reall fast. Be carefull! \n\nStrengths: Phantoms
+    are faster than other ghosts \n\nWeakness: It is easy to distinguish Phantoms
+    during the hunt."

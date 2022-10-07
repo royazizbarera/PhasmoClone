@@ -44,7 +44,6 @@ public class TruckDoorButton : MonoBehaviour, IClickable
     IEnumerator LevelEnd()
     { 
         yield return new WaitForSeconds(_delayForEnd + _closingDoorsTime);
-        Debug.Log("Close");
         _canBeOpened = false;
         LevelEndEvent();
     }
