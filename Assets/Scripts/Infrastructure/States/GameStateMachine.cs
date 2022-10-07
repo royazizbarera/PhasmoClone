@@ -16,8 +16,12 @@ namespace Infrastructure.States
             {
                 [typeof(BootState)] = new BootState(services, coroutineRunner, this),
                 [typeof(LobbyState)] = new LobbyState(this, services.Single<GameFactory>()),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, services.Single<GameFactory>(), services.Single<LevelSetUp>(), services.Single<SceneLoader>(), services.Single<StaticDataService>()),
-                [typeof(GameFlowState)] = new GameFlowState(this, services.Single<LevelSetUp>(), services.Single<SceneLoader>(), services.Single<GameFlowService>())
+
+                [typeof(LoadLevelState)] = new LoadLevelState(this, services.Single<GameFactory>(),
+                services.Single<LevelSetUp>(), services.Single<SceneLoader>(), services.Single<StaticDataService>(), services.Single<GameObjectivesService>()),
+
+                [typeof(GameFlowState)] = new GameFlowState(this, services.Single<LevelSetUp>(), services.Single<SceneLoader>(), 
+                services.Single<GameFlowService>(), services.Single<GameObjectivesService>())
             };
         }
 

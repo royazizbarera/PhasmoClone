@@ -10,9 +10,9 @@ namespace Infrastructure.Services
     public class GameObjectivesService :  IService
     {
         public Action OnObjectiveCompleted;
-         public List<GameObjectiveSO> CurrObjectives = new List<GameObjectiveSO>(3);
+        public List<GameObjectiveSO> CurrObjectives = new List<GameObjectiveSO>(3);
 
-        private const int RandomObjectives = 3;
+        private const int RandomObjectivesCount = 3;
         private const string EMFLevelSTR = "EMFLevel";
         private const string GhostEventSTR = "GhostEvent";
         private const string GhostPhotoSTR = "GhostPhoto";
@@ -23,6 +23,8 @@ namespace Infrastructure.Services
         public GameObjectivesService(StaticDataService _staticData)
         {
             _allObjectives = _staticData.GetAllObjectives();
+            for(int i = 0; i< RandomObjectivesCount; i++)
+                CurrObjectives.Add(null);
         }
 
         public void ClearAllData()
@@ -33,8 +35,8 @@ namespace Infrastructure.Services
 
         public void SetUpObjectives()
         {
-            List<int>RandomNums = RandomGenerator.GenerateRandom(RandomObjectives, 0, _allObjectives.Count);
-            for(int i = 0; i< RandomObjectives; i++)
+            List<int>RandomNums = RandomGenerator.GenerateRandom(RandomObjectivesCount, 0, _allObjectives.Count);
+            for(int i = 0; i< RandomObjectivesCount; i++)
             {
                 CurrObjectives[i] = _allObjectives.ElementAt(RandomNums[i]).Value;
             }
@@ -76,10 +78,6 @@ namespace Infrastructure.Services
         private void ObjectivesRefreshed()
         {
             OnObjectiveCompleted?.Invoke();
-        }
-        private void ReloadCompletedTasks()
-        {
-
         }
     }
 }

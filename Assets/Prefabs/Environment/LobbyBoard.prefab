@@ -10780,7 +10780,7 @@ GameObject:
   - component: {fileID: 3178254808788053285}
   - component: {fileID: 5452199486156709420}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: LobbyBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

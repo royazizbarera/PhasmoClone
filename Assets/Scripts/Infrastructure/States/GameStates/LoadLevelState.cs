@@ -13,22 +13,25 @@ namespace Infrastructure.States.GameStates
     {
         private readonly GameStateMachine _stateMachine;
         private readonly GameFactory _gameFactory;
+        private readonly GameObjectivesService _gameObjectivesService;
         private readonly LevelSetUp _levelSetUp;
         private readonly SceneLoader _sceneLoader;
         private readonly StaticDataService _staticDataService;
         private GameStateMachine gameStateMachine;
 
-        public LoadLevelState(GameStateMachine stateMachine, GameFactory gameFactory, LevelSetUp levelSetUp, SceneLoader sceneLoader, StaticDataService staticDataService)
+        public LoadLevelState(GameStateMachine stateMachine, GameFactory gameFactory, LevelSetUp levelSetUp, SceneLoader sceneLoader, StaticDataService staticDataService, GameObjectivesService gameObjectivesService)
         {
             _stateMachine = stateMachine;
             _gameFactory = gameFactory;
             _levelSetUp = levelSetUp;
+            _gameObjectivesService = gameObjectivesService;
             _sceneLoader = sceneLoader;
             _staticDataService = staticDataService;
         }
 
         public void Enter()
         {
+            _gameObjectivesService.SetUpObjectives();
             _sceneLoader.Load(_levelSetUp.SelectedMap.ToString(), InitGameWorld);
             //_sceneLoader.Load(SceneNames.LevelNames.Factory.ToString(), InitGameWorld);
         }

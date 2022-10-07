@@ -41,11 +41,17 @@ namespace Infrastructure.Services
         private SceneNames.LevelNames _selectedMap = SceneNames.LevelNames.Turkwood;
         private Transform _currRoomTransform;
         private LevelRooms.LevelRoomsEnum _currRoom = LevelRooms.LevelRoomsEnum.NoRoom;
-  
+
+        private GameObjectivesService _gameObjectivesService;
         private LevelInfo _currLevelInfo;
         private LevelSizeConst.LevelSize _currLevelSize;
 
         private int[] _addedItems;
+
+        public LevelSetUp(GameObjectivesService gameObjectivesService)
+        {
+            _gameObjectivesService = gameObjectivesService;
+        }
 
         public void ChooseMap(SceneNames.LevelNames selectedMap)
         {
@@ -67,7 +73,7 @@ namespace Infrastructure.Services
             if (_currLevelInfo == null)
             {
                 Debug.LogWarning("Current level info = null!");
-            }
+            };
             RandomizeCurrentRoom();
         }
 

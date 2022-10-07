@@ -18,6 +18,7 @@ namespace Infrastructure.Services
 
         private SceneLoader _sceneLoader;
         private GameStateMachine _gameStateMachine;
+        private GameObjectivesService _gameObjectivesService;
         private ICoroutineRunner _coroutineRunner;
 
         private float[] _rewardValues = new float[6];
@@ -30,8 +31,9 @@ namespace Infrastructure.Services
         private float _deathCoef = 0.25f;
         private float _difficultyCoef = 1f;
 
-        public GameFlowService(ICoroutineRunner coroutineRunner)
+        public GameFlowService(ICoroutineRunner coroutineRunner, GameObjectivesService gameObjectivesService)
         {
+            _gameObjectivesService = gameObjectivesService;
             _coroutineRunner = coroutineRunner;
 
             GameOverAction += GameOverCall;
@@ -83,31 +85,28 @@ namespace Infrastructure.Services
             if (IsChooseCorrect()) _rewardValues[0] = _ghostReward; //obj 1 - ghost
             else _rewardValues[0] = 0f;
 
-            _rewardValues[1] = _objectives[0]; //obj 2
-            _rewardValues[2] = _objectives[1]; //obj 3
-            _rewardValues[3] = _objectives[2]; //obj 4
+            for(int i = 1; i< 4; i++)
+            _rewardValues[i] = _gameObjectivesService.CurrObjectives[i-1].IsDone ? _gameObjectivesService.CurrObjectives[i - 1].ObjectiveReward : 0f; //objectives
 
             _rewardValues[4] = _photoReward; //photo
-
             _rewardValues[5] = _insuranceReward; //insurance
 
             return _rewardValues;
         }
+
+        public float GetTotalRewardValue()
+        {
+            CalculateTotalReward();
+            return _totalReward;
+        }
+
         public void AddPhotoReward(float value)
         {
             _photoReward += value;
         }
         public void CalculateInsurance(float itemsCost)
         {
-            if (Died)
-            {
-                _insuranceReward = Mathf.Round(itemsCost / 2);
-            }
-        }
-        public float GetTotalRewardValue()
-        {
-            CalculateTotalReward();
-            return _totalReward;
+            if (Died) _insuranceReward = Mathf.Round(itemsCost / 2);
         }
         private void CalculateTotalReward()
         {

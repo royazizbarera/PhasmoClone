@@ -33,14 +33,15 @@ namespace Infrastructure.States.GameStates
         private async void RegisterServices()
         {
             RegisterStaticDataService();
-            _services.RegisterSingle<LevelSetUp>(new LevelSetUp());
-            _services.RegisterSingle<GameFlowService>(new GameFlowService(_coroutineRunner));
+            _services.RegisterSingle<GameObjectivesService>(new GameObjectivesService(_services.Single<StaticDataService>()));
+
+            _services.RegisterSingle<GameFlowService>(new GameFlowService(_coroutineRunner, _services.Single<GameObjectivesService>()));
             _services.RegisterSingle<AssetProvider>(new AssetProvider());
             _services.RegisterSingle<DataSaveLoader>(new DataSaveLoader());
             _services.RegisterSingle<SceneLoader>(new SceneLoader(_coroutineRunner));
             _services.RegisterSingle<GameFactory>(new GameFactory(_services.Single<AssetProvider>()));
-            _services.RegisterSingle<GameObjectivesService>(new GameObjectivesService(_services.Single<StaticDataService>()));
 
+            _services.RegisterSingle<LevelSetUp>(new LevelSetUp(_services.Single<GameObjectivesService>()));
             GameObject inputSystemGameObject = await _services.Single<GameFactory>().CreateInputSystem();
             _services.RegisterSingle<InputSystem>(inputSystemGameObject.GetComponent<InputSystem>());
 
