@@ -15,23 +15,16 @@ public class TruckInventory : MonoBehaviour
     [SerializeField]
     private int[] _addedItems;
 
-    private GameFlowService _gameFlowService;
     private LevelSetUp _levelSetUp;
 
     private void Start()
     {
         _levelSetUp = AllServices.Container.Single<LevelSetUp>();
-        _gameFlowService = AllServices.Container.Single<GameFlowService>();
 
         _addedItems = new int[_levelSetUp.AddedItems.Length];
 
         GetAddedItems();
         SetUpTruckInventory();
-    }
-
-    public void LevelEndEvent()
-    {
-        _gameFlowService.WinAction?.Invoke();
     }
 
     private void SetUpTruckInventory()
