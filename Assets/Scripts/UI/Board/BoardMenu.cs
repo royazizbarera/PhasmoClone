@@ -6,6 +6,7 @@ using Environment;
 using Infrastructure.Services;
 using Cinemachine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -24,6 +25,10 @@ namespace UI
 
         [SerializeField]
         private TextMeshProUGUI _levelNameTXT;
+        [SerializeField]
+        private Button _playButton;
+        [SerializeField]
+        private TextMeshProUGUI _playButtonTXT;
 
         private GameObject _currentScreen;
         private GameObject _previousScreen;
@@ -73,6 +78,8 @@ namespace UI
         {
             _levelSetUp.ChooseMap(levelName.LevelName);
             _levelNameTXT.text = "Contract: " + levelName.LevelName.ToString();
+            _playButton.interactable = true;
+            _playButtonTXT.alpha = 255f;
         }
 
         private void LoadStartScreen()
