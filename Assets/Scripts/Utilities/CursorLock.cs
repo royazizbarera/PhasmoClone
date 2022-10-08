@@ -18,21 +18,6 @@ namespace Utilities
                 cursorLock = true;
             }
         }
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (cursorLock)
-                {
-                    UnlockCursor();
-                }
-                else
-                {
-                    LockCursor();
-                }
-            }
-        }
-
         private void UnlockCursor()
         {
             Cursor.lockState = CursorLockMode.Confined;
