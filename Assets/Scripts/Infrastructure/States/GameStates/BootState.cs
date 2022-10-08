@@ -58,7 +58,8 @@ namespace Infrastructure.States.GameStates
 
         private void LockFPS()
         {
-            Application.targetFrameRate = 200;
+            Debug.Log("FPs locked");
+            Application.targetFrameRate = 20;
         }
 
         private void LoadGameInfo()
