@@ -21,6 +21,8 @@ namespace Ghosts
         private float _ghostSpeed = 2f;
 
         [SerializeField]
+        private AudioSource _growlAudioSource;
+        [SerializeField]
         private AudioSource _poofAudioSource;
 
         private const float MinTimeGhostEvent = 4f;
@@ -62,6 +64,7 @@ namespace Ghosts
             _agent.speed = _ghostSpeed;
             _timeOfCurrentGhostEvent = 0f;
             _durationOfGhostEvent = Random.Range(MinTimeGhostEvent, MaxTimeGhostEvent);
+            _growlAudioSource.Play();
 
             SwitchGhostEventState(true);
         }
@@ -91,6 +94,7 @@ namespace Ghosts
 
         private void GhostPoofDissapear()
         {
+            _growlAudioSource.Stop();
             _poofAudioSource.Play();
             StopGhostEventState();
         }
