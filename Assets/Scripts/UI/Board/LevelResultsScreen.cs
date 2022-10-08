@@ -20,19 +20,28 @@ public class LevelResultsScreen : MonoBehaviour
 
     private float[] _rewardValues;
     private float _totalReward;
+    private bool _isLoaded = false;
 
     private GameFlowService _gameFlowService;
     private LevelSetUp _levelSetUp;
     private DataSaveLoader _dataSaveLoader;
 
-    private void Start()
+    private void Awake()
+    {
+        LoadServices();
+    }
+
+    private void LoadServices()
     {
         _gameFlowService = AllServices.Container.Single<GameFlowService>();
         _levelSetUp = AllServices.Container.Single<LevelSetUp>();
         _dataSaveLoader = AllServices.Container.Single<DataSaveLoader>();
+        _isLoaded = true;
     }
+
     public void LoadResults()
     {
+        if (!_isLoaded) LoadServices();
 
         float itemsCost = _shop.CalculateItemsCost(_levelSetUp.AddedItems);
         _gameFlowService.CalculateInsurance(itemsCost);
@@ -40,7 +49,8 @@ public class LevelResultsScreen : MonoBehaviour
         _rewardValues = _gameFlowService.GetRewardValues();
         _totalReward = _gameFlowService.GetTotalRewardValue();
 
-        _dataSaveLoader.AddMoney(_totalReward);
+        _dataSaveLoader.AddMoney(_totalReward);     
+
         if (_gameFlowService.Died) _dataSaveLoader.RemoveItems(_levelSetUp.AddedItems);
 
         if (_gameFlowService.Died == false)
@@ -57,6 +67,7 @@ public class LevelResultsScreen : MonoBehaviour
         {
             _rewardValuesTXT[i].text = _rewardValues[i].ToString() + " $";
         }
+
         _ghostTypeTXT.text = _levelSetUp.GhostInfo.GhostData.name;
 
         _totalRewardTXT.text = _totalReward.ToString() + " $";

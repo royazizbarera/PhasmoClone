@@ -85,7 +85,7 @@ namespace Infrastructure.Services
             if (IsChooseCorrect()) _rewardValues[0] = _ghostReward; //obj 1 - ghost
             else _rewardValues[0] = 0f;
 
-            for(int i = 1; i< 4; i++)
+            for (int i = 1; i < 4; i++)
             _rewardValues[i] = _gameObjectivesService.CurrObjectives[i-1].IsDone ? _gameObjectivesService.CurrObjectives[i - 1].ObjectiveReward : 0f; //objectives
 
             _rewardValues[4] = _photoReward; //photo

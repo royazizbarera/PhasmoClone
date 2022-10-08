@@ -93,7 +93,7 @@ namespace UI
 
                 _levelResults.LoadResults();
 
-                _levelResultScreen.SetActive(true);
+                _levelResultScreen.SetActive(true);    
             }
             else
             {
