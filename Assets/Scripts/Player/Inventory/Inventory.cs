@@ -78,7 +78,7 @@ namespace Player.Inventory
         {
             if (_pickupableSlots[currMainItemSlot] != null)
             {
-                IDisabable disabable = _pickupableSlots[currMainItemSlot].gameObject.GetComponent<IDisabable>();
+                IDisababled disabable = _pickupableSlots[currMainItemSlot].gameObject.GetComponent<IDisababled>();
                 if (disabable != null) disabable.DisableItem();
                 else
                     _pickupableSlots[currMainItemSlot].gameObject.SetActive(false);
@@ -89,7 +89,7 @@ namespace Player.Inventory
             {
                 MainItem = _pickupableSlots[slotNum];
 
-                IDisabable disabable = _pickupableSlots[currMainItemSlot].gameObject.GetComponent<IDisabable>();
+                IDisababled disabable = _pickupableSlots[currMainItemSlot].gameObject.GetComponent<IDisababled>();
                 if (disabable != null) disabable.EnableItem();
                 else
                     _pickupableSlots[currMainItemSlot].gameObject.SetActive(true);
@@ -136,7 +136,7 @@ namespace Player.Inventory
             item.gameObject.transform.localPosition = Vector3.zero;
             item.gameObject.transform.localEulerAngles = Vector3.zero;
 
-            IDisabable disabable = item.gameObject.GetComponent<IDisabable>();
+            IDisababled disabable = item.gameObject.GetComponent<IDisababled>();
             if (disabable != null) disabable.DisableItem();
             else
                 item.gameObject.SetActive(false);

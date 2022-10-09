@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using Utilities.Constants;
 
-public class Thermo : MonoBehaviour, IMainUsable, IDisabable
+public class Thermo : MonoBehaviour, IMainUsable, IDisababled
 {
     [SerializeField]
     private RoomIdentifire _currRoom;

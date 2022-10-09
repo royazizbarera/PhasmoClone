@@ -8,7 +8,7 @@ using Infrastructure.Services;
 
 namespace Items.ItemsLogic
 {
-    public class Book : MonoBehaviour, IPickupable, IDisabable
+    public class Book : MonoBehaviour, IPickupable, IDisababled
     {
         private GhostInfo _ghostInfo;
         private LevelRooms.LevelRoomsEnum _ghostRoom;
