@@ -11,6 +11,15 @@ public class EMF : MonoBehaviour, IMainUsable
     [SerializeField]
     private Light[] _lightPoints;
 
+
+    [SerializeField]
+    private AudioClip _slowPeep;
+    [SerializeField]
+    private AudioClip _fastPeep;
+
+    private AudioSource _audioSource;
+
+
     private bool _isEmfEnabled = false;
     private int _currEmfLvl = 1;
     private int _EmfLvlFound = 1;
@@ -23,23 +32,38 @@ public class EMF : MonoBehaviour, IMainUsable
     private void Start()
     {
         _gameObjectives = AllServices.Container.Single<GameObjectivesService>();
+        _audioSource = GetComponent<AudioSource>();
     }
     public void OnMainUse()
     {
         SwitchEnable();
     }
 
+    private void OnEnable()
+    {
+        if (_isEmfEnabled)
+        {
+            StartCoroutine(nameof(CheckForInteractions));
+            _audioSource.Play();
+        }
+    }
+    private void OnDisable()
+    {
+        StopCoroutine(nameof(CheckForInteractions));
+    }
     private void SwitchEnable()
     {
         if (_isEmfEnabled)
         {
             _isEmfEnabled = false;
+            _audioSource.Stop();
             StopCoroutine(nameof(CheckForInteractions));
             TurnOff();
         }
         else
         {
             _isEmfEnabled = true;
+            _audioSource.Play();
             TurnOn();
             StartCoroutine(nameof(CheckForInteractions));
         }
@@ -67,6 +91,18 @@ public class EMF : MonoBehaviour, IMainUsable
         }
         if (_EmfLvlFound >= 2) _gameObjectives.EMFLevelFound(_EmfLvlFound);
         _currEmfLvl = _EmfLvlFound;
+
+        if (_EmfLvlFound <= 1) _audioSource.Pause();
+        else if (_EmfLvlFound > 1 && _EmfLvlFound <= 3)
+        {
+            _audioSource.clip = _slowPeep;
+            if (!_audioSource.isPlaying) _audioSource.Play();
+        }
+        else
+        {
+            _audioSource.clip = _fastPeep;
+            if (!_audioSource.isPlaying) _audioSource.Play();
+        }
     }
 
     private void ShowLights()
