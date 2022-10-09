@@ -243,6 +243,7 @@ MonoBehaviour:
   _currRoom: {fileID: 2433121412606705390}
   _thermoScreen: {fileID: 3984945749013756766}
   _temperatureTXT: {fileID: 3984945748592325318}
+  _thermoBody: {fileID: 831425613197518620}
 --- !u!114 &2433121412606705390
 MonoBehaviour:
   m_ObjectHideFlags: 0

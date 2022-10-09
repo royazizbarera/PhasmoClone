@@ -178,6 +178,7 @@ MonoBehaviour:
   _isInscribed: 0
   _couldBeWritten: 0
   _photoReward: {fileID: 7702693104501307762}
+  _bookMesh: {fileID: 4585969204135759454}
 --- !u!114 &554475804871680336
 MonoBehaviour:
   m_ObjectHideFlags: 0

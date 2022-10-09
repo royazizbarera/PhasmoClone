@@ -76,13 +76,23 @@ namespace Player.Inventory
 
         public void ChangeMainItem(int slotNum)
         {
-            if (_pickupableSlots[currMainItemSlot] != null) _pickupableSlots[currMainItemSlot].gameObject.SetActive(false);
+            if (_pickupableSlots[currMainItemSlot] != null)
+            {
+                IDisabable disabable = _pickupableSlots[currMainItemSlot].gameObject.GetComponent<IDisabable>();
+                if (disabable != null) disabable.DisableItem();
+                else
+                    _pickupableSlots[currMainItemSlot].gameObject.SetActive(false);
+            }
 
             currMainItemSlot = slotNum;
             if (_pickupableSlots[currMainItemSlot] != null)
             {
                 MainItem = _pickupableSlots[slotNum];
-                _pickupableSlots[currMainItemSlot].gameObject.SetActive(true);
+
+                IDisabable disabable = _pickupableSlots[currMainItemSlot].gameObject.GetComponent<IDisabable>();
+                if (disabable != null) disabable.EnableItem();
+                else
+                    _pickupableSlots[currMainItemSlot].gameObject.SetActive(true);
             }
             else
             {
@@ -126,7 +136,10 @@ namespace Player.Inventory
             item.gameObject.transform.localPosition = Vector3.zero;
             item.gameObject.transform.localEulerAngles = Vector3.zero;
 
-            item.gameObject.SetActive(false);
+            IDisabable disabable = item.gameObject.GetComponent<IDisabable>();
+            if (disabable != null) disabable.DisableItem();
+            else
+                item.gameObject.SetActive(false);
         }
 
         private void DropItemRb(IPickupable item, bool shouldThrow = true)

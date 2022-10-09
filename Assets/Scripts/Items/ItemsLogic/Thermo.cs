@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using Utilities.Constants;
 
-public class Thermo : MonoBehaviour, IMainUsable
+public class Thermo : MonoBehaviour, IMainUsable, IDisabable
 {
     [SerializeField]
     private RoomIdentifire _currRoom;
@@ -15,6 +15,9 @@ public class Thermo : MonoBehaviour, IMainUsable
     private Canvas _thermoScreen;
     [SerializeField]
     private TextMeshProUGUI _temperatureTXT;
+
+    [SerializeField]
+    private GameObject _thermoBody;
 
     private GhostInfo _ghostInfo;
     private LevelRooms.LevelRoomsEnum _ghostRoom;
@@ -56,12 +59,10 @@ public class Thermo : MonoBehaviour, IMainUsable
     {
         if (_isThermoEnabled)
         {
-            _isThermoEnabled = false;
             TurnOff();
         }
         else
         {
-            _isThermoEnabled = true;
             TurnOn();
         }
     }
@@ -117,12 +118,14 @@ public class Thermo : MonoBehaviour, IMainUsable
 
     private void TurnOn()
     {
+        _isThermoEnabled = true;
         _thermoScreen.gameObject.SetActive(true);
         StartCoroutine(nameof(CheckTemperature));
     }
 
     private void TurnOff()
     {
+        _isThermoEnabled = false;
         _thermoScreen.gameObject.SetActive(false);
         StopCoroutine(nameof(CheckTemperature));
     }
@@ -138,4 +141,19 @@ public class Thermo : MonoBehaviour, IMainUsable
         _ghostRoom = _levelSetUp.CurrGhostRoom;
         if (_ghostInfo.GhostData.GhostEvidences.Contains(GhostEvidence.GhostEvidencesTypes.FreezingTemps)) _minTemp = GhostRoomMinusMinTemp;
     }
+
+    public void EnableItem()
+    {
+        _thermoBody.SetActive(true);
+
+        if (_isThermoEnabled)
+        _thermoScreen.gameObject.SetActive(true);
+    }
+
+    public void DisableItem()
+    {
+        _thermoBody.SetActive(false);
+        _thermoScreen.gameObject.SetActive(false);
+    }
+
 }

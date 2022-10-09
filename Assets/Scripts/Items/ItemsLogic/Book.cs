@@ -8,33 +8,42 @@ using Infrastructure.Services;
 
 namespace Items.ItemsLogic
 {
-    public class Book : MonoBehaviour, IPickupable
+    public class Book : MonoBehaviour, IPickupable, IDisabable
     {
-
-
         private GhostInfo _ghostInfo;
         private LevelRooms.LevelRoomsEnum _ghostRoom;
 
         private LevelSetUp _levelSetUp;
 
-        [SerializeField] private Material[] _inscribedMaterials;
+        [SerializeField] 
+        private Material[] _inscribedMaterials;
 
-        [SerializeField] private MeshRenderer _bookMeshRenderer;
+        [SerializeField] 
+        private MeshRenderer _bookMeshRenderer;
         private Material[] _meshMaterials;
 
 
-        [SerializeField] private RoomIdentifire _currRoom;
-        [SerializeField] private float _defaultInscribeChance = 2f;
-        [SerializeField] private float _increaseChancePerTick = 0.1f;
-        [SerializeField] private float _tickTime = 5f;
+        [SerializeField]
+        private RoomIdentifire _currRoom;
+        [SerializeField] 
+        private float _defaultInscribeChance = 2f;
+        [SerializeField] 
+        private float _increaseChancePerTick = 0.1f;
+        [SerializeField] 
+        private float _tickTime = 5f;
 
-        [SerializeField] private float _curIncribeChance;
+        [SerializeField]
+        private float _curIncribeChance;
 
-        [SerializeField] private bool _isInscribed = false;
-        [SerializeField] private bool _couldBeWritten = false;
+        [SerializeField] 
+        private bool _isInscribed = false;
+        [SerializeField]
+        private bool _couldBeWritten = false;
 
         [SerializeField] private PhotoReward _photoReward;
 
+        [SerializeField]
+        private GameObject _bookMesh;
         private AudioSource _audioSource;
 
         private void Start()
@@ -50,14 +59,6 @@ namespace Items.ItemsLogic
             if (_couldBeWritten) StartCoroutine(nameof(WriteBook));
 
             _audioSource = GetComponent<AudioSource>();
-        }
-        private void OnEnable()
-        {
-            if (!_isInscribed && _couldBeWritten) StartCoroutine(nameof(WriteBook));
-        }
-        private void OnDisable()
-        {
-            StopAllCoroutines();
         }
         IEnumerator WriteBook()
         {
@@ -101,6 +102,17 @@ namespace Items.ItemsLogic
             _ghostInfo = _levelSetUp.GhostInfo;
             _ghostRoom = _levelSetUp.CurrGhostRoom;
             if (_ghostInfo.GhostData.GhostEvidences.Contains(GhostEvidence.GhostEvidencesTypes.GhostWriting)) _couldBeWritten = true;
+        }
+
+        public void EnableItem()
+        {
+            _bookMesh.SetActive(true);
+            if (!_isInscribed && _couldBeWritten) StartCoroutine(nameof(WriteBook));
+        }
+        public void DisableItem()
+        {
+            _bookMesh.SetActive(false);
+            StopAllCoroutines();
         }
     }
 }
