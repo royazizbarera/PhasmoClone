@@ -16,8 +16,6 @@ public class EMF : MonoBehaviour, IMainUsable
     private AudioClip _slowPeep;
     [SerializeField]
     private AudioClip _fastPeep;
-    [SerializeField]
-    private float _normalVolume = 0.6f;
 
     private AudioSource _audioSource;
 
@@ -99,14 +97,11 @@ public class EMF : MonoBehaviour, IMainUsable
         {
             _audioSource.clip = _slowPeep;
             if (!_audioSource.isPlaying) _audioSource.Play();
-           // _audioSource.volume = _normalVolume;
-
         }
         else
         {
             _audioSource.clip = _fastPeep;
             if (!_audioSource.isPlaying) _audioSource.Play();
-            //_audioSource.volume = _normalVolume;
         }
     }
 
