@@ -9,11 +9,17 @@ public class DoorDraggable : MonoBehaviour, IDraggable
     public bool IsDoorClosed = false;
 
     public Transform FingerprintTransform;
+    [SerializeField]
+    private AudioSource _closeDoorAudioSource; 
+    [SerializeField]
+    private AudioSource _doorDragAudioSource;
 
     [SerializeField]
     private float _forceAmmount = 15f;
     [SerializeField]
     private float _distance = 1.5f;
+    [SerializeField]
+    private float _maxDrugVolume;
 
     private Collider _collider;
     private Rigidbody _rb;
@@ -24,7 +30,15 @@ public class DoorDraggable : MonoBehaviour, IDraggable
     private HingeJoint _hingeJoint;
     private float _openedRotation; // Rotation of the door, when it is fully opened
 
+    private float _doorDragCurrSpeed = 0f;
+    private Vector3 _prevRotation;
     private float doorCurrRotation;
+
+    private float _currDragAudioPercent = 0f;
+    private const float MinDoorDrugSpeed = 0f;
+    private const float MaxDoorDrugSpeed = 20f;
+    private const float AverageDrugSpeed = 15f;
+
     private const float MinGhostsForcePower = 7f;
     private const float MaxGhostsForcePower = 17f;
     private const float CloseDoorForcePower = 250f;
@@ -33,8 +47,11 @@ public class DoorDraggable : MonoBehaviour, IDraggable
 
     private const float Epsilon = 1f;
     private const float CheckDoorStateCD = 0.3f;
+    private const float CheckDoorRotationCD = 0.1f;
     private const float MotorForce = 100f;
 
+    private WaitForSeconds WaitForDoorStateCheck;
+    private WaitForSeconds WaitForDoorRotationCheck;
     void Awake()
     {
         _cam = Camera.main;
@@ -44,19 +61,33 @@ public class DoorDraggable : MonoBehaviour, IDraggable
         _hingeJoint = GetComponent<HingeJoint>();
         _rb = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
+
+        WaitForDoorStateCheck = new WaitForSeconds(CheckDoorStateCD);
+        WaitForDoorRotationCheck = new WaitForSeconds(CheckDoorRotationCD);
+
+        if (_doorDragAudioSource != null)
+        {
+            _doorDragAudioSource.volume = 0f;
+            _doorDragAudioSource.Play();
+        }
         _openedRotation = _hingeJoint.limits.max * _hingeJoint.axis.y;
         if (_openedRotation < -1f) _openedRotation += 360f;
+
         StartCoroutine(CheckDoorState());
+        StartCoroutine(AdjustDragSound());
     }
 
     void FixedUpdate()
     {
         if (_isInterracting && !_isDoorLocked)
         {
-            DraggDoor();
-           // if (IsDoorClosed) { Debug.Log("Door is closed"); }
-           // else if (IsDoorFullyOpened) Debug.Log("Door is fully opened");
+            ToggleAudioSource(true);
+            DragDoor();
+            // if (IsDoorClosed) { Debug.Log("Door is closed"); }
+            // else if (IsDoorFullyOpened) Debug.Log("Door is fully opened");
         }
+        else ToggleAudioSource(false);
+        
     }
 
     public void GhostDrugDoor()
@@ -120,7 +151,7 @@ public class DoorDraggable : MonoBehaviour, IDraggable
         while (true)
         {
             CheckDoorRotation();
-            yield return new WaitForSeconds(CheckDoorStateCD);
+            yield return WaitForDoorStateCheck;
         }
     }
     private void CheckDoorRotation()
@@ -147,7 +178,7 @@ public class DoorDraggable : MonoBehaviour, IDraggable
 
     private bool IsDoorFullyClosed() => (Mathf.Abs(transform.localEulerAngles.y) <= Epsilon);
 
-    private void DraggDoor()
+    private void DragDoor()
     {
         Ray playerAim = _cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
@@ -155,9 +186,41 @@ public class DoorDraggable : MonoBehaviour, IDraggable
         Vector3 currPos = transform.position;
 
         _rb.velocity = (nextPos - currPos) * _forceAmmount;
+
     }
 
-    public void OnDragBegin()
+    private IEnumerator AdjustDragSound()
+    {
+        while (true)
+        {
+            if (_isInterracting)
+            {
+                _doorDragCurrSpeed = Vector3.Distance(transform.localEulerAngles, _prevRotation);
+                _prevRotation = transform.localEulerAngles;
+
+                _doorDragCurrSpeed = Mathf.Clamp(_doorDragCurrSpeed, MinDoorDrugSpeed, MaxDoorDrugSpeed);
+                _currDragAudioPercent = _doorDragCurrSpeed / AverageDrugSpeed;
+
+                _doorDragAudioSource.volume = Mathf.Clamp(_currDragAudioPercent , 0, _maxDrugVolume);
+                AudioHelper.ChangeSoundSpeed(_doorDragAudioSource, _currDragAudioPercent, "DoorPitch");
+            }
+
+            yield return WaitForDoorRotationCheck;
+        }
+    }
+
+    private void ToggleAudioSource(bool isAudioEnable)
+    {
+        if (!isAudioEnable && _doorDragAudioSource.isPlaying)
+        {
+            _doorDragAudioSource.Pause();
+        }
+        else if (isAudioEnable && !_doorDragAudioSource.isPlaying)
+        {
+            _doorDragAudioSource.Play();
+        }
+    }
+        public void OnDragBegin()
     {
         _isInterracting = true;
         //Debug.Log("DrugBegin");
@@ -166,6 +229,10 @@ public class DoorDraggable : MonoBehaviour, IDraggable
     public void OnDragEnd()
     {
         _isInterracting = false;
-        //Debug.Log("DrugEnd");
+        if (IsDoorFullyClosed())
+        {
+            if(!_closeDoorAudioSource.isPlaying)
+            _closeDoorAudioSource.Play();
+        }
     }
 }

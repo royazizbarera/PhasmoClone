@@ -12,6 +12,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: 3031653239714112050}
   - {fileID: -4113017041046229849}
+  - {fileID: 7369403474281695888}
   m_Volume: bc0de3bb49f7c1f49b23ed7e69610271
   m_Pitch: be84bca13d49cba46afdbc6ec8880305
   m_Send: 00000000000000000000000000000000
@@ -86,6 +87,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 734d65652d93097498d59269b4e5d72d
     name: AmbientVolume
+  - guid: 2b44a115c6a5e7e408ffeeda8f1839ea
+    name: DoorPitch
   - guid: 9a32d0a8fca077c4c861cab1612942a9
     name: MasterVolume
   - guid: bc0de3bb49f7c1f49b23ed7e69610271
@@ -97,6 +100,7 @@ AudioMixerController:
     - 808fca5ba43665c45bcefa40d6b8d0b2
     - 78fb32991f894584287302eb724c9e15
     - b5b1877b35291fe46a2e4fb5106ba061
+    - 4722cb1754dadf0479733336ec9a9a99
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -149,6 +153,28 @@ AudioMixerSnapshotController:
     bc0de3bb49f7c1f49b23ed7e69610271: 0
     70c693fe10ffadf45b3709f089b4cef7: 1
   m_TransitionOverrides: {}
+--- !u!244 &598924993372986764
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: d9a488641f140e9478ddeb7c721993e5
+  m_EffectName: Pitch Shifter
+  m_MixLevel: 02fe4f5f71ddb704bb58e9f888475dd5
+  m_Parameters:
+  - m_ParameterName: Pitch
+    m_GUID: 2b44a115c6a5e7e408ffeeda8f1839ea
+  - m_ParameterName: FFT size
+    m_GUID: 1f08274086394244e98d38a8b09b4890
+  - m_ParameterName: Overlap
+    m_GUID: 86725349d28593a4b9a76274bd0a6e90
+  - m_ParameterName: Max channels
+    m_GUID: fc97a1f2f2a12b1468a683110f633ae3
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &3031653239714112050
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -179,6 +205,20 @@ AudioMixerEffectController:
   m_EffectID: b2c72e6d1848ba747a2ed648f8c4c6c3
   m_EffectName: Attenuation
   m_MixLevel: d79432b64849185408beccb17ccac15b
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &3878014427306102319
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 16104994c3701e246b3725f46e0d9b03
+  m_EffectName: Attenuation
+  m_MixLevel: b63167c86988c9a41be075d95a6df209
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
@@ -219,6 +259,26 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &7369403474281695888
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DoorsDrug
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 4722cb1754dadf0479733336ec9a9a99
+  m_Children: []
+  m_Volume: 4ff30cc75e8e36943b733054d1dad7bc
+  m_Pitch: b7290f2511c23554d93bf745e4e70aa3
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 3878014427306102319}
+  - {fileID: 598924993372986764}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &8917536966462424717
 AudioMixerGroupController:
   m_ObjectHideFlags: 0

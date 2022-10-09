@@ -25,4 +25,10 @@ public static class AudioHelper
 
         Object.Destroy(tempGO, clip.length);
     }
+
+    public static void ChangeSoundSpeed(AudioSource _source, float audioSpeed, string pitchOfGroupName)
+    {
+        _source.pitch = audioSpeed;
+        _source.outputAudioMixerGroup.audioMixer.SetFloat(pitchOfGroupName, 1f / audioSpeed);
+    }
 }
