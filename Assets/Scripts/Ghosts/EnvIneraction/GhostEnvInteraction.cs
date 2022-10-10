@@ -10,8 +10,6 @@ namespace Ghosts.EnvIneraction
     {
         [SerializeField]
         private InteractionScript _interaction;
-        [SerializeField]
-        private GameObject _handprint;
 
         [SerializeField]
         private GhostInfo _ghostInfo;
@@ -179,8 +177,7 @@ namespace Ghosts.EnvIneraction
                     {
                         if (RandomGenerator.CalculateChance(_leaveHandprintChance))
                         {
-                            GameObject newFingerprint = Instantiate(_handprint, door.FingerprintTransform.position, door.FingerprintTransform.rotation);
-                            newFingerprint.transform.parent = door.transform;
+                            door.GetComponent<IPrintsUV>().LeavePrintsUV();
                         }
                     }
 

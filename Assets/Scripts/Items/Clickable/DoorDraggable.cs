@@ -3,12 +3,14 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(HingeJoint))]
-public class DoorDraggable : MonoBehaviour, IDraggable
+public class DoorDraggable : MonoBehaviour, IDraggable, IPrintsUV
 {
     public bool IsDoorFullyOpened = false;
     public bool IsDoorClosed = false;
 
     public Transform FingerprintTransform;
+    [SerializeField]
+    private GameObject _handprints;
     [SerializeField]
     private AudioSource _closeDoorAudioSource; 
     [SerializeField]
@@ -234,5 +236,10 @@ public class DoorDraggable : MonoBehaviour, IDraggable
             if(!_closeDoorAudioSource.isPlaying)
             _closeDoorAudioSource.Play();
         }
+    }
+
+    public void LeavePrintsUV()
+    {
+        Instantiate(_handprints, FingerprintTransform.position, FingerprintTransform.rotation, FingerprintTransform);
     }
 }

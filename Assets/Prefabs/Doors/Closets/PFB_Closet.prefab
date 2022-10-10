@@ -625,6 +625,7 @@ MonoBehaviour:
   IsDoorFullyOpened: 0
   IsDoorClosed: 0
   FingerprintTransform: {fileID: 7036637682093696892}
+  _handprints: {fileID: 1865889820300120364, guid: 8954caf1b6ba00f469fe5f8576fec3b6, type: 3}
   _closeDoorAudioSource: {fileID: 7036637681956943708}
   _doorDragAudioSource: {fileID: 7036637681956943710}
   _forceAmmount: 20
@@ -941,6 +942,7 @@ MonoBehaviour:
   IsDoorFullyOpened: 0
   IsDoorClosed: 0
   FingerprintTransform: {fileID: 7036637681942416080}
+  _handprints: {fileID: 1865889820300120364, guid: 8954caf1b6ba00f469fe5f8576fec3b6, type: 3}
   _closeDoorAudioSource: {fileID: 7036637681956943709}
   _doorDragAudioSource: {fileID: 7036637681956943711}
   _forceAmmount: 20

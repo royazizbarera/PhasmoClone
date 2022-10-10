@@ -318,6 +318,7 @@ MonoBehaviour:
   IsDoorFullyOpened: 0
   IsDoorClosed: 0
   FingerprintTransform: {fileID: 7914438972011417801}
+  _handprints: {fileID: 1865889820300120364, guid: 8954caf1b6ba00f469fe5f8576fec3b6, type: 3}
   _closeDoorAudioSource: {fileID: 217683256}
   _doorDragAudioSource: {fileID: 217683257}
   _forceAmmount: 20
