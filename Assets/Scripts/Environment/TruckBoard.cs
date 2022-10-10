@@ -24,6 +24,10 @@ public class TruckBoard : MonoBehaviour
         _gameObjectivesService.OnObjectiveCompleted += SetDoneObjective;
     }
 
+    private void OnDestroy()
+    {
+        _gameObjectivesService.OnObjectiveCompleted -= SetDoneObjective;
+    }
     private void SetDescriptionText()
     {
         for(int i = 0; i< _objectivesDescriptionTXT.Length; i++)
