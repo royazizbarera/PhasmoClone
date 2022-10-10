@@ -1,5 +1,6 @@
 using Infrastructure;
 using Infrastructure.Services;
+using Infrastructure.States.GameStates;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,11 @@ namespace Utilities
         private bool cursorLock;
         private void Start()
         {
-            if (AllServices.Container.Single<GameFlowService>().IsGameEnded == false)
+            if (AllServices.Container.Single<GameFlowService>().IsGameEnded == true && GameBootstrapper.Instance.StateMachine.GetCurrentState() is LobbyState)
             {
-                Cursor.lockState = CursorLockMode.Locked;
-                cursorLock = true;
+                UnlockCursor();
             }
+            else LockCursor();
         }
         private void UnlockCursor()
         {
