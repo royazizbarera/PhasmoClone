@@ -35524,10 +35524,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 71942902}
     m_Modifications:
     - target: {fileID: 886015984847841027, guid: b402e8defb6d4dd4fa6ab4823f6c762d, type: 3}
-      propertyPath: _board
-      value: 
-      objectReference: {fileID: 1468687235}
-    - target: {fileID: 886015984847841027, guid: b402e8defb6d4dd4fa6ab4823f6c762d, type: 3}
       propertyPath: _boardCamera
       value: 
       objectReference: {fileID: 1224269844}

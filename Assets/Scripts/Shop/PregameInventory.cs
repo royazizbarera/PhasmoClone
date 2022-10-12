@@ -56,6 +56,23 @@ public class PregameInventory : MonoBehaviour
         }
     }
 
+    public void AddAllItems()
+    {
+        for (int i = 0; i < _itemLimits.Length; i++)
+        {
+            if (_inventory._purchasedItemsAmount[i] != 0)
+            {
+                int amountToAdd = _maxItems[i] - _minItems[i];
+                if (_inventory._purchasedItemsAmount[i] >= amountToAdd)
+                {
+                    _addedItems[i] = amountToAdd;
+                }
+                else _addedItems[i] = _inventory._purchasedItemsAmount[i];
+
+                _itemLimits[i].text = (_minItems[i] + _addedItems[i]).ToString() + "/" + _maxItems[i].ToString();
+            }
+        }
+    }
     public void SetUpAddedItems()
     {
         _levelSetUp.SetAddedItems(_addedItems);
