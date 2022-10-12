@@ -24,13 +24,13 @@ MonoBehaviour:
   PlayerSanityMinusPerSecond: 0.1
   PlayerSanityMinusInGhostRoomPerSecond: 0.18
   PlayerSanityMinusPerGhostInterection: 2
-  PlayerSanityMinusPerGhostGhostEvent: 5
+  PlayerSanityMinusPerGhostGhostEvent: 4
   PlayerSanityMinusPerHunt: 10
   MinSanityToAttack: 60
   MaxDistanceToPlayerAggr: 4
   AttackChanceCoef: 0.2
   MinAttackCD: 40
-  GhostEventChanceCoef: 0.2
+  GhostEventChanceCoef: 0.26
   DefaultInterectionChance: 15
   InterectionsCoef: 0.38
   GhostFindInerectionsCD: 1.8

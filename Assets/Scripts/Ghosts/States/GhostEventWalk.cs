@@ -25,9 +25,11 @@ namespace Ghosts
         [SerializeField]
         private AudioSource _poofAudioSource;
 
+        
         private const float MinTimeGhostEvent = 4f;
         private const float MaxTimeGhostEvent = 8f;
 
+        private float _sanityToTakeGhostEvent;
         private float _timeOfCurrentGhostEvent;
         private float _durationOfGhostEvent;
 
@@ -88,12 +90,16 @@ namespace Ghosts
 
         private void StopGhostEventState()
         {
+            _ghostMood.ChangePlayerSanity(_sanityToTakeGhostEvent / 3);
+
             _gameObjectives.GhostEventWitnessed();
             _ghostMood.StopGhostEvent();
         }
 
         private void GhostPoofDissapear()
         {
+            _ghostMood.ChangePlayerSanity( (2 *_sanityToTakeGhostEvent) / 3);
+
             _growlAudioSource.Stop();
             _poofAudioSource.Play();
             StopGhostEventState();
@@ -126,6 +132,7 @@ namespace Ghosts
         }
         private void SetUpGhostInfo()
         {
+            _sanityToTakeGhostEvent = -_ghostInfo.GhostData.PlayerSanityMinusPerGhostGhostEvent;
             _playerPoint = _ghostInfo.PlayerPoint;
         }
     }

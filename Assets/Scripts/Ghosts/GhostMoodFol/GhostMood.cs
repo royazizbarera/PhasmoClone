@@ -50,6 +50,10 @@ namespace Ghosts.Mood
             _ghostFinalAnger = _ghostInfo.FinalGhostAnger;
         }
 
+        public void ChangePlayerSanity(float sanityToAdd)
+        {
+            _playerSanity.ChangeSanity(sanityToAdd);
+        }
         public void SetGhostAnger(float ghostAnger)
         {
             _ghostAnger = ghostAnger;

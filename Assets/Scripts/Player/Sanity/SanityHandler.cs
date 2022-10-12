@@ -23,8 +23,8 @@ public class SanityHandler : MonoBehaviour
     private LevelRooms.LevelRoomsEnum _currGhostRoom = LevelRooms.LevelRoomsEnum.NoRoom;
     private bool _isSubscribedToOnLevelSetedUp = false;
 
-    // public float Sanity { get; private set; }
-    public float Sanity;
+     public float Sanity { get; private set; }
+    //public float Sanity;
 
 
     private void Start()

@@ -87,15 +87,29 @@ public class PatrolWalk : MonoBehaviour
         Transform bestPoint = null;
         float bestDistance = float.MaxValue;
         float currDistanceToPoints;
+
+        Debug.Log("Total points = " + _patrolPoints.Length);
+        Debug.Log("Wee choose " + _randomPointsList.Count + " points");
+
+        Debug.Log("Level transform position = " + _levelTransformPoint.position);
+
         foreach(int point in _randomPointsList)
         {
+            Debug.Log("Point num = " + point);
+
             if(_patrolPoints[point] != _currDestination)
             {
+                Debug.Log("Point position = " + _patrolPoints[point].position);
+
                 currDistanceToPoints = Vector3.Distance(_patrolPoints[point].position, _levelTransformPoint.position);
+
+                Debug.Log("Distance to point = " + currDistanceToPoints);
+                Debug.Log("Best distance = " + bestDistance);
                 if (currDistanceToPoints < bestDistance)
                 {
                     bestPoint = _patrolPoints[point];
                     bestDistance = currDistanceToPoints;
+                    Debug.Log("New best distance = " + bestDistance);
                 }
             }
         }

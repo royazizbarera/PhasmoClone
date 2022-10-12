@@ -4,6 +4,7 @@ using Infrastructure;
 using UnityEngine.AI;
 using Utilities.Constants;
 using System.Collections;
+using Ghosts.Mood;
 
 namespace Ghosts
 {
@@ -20,6 +21,8 @@ namespace Ghosts
         private LineOfSight _lineOfSight;
         [SerializeField]
         private float _checkForLineCD;
+
+        private GhostMood _ghostMood;
 
         private const float SmudgeEffectTime = 5f;
         private bool _playerKilled = false;
@@ -38,6 +41,7 @@ namespace Ghosts
         private float _ghostAttackSpeed;
         private float _distanceToPlayer = 0f;
 
+        private float _sanityPlayerMinus;
         private bool _underSmudgeEffect = false;
         private Transform[] _patrolPoints;
         private LevelSetUp _levelSetUp;
@@ -89,6 +93,8 @@ namespace Ghosts
 
         public void StartAttackPatrolling()
         {
+            _ghostMood.ChangePlayerSanity(_sanityPlayerMinus);
+
             _isGhostDisabled = true;
             _isFollowing = false;
             _agent.speed = _ghostAttackSpeed;
@@ -192,6 +198,8 @@ namespace Ghosts
 
         private void SetUpGhostData()
         {
+            _ghostMood = GetComponent<GhostMood>();
+
             _levelSetUp = AllServices.Container.Single<LevelSetUp>();
             _gameFlow = AllServices.Container.Single<GameFlowService>();
 
@@ -207,6 +215,8 @@ namespace Ghosts
         private void SetUpParams()
         {
             _audioControl = _ghostInfo.MainHero.GetComponent<PlayerAudioControl>();
+
+            _sanityPlayerMinus = -_ghostInfo.GhostData.PlayerSanityMinusPerHunt;
 
             _playerPoint = _ghostInfo.PlayerPoint;
             _heroTransform = _ghostInfo.MainHero.transform;

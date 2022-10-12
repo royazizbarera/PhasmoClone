@@ -24,13 +24,13 @@ MonoBehaviour:
   PlayerSanityMinusPerSecond: 0.15
   PlayerSanityMinusInGhostRoomPerSecond: 0.25
   PlayerSanityMinusPerGhostInterection: 1
-  PlayerSanityMinusPerGhostGhostEvent: 5
+  PlayerSanityMinusPerGhostGhostEvent: 4
   PlayerSanityMinusPerHunt: 10
   MinSanityToAttack: 80
   MaxDistanceToPlayerAggr: 4
   AttackChanceCoef: 0.3
   MinAttackCD: 30
-  GhostEventChanceCoef: 0.2
+  GhostEventChanceCoef: 0.26
   DefaultInterectionChance: 15
   InterectionsCoef: 0.3
   GhostFindInerectionsCD: 2
@@ -53,4 +53,3 @@ MonoBehaviour:
 
     Weakness: Demons are afraid of Smudge sticks.
     Smudging the ghost will prevent them from hunt for 1 minute. '
-  _emf: {fileID: 5570669887009615765, guid: a1d17fc7dadadee49a959a1f9a632e45, type: 3}
