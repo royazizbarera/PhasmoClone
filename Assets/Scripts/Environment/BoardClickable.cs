@@ -9,7 +9,7 @@ namespace Environment
 {
     public class BoardClickable : MonoBehaviour, IClickable
     {
-        [SerializeField] private CinemachineVirtualCamera _boardCamera;
+        [SerializeField] private CinemachineVirtualCamera _boardCameraCinemachime;
 
         private InputSystem _inputSystem;
         private bool _isInBoard = false;
@@ -22,7 +22,8 @@ namespace Environment
         {
             if (!_isInBoard)
             {
-                _boardCamera.Priority = CameraPriorities.ActiveState;
+                if (_boardCameraCinemachime.gameObject.activeInHierarchy == false) _boardCameraCinemachime.gameObject.SetActive(true);
+                _boardCameraCinemachime.Priority = CameraPriorities.ActiveState;
                 _inputSystem.LockControl();
                 _isInBoard = true;
                 Cursor.lockState = CursorLockMode.Confined;
@@ -31,7 +32,7 @@ namespace Environment
 
         public void DecreasePriority()
         {
-            _boardCamera.Priority = CameraPriorities.DisabledState;
+            _boardCameraCinemachime.Priority = CameraPriorities.DisabledState;
             UnlockInputControl();
             _isInBoard = false;
             Cursor.lockState = CursorLockMode.Locked;
