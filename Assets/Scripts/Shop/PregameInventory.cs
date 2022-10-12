@@ -60,7 +60,7 @@ public class PregameInventory : MonoBehaviour
     {
         for (int i = 0; i < _itemLimits.Length; i++)
         {
-            if (_inventory._purchasedItemsAmount[i] != 0)
+            if (_inventory._purchasedItemsAmount[i] > 0)
             {
                 int amountToAdd = _maxItems[i] - _minItems[i];
                 if (_inventory._purchasedItemsAmount[i] >= amountToAdd)
