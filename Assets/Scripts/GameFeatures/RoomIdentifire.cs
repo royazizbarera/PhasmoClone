@@ -10,15 +10,15 @@ namespace GameFeatures
     {
         public LevelRooms.LevelRoomsEnum CurrRoom = LevelRooms.LevelRoomsEnum.NoRoom;
 
-        private LevelRooms.LevelRoomsEnum _nextRoom = LevelRooms.LevelRoomsEnum.NoRoom;
+        public List<LevelRooms.LevelRoomsEnum> _nextRooms = new List<LevelRooms.LevelRoomsEnum>();
 
         private void OnTriggerEnter(Collider other)
         {
-         //   Debug.Log("Entered " + other.name);
+            //   Debug.Log("Entered " + other.name);
             if (other.GetComponent<Room>() != null)
             {
                 if (CurrRoom == LevelRooms.LevelRoomsEnum.NoRoom) CurrRoom = other.GetComponent<Room>().RoomType;
-                else _nextRoom = other.GetComponent<Room>().RoomType;
+                else _nextRooms.Add(other.GetComponent<Room>().RoomType);
             }
         }
 
@@ -28,18 +28,19 @@ namespace GameFeatures
             {
                 if (CurrRoom == other.GetComponent<Room>().RoomType)
                 {
-                    if (_nextRoom != LevelRooms.LevelRoomsEnum.NoRoom)// && _nextRoom != CurrRoom)
+                    if (_nextRooms.Count > 0)// && _nextRoom != CurrRoom)
                     {
-                        CurrRoom = _nextRoom;
+                        CurrRoom = _nextRooms[0];
+                        _nextRooms.Remove(CurrRoom);
                     }
                     else
                     {
                         CurrRoom = LevelRooms.LevelRoomsEnum.NoRoom;
                     }
                 }
-                else if (_nextRoom == other.GetComponent<Room>().RoomType)
+                else if (_nextRooms.Contains(other.GetComponent<Room>().RoomType))
                 {
-                    _nextRoom = LevelRooms.LevelRoomsEnum.NoRoom;
+                    _nextRooms.Remove(other.GetComponent<Room>().RoomType);
                 }
             }
         }
