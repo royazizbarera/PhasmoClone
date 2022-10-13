@@ -26,6 +26,8 @@ namespace UI
         [SerializeField]
         private TextMeshProUGUI _levelNameTXT;
         [SerializeField]
+        private TextMeshProUGUI _levelSizeTXT;
+        [SerializeField]
         private Button _playButton;
         [SerializeField]
         private TextMeshProUGUI _playButtonTXT;
@@ -35,6 +37,7 @@ namespace UI
 
         private InputSystem _inputSystem;
         private LevelSetUp _levelSetUp;
+        private GameFlowService _gameFlowService;
 
         private bool _isStarted = false;
 
@@ -42,6 +45,7 @@ namespace UI
         {
             _inputSystem = AllServices.Container.Single<InputSystem>();
             _levelSetUp = AllServices.Container.Single<LevelSetUp>();
+            _gameFlowService = AllServices.Container.Single<GameFlowService>();
 
             LoadStartScreen();
         }
@@ -78,6 +82,8 @@ namespace UI
         {
             _levelSetUp.ChooseMap(levelName.LevelName);
             _levelNameTXT.text = "Contract: " + levelName.LevelName.ToString();
+            _levelSizeTXT.text = "Map size: " + LevelSizeConst.LevelSizes[levelName.LevelName];
+            _gameFlowService.SetMapSize((int)LevelSizeConst.LevelSizes[levelName.LevelName]);
             _playButton.interactable = true;
             _playButtonTXT.alpha = 255f;
         }

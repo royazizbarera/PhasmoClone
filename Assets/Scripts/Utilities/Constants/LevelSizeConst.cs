@@ -1,21 +1,20 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Utilities.Constants
 {
     public static class LevelSizeConst
     {
-        public enum LevelSize {Tiny, Small, Medium, Big };
-
+        public enum LevelSize { Tiny, Small, Medium, Big };
+        public enum LevelNames { Turkwood, Factory };
         public enum MapMinHuntDurationEnum
         {
             Tiny = 8,
             Small = 14,
             Medium = 22,
             Big = 30,
-        }  
-        
+        }
+
         public enum MapMaxHuntDurationEnum
         {
             Tiny = 13,
@@ -23,6 +22,13 @@ namespace Utilities.Constants
             Medium = 35,
             Big = 50,
         }
+
+        public static readonly Dictionary<SceneNames.LevelNames, LevelSize> LevelSizes
+            = new Dictionary<SceneNames.LevelNames, LevelSize>
+        {
+            {SceneNames.LevelNames.Turkwood, LevelSize.Tiny},
+            {SceneNames.LevelNames.Factory, LevelSize.Medium}
+        };
 
         public static int MapMinHuntDuration(string levelSize)
         {
