@@ -21,8 +21,9 @@ namespace Infrastructure.Services
         private GameObjectivesService _gameObjectivesService;
         private ICoroutineRunner _coroutineRunner;
 
-        private float[] _rewardValues = new float[6];
+        private int _mapSize = 0;
 
+        private float[] _rewardValues = new float[6];
         private float[] _objectives = new float[3];
         private float _photoReward = 0f;
         private float _totalReward = 0f;
@@ -30,6 +31,7 @@ namespace Infrastructure.Services
         private float _insuranceReward = 0f;
         private float _deathCoef = 0.25f;
         private float _difficultyCoef = 1f;
+        private float _mapSizeCoef = 1f;
 
         public GameFlowService(ICoroutineRunner coroutineRunner, GameObjectivesService gameObjectivesService)
         {
@@ -111,8 +113,11 @@ namespace Infrastructure.Services
         private void CalculateTotalReward()
         {
             for (int i = 0; i < _rewardValues.Length; i++) _totalReward += _rewardValues[i];
-            if (Died) _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _deathCoef * _difficultyCoef + _insuranceReward);
-            else _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _difficultyCoef + _insuranceReward);
+
+            _mapSizeCoef = (_mapSize + 1f) / 2f;
+
+            if (Died) _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _deathCoef * _difficultyCoef * _mapSizeCoef  + _insuranceReward);
+            else _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _difficultyCoef * _mapSizeCoef + _insuranceReward);
         }   
         public void ClearRewards()
         {
@@ -129,6 +134,14 @@ namespace Infrastructure.Services
             _insuranceReward = 0f;
         }
 
+        public void SetMapSize(int mapSize)
+        {
+            _mapSize = mapSize;
+        }
+        public float GetMapSizeCoef()
+        {
+            return _mapSizeCoef;
+        }
         private void GameOverCall()
         {
             Died = true;

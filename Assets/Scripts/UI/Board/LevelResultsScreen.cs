@@ -13,6 +13,7 @@ public class LevelResultsScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _isSurvivedTXT;
     [SerializeField] private TextMeshProUGUI _survivabilityCoefTXT;
     [SerializeField] private TextMeshProUGUI _difficultyCoefTXT;
+    [SerializeField] private TextMeshProUGUI _mapSizeCoefTXT;
 
     [SerializeField] private TextMeshProUGUI[] _rewardValuesTXT;
     [SerializeField] private TextMeshProUGUI _ghostTypeTXT;
@@ -63,6 +64,7 @@ public class LevelResultsScreen : MonoBehaviour
             _isSurvivedTXT.text = "You Died";
             _survivabilityCoefTXT.text = "x0.25";
         }
+        _mapSizeCoefTXT.text = "x" + _gameFlowService.GetMapSizeCoef().ToString();
         for (int i = 0; i < _rewardValues.Length; i++)
         {
             _rewardValuesTXT[i].text = _rewardValues[i].ToString() + " $";
