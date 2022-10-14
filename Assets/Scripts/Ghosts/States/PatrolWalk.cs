@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using System.Collections.Generic;
 using Utilities.Constants;
 using Utilities;
+using System.Collections;
 
 public class PatrolWalk : MonoBehaviour
 {
@@ -15,7 +16,12 @@ public class PatrolWalk : MonoBehaviour
     [SerializeField]
     private GhostInfo _ghostInfo;
 
+    [SerializeField]
+    private bool _goNextPoint = false;
+
     public LevelRooms.LevelRoomsEnum _GhostRoom;
+
+    Transform bestPoint = null;
 
     private float _ghostNormalSpeed;
     private int _patrolRandomMultiplier = 3;
@@ -32,7 +38,6 @@ public class PatrolWalk : MonoBehaviour
     {
         _levelSetUp = AllServices.Container.Single<LevelSetUp>();
         SetUpGhostData();
-        StartPatrolling();
     }
     private void OnEnable()
     {
@@ -47,13 +52,13 @@ public class PatrolWalk : MonoBehaviour
     {
         if (_isStopped) return;
 
-        if (_agent.remainingDistance == float.PositiveInfinity)
-        {
-           // NavMesh.SamplePosition()
-           // Debug.Log("Infinity");
-        }
+        //if (_agent.remainingDistance == float.PositiveInfinity)
+        //{
+        //    // NavMesh.SamplePosition()
+        //     Debug.LogWarning("Infinity");
+        //}
 
-        if(_agent.remainingDistance <= _stoppingDistance || _currDestination == null)
+        if ( (_agent.remainingDistance <= _stoppingDistance || _currDestination == null) && !_agent.pathPending)
         {
             ChoosePoint();
             SetDestination();
@@ -64,6 +69,7 @@ public class PatrolWalk : MonoBehaviour
     {
         _agent.speed = _ghostNormalSpeed;
         SwitchStopState(false);
+       // StartCoroutine(CheckAllPoints());
     }
 
     private void StopPatrolling()
@@ -74,6 +80,7 @@ public class PatrolWalk : MonoBehaviour
     public void SwitchStopState(bool isStopped)
     {
         _isStopped = isStopped;
+
         if (!_agent.isOnNavMesh) return;
         if (isStopped)
         {
@@ -90,39 +97,26 @@ public class PatrolWalk : MonoBehaviour
     {
         _randomPointsList = RandomGenerator.GenerateRandom((_patrolPoints.Length / _patrolRandomMultiplier), 0, _patrolPoints.Length);
 
-        Transform bestPoint = null;
+        bestPoint = null;
         float bestDistance = float.MaxValue;
         float currDistanceToPoints;
 
-      //  Debug.Log("Total points = " + _patrolPoints.Length);
-      //  Debug.Log("Wee choose " + _randomPointsList.Count + " points");
-
-      //  Debug.Log("Level transform position = " + _levelTransformPoint.position);
-
-        foreach(int point in _randomPointsList)
+        foreach (int point in _randomPointsList)
         {
-          //  Debug.Log("Point num = " + point);
-
-            if(_patrolPoints[point] != _currDestination)
+            if (_patrolPoints[point] != _currDestination)
             {
-              //  Debug.Log("Point position = " + _patrolPoints[point].position);
-
                 currDistanceToPoints = Vector3.Distance(_patrolPoints[point].position, _levelTransformPoint.position);
-
-             //   Debug.Log("Distance to point = " + currDistanceToPoints);
-              //  Debug.Log("Best distance = " + bestDistance);
+                currDistanceToPoints += (Mathf.Abs(_patrolPoints[point].position.y - _levelTransformPoint.position.y) * 10);
                 if (currDistanceToPoints < bestDistance)
                 {
                     bestPoint = _patrolPoints[point];
                     bestDistance = currDistanceToPoints;
-                 //   Debug.Log("New best distance = " + bestDistance);
                 }
             }
         }
-
-      //  Debug.Log("Best point = " + bestPoint.name);
-      //  Debug.Log("Distance to point = " + bestDistance);
-        if (bestPoint != null) _currDestination = bestPoint;
+        if (bestPoint != null) {
+            // Debug.Log("Point chosen = " + bestPoint.name);
+            _currDestination = bestPoint; }
     }
 
     private void SetDestination()
@@ -139,5 +133,7 @@ public class PatrolWalk : MonoBehaviour
         _GhostRoom = _levelSetUp.CurrGhostRoom;
         _patrolPoints = _levelSetUp.GetGhostPatrolPoints();
         _levelTransformPoint = _levelSetUp.CurrGhostRoomTransform;
+
+        _agent.speed = _ghostNormalSpeed;
     }
 }
