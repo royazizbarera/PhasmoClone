@@ -21,14 +21,14 @@ MonoBehaviour:
   GhostAngerInGhostRoomPlusPerSec: 0.16
   MaxGhostAnger: 110
   StartLateGhostAnger: 70
-  PlayerSanityMinusPerSecond: 0.08
-  PlayerSanityMinusInGhostRoomPerSecond: 0.16
-  PlayerSanityMinusPerGhostInterection: 1
+  PlayerSanityMinusPerSecond: 0.05
+  PlayerSanityMinusInGhostRoomPerSecond: 0.12
+  PlayerSanityMinusPerGhostInterection: 0.5
   PlayerSanityMinusPerGhostGhostEvent: 4
   PlayerSanityMinusPerHunt: 10
   MinSanityToAttack: 60
   MaxDistanceToPlayerAggr: 4
-  AttackChanceCoef: 0.17
+  AttackChanceCoef: 0.16
   MinAttackCD: 40
   GhostEventChanceCoef: 0.2
   DefaultInterectionChance: 12

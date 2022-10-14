@@ -21,9 +21,9 @@ MonoBehaviour:
   GhostAngerInGhostRoomPlusPerSec: 0.2
   MaxGhostAnger: 110
   StartLateGhostAnger: 70
-  PlayerSanityMinusPerSecond: 0.1
-  PlayerSanityMinusInGhostRoomPerSecond: 0.18
-  PlayerSanityMinusPerGhostInterection: 2
+  PlayerSanityMinusPerSecond: 0.07
+  PlayerSanityMinusInGhostRoomPerSecond: 0.14
+  PlayerSanityMinusPerGhostInterection: 0.8
   PlayerSanityMinusPerGhostGhostEvent: 4
   PlayerSanityMinusPerHunt: 10
   MinSanityToAttack: 60
