@@ -547,7 +547,7 @@ MonoBehaviour:
   _agent: {fileID: 205478300}
   _stoppingDistance: 0.3
   _ghostInfo: {fileID: 1499621083}
-  _GhostRoom: 4
+  _GhostRoom: 24
 --- !u!114 &-8925133462107946173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,7 +597,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interaction: {fileID: 1907466690619057802, guid: 00b709e4c8a4358469c50620b17d9c49, type: 3}
-  _handprint: {fileID: 1865889820300120364, guid: 8954caf1b6ba00f469fe5f8576fec3b6, type: 3}
   _ghostInfo: {fileID: 1499621083}
   _ghostInterectWithLayer:
     serializedVersion: 2
