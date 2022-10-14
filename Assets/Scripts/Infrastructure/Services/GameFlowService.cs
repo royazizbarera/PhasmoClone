@@ -22,6 +22,7 @@ namespace Infrastructure.Services
         private ICoroutineRunner _coroutineRunner;
 
         private int _mapSize = 0;
+        private int _difficulty = 0;
 
         private float[] _rewardValues = new float[6];
         private float[] _objectives = new float[3];
@@ -115,6 +116,7 @@ namespace Infrastructure.Services
             for (int i = 0; i < _rewardValues.Length; i++) _totalReward += _rewardValues[i];
 
             _mapSizeCoef = (_mapSize + 1f) / 2f;
+            _difficultyCoef = (_difficulty + 2f) / 2f;
 
             if (Died) _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _deathCoef * _difficultyCoef * _mapSizeCoef  + _insuranceReward);
             else _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _difficultyCoef * _mapSizeCoef + _insuranceReward);
@@ -141,6 +143,14 @@ namespace Infrastructure.Services
         public float GetMapSizeCoef()
         {
             return _mapSizeCoef;
+        }
+        public void SetDifficulty(int difficulty)
+        {
+            _difficulty = difficulty;
+        }
+        public float GetDifficultyCoef()
+        {
+            return _difficultyCoef;
         }
         private void GameOverCall()
         {

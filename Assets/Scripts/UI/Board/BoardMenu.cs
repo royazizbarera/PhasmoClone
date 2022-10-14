@@ -28,6 +28,14 @@ namespace UI
         [SerializeField]
         private TextMeshProUGUI _levelSizeTXT;
         [SerializeField]
+        private TextMeshProUGUI _difficultyTXT;
+        [SerializeField]
+        private TextMeshProUGUI _difficultyInfoTXT;
+        [SerializeField]
+        private Button _chooseDifficultyButton;
+        [SerializeField]
+        private TextMeshProUGUI _chooseDifficultyButtonTXT;
+        [SerializeField]
         private Button _playButton;
         [SerializeField]
         private TextMeshProUGUI _playButtonTXT;
@@ -86,6 +94,31 @@ namespace UI
             _gameFlowService.SetMapSize((int)LevelSizeConst.LevelSizes[levelName.LevelName]);
             _playButton.interactable = true;
             _playButtonTXT.alpha = 255f;
+        }
+
+        public void ChooseDifficulty(int difficulty) 
+        {
+            if (difficulty == 0)
+            {
+                _difficultyTXT.text = "Difficulty: Easy";
+                _difficultyInfoTXT.text = "This difficulty just to chill and not smell the bebra is possible";
+            }
+            else if (difficulty == 1)
+            {
+                _difficultyTXT.text = "Difficulty: Normal";
+                _difficultyInfoTXT.text = "A little harder but still not hard";
+            }
+            else if (difficulty == 2)
+            {
+                _difficultyTXT.text = "Difficulty: Hard";
+                _difficultyInfoTXT.text = "For experienced ghost hunters, there is a high chance of dying";
+            }
+
+            _chooseDifficultyButton.interactable = true;
+            _chooseDifficultyButtonTXT.alpha = 255f;
+
+            _gameFlowService.SetDifficulty(difficulty);
+            _levelSetUp.ChooseDifficulty(difficulty);
         }
 
         private void LoadStartScreen()

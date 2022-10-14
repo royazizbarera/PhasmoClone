@@ -65,6 +65,7 @@ public class LevelResultsScreen : MonoBehaviour
             _survivabilityCoefTXT.text = "x0.25";
         }
         _mapSizeCoefTXT.text = "x" + _gameFlowService.GetMapSizeCoef().ToString();
+        _difficultyCoefTXT.text = "x" + _gameFlowService.GetDifficultyCoef().ToString();
         for (int i = 0; i < _rewardValues.Length; i++)
         {
             _rewardValuesTXT[i].text = _rewardValues[i].ToString() + " $";

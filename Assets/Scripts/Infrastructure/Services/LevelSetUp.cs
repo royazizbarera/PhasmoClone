@@ -46,6 +46,8 @@ namespace Infrastructure.Services
         private LevelInfo _currLevelInfo;
         private LevelSizeConst.LevelSize _currLevelSize;
 
+        private int _difficulty;
+
         private int[] _addedItems;
 
         public LevelSetUp(GameObjectivesService gameObjectivesService)
@@ -56,6 +58,10 @@ namespace Infrastructure.Services
         public void ChooseMap(SceneNames.LevelNames selectedMap)
         {
             _selectedMap = selectedMap;
+        }
+        public void ChooseDifficulty(int difficulty)
+        {
+            _difficulty = difficulty;
         }
         public void SetAddedItems(int[] addedItems)
         {
