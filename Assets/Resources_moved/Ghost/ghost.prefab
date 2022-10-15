@@ -547,6 +547,7 @@ MonoBehaviour:
   _agent: {fileID: 205478300}
   _stoppingDistance: 0.3
   _ghostInfo: {fileID: 1499621083}
+  _goNextPoint: 0
   _GhostRoom: 24
 --- !u!114 &-8925133462107946173
 MonoBehaviour:
@@ -793,8 +794,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 2
-  MaxDistance: 20
+  MinDistance: 1
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0

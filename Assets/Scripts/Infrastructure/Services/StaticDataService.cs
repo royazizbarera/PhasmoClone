@@ -33,8 +33,8 @@ namespace Infrastructure.Services
 
         public GhostDataSO GetRandomGhost()
         {
-           // return ForMonster(_ghosts.ElementAt(Random.Range(0, _ghosts.Count)).Key);
-            return ForMonster(_ghosts.ElementAt(3).Key);
+            return ForMonster(_ghosts.ElementAt(Random.Range(0, _ghosts.Count)).Key);
+           // return ForMonster(_ghosts.ElementAt(1).Key);
         }
 
         public GhostDataSO ForMonster(string name) =>
