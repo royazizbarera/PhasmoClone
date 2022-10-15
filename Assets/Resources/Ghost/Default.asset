@@ -27,7 +27,7 @@ MonoBehaviour:
   PlayerSanityMinusPerGhostGhostEvent: 5
   PlayerSanityMinusPerHunt: 10
   MinSanityToAttack: 60
-  MaxDistanceToPlayerAggr: 4
+  MaxDistanceToPlayerAggr: 15
   AttackChanceCoef: 0.25
   MinAttackCD: 40
   GhostEventChanceCoef: 0.2
