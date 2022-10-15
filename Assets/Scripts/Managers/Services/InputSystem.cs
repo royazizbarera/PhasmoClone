@@ -12,7 +12,7 @@ namespace Infrastructure.Services
         public bool IsRunning = false;
 
         public Action PickUpItemAction, DropItemAction, MainUseAction, MainUseCanceledAction,
-        PrimaryUseAction, SecondaryUseAction, SwitchItemAction, CrouchAction, JournalOpenAction;
+        PrimaryUseAction, SecondaryUseAction, SwitchItemAction, CrouchAction, JournalOpenAction, BoardOpenAction;
 
         public bool IsControlLocked { get; private set; }
         private MainInputAction _mainInputAction;
@@ -69,6 +69,8 @@ namespace Infrastructure.Services
 
             _mainInputAction.Player.Crouch.performed += CrouchCallBack;
             _mainInputAction.Player.Journal.performed += JournalOpen;
+
+            _mainInputAction.Player.BoardOpen.performed += BoardOpenCallBack;
         }
 
         private void JournalOpen(InputAction.CallbackContext obj)
@@ -113,6 +115,11 @@ namespace Infrastructure.Services
         private void SwitchItemUseCallBack(InputAction.CallbackContext obj)
         {
             if (SwitchItemAction != null) SwitchItemAction.Invoke();
+        }
+
+        private void BoardOpenCallBack(InputAction.CallbackContext obj)
+        {
+            if (BoardOpenAction != null) BoardOpenAction.Invoke();
         }
     }
 }

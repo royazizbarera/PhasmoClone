@@ -143,6 +143,15 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BoardOpen"",
+                    ""type"": ""Button"",
+                    ""id"": ""de5e8761-b4d7-41bf-b8d2-be8c8720524f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -332,6 +341,17 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                     ""action"": ""MainUseUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a887b058-ba30-4163-b998-cd55ccbcfa70"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BoardOpen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -359,6 +379,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
         m_Player_SecondaryUse = m_Player.FindAction("SecondaryUse", throwIfNotFound: true);
         m_Player_Flashlight = m_Player.FindAction("Flashlight", throwIfNotFound: true);
         m_Player_Camera = m_Player.FindAction("Camera", throwIfNotFound: true);
+        m_Player_BoardOpen = m_Player.FindAction("BoardOpen", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -431,6 +452,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SecondaryUse;
     private readonly InputAction m_Player_Flashlight;
     private readonly InputAction m_Player_Camera;
+    private readonly InputAction m_Player_BoardOpen;
     public struct PlayerActions
     {
         private @MainInputAction m_Wrapper;
@@ -448,6 +470,7 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
         public InputAction @SecondaryUse => m_Wrapper.m_Player_SecondaryUse;
         public InputAction @Flashlight => m_Wrapper.m_Player_Flashlight;
         public InputAction @Camera => m_Wrapper.m_Player_Camera;
+        public InputAction @BoardOpen => m_Wrapper.m_Player_BoardOpen;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -496,6 +519,9 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                 @Camera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
                 @Camera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
                 @Camera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
+                @BoardOpen.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBoardOpen;
+                @BoardOpen.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBoardOpen;
+                @BoardOpen.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBoardOpen;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -539,6 +565,9 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
                 @Camera.started += instance.OnCamera;
                 @Camera.performed += instance.OnCamera;
                 @Camera.canceled += instance.OnCamera;
+                @BoardOpen.started += instance.OnBoardOpen;
+                @BoardOpen.performed += instance.OnBoardOpen;
+                @BoardOpen.canceled += instance.OnBoardOpen;
             }
         }
     }
@@ -567,5 +596,6 @@ public partial class @MainInputAction : IInputActionCollection2, IDisposable
         void OnSecondaryUse(InputAction.CallbackContext context);
         void OnFlashlight(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
+        void OnBoardOpen(InputAction.CallbackContext context);
     }
 }

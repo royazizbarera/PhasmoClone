@@ -14,6 +14,8 @@ namespace UI
     {
         [SerializeField] 
         private CinemachineVirtualCamera _boardCamera;
+        [SerializeField]
+        private BoardClickable _board;
 
         [SerializeField] 
         private GameObject _mainScreen;
@@ -143,10 +145,7 @@ namespace UI
 
         private void LookAtBoard()
         {
-            if (_boardCamera.gameObject.activeInHierarchy == false) _boardCamera.gameObject.SetActive(true);
-            _boardCamera.Priority = CameraPriorities.ActiveState;
-            _inputSystem.LockControl();
-            Cursor.lockState = CursorLockMode.Confined;
+            _board.LookAtBoard();
         }
     }
 }

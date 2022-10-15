@@ -11,7 +11,8 @@
                     "id": "caa0f57f-4068-45e9-ac2b-ff1ed6c26f78",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Run",
@@ -19,7 +20,8 @@
                     "id": "5db8c592-ae27-4e23-951e-3a1365e8dadf",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Crouch",
@@ -27,7 +29,8 @@
                     "id": "2d284deb-86be-4b5c-8081-895ff9a3d3a6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "SwitchItem",
@@ -35,7 +38,8 @@
                     "id": "bd1d8836-08f3-4aae-8715-86db6a867b16",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Journal",
@@ -43,7 +47,8 @@
                     "id": "be5c630a-7981-4a6f-8776-4c06a07222c4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Pickup",
@@ -51,7 +56,8 @@
                     "id": "745dc8c0-5b81-479d-9f1f-84229475dd6a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "DropItem",
@@ -59,7 +65,8 @@
                     "id": "b623bf0e-23c3-4aad-9075-2eaba5c3f4f9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "MainUseUp",
@@ -67,7 +74,8 @@
                     "id": "698d62f9-4945-41e9-bfd7-98c242639189",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "MainUse",
@@ -75,7 +83,8 @@
                     "id": "3d82734a-b590-43ff-9615-a8ed4e5122f3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "PrimaryUse",
@@ -83,7 +92,8 @@
                     "id": "366715ee-9853-4205-ba1b-0717ad11a340",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "SecondaryUse",
@@ -91,7 +101,8 @@
                     "id": "3b9b162c-8a05-43f2-99a4-89153b0b838f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Flashlight",
@@ -99,7 +110,8 @@
                     "id": "e21897a4-44a0-4b49-91a7-f37b487a1d09",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Camera",
@@ -107,7 +119,17 @@
                     "id": "e2fbacc0-624b-42bd-b6a6-6d311ab2ac69",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BoardOpen",
+                    "type": "Button",
+                    "id": "de5e8761-b4d7-41bf-b8d2-be8c8720524f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -295,6 +317,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MainUseUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a887b058-ba30-4163-b998-cd55ccbcfa70",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BoardOpen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
