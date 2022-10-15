@@ -86,8 +86,8 @@ namespace Ghosts.Mood
         private void StartHunting(float attackTime)
         {
             if (!(_ghostState._currState is IdleState)) return;
+            if (_ghostInfo.PlayerRoom.CurrRoom == LevelRooms.LevelRoomsEnum.NoRoom) return;
 
-            if(_ghostState._currState)
             _attackInCD = true;
 
             _ghostMood.StartHunting(attackTime);

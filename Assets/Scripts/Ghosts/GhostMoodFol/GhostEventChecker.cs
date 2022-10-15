@@ -59,13 +59,14 @@ namespace Ghosts.Mood
         private void CheckForGhostEvent()
         {
             if (_attackInCD) return;
-
             if (ShouldDoGhostEvent()) StartGhostEvent();
         }
 
         private void StartGhostEvent()
         {
             if (!(_ghostState._currState is IdleState)) return;
+            if (_ghostInfo.PlayerRoom.CurrRoom == LevelRooms.LevelRoomsEnum.NoRoom) return;
+
             _ghostMood.StartGhostEvent();
         }
 

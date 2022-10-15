@@ -33,7 +33,6 @@ namespace Ghosts.Mood
         public float _ghostFinalAnger = 0f;
         void Start()
         {
-            StartCoroutine(GiveSanityInfo());
             _gameObjectives = AllServices.Container.Single<GameObjectivesService>();
             _ghostStateMachine.ChangeState(_idleState);
             if (_ghostInfo.SetedUp) { SetUp(); _subscribedToGhostSetUp = false; }
@@ -47,28 +46,11 @@ namespace Ghosts.Mood
 
         private void Update()
         {
-            if(_playerSanity != null) _ghostInfo.FinalGhostAnger = Mathf.Max(0f, ( (100 - _playerSanity.Sanity) * 0.9f) + (_ghostAnger /4));
+            if(_playerSanity != null) _ghostInfo.FinalGhostAnger = Mathf.Max(0f, ( (100 - _playerSanity.Sanity) * 0.8f) + (_ghostAnger / 3));
 
             _ghostFinalAnger = _ghostInfo.FinalGhostAnger;
         }
 
-
-        private IEnumerator GiveSanityInfo()
-        {
-            yield return new WaitForSeconds(60f);
-            Debug.Log("Anger after 1 minute: " + _ghostFinalAnger);
-
-            yield return new WaitForSeconds(120f);
-            Debug.Log("Anger after 3 minutes: " + _ghostFinalAnger);
-
-            yield return new WaitForSeconds(120f);
-            Debug.Log("Anger after 5 minutes: " + _ghostFinalAnger);
-
-            yield return new WaitForSeconds(300f);
-            Debug.Log("Anger after 10 minutes: " + _ghostFinalAnger);
-
-            yield return null;
-        }
         public void ChangePlayerSanity(float sanityToAdd)
         {
             _playerSanity.ChangeSanity(sanityToAdd);
