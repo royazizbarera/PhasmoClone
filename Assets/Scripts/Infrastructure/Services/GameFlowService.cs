@@ -134,6 +134,7 @@ namespace Infrastructure.Services
             _photoReward = 0f;
             _totalReward = 0f;
             _insuranceReward = 0f;
+            _currentGhostChoosenSO = null;
         }
 
         public void SetMapSize(int mapSize)
