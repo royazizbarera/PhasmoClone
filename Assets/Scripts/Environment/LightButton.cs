@@ -1,9 +1,12 @@
 using UnityEngine;
 using Items.Logic;
+using System;
 
 [RequireComponent(typeof(Collider))]
 public class LightButton : MonoBehaviour, IClickable
 {
+    public Action _onLightOn, _onLightOff;
+
     [SerializeField] private Light[] _connectedLights;
 
     [SerializeField] private bool _isEnabled = true;
@@ -42,6 +45,7 @@ public class LightButton : MonoBehaviour, IClickable
                 light.enabled = true;
             }
             _isEnabled = true;
+            _onLightOn?.Invoke();
         }
         else if (_isEnabled && !_ghostAttack)
         {
@@ -50,6 +54,7 @@ public class LightButton : MonoBehaviour, IClickable
                 light.enabled = false;
             }
             _isEnabled = false;
+            _onLightOff?.Invoke();
         }
         _audioSource.PlayOneShot(_switchSound, _volume);
     }
@@ -60,11 +65,16 @@ public class LightButton : MonoBehaviour, IClickable
         {
             light.enabled = false;
         }
+        _onLightOff?.Invoke();
         _isEnabled = false;
         _ghostAttack = true;
     }
     public void EndGhostAttack()
     {
         _ghostAttack = false;
+    }
+    public bool CheckIfEnabled()
+    {
+        return _isEnabled;
     }
 }

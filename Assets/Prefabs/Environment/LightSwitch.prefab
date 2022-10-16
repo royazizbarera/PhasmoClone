@@ -381,9 +381,10 @@ GameObject:
   - component: {fileID: 4637575926639332797}
   - component: {fileID: 4637575926639332798}
   - component: {fileID: 4637575926639332799}
+  - component: {fileID: 7951744918486776696}
+  - component: {fileID: 5982200345691303479}
   - component: {fileID: 4637575926639332792}
   - component: {fileID: 9127683726075518736}
-  - component: {fileID: 7951744918486776696}
   - component: {fileID: 1033397029301550200}
   m_Layer: 8
   m_Name: LightSwitch
@@ -1028,6 +1029,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7951744918486776696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4637575926639332794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b13383655619244b8da36a44e770356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _connectedLights: []
+  _isEnabled: 1
+  _switchSound: {fileID: 8300000, guid: 26a46ad8718bc6a4fab5cb8d41ffd062, type: 3}
+  _volume: 0.2
+--- !u!114 &5982200345691303479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4637575926639332794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8071518c5b4d8384d9150499f8a5dbcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lightButton: {fileID: 7951744918486776696}
+  _rotationAxis: {fileID: 4637575925950180938}
+  _enabledButtonAngle: 10
 --- !u!33 &4637575926639332792
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1049,22 +1081,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.3, z: 0.23414826}
   m_Center: {x: 0.5, y: 0.5000001, z: -0.38307393}
---- !u!114 &7951744918486776696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4637575926639332794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b13383655619244b8da36a44e770356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _connectedLights: []
-  _isEnabled: 1
-  _switchSound: {fileID: 8300000, guid: 26a46ad8718bc6a4fab5cb8d41ffd062, type: 3}
-  _volume: 0.2
 --- !u!82 &1033397029301550200
 AudioSource:
   m_ObjectHideFlags: 0
