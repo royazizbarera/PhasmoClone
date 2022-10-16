@@ -31,6 +31,7 @@ namespace Ghosts.EnvIneraction
         private int _maxEMFLevel = 4;
         // private const float MaxInteractionRadius = 8f;
         private float _defaultInteractionChance;
+        private float _explodeLightChance = 8f;
         private float _interactionCoef;
 
         private float _itemsThrowInteractionRadius;
@@ -46,7 +47,7 @@ namespace Ghosts.EnvIneraction
         private Vector3 _interectionPos;
         private bool _interected = false;
 
-        private float _leaveHandprintChance = 100f;
+        private float _leaveHandprintChance = 40f;
         private bool _canLeaveHandprint = false;
 
         private float _ghostInterectCD = 0f;
@@ -172,6 +173,14 @@ namespace Ghosts.EnvIneraction
             if (clickable != null)
             {
                 InstantiateInteraction(clickable.gameObject.transform.position);
+                if (clickable.gameObject.GetComponent<LightButton>())
+                {
+                    if (RandomGenerator.CalculateChance(_explodeLightChance))
+                    {
+                        clickable.gameObject.GetComponent<LightButton>().ExplodeLight();
+                        return;
+                    }
+                }
                 clickable.OnClick();
             }
         }

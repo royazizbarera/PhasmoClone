@@ -104,6 +104,8 @@ MonoBehaviour:
   _isEnabled: 1
   _switchSound: {fileID: 8300000, guid: 26a46ad8718bc6a4fab5cb8d41ffd062, type: 3}
   _volume: 0.15
+  _explodeSound: {fileID: 8300000, guid: 84c7c153668f0e24eba34e3286b6d077, type: 3}
+  _explodeVolume: 0.3
 --- !u!65 &6567969779019545400
 BoxCollider:
   m_ObjectHideFlags: 0

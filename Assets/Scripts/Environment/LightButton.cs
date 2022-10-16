@@ -16,55 +16,54 @@ public class LightButton : MonoBehaviour, IClickable
     [SerializeField]
     private float _volume;
 
+    [SerializeField]
+    private AudioClip _explodeSound;
+    [SerializeField]
+    private float _explodeVolume = 0.1f;
+
     private AudioSource _audioSource;
+    private bool _isExploded = false;
     private bool _ghostAttack = false;
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         if (_isEnabled)
         {
-            foreach (Light light in _connectedLights)
-            {
-                light.enabled = true;
-            }
+            EnableAllLights();
         }
         else
         {
-            foreach (Light light in _connectedLights)
-            {
-                light.enabled = false;
-            }
+            DisableAllLights();
         }
     }
     public void OnClick()
     {
-        if (!_isEnabled && !_ghostAttack)
+        if (!_isEnabled && !_ghostAttack && !_isExploded)
         {
-            foreach (Light light in _connectedLights)
-            {
-                light.enabled = true;
-            }
+            EnableAllLights();
             _isEnabled = true;
             _onLightOn?.Invoke();
         }
-        else if (_isEnabled && !_ghostAttack)
+        else if (_isEnabled && !_ghostAttack && !_isExploded)
         {
-            foreach (Light light in _connectedLights)
-            {
-                light.enabled = false;
-            }
+            DisableAllLights();
             _isEnabled = false;
             _onLightOff?.Invoke();
         }
         _audioSource.PlayOneShot(_switchSound, _volume);
     }
-
+    public void ExplodeLight()
+    {
+        if (!_isExploded && _isEnabled)
+        {
+            DisableAllLights();
+            AudioHelper.PlayClipAtPoint(_explodeSound, _connectedLights[0].transform.position, _explodeVolume);
+            _isExploded = true;
+        }
+    }
     public void GhostAttackOffLight()
     {
-        foreach (Light light in _connectedLights)
-        {
-            light.enabled = false;
-        }
+        DisableAllLights();
         _onLightOff?.Invoke();
         _isEnabled = false;
         _ghostAttack = true;
@@ -76,5 +75,19 @@ public class LightButton : MonoBehaviour, IClickable
     public bool CheckIfEnabled()
     {
         return _isEnabled;
+    }
+    private void EnableAllLights()
+    {
+        foreach (Light light in _connectedLights)
+        {
+            light.enabled = true;
+        }
+    }
+    private void DisableAllLights()
+    {
+        foreach (Light light in _connectedLights)
+        {
+            light.enabled = false;
+        }
     }
 }
