@@ -1047,6 +1047,7 @@ MonoBehaviour:
   _volume: 0.2
   _explodeSound: {fileID: 8300000, guid: 84c7c153668f0e24eba34e3286b6d077, type: 3}
   _explodeVolume: 0.3
+  _sparkParticles: {fileID: 9137292171316964376, guid: 20ef144a84e367b44b16f3fdfbab8c50, type: 3}
 --- !u!114 &5982200345691303479
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -106,6 +106,7 @@ MonoBehaviour:
   _volume: 0.15
   _explodeSound: {fileID: 8300000, guid: 84c7c153668f0e24eba34e3286b6d077, type: 3}
   _explodeVolume: 0.3
+  _sparkParticles: {fileID: 9137292171316964376, guid: 20ef144a84e367b44b16f3fdfbab8c50, type: 3}
 --- !u!65 &6567969779019545400
 BoxCollider:
   m_ObjectHideFlags: 0

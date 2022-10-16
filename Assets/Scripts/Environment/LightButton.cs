@@ -20,6 +20,8 @@ public class LightButton : MonoBehaviour, IClickable
     private AudioClip _explodeSound;
     [SerializeField]
     private float _explodeVolume = 0.1f;
+    [SerializeField]
+    private GameObject _sparkParticles;
 
     private AudioSource _audioSource;
     private bool _isExploded = false;
@@ -58,6 +60,7 @@ public class LightButton : MonoBehaviour, IClickable
         {
             DisableAllLights();
             AudioHelper.PlayClipAtPoint(_explodeSound, _connectedLights[0].transform.position, _explodeVolume);
+            foreach (Light light in _connectedLights) Instantiate(_sparkParticles, light.transform.position, Quaternion.Euler(90f, 0f, 0f));
             _isExploded = true;
         }
     }
