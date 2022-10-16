@@ -8,4 +8,5 @@ public class LevelInfo : MonoBehaviour
     public Room[] AllLevelRooms;
     public Transform[] PatrolPoints;
     public DoorDraggable[] MainDoors;
+    public LightButton[] LightButtons;
 }

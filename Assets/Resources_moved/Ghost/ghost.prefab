@@ -95,6 +95,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 293256165}
+        m_TargetAssemblyTypeName: Ghosts.EnvIneraction.GhostEnvInteraction, Assembly-CSharp
+        m_MethodName: TurnOffLights
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onStateExitActions:
   - m_PersistentCalls:
       m_Calls:
@@ -125,6 +137,18 @@ MonoBehaviour:
       - m_Target: {fileID: -5447986874986311512}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 293256165}
+        m_TargetAssemblyTypeName: Ghosts.EnvIneraction.GhostEnvInteraction, Assembly-CSharp
+        m_MethodName: TurnOnLight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -650,11 +674,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GhostData: {fileID: 11400000, guid: 0567e6284d5676e45a852286a603f70b, type: 2}
+  CurrDifficulty: {fileID: 0}
   GhostRoom: 24
   LevelSize: 0
   MainHero: {fileID: 0}
   PlayerPoint: {fileID: 0}
   MainDoors: []
+  LightButtons: []
   PlayerSanity: {fileID: 0}
   PlayerRoom: {fileID: 0}
   SetedUp: 0

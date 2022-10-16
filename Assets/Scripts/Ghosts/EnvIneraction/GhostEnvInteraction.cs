@@ -82,6 +82,20 @@ namespace Ghosts.EnvIneraction
                 door.UnlockTheDoor();
             }
         }
+        public void TurnOffLights()
+        {
+            foreach (LightButton button in _ghostInfo.LightButtons)
+            {
+                button.GhostAttackOffLight();
+            }
+        }
+        public void TurnOnLight()
+        {
+            foreach (LightButton button in _ghostInfo.LightButtons)
+            {
+                button.EndGhostAttack();
+            }
+        }
         private IEnumerator ItemInteraction()
         {
             while (true)

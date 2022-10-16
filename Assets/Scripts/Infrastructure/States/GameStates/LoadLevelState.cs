@@ -60,7 +60,7 @@ namespace Infrastructure.States.GameStates
             GameObject journal = await _gameFactory.CreateJournal();
             await _gameFactory.CreateJumpscare();
 
-            ghost.GetComponent<GhostInfo>().SetUpGhost(_levelSetUp.SelectedDifficulty, _staticDataService.GetRandomGhost(), hero, hero.GetComponent<MoveControl>().GetPlayerHuntPoint(), _levelSetUp.CurrGhostRoom, hero.GetComponent<RoomIdentifire>(), hero.GetComponent<SanityHandler>(), _levelSetUp.CurrLevelSize, _levelSetUp.MainDoors);
+            ghost.GetComponent<GhostInfo>().SetUpGhost(_levelSetUp.SelectedDifficulty, _staticDataService.GetRandomGhost(), hero, hero.GetComponent<MoveControl>().GetPlayerHuntPoint(), _levelSetUp.CurrGhostRoom, hero.GetComponent<RoomIdentifire>(), hero.GetComponent<SanityHandler>(), _levelSetUp.CurrLevelSize, _levelSetUp.MainDoors, _levelSetUp.LightButtons);
             _levelSetUp.GhostInfo = ghost.GetComponent<GhostInfo>();
             if(_levelSetUp.GhostInfo == null) { Debug.Log("Here bochok potik"); }
             _levelSetUp.MainPlayer = hero;

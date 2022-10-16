@@ -23771,6 +23771,18 @@ PrefabInstance:
       propertyPath: _connectedLights.Array.data[1]
       value: 
       objectReference: {fileID: 497780344}
+    - target: {fileID: 7951744918486776696, guid: b3298bb790b291b4eb81dd15e56ca1f1, type: 3}
+      propertyPath: _connectedLights.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951744918486776696, guid: b3298bb790b291b4eb81dd15e56ca1f1, type: 3}
+      propertyPath: _connectedLights.Array.data[0]
+      value: 
+      objectReference: {fileID: 1494692303}
+    - target: {fileID: 7951744918486776696, guid: b3298bb790b291b4eb81dd15e56ca1f1, type: 3}
+      propertyPath: _connectedLights.Array.data[1]
+      value: 
+      objectReference: {fileID: 497780344}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3298bb790b291b4eb81dd15e56ca1f1, type: 3}
 --- !u!4 &687709316 stripped
@@ -31678,7 +31690,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-460626
+  m_Name: pb_Mesh-905738
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

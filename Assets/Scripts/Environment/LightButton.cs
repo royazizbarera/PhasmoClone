@@ -14,6 +14,7 @@ public class LightButton : MonoBehaviour, IClickable
     private float _volume;
 
     private AudioSource _audioSource;
+    private bool _ghostAttack = false;
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -34,7 +35,7 @@ public class LightButton : MonoBehaviour, IClickable
     }
     public void OnClick()
     {
-        if (!_isEnabled)
+        if (!_isEnabled && !_ghostAttack)
         {
             foreach (Light light in _connectedLights)
             {
@@ -42,7 +43,7 @@ public class LightButton : MonoBehaviour, IClickable
             }
             _isEnabled = true;
         }
-        else
+        else if (_isEnabled && !_ghostAttack)
         {
             foreach (Light light in _connectedLights)
             {
@@ -51,5 +52,19 @@ public class LightButton : MonoBehaviour, IClickable
             _isEnabled = false;
         }
         _audioSource.PlayOneShot(_switchSound, _volume);
+    }
+
+    public void GhostAttackOffLight()
+    {
+        foreach (Light light in _connectedLights)
+        {
+            light.enabled = false;
+        }
+        _isEnabled = false;
+        _ghostAttack = true;
+    }
+    public void EndGhostAttack()
+    {
+        _ghostAttack = false;
     }
 }
