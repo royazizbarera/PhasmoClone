@@ -48,7 +48,7 @@ public class LevelResultsScreen : MonoBehaviour
         _gameFlowService.CalculateInsurance(itemsCost);
 
         _rewardValues = _gameFlowService.GetRewardValues();
-        _totalReward = _gameFlowService.GetTotalRewardValue();
+        _totalReward = _gameFlowService.CalculateTotalReward();
 
         _dataSaveLoader.AddMoney(_totalReward);     
 

@@ -28,7 +28,7 @@ namespace Infrastructure.Services
         private float[] _objectives = new float[3];
         private float _photoReward = 0f;
         private float _totalReward = 0f;
-        private float _ghostReward = 30f;
+        private float _ghostReward = 20f;
         private float _insuranceReward = 0f;
         private float _insurancePercent = 0f;
         private float _deathCoef = 0.25f;
@@ -98,9 +98,18 @@ namespace Infrastructure.Services
             return _rewardValues;
         }
 
-        public float GetTotalRewardValue()
+        public float CalculateTotalReward()
         {
-            CalculateTotalReward();
+            _totalReward = 0;
+            for (int i = 0; i < _rewardValues.Length; i++) _totalReward += _rewardValues[i];
+
+            _mapSizeCoef = (_mapSize + 1f) / 2f;
+            _difficultyCoef = _difficulty.RewardCoef;
+            _insurancePercent = _difficulty.InsurancePercent;
+
+            _totalReward = Mathf.Round(( _totalReward * _difficultyCoef * _mapSizeCoef));
+
+            if (Died) _totalReward = Mathf.Round((_totalReward * _deathCoef) + _insuranceReward);
             return _totalReward;
         }
 
@@ -112,17 +121,6 @@ namespace Infrastructure.Services
         {
             if (Died) _insuranceReward =  Mathf.Round(MathfHelper.CalculatePercent(itemsCost, _insurancePercent));
         }
-        private void CalculateTotalReward()
-        {
-            for (int i = 0; i < _rewardValues.Length; i++) _totalReward += _rewardValues[i];
-
-            _mapSizeCoef = (_mapSize + 1f) / 2f;
-            _difficultyCoef = _difficulty.RewardCoef;
-            _insurancePercent = _difficulty.InsurancePercent;
-
-            if (Died) _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _deathCoef * _difficultyCoef * _mapSizeCoef  + _insuranceReward);
-            else _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _difficultyCoef * _mapSizeCoef + _insuranceReward);
-        }   
         public void ClearRewards()
         {
             for (int i = 0; i < _rewardValues.Length; i++)

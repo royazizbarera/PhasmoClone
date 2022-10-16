@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrRoom: 24
+  _nextRooms: 
 --- !u!114 &7702693104501307762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eee8b9efd8fa3a47a936a0977144d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 15
+  Value: 8
   Name: Ghost writings
 --- !u!82 &-7391777808911187836
 AudioSource:
