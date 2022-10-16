@@ -33,6 +33,11 @@ namespace Infrastructure.Services
             get { return _selectedMap; }
         }
 
+        public DifficultySO SelectedDifficulty
+        {
+            get { return _difficulty; }
+        }
+
         public bool IsInitialized = false;
         public GameObject MainPlayer;
         public GhostInfo GhostInfo;
@@ -46,7 +51,7 @@ namespace Infrastructure.Services
         private LevelInfo _currLevelInfo;
         private LevelSizeConst.LevelSize _currLevelSize;
 
-        private int _difficulty;
+        private DifficultySO _difficulty;
 
         private int[] _addedItems;
 
@@ -59,7 +64,8 @@ namespace Infrastructure.Services
         {
             _selectedMap = selectedMap;
         }
-        public void ChooseDifficulty(int difficulty)
+
+        public void ChooseDifficulty(DifficultySO difficulty)
         {
             _difficulty = difficulty;
         }

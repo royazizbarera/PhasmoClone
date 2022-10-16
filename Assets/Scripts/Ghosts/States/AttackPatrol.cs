@@ -48,6 +48,8 @@ namespace Ghosts
 
         private Transform _currDestination = null;
 
+        private float _ghostDisableTime = 3f;
+
         private int _randomPointNum;
         private bool _isAttacking = false;
         private bool _isFollowing = false;
@@ -61,7 +63,6 @@ namespace Ghosts
         private const float MinVolumeDistanceHeartBeat = 7f;
 
         private const float DistanceToKill = 1f;
-        private const float DisableTime = 3f;
         private void OnEnable()
         {
             if (!_dataSetedUp) SetUpGhostData();
@@ -73,7 +74,7 @@ namespace Ghosts
         private void Update()
         {
             if (!_isAttacking) return;
-            if (_isGhostDisabled) return;
+            if (_isGhostDisabled)  return; 
 
             CheckDistanceToPlayer();
             SetHeartBeatVolume();
@@ -100,7 +101,7 @@ namespace Ghosts
             _agent.speed = _ghostAttackSpeed;
             SwitchAttackState(true);
             StartCoroutine(nameof(CheckForPlayerVisible));
-            Invoke(nameof(EnableAttackAfterCD), DisableTime);
+            Invoke(nameof(EnableAttackAfterCD), _ghostDisableTime);
         }
 
         public void StopAttackPatrolling()
@@ -216,13 +217,15 @@ namespace Ghosts
         {
             _audioControl = _ghostInfo.MainHero.GetComponent<PlayerAudioControl>();
 
-            _sanityPlayerMinus = -_ghostInfo.GhostData.PlayerSanityMinusPerHunt;
+            _sanityPlayerMinus = _ghostInfo.GhostData.PlayerSanityMinusPerHunt;
 
             _playerPoint = _ghostInfo.PlayerPoint;
             _heroTransform = _ghostInfo.MainHero.transform;
 
             _ghostAttackSpeed = _ghostInfo.GhostData.GhostAttackSpeed;
             _maxAggroDistance = _ghostInfo.GhostData.MaxDistanceToPlayerAggr;
+
+            _ghostDisableTime = _ghostInfo.CurrDifficulty.HuntSafeTime;
             // _playerTransform = _ghostInfo.
         }
 

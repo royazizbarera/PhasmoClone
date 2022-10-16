@@ -22,7 +22,7 @@ namespace Infrastructure.Services
         private ICoroutineRunner _coroutineRunner;
 
         private int _mapSize = 0;
-        private int _difficulty = 0;
+        private DifficultySO _difficulty;
 
         private float[] _rewardValues = new float[6];
         private float[] _objectives = new float[3];
@@ -30,6 +30,7 @@ namespace Infrastructure.Services
         private float _totalReward = 0f;
         private float _ghostReward = 30f;
         private float _insuranceReward = 0f;
+        private float _insurancePercent = 0f;
         private float _deathCoef = 0.25f;
         private float _difficultyCoef = 1f;
         private float _mapSizeCoef = 1f;
@@ -109,14 +110,15 @@ namespace Infrastructure.Services
         }
         public void CalculateInsurance(float itemsCost)
         {
-            if (Died) _insuranceReward = Mathf.Round(itemsCost / 2);
+            if (Died) _insuranceReward =  Mathf.Round(MathfHelper.CalculatePercent(itemsCost, _insurancePercent));
         }
         private void CalculateTotalReward()
         {
             for (int i = 0; i < _rewardValues.Length; i++) _totalReward += _rewardValues[i];
 
             _mapSizeCoef = (_mapSize + 1f) / 2f;
-            _difficultyCoef = (_difficulty + 2f) / 2f;
+            _difficultyCoef = _difficulty.RewardCoef;
+            _insurancePercent = _difficulty.InsurancePercent;
 
             if (Died) _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _deathCoef * _difficultyCoef * _mapSizeCoef  + _insuranceReward);
             else _totalReward = Mathf.Round((_totalReward - _insuranceReward) * _difficultyCoef * _mapSizeCoef + _insuranceReward);
@@ -145,7 +147,7 @@ namespace Infrastructure.Services
         {
             return _mapSizeCoef;
         }
-        public void SetDifficulty(int difficulty)
+        public void SetDifficulty(DifficultySO difficulty)
         {
             _difficulty = difficulty;
         }

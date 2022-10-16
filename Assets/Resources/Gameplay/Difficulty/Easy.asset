@@ -10,10 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0de9d88d882335b49bf18fea83ec78cc, type: 3}
-  m_Name: Medium
+  m_Name: Easy
   m_EditorClassIdentifier: 
-  GracePeriod: 0
-  SanityModifier: 0
-  HuntDurationModifier: 0
-  DifficultyRewardModifier: 0
-  DifficultyDescription: 
+  GameGracePeriod: 250
+  HuntSafeTime: 4.5
+  SanityWasteModifier: 1
+  HuntDurationModifier: 1
+  RewardCoef: 1
+  InsurancePercent: 70
+  Description: 'This is the simplest difficulty aimed at players who are new to the
+    game and are slowly learning the mechanics.
+
+    - Shortest hunting phase
+
+    -
+    Slow '

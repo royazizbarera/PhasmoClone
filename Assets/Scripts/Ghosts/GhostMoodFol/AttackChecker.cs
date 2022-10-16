@@ -18,7 +18,7 @@ namespace Ghosts.Mood
         private GhostStateMachine _ghostState;
 
         [SerializeField]
-        private float _ghostAttackCheckCD = 15f;
+        private float _ghostAttackCheckCD = 5f;
 
         private bool _attackInCD = false;
         private bool _underSmudgeEffect = false;
@@ -31,6 +31,8 @@ namespace Ghosts.Mood
         private float _minHuntDuration;
         private float _maxHuntDuration;
 
+        private float _huntDurationModifier;
+        private float _cantAttackTime;
         private SanityHandler _playerSanity;
         private WaitForSeconds GhostAttackCheckCD;
         void Start()
@@ -80,7 +82,7 @@ namespace Ghosts.Mood
 
         private float CalculateAttackTime()
         {
-            return UnityEngine.Random.Range(_minHuntDuration + _ghostInfo.FinalGhostAnger / MinAttackDurationDivider, _maxHuntDuration + _ghostInfo.FinalGhostAnger / MaxAttackDurationDivider);
+            return UnityEngine.Random.Range( (_minHuntDuration * _huntDurationModifier) + _ghostInfo.FinalGhostAnger / MinAttackDurationDivider, (_maxHuntDuration * _huntDurationModifier) + _ghostInfo.FinalGhostAnger / MaxAttackDurationDivider);
         }
 
         private void StartHunting(float attackTime)
@@ -118,7 +120,10 @@ namespace Ghosts.Mood
 
             _minHuntDuration = LevelSizeConst.MapMinHuntDuration(_levelSize.ToString());
             _maxHuntDuration = LevelSizeConst.MapMaxHuntDuration(_levelSize.ToString());
+            _huntDurationModifier = _ghostInfo.CurrDifficulty.HuntDurationModifier;
 
+            _attackInCD = true;
+            Invoke(nameof(ReloadAttackCD), _ghostInfo.CurrDifficulty.GameGracePeriod);
             StartCoroutine(nameof(CheckForAttackInum));
         }
     }

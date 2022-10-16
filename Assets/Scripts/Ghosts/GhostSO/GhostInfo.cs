@@ -5,6 +5,8 @@ using Utilities.Constants;
 public class GhostInfo : MonoBehaviour
 {
     public GhostDataSO GhostData;
+    public DifficultySO CurrDifficulty;
+
     public LevelRooms.LevelRoomsEnum GhostRoom;
     public LevelSizeConst.LevelSize LevelSize;
 
@@ -18,9 +20,10 @@ public class GhostInfo : MonoBehaviour
     public float FinalGhostAnger = 0f;
 
     public Action GhostSetedUp;
-    public void SetUpGhost(GhostDataSO currGhostData, GameObject mainHero, Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity, LevelSizeConst.LevelSize levelSize, DoorDraggable[] mainDoors)
+    public void SetUpGhost(DifficultySO currDifficulty, GhostDataSO currGhostData, GameObject mainHero, Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity, LevelSizeConst.LevelSize levelSize, DoorDraggable[] mainDoors)
     {
         GhostData = currGhostData;
+        CurrDifficulty = currDifficulty;
 
         MainHero = mainHero;
         PlayerPoint = playerTransformPoint;

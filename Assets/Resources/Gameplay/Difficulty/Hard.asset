@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de9d88d882335b49bf18fea83ec78cc, type: 3}
   m_Name: Hard
   m_EditorClassIdentifier: 
-  GracePeriod: 0
-  SanityModifier: 0
-  HuntDurationModifier: 0
-  DifficultyRewardModifier: 0
-  DifficultyDescription: 
+  GameGracePeriod: 0
+  HuntSafeTime: 1.5
+  SanityWasteModifier: 2
+  HuntDurationModifier: 2
+  RewardCoef: 4
+  InsurancePercent: 10
+  Description: This difficulty is for experienced players who have a relatively strong
+    foundation in the core mechanics, ghosts, and strategies needed to complete the
+    investigation.

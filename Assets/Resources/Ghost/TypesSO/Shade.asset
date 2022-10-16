@@ -28,11 +28,11 @@ MonoBehaviour:
   PlayerSanityMinusPerHunt: 10
   MinSanityToAttack: 60
   MaxDistanceToPlayerAggr: 15
-  AttackChanceCoef: 0.16
+  AttackChanceCoef: 0.15
   MinAttackCD: 40
   GhostEventChanceCoef: 0.2
   DefaultInterectionChance: 12
-  InterectionsCoef: 0.26
+  InterectionsCoef: 0.2
   GhostFindInerectionsCD: 2
   GhostBetweenInterectionsCD: 4
   ItemThrowRadiusOfInterection: 1.5

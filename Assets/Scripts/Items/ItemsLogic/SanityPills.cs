@@ -30,7 +30,7 @@ namespace Items.ItemsLogic
         {
             if (_playerSanity != null)
             {
-                _playerSanity.ChangeSanity(_sanityToAdd);
+                _playerSanity.AddSanity(_sanityToAdd);
                 _consumable.Consume();
             }
         }

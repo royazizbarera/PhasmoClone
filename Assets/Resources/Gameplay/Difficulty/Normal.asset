@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0de9d88d882335b49bf18fea83ec78cc, type: 3}
-  m_Name: Easy
+  m_Name: Normal
   m_EditorClassIdentifier: 
-  GracePeriod: 0
-  SanityModifier: 0
-  HuntDurationModifier: 0
-  DifficultyRewardModifier: 0
-  DifficultyDescription: 
+  GameGracePeriod: 120
+  HuntSafeTime: 2.5
+  SanityWasteModifier: 1.4
+  HuntDurationModifier: 1.4
+  RewardCoef: 2
+  InsurancePercent: 40
+  Description: This difficulty is for the average player who has  knowledge of the
+    game's mechanics.

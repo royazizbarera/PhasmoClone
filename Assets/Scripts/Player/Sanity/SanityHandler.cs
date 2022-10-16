@@ -22,6 +22,7 @@ public class SanityHandler : MonoBehaviour
 
     private LevelRooms.LevelRoomsEnum _currGhostRoom = LevelRooms.LevelRoomsEnum.NoRoom;
     private bool _isSubscribedToOnLevelSetedUp = false;
+    private float _sanityModifier = 1f;
 
     public float Sanity;
 
@@ -43,9 +44,15 @@ public class SanityHandler : MonoBehaviour
         _levelSetUp.OnLevelSetedUp -= SetUp;
     }
 
-    public void ChangeSanity(float ammountToAdd)
+    public void TakeSanity(float ammountToTake)
     {
-        Sanity += ammountToAdd;
+        Sanity -= (ammountToTake * _sanityModifier);
+        Sanity = Mathf.Clamp(Sanity, 0, _maxSanityValue);
+    }
+
+    public void AddSanity(float ammountToAdd)
+    {
+        Sanity += (ammountToAdd / _sanityModifier);
         Sanity = Mathf.Clamp(Sanity, 0, _maxSanityValue);
     }
 
@@ -61,14 +68,16 @@ public class SanityHandler : MonoBehaviour
     private void DropPlayerSanity()
     {
         if (_currPlayerRoom.CurrRoom == LevelRooms.LevelRoomsEnum.NoRoom) return;
-        else if (_currPlayerRoom.CurrRoom == _currGhostRoom) ChangeSanity(-_ghostRoomSecondSanityMinus);
-        else ChangeSanity(-_houseSecondSanityMinus);
+        else if (_currPlayerRoom.CurrRoom == _currGhostRoom) TakeSanity(_ghostRoomSecondSanityMinus);
+        else TakeSanity(_houseSecondSanityMinus);
     }
 
     private void SetUp()
     {
         _currGhostRoom = _levelSetUp.CurrGhostRoom;
         _ghostInfo = _levelSetUp.GhostInfo;
+
+        _sanityModifier = _levelSetUp.SelectedDifficulty.SanityWasteModifier;
 
         if (_ghostInfo == null) Debug.Log("Ghost info = null");
 

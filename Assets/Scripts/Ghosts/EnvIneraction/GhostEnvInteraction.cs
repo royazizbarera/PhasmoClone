@@ -224,7 +224,7 @@ namespace Ghosts.EnvIneraction
             _playerPos.y = 0f; _interectionPos.y = 0f;
             if (Vector3.Distance(_playerPos, _interectionPos) <= _interecMaxDistanceToPlayerSanity)
             {
-                _ghostInfo.PlayerSanity.ChangeSanity(-_ghostInfo.GhostData.PlayerSanityMinusPerGhostInterection);
+                _ghostInfo.PlayerSanity.TakeSanity(_ghostInfo.GhostData.PlayerSanityMinusPerGhostInterection);
             }
         }
 

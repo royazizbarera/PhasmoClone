@@ -4915,10 +4915,10 @@ MonoBehaviour:
       - m_Target: {fileID: 886015984847841027}
         m_TargetAssemblyTypeName: UI.BoardMenu, Assembly-CSharp
         m_MethodName: ChooseDifficulty
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: ad91f9ccade1f8548bd24e89d0abdf10, type: 2}
+          m_ObjectArgumentAssemblyTypeName: DifficultySO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9396,10 +9396,10 @@ MonoBehaviour:
       - m_Target: {fileID: 886015984847841027}
         m_TargetAssemblyTypeName: UI.BoardMenu, Assembly-CSharp
         m_MethodName: ChooseDifficulty
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 7b3109bfd7e422d4db3219556bd32156, type: 2}
+          m_ObjectArgumentAssemblyTypeName: DifficultySO, Assembly-CSharp
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
@@ -27760,10 +27760,10 @@ MonoBehaviour:
       - m_Target: {fileID: 886015984847841027}
         m_TargetAssemblyTypeName: UI.BoardMenu, Assembly-CSharp
         m_MethodName: ChooseDifficulty
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: a13a5213a3dfbf04a9dd3aa1b4566bd1, type: 2}
+          m_ObjectArgumentAssemblyTypeName: DifficultySO, Assembly-CSharp
           m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 

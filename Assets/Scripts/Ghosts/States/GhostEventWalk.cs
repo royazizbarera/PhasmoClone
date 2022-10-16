@@ -132,7 +132,7 @@ namespace Ghosts
         }
         private void SetUpGhostInfo()
         {
-            _sanityToTakeGhostEvent = -_ghostInfo.GhostData.PlayerSanityMinusPerGhostGhostEvent;
+            _sanityToTakeGhostEvent = _ghostInfo.GhostData.PlayerSanityMinusPerGhostGhostEvent;
             _playerPoint = _ghostInfo.PlayerPoint;
         }
     }

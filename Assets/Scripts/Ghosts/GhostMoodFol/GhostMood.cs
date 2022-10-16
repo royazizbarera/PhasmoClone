@@ -53,7 +53,7 @@ namespace Ghosts.Mood
 
         public void ChangePlayerSanity(float sanityToAdd)
         {
-            _playerSanity.ChangeSanity(sanityToAdd);
+            _playerSanity.TakeSanity(sanityToAdd);
         }
         public void SetGhostAnger(float ghostAnger)
         {

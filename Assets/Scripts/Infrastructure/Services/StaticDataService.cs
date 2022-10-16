@@ -9,7 +9,7 @@ namespace Infrastructure.Services
     public class StaticDataService : IService
     {
         private const string GhostDataPath = "Ghost/TypesSO";
-        private const string GameObjectivesPath = "ObjectivesSO";
+        private const string GameObjectivesPath = "Gameplay/ObjectivesSO";
 
         private Dictionary<string, GhostDataSO> _ghosts;
 

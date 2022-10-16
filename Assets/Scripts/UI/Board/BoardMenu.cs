@@ -98,23 +98,10 @@ namespace UI
             _playButtonTXT.alpha = 255f;
         }
 
-        public void ChooseDifficulty(int difficulty) 
+        public void ChooseDifficulty(DifficultySO difficulty) 
         {
-            if (difficulty == 0)
-            {
-                _difficultyTXT.text = "Difficulty: Easy";
-                _difficultyInfoTXT.text = "This difficulty just to chill and not smell the bebra is possible";
-            }
-            else if (difficulty == 1)
-            {
-                _difficultyTXT.text = "Difficulty: Normal";
-                _difficultyInfoTXT.text = "A little harder but still not hard";
-            }
-            else if (difficulty == 2)
-            {
-                _difficultyTXT.text = "Difficulty: Hard";
-                _difficultyInfoTXT.text = "For experienced ghost hunters, there is a high chance of dying";
-            }
+            _difficultyTXT.text = "Difficulty: " + difficulty.name;
+            _difficultyInfoTXT.text = difficulty.Description;         
 
             _chooseDifficultyButton.interactable = true;
             _chooseDifficultyButtonTXT.alpha = 255f;

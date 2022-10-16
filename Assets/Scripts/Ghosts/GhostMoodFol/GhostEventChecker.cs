@@ -15,7 +15,7 @@ namespace Ghosts.Mood
         [SerializeField]
         private GhostStateMachine _ghostState;
         [SerializeField]
-        private float _ghostEventCheckCD = 15f;
+        private float _ghostEventCheckCD = 5f;
 
         private bool _attackInCD = false;
         private bool _subscribedToGhostSetUp = false;
