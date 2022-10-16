@@ -17,6 +17,7 @@ MonoBehaviour:
   SanityWasteModifier: 2
   HuntDurationModifier: 2
   RewardCoef: 4
+  TimeToWarmHouse: 10000
   InsurancePercent: 10
   Description: This difficulty is for experienced players who have a relatively strong
     foundation in the core mechanics, ghosts, and strategies needed to complete the

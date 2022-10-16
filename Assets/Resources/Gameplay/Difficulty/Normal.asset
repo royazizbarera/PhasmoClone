@@ -17,6 +17,7 @@ MonoBehaviour:
   SanityWasteModifier: 1.4
   HuntDurationModifier: 1.4
   RewardCoef: 2
+  TimeToWarmHouse: 120
   InsurancePercent: 40
   Description: This difficulty is for the average player who has  knowledge of the
     game's mechanics.

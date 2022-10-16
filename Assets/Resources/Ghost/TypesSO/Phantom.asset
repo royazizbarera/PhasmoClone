@@ -32,7 +32,7 @@ MonoBehaviour:
   MinAttackCD: 40
   GhostEventChanceCoef: 0.35
   DefaultInterectionChance: 15
-  InterectionsCoef: 0.3
+  InterectionsCoef: 0.2
   GhostFindInerectionsCD: 2
   GhostBetweenInterectionsCD: 4
   ItemThrowRadiusOfInterection: 1.5

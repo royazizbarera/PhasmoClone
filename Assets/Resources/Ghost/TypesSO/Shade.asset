@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shade
   m_EditorClassIdentifier: 
   GhostNormalSpeed: 2
-  GhostAttackSpeed: 2.2
+  GhostAttackSpeed: 2.6
   GhostEvidences: 010000000300000002000000
   PatrolRandomMultiplier: 5
   StartGhostAnger: 20
@@ -32,7 +32,7 @@ MonoBehaviour:
   MinAttackCD: 40
   GhostEventChanceCoef: 0.2
   DefaultInterectionChance: 12
-  InterectionsCoef: 0.2
+  InterectionsCoef: 0.12
   GhostFindInerectionsCD: 2
   GhostBetweenInterectionsCD: 4
   ItemThrowRadiusOfInterection: 1.5

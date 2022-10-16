@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class AudioHelper
 {
-    public static void PlayClipAtPoint(AudioClip clip, Vector3 pos, float volume = 1f, float minRollOffDistance = 2f, float maxRollOffDistance = 15f)
+    public static void PlayClipAtPoint(AudioClip clip, Vector3 pos, float volume = 1f, float minRollOffDistance = 1.5f, float maxRollOffDistance = 9f)
     {
         GameObject tempGO = new GameObject("TempAudio");
         

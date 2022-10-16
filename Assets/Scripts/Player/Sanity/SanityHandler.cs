@@ -79,8 +79,6 @@ public class SanityHandler : MonoBehaviour
 
         _sanityModifier = _levelSetUp.SelectedDifficulty.SanityWasteModifier;
 
-        if (_ghostInfo == null) Debug.Log("Ghost info = null");
-
         _houseSecondSanityMinus = _ghostInfo.GhostData.PlayerSanityMinusPerSecond;
         _ghostRoomSecondSanityMinus = _ghostInfo.GhostData.PlayerSanityMinusInGhostRoomPerSecond;
         StartCoroutine(DropSanityWithTime());

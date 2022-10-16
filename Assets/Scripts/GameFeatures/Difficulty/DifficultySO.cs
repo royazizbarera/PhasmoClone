@@ -15,7 +15,7 @@ public class DifficultySO : ScriptableObject
 
     public float RewardCoef;
 
-
+    public float TimeToWarmHouse;
     [Tooltip("How much money does player return after death")]
     public float InsurancePercent;
     [TextArea(5, 10)]
