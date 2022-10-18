@@ -621,11 +621,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874206495b73a3341b14cc183eec8d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interaction: {fileID: 1907466690619057802, guid: 00b709e4c8a4358469c50620b17d9c49, type: 3}
-  _ghostInfo: {fileID: 1499621083}
-  _ghostInterectWithLayer:
+  GhostInterectWithLayer:
     serializedVersion: 2
     m_Bits: 768
+  _interaction: {fileID: 1907466690619057802, guid: 00b709e4c8a4358469c50620b17d9c49, type: 3}
+  _ghostInfo: {fileID: 1499621083}
   _interecMaxDistanceToPlayerSanity: 4
   _ghostInteractionCDMultiplayer: 0.02
   _doorInterectionSound: {fileID: 8300000, guid: c68bc05f5b4d27341b621e238e01bfb1, type: 3}

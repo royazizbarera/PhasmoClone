@@ -51,6 +51,8 @@ public class GhostDataSO : ScriptableObject
     public float MinMeshDisabledTime = 0.55f;
     public float MaxMeshDisabledTime = 0.9f;
 
+    public GameObject[] UniqueAbilities;
+
     [TextArea(5, 10)]
     public string GhostDescription;
 

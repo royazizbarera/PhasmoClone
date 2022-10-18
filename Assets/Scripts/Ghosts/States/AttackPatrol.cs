@@ -10,6 +10,19 @@ namespace Ghosts
 {
     public class AttackPatrol : MonoBehaviour
     {
+        public float GhostCurrAttackSpeed
+        {
+            get { return _ghostCurrAttackSpeed; }
+        }
+
+        public bool IsAttacking
+        {
+            get { return _isAttacking; }
+        }
+        public bool IsFollowing
+        {
+            get { return _isFollowing; }
+        }
         [SerializeField]
         private NavMeshAgent _agent;
         [SerializeField]
@@ -38,6 +51,8 @@ namespace Ghosts
         private bool _isGhostDisabled = false;
 
         private bool _dataSetedUp = false;
+
+        private float _ghostCurrAttackSpeed;
         private float _ghostAttackSpeed;
         private float _distanceToPlayer = 0f;
 
@@ -98,7 +113,9 @@ namespace Ghosts
 
             _isGhostDisabled = true;
             _isFollowing = false;
-            _agent.speed = _ghostAttackSpeed;
+
+            ChangeGhostSpeed(_ghostAttackSpeed);
+
             SwitchAttackState(true);
             StartCoroutine(nameof(CheckForPlayerVisible));
             Invoke(nameof(EnableAttackAfterCD), _ghostDisableTime);
@@ -134,6 +151,11 @@ namespace Ghosts
             Invoke(nameof(StopSmudgeEffect), SmudgeEffectTime);
         }
 
+        public void ChangeGhostSpeed(float speed)
+        {
+            _agent.speed = speed;
+            _ghostCurrAttackSpeed = speed;
+        }
         private void StopSmudgeEffect()
         {
             _underSmudgeEffect = false;

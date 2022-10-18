@@ -17,11 +17,8 @@ MonoBehaviour:
   SanityWasteModifier: 1
   HuntDurationModifier: 1
   RewardCoef: 1
+  TimeToWarmHouse: 0
   InsurancePercent: 70
-  Description: 'This is the simplest difficulty aimed at players who are new to the
-    game and are slowly learning the mechanics.
-
-    - Shortest hunting phase
-
-    -
-    Slow '
+  Description: "This is the simplest difficulty aimed at players who are new to the
+    game and are slowly learning the mechanics.\n- Shortest hunting phase\n- House
+    is warm at the beginning \n- Normal sanity waste\n- Low reward"

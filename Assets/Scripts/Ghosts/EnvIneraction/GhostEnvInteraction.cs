@@ -8,14 +8,15 @@ namespace Ghosts.EnvIneraction
 {
     public class GhostEnvInteraction : MonoBehaviour
     {
+        public LayerMask GhostInterectWithLayer;
+
         [SerializeField]
         private InteractionScript _interaction;
 
         [SerializeField]
         private GhostInfo _ghostInfo;
 
-        [SerializeField]
-        private LayerMask _ghostInterectWithLayer;
+        //public LayerMask GhostInterectWithLayer;
         [SerializeField, Tooltip("How close player should be to interection, to lost sanity")]
         private float _interecMaxDistanceToPlayerSanity = 4f;
 
@@ -110,9 +111,21 @@ namespace Ghosts.EnvIneraction
         }
         private float CalculateInterectCD() => Mathf.Max(0f, _ghostInterectCD - (_ghostInfo.FinalGhostAnger * _ghostInteractionCDMultiplayer));
 
+
+        public void InteractWithEverything()
+        {
+            _hitColliderSize = Physics.OverlapSphereNonAlloc(transform.position, _maxInteractionRadius, hitColliders, GhostInterectWithLayer);
+
+            for (int i = 0; i < _hitColliderSize; i++)
+            {
+                CheckForPickupable(hitColliders[i], true);
+                CheckForClickable(hitColliders[i], true);
+                CheckForDoors(hitColliders[i], true);
+            }
+        }
         private void InteractSphereCheck()
         {
-            _hitColliderSize = Physics.OverlapSphereNonAlloc(transform.position, _maxInteractionRadius, hitColliders, _ghostInterectWithLayer);
+            _hitColliderSize = Physics.OverlapSphereNonAlloc(transform.position, _maxInteractionRadius, hitColliders, GhostInterectWithLayer);
 
             ResetInterectedWith();
             for (int i = 0; i < _hitColliderSize; i++)
@@ -129,13 +142,13 @@ namespace Ghosts.EnvIneraction
             _interectedWithClickable = false;
             _interectedWithDoor = false;
         }
-        private bool CheckForPickupable(Collider hitCollider)
+        private bool CheckForPickupable(Collider hitCollider, bool ShouldInterect = false)
         {
             Pickupable pickupable = hitCollider.GetComponent<Pickupable>();
             if (pickupable != null && Vector3.Distance(transform.position, hitCollider.transform.position) <= _itemsThrowInteractionRadius)
             {
                 _interectedWithPickupable = true;
-                if (CalculateInteractionChance() == true)
+                if (CalculateInteractionChance() == true || ShouldInterect)
                 {
                     _interected = true;
                     InteractWithPickupable(pickupable);
@@ -153,13 +166,13 @@ namespace Ghosts.EnvIneraction
             }
         }
 
-        private bool CheckForClickable(Collider hitCollider)
+        private bool CheckForClickable(Collider hitCollider, bool ShouldInterect = false)
         {
             IClickable clickable = hitCollider.GetComponent<IClickable>();
             if (clickable != null && Vector3.Distance(transform.position, hitCollider.transform.position) <= _clickableInteractionRadius)
             {
                 _interectedWithClickable = true;
-                if (CalculateInteractionChance() == true)
+                if (CalculateInteractionChance() == true || ShouldInterect)
                 {
                     _interected = true;
                     InteractWithClickable(clickable);
@@ -185,13 +198,13 @@ namespace Ghosts.EnvIneraction
             }
         }
 
-        private bool CheckForDoors(Collider hitCollider)
+        private bool CheckForDoors(Collider hitCollider, bool ShouldInterect = false)
         {
             DoorDraggable door = hitCollider.GetComponent<DoorDraggable>();
             if (door != null && Vector3.Distance(transform.position, hitCollider.transform.position) <= _doorsTouchInteractionRadius)
             {
                 _interectedWithDoor = true;
-                if (CalculateInteractionChance() == true)
+                if (CalculateInteractionChance() == true || ShouldInterect)
                 {
                     _interected = true;
                     InteractWithDoors(door);

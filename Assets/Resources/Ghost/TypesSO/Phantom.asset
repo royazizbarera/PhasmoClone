@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GhostNormalSpeed: 2
   GhostAttackSpeed: 3.3
-  GhostEvidences: 000000000400000003000000
+  GhostEvidences: 000000000300000004000000
   PatrolRandomMultiplier: 5
   StartGhostAnger: 30
   GhostAngerPlusPerSec: 0.12
@@ -39,10 +39,12 @@ MonoBehaviour:
   DoorsTouchRadiusInterection: 2.5
   ClickableTouchRadiusInterection: 2.5
   ItemThrowPower: 5
-  MinMeshActiveTime: 0.1
-  MaxMeshActiveTime: 0.16
-  MinMeshDisabledTime: 0.8
-  MaxMeshDisabledTime: 1.5
+  MinMeshActiveTime: 0.09
+  MaxMeshActiveTime: 0.14
+  MinMeshDisabledTime: 1
+  MaxMeshDisabledTime: 1.6
+  UniqueAbilities:
+  - {fileID: 3804046771150453694, guid: 584087082a134bb4783631b7da3a3cd7, type: 3}
   GhostDescription: "Phantom are very dangerous ghosts. It is hard to see phantom
     during the hunt and they are reall fast. Be carefull! \n\nStrengths: Phantoms
     are faster than other ghosts \n\nWeakness: It is easy to distinguish Phantoms

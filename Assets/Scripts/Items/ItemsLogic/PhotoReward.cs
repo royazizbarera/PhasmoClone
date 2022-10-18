@@ -1,11 +1,15 @@
 using Infrastructure;
 using Infrastructure.Services;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PhotoReward : MonoBehaviour
 {
+    public Action OnPhotoTaken;
+    public Action OnPhotoCheck;
+
     [SerializeField] private float Value;
     [SerializeField] private string Name;
 
@@ -26,11 +30,14 @@ public class PhotoReward : MonoBehaviour
     }
     public void Photograph()
     {
-         _gameObjectives.PhotoTaken(Name);
+        OnPhotoTaken?.Invoke();
+
+        _gameObjectives.PhotoTaken(Name);
         _isPhotographed = true;
     }
     public bool CheckIfPhotographed()
     {
+        OnPhotoCheck?.Invoke();
         return _isPhotographed;
     }
 }

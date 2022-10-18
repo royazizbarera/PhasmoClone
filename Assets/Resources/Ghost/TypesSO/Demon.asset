@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GhostNormalSpeed: 2
   GhostAttackSpeed: 3
-  GhostEvidences: 010000000400000003000000
+  GhostEvidences: 010000000300000004000000
   PatrolRandomMultiplier: 5
   StartGhostAnger: 30
   GhostAngerPlusPerSec: 0.2
@@ -26,7 +26,7 @@ MonoBehaviour:
   PlayerSanityMinusPerGhostInterection: 0.5
   PlayerSanityMinusPerGhostGhostEvent: 4
   PlayerSanityMinusPerHunt: 10
-  MinSanityToAttack: 80
+  MinSanityToAttack: 85
   MaxDistanceToPlayerAggr: 15
   AttackChanceCoef: 0.4
   MinAttackCD: 30
@@ -43,6 +43,7 @@ MonoBehaviour:
   MaxMeshActiveTime: 0.18
   MinMeshDisabledTime: 0.55
   MaxMeshDisabledTime: 0.9
+  UniqueAbilities: []
   GhostDescription: 'Demons are the most aggressive ghosts we''ve ever encountered.
     Known to attack without reason. Be very careful!
 

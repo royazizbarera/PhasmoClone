@@ -39,7 +39,19 @@ public class GhostInfo : MonoBehaviour
         MainDoors = mainDoors;
         LightButtons = lightButtons;
 
+        CreateUniques();
+
         GhostSetedUp?.Invoke();
         SetedUp = true;
+    }
+
+    public void CreateUniques()
+    {
+        if (GhostData.UniqueAbilities == null) return;
+        foreach (GameObject unique in GhostData.UniqueAbilities)
+        {
+            Instantiate(unique, transform);
+        }
+       
     }
 }

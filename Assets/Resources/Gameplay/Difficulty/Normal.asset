@@ -19,5 +19,6 @@ MonoBehaviour:
   RewardCoef: 2
   TimeToWarmHouse: 120
   InsurancePercent: 40
-  Description: This difficulty is for the average player who has  knowledge of the
-    game's mechanics.
+  Description: "This difficulty is for the average player who has  knowledge of the
+    game's mechanics.\n- Average hunting phase\n- House needs 2 minutes to warm up
+    \n- Increased sanity waste\n- Normal reward"

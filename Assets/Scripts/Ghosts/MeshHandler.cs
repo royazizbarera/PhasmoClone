@@ -46,6 +46,12 @@ public class MeshHandler : MonoBehaviour
         _ghostMesh.SetActive(true);
         _isMeshActive = true;
     }
+
+    public void MeshDisappear()
+    {
+        _ghostMesh.SetActive(false);
+        _isMeshActive = false;
+    }
     public void DisableMesh()
     {
         if (!enabled) return;

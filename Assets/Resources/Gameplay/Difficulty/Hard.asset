@@ -19,6 +19,15 @@ MonoBehaviour:
   RewardCoef: 4
   TimeToWarmHouse: 10000
   InsurancePercent: 10
-  Description: This difficulty is for experienced players who have a relatively strong
-    foundation in the core mechanics, ghosts, and strategies needed to complete the
-    investigation.
+  Description: 'This difficulty is for experienced players who have a relatively
+    strong foundation in the core mechanics, ghosts, and strategies needed to complete
+    the investigation.
+
+    - Longest hunting phase
+
+    - House is always cold
+
+    -
+    High sanity waste
+
+    - Big reward'
