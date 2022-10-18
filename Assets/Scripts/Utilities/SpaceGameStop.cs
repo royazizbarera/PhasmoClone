@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEditor;
 public class SpaceGameStop : MonoBehaviour
 {
+#if UNITY_EDITOR
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("p"))
         {
-#if UNITY_EDITOR 
             EditorApplication.isPaused = true;
-#endif
         }
     }
+#endif
 }
