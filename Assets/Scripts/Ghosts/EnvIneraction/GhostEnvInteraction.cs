@@ -98,6 +98,11 @@ namespace Ghosts.EnvIneraction
                 button.EndGhostAttack();
             }
         }
+
+        public void ChangeLightExplodeChance(float explodeChance)
+        {
+            _explodeLightChance = explodeChance;
+        }
         private IEnumerator ItemInteraction()
         {
             while (true)
