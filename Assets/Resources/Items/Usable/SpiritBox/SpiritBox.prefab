@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8650718496132925209}
   - component: {fileID: 1848436778719064924}
+  - component: {fileID: 4124710157721166716}
   - component: {fileID: 7349183324878477218}
   - component: {fileID: 8225901762693517528}
   - component: {fileID: 5609042740155992825}
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1350ce2d74088845ac8da5eadee3b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mesh: {fileID: 343617671070400496}
   _radioFrequency: {fileID: 5609042740155992825}
   _ghostVoiceClips:
   - {fileID: 8300000, guid: 890c8de0c88a4994ab6b189fb58bdfb7, type: 3}
@@ -141,6 +143,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 183ccb9020226b6428f268a66a017f2d, type: 3}
   - {fileID: 8300000, guid: b677c550f2f45b4469581f4414644b5d, type: 3}
   _ghostVoiceVolume: 0.5
+  _currRoom: {fileID: 4124710157721166716}
+  _defaultChanceToSay: 0.5
+  _increaseChancePerTick: 0.02
+  _tickTime: 3
+  _inHandModifier: 15
+--- !u!114 &4124710157721166716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059012132858619988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2158ea2c68c2b42a38d84ed72bfac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrRoom: 24
+  _nextRooms: 
 --- !u!65 &7349183324878477218
 BoxCollider:
   m_ObjectHideFlags: 0
