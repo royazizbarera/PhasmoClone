@@ -12,7 +12,8 @@ namespace Infrastructure.Services
         public bool IsRunning = false;
 
         public Action PickUpItemAction, DropItemAction, MainUseAction, MainUseCanceledAction,
-        PrimaryUseAction, SecondaryUseAction, SwitchItemAction, CrouchAction, JournalOpenAction, BoardOpenAction;
+        PrimaryUseAction, SecondaryUseAction, SwitchItemAction, CrouchAction, JournalOpenAction, BoardOpenAction,
+        FlashLightAction;
 
         public bool IsControlLocked { get; private set; }
         private MainInputAction _mainInputAction;
@@ -67,6 +68,7 @@ namespace Infrastructure.Services
             _mainInputAction.Player.SecondaryUse.performed += SecondaryUseCallBack;
             _mainInputAction.Player.SwitchItem.performed += SwitchItemUseCallBack;
 
+            _mainInputAction.Player.Flashlight.performed += FlashLightUseCallBack;
             _mainInputAction.Player.Crouch.performed += CrouchCallBack;
             _mainInputAction.Player.Journal.performed += JournalOpen;
 
@@ -110,6 +112,11 @@ namespace Infrastructure.Services
         private void SecondaryUseCallBack(InputAction.CallbackContext obj)
         {
             if (SecondaryUseAction != null) SecondaryUseAction.Invoke();
+        }
+
+        private void FlashLightUseCallBack(InputAction.CallbackContext obj)
+        {
+            if (FlashLightAction != null) FlashLightAction.Invoke();
         }
 
         private void SwitchItemUseCallBack(InputAction.CallbackContext obj)

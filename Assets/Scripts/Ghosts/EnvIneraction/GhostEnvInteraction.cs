@@ -276,8 +276,8 @@ namespace Ghosts.EnvIneraction
         private void SetUpInfo()
         {
             _maxInteractionRadius = 0f;
-            _maxEMFLevel = 4;
-            if (_ghostInfo.GhostData.GhostEvidences.Contains(GhostEvidence.GhostEvidencesTypes.EMF5)) _maxEMFLevel = 5;
+            _maxEMFLevel = 5;
+            if (_ghostInfo.GhostData.GhostEvidences.Contains(GhostEvidence.GhostEvidencesTypes.EMF5)) _maxEMFLevel = 6;
             if (_ghostInfo.GhostData.GhostEvidences.Contains(GhostEvidence.GhostEvidencesTypes.Fingerprints)) _canLeaveHandprint = true;
             WaitForCheckCD = new WaitForSeconds(_ghostInfo.GhostData.GhostFindInerectionsCD);
             _ghostInterectCD = _ghostInfo.GhostData.GhostBetweenInterectionsCD;

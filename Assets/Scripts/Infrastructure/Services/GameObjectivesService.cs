@@ -17,6 +17,8 @@ namespace Infrastructure.Services
         private const string GhostEventSTR = "GhostEvent";
         private const string GhostPhotoSTR = "GhostPhoto";
         private const string SmudgeStickSTR = "SmudgeStick";
+        private const string SanityLvlSTR = "SanityLvl";
+        private const string EscapeGhostHuntSTR = "EscapeGhostHunt";
 
 
         private Dictionary<string, GameObjectiveSO> _allObjectives;
@@ -63,6 +65,16 @@ namespace Infrastructure.Services
         public void GhostSmudged()
         {
             CompleteObjective(SmudgeStickSTR);
+        }
+
+        public void EscapeGhostDuringHunt()
+        {
+            CompleteObjective(EscapeGhostHuntSTR);
+        }
+
+        public void AvgSanityMinus20()
+        {
+            CompleteObjective(SanityLvlSTR);
         }
 
         private bool CompleteObjective(string ObjectiveName)

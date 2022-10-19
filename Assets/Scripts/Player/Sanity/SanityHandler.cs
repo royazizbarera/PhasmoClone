@@ -19,6 +19,7 @@ public class SanityHandler : MonoBehaviour
     private WaitForSeconds WaitOneSecond = new WaitForSeconds(1f);
     private GhostInfo _ghostInfo;
     private LevelSetUp _levelSetUp;
+    private GameObjectivesService _gameObjectives;
 
     private LevelRooms.LevelRoomsEnum _currGhostRoom = LevelRooms.LevelRoomsEnum.NoRoom;
     private bool _isSubscribedToOnLevelSetedUp = false;
@@ -31,7 +32,9 @@ public class SanityHandler : MonoBehaviour
     {
         if(_levelSetUp != null) _levelSetUp.OnLevelSetedUp -= SetUp;
 
+        _gameObjectives = AllServices.Container.Single<GameObjectivesService>();
         _levelSetUp = AllServices.Container.Single<LevelSetUp>();
+
         Sanity = _maxSanityValue;
         if (_levelSetUp.IsInitialized) { SetUp(); _isSubscribedToOnLevelSetedUp = false; }
         else {_levelSetUp.OnLevelSetedUp += SetUp; _isSubscribedToOnLevelSetedUp = true; }
@@ -48,6 +51,7 @@ public class SanityHandler : MonoBehaviour
     {
         Sanity -= (ammountToTake * _sanityModifier);
         Sanity = Mathf.Clamp(Sanity, 0, _maxSanityValue);
+
     }
 
     public void AddSanity(float ammountToAdd)
@@ -70,6 +74,9 @@ public class SanityHandler : MonoBehaviour
         if (_currPlayerRoom.CurrRoom == LevelRooms.LevelRoomsEnum.NoRoom) return;
         else if (_currPlayerRoom.CurrRoom == _currGhostRoom) TakeSanity(_ghostRoomSecondSanityMinus);
         else TakeSanity(_houseSecondSanityMinus);
+
+        if(Sanity < 20) _gameObjectives.AvgSanityMinus20();
+
     }
 
     private void SetUp()

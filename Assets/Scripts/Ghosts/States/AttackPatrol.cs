@@ -39,7 +39,9 @@ namespace Ghosts
 
         private const float SmudgeEffectTime = 5f;
         private bool _playerKilled = false;
+
         private GameFlowService _gameFlow;
+        private GameObjectivesService _gameObjectives;
 
         private Transform _playerPoint;
         private Transform _heroTransform;
@@ -71,6 +73,7 @@ namespace Ghosts
         private float _maxAggroDistance;
         private float _heartBeatVolumePercent = 0f;
 
+        private bool _hadFollowed = false;
         private Vector3 _playerPointDistance;
         private Vector3 _ghostPointDistance;
 
@@ -95,7 +98,9 @@ namespace Ghosts
             SetHeartBeatVolume();
             if (_isFollowing && !_underSmudgeEffect)
             {
+                _hadFollowed = true;
                 _currDestination = _playerPoint;
+
                 CheckForKill();
                 SetDestination();
                 return;
@@ -111,6 +116,7 @@ namespace Ghosts
         {
             _ghostMood.ChangePlayerSanity(_sanityPlayerMinus);
 
+            _hadFollowed = false;
             _isGhostDisabled = true;
             _isFollowing = false;
 
@@ -123,6 +129,8 @@ namespace Ghosts
 
         public void StopAttackPatrolling()
         {
+            if(_hadFollowed && !_playerKilled) _gameObjectives.EscapeGhostDuringHunt();
+
             SwitchAttackState(false);
             StopCoroutine(nameof(CheckForPlayerVisible));
         }

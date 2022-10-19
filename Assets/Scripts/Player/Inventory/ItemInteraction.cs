@@ -2,6 +2,8 @@ using Items.Logic;
 using Infrastructure;
 using UnityEngine;
 using Infrastructure.Services;
+using System.Collections.Generic;
+using Items.ItemsLogic;
 
 namespace Player.Inventory
 {
@@ -20,18 +22,20 @@ namespace Player.Inventory
         [SerializeField]
         private LayerMask _interactableItemLayer;
 
+        private List<Flashlight> FlashlightsArray;
         private Camera _mainCamera;
 
         private Inventory _inventory;
         private InputSystem _inputSystem;
 
+        private Flashlight flashLight;
         private IDraggable _currDraggableItem;
         private void Start()
         {
             _inventory = GetComponent<Inventory>();
             _inputSystem = AllServices.Container.Single<InputSystem>();
 
-
+            FlashlightsArray = new List<Flashlight>();
             _mainCamera = Camera.main;
             if(_mainCamera == null)
             {
@@ -44,6 +48,7 @@ namespace Player.Inventory
             _inputSystem.SecondaryUseAction += SecondaryUse;
             _inputSystem.MainUseAction += ClickOnItem;
             _inputSystem.MainUseCanceledAction += CancelDraggItem;
+            _inputSystem.FlashLightAction += FlashLightHandle;
         }
 
         private void OnDestroy()
@@ -55,7 +60,17 @@ namespace Player.Inventory
             _inputSystem.SecondaryUseAction -= SecondaryUse;
             _inputSystem.MainUseAction -= ClickOnItem;
             _inputSystem.MainUseCanceledAction -= CancelDraggItem;
+            _inputSystem.FlashLightAction -= FlashLightHandle;
         }
+
+        private void Update()
+        {
+            if (_currDraggableItem != null)
+            {
+                HoldObject();
+            }
+        }
+
 
         private void ClickOnItem()
         {
@@ -79,13 +94,11 @@ namespace Player.Inventory
             }
         }
 
-        private void Update()
+        private void FlashLightHandle()
         {
-            if(_currDraggableItem != null)
-            {
-                HoldObject();
-            }
+            if (FlashlightsArray.Count > 0) FlashlightsArray[0].OnMainUse();
         }
+
         private void HoldObject()
         {
             if (Vector3.Distance(_currDraggableItem.gameObject.transform.position, _mainCamera.transform.position) > _maxDistanceGrab)
@@ -134,6 +147,8 @@ namespace Player.Inventory
         {
             if (_inventory.MainItem != null)
             {
+                flashLight = _inventory.MainItem.gameObject.transform.GetComponent<Flashlight>();
+                if (flashLight != null) FlashlightsArray.Remove(flashLight);
                 _inventory.DropMainItem();
             }
         }
@@ -149,6 +164,9 @@ namespace Player.Inventory
                 IPickupable pickable = hit.transform.GetComponent<IPickupable>();
                 if (pickable != null)
                 {
+                    flashLight = hit.transform.GetComponent<Flashlight>();
+                    if(flashLight != null)FlashlightsArray.Add(flashLight);
+
                     _inventory.AddItem(pickable);
                 }
             }
