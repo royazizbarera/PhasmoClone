@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8650718496132925209}
   - component: {fileID: 1848436778719064924}
+  - component: {fileID: -5362536203744245466}
   - component: {fileID: 4124710157721166716}
   - component: {fileID: 7349183324878477218}
   - component: {fileID: 8225901762693517528}
@@ -148,6 +149,20 @@ MonoBehaviour:
   _increaseChancePerTick: 0.02
   _tickTime: 3
   _inHandModifier: 15
+--- !u!114 &-5362536203744245466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059012132858619988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c744f04ab32254e4d89b34d07a9b3ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitSound: {fileID: 8300000, guid: b38a6bd4e36dfff4790751b8790bdbd0, type: 3}
+  _hitVolume: 0.1
 --- !u!114 &4124710157721166716
 MonoBehaviour:
   m_ObjectHideFlags: 0

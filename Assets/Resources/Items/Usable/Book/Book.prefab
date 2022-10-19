@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 5663447605740799787}
   - component: {fileID: 554475804871680336}
   - component: {fileID: 7702693104501307762}
+  - component: {fileID: -922036884242191725}
   - component: {fileID: -7391777808911187836}
   m_Layer: 8
   m_Name: Book
@@ -207,6 +208,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Value: 8
   Name: Ghost writings
+--- !u!114 &-922036884242191725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4978117680372191253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c744f04ab32254e4d89b34d07a9b3ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitSound: {fileID: 8300000, guid: b38a6bd4e36dfff4790751b8790bdbd0, type: 3}
+  _hitVolume: 0.08
 --- !u!82 &-7391777808911187836
 AudioSource:
   m_ObjectHideFlags: 0

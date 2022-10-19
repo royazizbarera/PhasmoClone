@@ -7069,6 +7069,7 @@ GameObject:
   - component: {fileID: 5897041756080861823}
   - component: {fileID: 5897041756080861816}
   - component: {fileID: 6478076201140614161}
+  - component: {fileID: 5208950331711269982}
   - component: {fileID: 1719576856155820494}
   m_Layer: 8
   m_Name: UVflashlight1
@@ -7152,6 +7153,20 @@ MonoBehaviour:
   _light: {fileID: 2507987392342402943}
   _revealableMaterial: {fileID: 2100000, guid: 53f93ad3ec988444abffce416195038a, type: 2}
   _lightAngle: 40
+--- !u!114 &5208950331711269982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5897041756080861818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c744f04ab32254e4d89b34d07a9b3ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitSound: {fileID: 8300000, guid: b38a6bd4e36dfff4790751b8790bdbd0, type: 3}
+  _hitVolume: 0.08
 --- !u!82 &1719576856155820494
 AudioSource:
   m_ObjectHideFlags: 0

@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 1623952300904354114}
   - component: {fileID: 1623952300904354115}
   - component: {fileID: 2433121412606705390}
+  - component: {fileID: -228268421645760859}
   m_Layer: 8
   m_Name: Thermo
   m_TagString: Untagged
@@ -257,6 +258,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrRoom: 24
+  _nextRooms: 
+--- !u!114 &-228268421645760859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623952300904354143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c744f04ab32254e4d89b34d07a9b3ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitSound: {fileID: 8300000, guid: b38a6bd4e36dfff4790751b8790bdbd0, type: 3}
+  _hitVolume: 0.08
 --- !u!1 &3984945748592325312
 GameObject:
   m_ObjectHideFlags: 0

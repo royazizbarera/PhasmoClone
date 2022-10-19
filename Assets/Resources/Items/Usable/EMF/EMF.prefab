@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 5570669887009615762}
   - component: {fileID: 5570669887009615764}
   - component: {fileID: 5570669887009615765}
+  - component: {fileID: 3647825992939236351}
   - component: {fileID: 4535793247199442260}
   m_Layer: 8
   m_Name: EMF
@@ -403,6 +404,20 @@ MonoBehaviour:
   - {fileID: 2481941539045457723}
   _slowPeep: {fileID: 8300000, guid: 07452f216b02bdb4d82ce60224f27306, type: 3}
   _fastPeep: {fileID: 8300000, guid: 9d6dbb268c1be8c40a7d68f9154ec634, type: 3}
+--- !u!114 &3647825992939236351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481941539538423468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c744f04ab32254e4d89b34d07a9b3ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitSound: {fileID: 8300000, guid: b38a6bd4e36dfff4790751b8790bdbd0, type: 3}
+  _hitVolume: 0.06
 --- !u!82 &4535793247199442260
 AudioSource:
   m_ObjectHideFlags: 0

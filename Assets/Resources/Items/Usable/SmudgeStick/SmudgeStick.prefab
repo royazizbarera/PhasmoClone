@@ -714,6 +714,7 @@ GameObject:
   - component: {fileID: 8631328265992234298}
   - component: {fileID: 849758713}
   - component: {fileID: 849758714}
+  - component: {fileID: 5434894398883358319}
   m_Layer: 8
   m_Name: SmudgeStick
   m_TagString: Untagged
@@ -785,6 +786,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &5434894398883358319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6697494723077313432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c744f04ab32254e4d89b34d07a9b3ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitSound: {fileID: 8300000, guid: b38a6bd4e36dfff4790751b8790bdbd0, type: 3}
+  _hitVolume: 0.05
 --- !u!1001 &4828121077219117452
 PrefabInstance:
   m_ObjectHideFlags: 0
