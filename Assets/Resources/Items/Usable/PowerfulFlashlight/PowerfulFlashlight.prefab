@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2298840731036411214}
   - component: {fileID: 2298840731036411209}
+  - component: {fileID: 6402293499989165251}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -25,12 +26,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2298840731036411215}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0020008087, y: 0.02999997, z: 0.09899998}
+  m_LocalPosition: {x: 0.0020008087, y: 0, z: -0.026000023}
   m_LocalScale: {x: 0.07, y: 0.070000015, z: 0.28000006}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 853321184366530072}
-  m_RootOrder: 0
+  m_Father: {fileID: 7854196876542157024}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!108 &2298840731036411209
 Light:
@@ -94,6 +95,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &6402293499989165251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2298840731036411215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &7854196876542157027
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +148,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 853321184366530072}
+  - {fileID: 2298840731036411214}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -142,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97de69db3f2e1f54ba5dfe9e12cdf50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _flashLightBoddy: {fileID: 8458239929596878115}
   _light: {fileID: 2298840731036411209}
   _audioClip: {fileID: 8300000, guid: 74bebe4561d6f74489fc0ad0a6dc2b81, type: 3}
   _audioVolume: 0.9
@@ -200,7 +223,7 @@ GameObject:
   - component: {fileID: 2522213998738913106}
   - component: {fileID: 1307467097348674502}
   m_Layer: 0
-  m_Name: default
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,8 +240,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.030000001, z: -0.125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2298840731036411214}
+  m_Children: []
   m_Father: {fileID: 7854196876542157024}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

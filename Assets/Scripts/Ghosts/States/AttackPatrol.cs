@@ -24,6 +24,9 @@ namespace Ghosts
             get { return _isFollowing; }
         }
         [SerializeField]
+        private AudioSource _audioSteps;
+
+        [SerializeField]
         private NavMeshAgent _agent;
         [SerializeField]
         private float _stoppingDistance = 0.3f;
@@ -37,6 +40,7 @@ namespace Ghosts
 
         private GhostMood _ghostMood;
 
+        private string AudioStepsGroup = "GhostSteps";
         private const float SmudgeEffectTime = 5f;
         private bool _playerKilled = false;
 
@@ -65,6 +69,7 @@ namespace Ghosts
 
         private Transform _currDestination = null;
 
+        private float _currAudioSpeed;
         private float _ghostDisableTime = 3f;
 
         private int _randomPointNum;
@@ -77,6 +82,7 @@ namespace Ghosts
         private Vector3 _playerPointDistance;
         private Vector3 _ghostPointDistance;
 
+        private float _avgGhostSpeed = 2.5f;
         private const float MaxVolumeDistanceHeartBeat = 2f;
         private const float MinVolumeDistanceHeartBeat = 7f;
 
@@ -96,6 +102,8 @@ namespace Ghosts
 
             CheckDistanceToPlayer();
             SetHeartBeatVolume();
+            SetAudioSpeed();
+
             if (_isFollowing && !_underSmudgeEffect)
             {
                 _hadFollowed = true;
@@ -115,7 +123,6 @@ namespace Ghosts
         public void StartAttackPatrolling()
         {
             _ghostMood.ChangePlayerSanity(_sanityPlayerMinus);
-
             _hadFollowed = false;
             _isGhostDisabled = true;
             _isFollowing = false;
@@ -130,7 +137,7 @@ namespace Ghosts
         public void StopAttackPatrolling()
         {
             if(_hadFollowed && !_playerKilled) _gameObjectives.EscapeGhostDuringHunt();
-
+            _audioSteps.Pause();
             SwitchAttackState(false);
             StopCoroutine(nameof(CheckForPlayerVisible));
         }
@@ -167,6 +174,12 @@ namespace Ghosts
         private void StopSmudgeEffect()
         {
             _underSmudgeEffect = false;
+        }
+
+        private void SetAudioSpeed()
+        {
+            _currAudioSpeed = _agent.speed / _avgGhostSpeed;
+            AudioHelper.ChangeSoundSpeed(_audioSteps, _currAudioSpeed, AudioStepsGroup);
         }
         private IEnumerator CheckForPlayerVisible()
         {
@@ -214,7 +227,13 @@ namespace Ghosts
                 _playerKilled = true;
             }
         }
-        private void EnableAttackAfterCD() => _isGhostDisabled = false;
+        private void EnableAttackAfterCD()
+        {
+            _audioSteps.Play();
+            AudioHelper.ChangeSoundSpeed(_audioSteps, 1, AudioStepsGroup);
+
+            _isGhostDisabled = false;
+        }
         private void ChoosePoint()
         {
             _randomPointNum = Random.Range(0, _patrolPoints.Length - 1);
@@ -233,6 +252,7 @@ namespace Ghosts
 
             _levelSetUp = AllServices.Container.Single<LevelSetUp>();
             _gameFlow = AllServices.Container.Single<GameFlowService>();
+            _gameObjectives = AllServices.Container.Single<GameObjectivesService>();
 
             _checkForLineWait = new WaitForSeconds(_checkForLineCD);
             _patrolPoints = _levelSetUp.GetGhostPatrolPoints();
