@@ -86,7 +86,7 @@ namespace Ghosts
         private const float MaxVolumeDistanceHeartBeat = 2f;
         private const float MinVolumeDistanceHeartBeat = 7f;
 
-        private const float DistanceToKill = 1f;
+        private const float DistanceToKill = 0.5f;
         private void OnEnable()
         {
             if (!_dataSetedUp) SetUpGhostData();
