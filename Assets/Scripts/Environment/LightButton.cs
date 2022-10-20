@@ -33,6 +33,12 @@ public class LightButton : MonoBehaviour, IClickable
     private float _flickTime = 0.3f;
     private int _stepsCount = 10;
     private float _change;
+    private float _powerMod;
+    private float _newLightPower;
+    private bool _lightsGoUp;
+
+
+
 
     private void Start()
     {
@@ -101,14 +107,30 @@ public class LightButton : MonoBehaviour, IClickable
 
     IEnumerator LightFlick()
     {
+        _lightsGoUp = true;
         while (true)
         {
-            _flickTime = UnityEngine.Random.Range(0.25f, 0.4f);
+            if (_lightsGoUp) _flickTime = UnityEngine.Random.Range(0.4f, 0.6f);
+            else _flickTime = UnityEngine.Random.Range(0.15f, 0.25f);
+
             yield return new WaitForSeconds(_flickTime);
             if (_isEnabled)
             {
-                float newLightPower = _startLightPower[0] * UnityEngine.Random.Range(0f, 0.2f);
-                _change = (_connectedLights[0].intensity - newLightPower) / _stepsCount;
+                if (_lightsGoUp)
+                {
+                    _powerMod = UnityEngine.Random.Range(0.4f, 0.8f);
+                    _lightsGoUp = false;
+                }
+                else
+                {
+                    _powerMod = UnityEngine.Random.Range(-0.2f, 0.25f);
+                    _powerMod = Mathf.Max(0, _powerMod);
+                    _lightsGoUp = true;
+                }
+
+                _newLightPower = _startLightPower[0] * _powerMod;
+
+                _change = (_connectedLights[0].intensity - _newLightPower) / _stepsCount;
                 StartCoroutine(nameof(ChangeLightPower));
             }
         }
