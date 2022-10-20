@@ -124,6 +124,11 @@ namespace UI.Journal
             Texture2D tex = new Texture2D(400,300);
             tex.LoadImage(data);
             _images[_curPhoto].sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+
+            var tempColor = _images[_curPhoto].color;
+            tempColor.a = 1f;
+            _images[_curPhoto].color = tempColor;
+
             if (reward != null) _rewardNameTXT[_curPhoto].text = reward;
             else _rewardNameTXT[_curPhoto].text = "";
 
