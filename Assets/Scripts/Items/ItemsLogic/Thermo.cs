@@ -24,17 +24,18 @@ public class Thermo : MonoBehaviour, IMainUsable, IDisababled
         
     private LevelSetUp _levelSetUp;
     private bool _isThermoEnabled = false;
-    private int _currTemperature = 20;
+    private int _currTemperature = 12;
 
     private bool _hasTempChanged = false;
     private bool _isItCold = true;
 
     private int _prevTemp = 1;
     private int _minTemp = 1;
+    private int _maxTemp = 29;
 
     private int _minPossibleTemp = 1;
 
-    private int _randMinNum, _ranMaxNum;
+    private int _randMinNum, _randMaxNum;
 
     private WaitForSeconds CheckTempWaiting;
 
@@ -42,6 +43,7 @@ public class Thermo : MonoBehaviour, IMainUsable, IDisababled
     private const int MaxTemp = 29;
     private const int MinTemp = 11;
     private const int GhostRoomMaxTemp = 9;
+    private const int GhostRoomMinTemp = 1;
     private const int GhostRoomMinusMinTemp = -20;
     private const int DefaultTemp = 20;
 
@@ -91,22 +93,30 @@ public class Thermo : MonoBehaviour, IMainUsable, IDisababled
 
     private void SetMinMaxValue()
     {
-        if ( (_currRoom.CurrRoom == _ghostRoom && _ghostRoom != LevelRooms.LevelRoomsEnum.NoRoom) || _isItCold)
+        if ( (_currRoom.CurrRoom == _ghostRoom && _ghostRoom != LevelRooms.LevelRoomsEnum.NoRoom) )
         {
             _minTemp = _minPossibleTemp;
+            _maxTemp = (_minPossibleTemp / 3) + 10;
+        }
+        else if (_isItCold)
+        {
+            _minTemp = GhostRoomMinTemp;
+            _maxTemp = (GhostRoomMinTemp / 3) + 10;
         }
         else
         {
             _minTemp = MinTemp;
+            _maxTemp = MaxTemp;
         }
     }
     private bool CalculateTemp()
     {
-        _randMinNum = -3; _ranMaxNum = 3;
+        _randMinNum = -3; _randMaxNum = 3;
         if (_currTemperature + _randMinNum < _minTemp) _randMinNum = 0;
-        if (_currTemperature + _ranMaxNum > MaxTemp) _ranMaxNum = 0;
+        if (_currTemperature + _randMaxNum > _maxTemp) _randMaxNum = 0;
 
-        int plusRandNum = Random.Range(_randMinNum, _ranMaxNum);
+
+        int plusRandNum = Random.Range(_randMinNum, (_randMaxNum + 1) );
         _prevTemp = _currTemperature;
         _currTemperature = _currTemperature + (plusRandNum);
 
@@ -144,6 +154,7 @@ public class Thermo : MonoBehaviour, IMainUsable, IDisababled
         _ghostInfo = _levelSetUp.GhostInfo;
         _ghostRoom = _levelSetUp.CurrGhostRoom;
         if (_ghostInfo.GhostData.GhostEvidences.Contains(GhostEvidence.GhostEvidencesTypes.FreezingTemps)) _minPossibleTemp = GhostRoomMinusMinTemp;
+        else _minPossibleTemp = GhostRoomMinTemp;
 
         if (this == null) return;
         Invoke(nameof(WarmTheHouse), _levelSetUp.SelectedDifficulty.TimeToWarmHouse);
