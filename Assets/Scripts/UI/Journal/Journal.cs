@@ -127,6 +127,7 @@ namespace UI.Journal
 
             var tempColor = _images[_curPhoto].color;
             tempColor.a = 1f;
+            tempColor = Color.white;
             _images[_curPhoto].color = tempColor;
 
             if (reward != null) _rewardNameTXT[_curPhoto].text = reward;
