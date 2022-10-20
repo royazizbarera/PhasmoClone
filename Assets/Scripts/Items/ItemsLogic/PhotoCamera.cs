@@ -125,17 +125,33 @@ namespace Items.ItemsLogic
         }
         private void TakeSnapshot()
         {
-            Texture2D snapShot = _renderTexture.toTexture2D();
-            byte[] bytes = snapShot.EncodeToPNG();
+            RenderTexture newRenderTexture = new RenderTexture(_renderTexture.width, _renderTexture.height, _renderTexture.depth, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
+            newRenderTexture.antiAliasing = _renderTexture.antiAliasing;
+
+            var snapShot = new Texture2D(_renderTexture.width, _renderTexture.height, TextureFormat.ARGB32, false);
+            _camera.targetTexture = newRenderTexture;
+            _camera.Render();
+            RenderTexture.active = newRenderTexture;
+
+            snapShot.ReadPixels(new Rect(0, 0, _renderTexture.width, _renderTexture.height), 0, 0);
+            snapShot.Apply();
+
             string filename = ScreenShotName(resWidth, resHeight);
 
             if (Directory.Exists(Application.streamingAssetsPath + "/Snapshots") == false) Directory.CreateDirectory(Application.streamingAssetsPath + "/Snapshots");
 
-            File.WriteAllBytes(filename, bytes);
+            File.WriteAllBytes(filename, snapShot.EncodeToPNG());
             _snapshotPath = filename;
 
             _journal.SendPhotoToJournal(_snapshotPath, _rewardName);
             _rewardName = null;
+
+            _camera.targetTexture = _renderTexture;
+            _camera.Render();
+            RenderTexture.active = _renderTexture;
+
+            Destroy(snapShot);
+            Destroy(newRenderTexture);
         }
         
         private string ScreenShotName(int width, int height)
