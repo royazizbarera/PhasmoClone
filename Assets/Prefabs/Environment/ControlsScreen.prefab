@@ -2244,8 +2244,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "  \n   Controls\n \"LMB\" - use item\n \"RMB\" - use item in hands\n \"WASD\"
     - movement\n \"Shift\" - run\n \"E\" - pick items\n \"G\" - drop items\n \"Q\"
-    -  switch items in inventory\n \"Space\" - open board (in lobby)\n \"J\" - open
-    journal (in game)\n\n "
+    -  switch items in inventory\n \"T\" - turn on the flashlight\n \"Space\" - open
+    board (in lobby)\n \"J\" - open journal (in game)\n\n "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72defa5e793506f499757892a927f468, type: 2}
   m_sharedMaterial: {fileID: -3177935435773185206, guid: 72defa5e793506f499757892a927f468, type: 2}
