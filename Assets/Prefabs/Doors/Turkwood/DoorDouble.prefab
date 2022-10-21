@@ -234,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsDoorFullyOpened: 0
   IsDoorClosed: 0
-  FingerprintTransform: {fileID: 2770419976044922750}
+  InteractionTransform: {fileID: 2770419976044922750}
   _handprints: {fileID: 1865889820300120364, guid: 8954caf1b6ba00f469fe5f8576fec3b6, type: 3}
   _closeDoorAudioSource: {fileID: 1019093048}
   _doorDragAudioSource: {fileID: 1019093049}
@@ -602,7 +602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsDoorFullyOpened: 0
   IsDoorClosed: 0
-  FingerprintTransform: {fileID: 2770419976204159716}
+  InteractionTransform: {fileID: 2770419976204159716}
   _handprints: {fileID: 1865889820300120364, guid: 8954caf1b6ba00f469fe5f8576fec3b6, type: 3}
   _closeDoorAudioSource: {fileID: 1019093046}
   _doorDragAudioSource: {fileID: 1019093050}
@@ -811,7 +811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2770419976044922750}
   m_Layer: 9
-  m_Name: Fingerprint
+  m_Name: InteractionPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -842,7 +842,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2770419976204159716}
   m_Layer: 9
-  m_Name: Fingerprint
+  m_Name: InteractionPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

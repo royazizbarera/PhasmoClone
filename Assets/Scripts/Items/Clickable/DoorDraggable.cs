@@ -8,7 +8,7 @@ public class DoorDraggable : MonoBehaviour, IDraggable, IPrintsUV
     public bool IsDoorFullyOpened = false;
     public bool IsDoorClosed = false;
 
-    public Transform FingerprintTransform;
+    public Transform InteractionTransform;
     [SerializeField]
     private GameObject _handprints;
     [SerializeField]
@@ -240,6 +240,6 @@ public class DoorDraggable : MonoBehaviour, IDraggable, IPrintsUV
 
     public void LeavePrintsUV()
     {
-        Instantiate(_handprints, FingerprintTransform.position, FingerprintTransform.rotation, FingerprintTransform);
+        Instantiate(_handprints, InteractionTransform.position, InteractionTransform.rotation, InteractionTransform);
     }
 }

@@ -214,7 +214,7 @@ namespace Ghosts.EnvIneraction
                     _interected = true;
                     InteractWithDoors(door);
 
-                    if (_canLeaveHandprint && door.FingerprintTransform != null)
+                    if (_canLeaveHandprint && door.InteractionTransform != null)
                     {
                         if (RandomGenerator.CalculateChance(_leaveHandprintChance))
                         {
@@ -233,7 +233,7 @@ namespace Ghosts.EnvIneraction
             {
                 AudioHelper.PlayClipAtPoint(_doorInterectionSound, door.transform.position, 0.8f);
 
-                InstantiateInteraction(door.transform.position);
+                InstantiateInteraction(door.InteractionTransform.position);
                 door.GhostDrugDoor();
             }
         }

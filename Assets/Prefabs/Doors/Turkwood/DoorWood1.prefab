@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4458894531155068650}
   m_Layer: 9
-  m_Name: Fingerprint
+  m_Name: InteractionPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsDoorFullyOpened: 0
   IsDoorClosed: 0
-  FingerprintTransform: {fileID: 4458894531155068650}
+  InteractionTransform: {fileID: 4458894531155068650}
   _handprints: {fileID: 1865889820300120364, guid: 8954caf1b6ba00f469fe5f8576fec3b6, type: 3}
   _closeDoorAudioSource: {fileID: 7091808770075921404}
   _doorDragAudioSource: {fileID: 709227111}
