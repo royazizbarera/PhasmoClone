@@ -1,5 +1,7 @@
+using Items.ItemsLogic;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
 using Utilities.Constants;
@@ -25,8 +27,9 @@ namespace Ghosts.Mood
         private bool _subscribedToGhostSetUp = false;
 
         private GhostDataSO _ghostData;
-
         private LevelSizeConst.LevelSize _levelSize;
+
+        private List<Crucifix> _crucifixInRoom = new List<Crucifix>();
 
         private float _minHuntDuration;
         private float _maxHuntDuration;
@@ -46,6 +49,16 @@ namespace Ghosts.Mood
         private void OnDestroy()
         {
             if (_subscribedToGhostSetUp) _ghostInfo.GhostSetedUp -= SetUp;
+        }
+
+        public void AddCrucifix(Crucifix crucifix)
+        {
+            _crucifixInRoom.Add(crucifix);
+        }
+
+        public void RemoveCrucifix(Crucifix crucifix)
+        {
+            _crucifixInRoom.Remove(crucifix);
         }
 
         public void MakeGhostHunt()
@@ -76,6 +89,7 @@ namespace Ghosts.Mood
 
             if (ShouldHunt())
             {
+                if(!CheckForCrucifix())
                 StartHunting(CalculateAttackTime());
             }
         }
@@ -112,6 +126,19 @@ namespace Ghosts.Mood
             return false;
         }
 
+        private bool CheckForCrucifix()
+        {
+            Debug.Log("Checking for Crucifix");
+            foreach(Crucifix crucifix in _crucifixInRoom)
+            {
+                if (crucifix.CanBeConsumed())
+                {
+                    crucifix.ConsumeCrucifix();
+                    return true;
+                }
+            }
+            return false;
+        }
         private void SetUp()
         {
             _playerSanity = _ghostInfo.PlayerSanity;
