@@ -19,6 +19,7 @@ namespace Infrastructure.Services
         private const string SmudgeStickSTR = "SmudgeStick";
         private const string SanityLvlSTR = "SanityLvl";
         private const string EscapeGhostHuntSTR = "EscapeGhostHunt";
+        private const string CrucifixPreventedHuntSTR = "CrucifixPreventedHunt";
 
 
         private Dictionary<string, GameObjectiveSO> _allObjectives;
@@ -75,6 +76,11 @@ namespace Infrastructure.Services
         public void AvgSanityMinus20()
         {
             CompleteObjective(SanityLvlSTR);
+        }
+
+        public void CrucifixPreventedHunt()
+        {
+            CompleteObjective(CrucifixPreventedHuntSTR);
         }
 
         private bool CompleteObjective(string ObjectiveName)

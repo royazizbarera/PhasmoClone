@@ -23,6 +23,7 @@ namespace Items.ItemsLogic
         [SerializeField]
         private Color _consumedEmmisionColor = new Color(50,0,0);
 
+        private GameObjectivesService _gameObjectives;
 
         private PhotoReward _photoReward;
         private GhostInfo _ghostInfo;
@@ -51,6 +52,7 @@ namespace Items.ItemsLogic
         {
             _ghostInfo = _levelSetUp.GhostInfo;
             _ghostRoom = _levelSetUp.CurrGhostRoom;
+            _gameObjectives = AllServices.Container.Single<GameObjectivesService>();
 
             if (_ghostInfo == null) return;
             _ghostAttackChecker = _ghostInfo.GetComponent<AttackChecker>();
@@ -72,6 +74,7 @@ namespace Items.ItemsLogic
         {
             IsConsumed = true;
             _photoReward.enabled = true;
+            _gameObjectives.CrucifixPreventedHunt();
 
             _crucifixRenderer.material.EnableKeyword("_EMISSION");
             _crucifixRenderer.material.SetColor("_EmissionColor", _consumedEmmisionColor);
