@@ -128,17 +128,20 @@ namespace Ghosts.Mood
 
         private bool CheckForCrucifix()
         {
-            Debug.Log("Checking for Crucifix");
             foreach(Crucifix crucifix in _crucifixInRoom)
             {
                 if (crucifix.CanBeConsumed())
                 {
-                    crucifix.ConsumeCrucifix();
-                    return true;
+                    if (RandomGenerator.CalculateChance(crucifix.CrucifixPreventHuntChance) == true)
+                    {
+                        crucifix.ConsumeCrucifix();
+                        return true;
+                    }
                 }
             }
             return false;
         }
+
         private void SetUp()
         {
             _playerSanity = _ghostInfo.PlayerSanity;

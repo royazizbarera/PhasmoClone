@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 38991279}
   - component: {fileID: 38991280}
   - component: {fileID: 38991281}
+  - component: {fileID: 1434954420}
   m_Layer: 8
   m_Name: Crusifix
   m_TagString: Untagged
@@ -179,7 +180,8 @@ MonoBehaviour:
   _roomIdentifire: {fileID: 38991281}
   _crucifixRenderer: {fileID: 85724083502049126}
   _crucifixMesh: {fileID: 27762492301193658}
-  _consumedEmmisionColor: {r: 0.078431375, g: 0, b: 0, a: 1}
+  _consumedEmmisionColor: {r: 0.05882353, g: 0, b: 0, a: 1}
+  _photoReward: {fileID: 0}
 --- !u!114 &38991281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,3 +196,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrRoom: 24
   _nextRooms: 
+--- !u!114 &1434954420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6527571233857877729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eee8b9efd8fa3a47a936a0977144d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 7
+  Name: Crusifix

@@ -8,9 +8,11 @@ using Ghosts.Mood;
 
 namespace Items.ItemsLogic
 {
+    [RequireComponent(typeof(PhotoReward))]
     public class Crucifix : MonoBehaviour, IPickupable, IDisababled
     {
         public bool IsConsumed = false;
+        public float CrucifixPreventHuntChance = 75f;
 
         [SerializeField]
         private RoomIdentifire _roomIdentifire;
@@ -21,6 +23,8 @@ namespace Items.ItemsLogic
         [SerializeField]
         private Color _consumedEmmisionColor = new Color(50,0,0);
 
+
+        private PhotoReward _photoReward;
         private GhostInfo _ghostInfo;
         private AttackChecker _ghostAttackChecker;
         private LevelRooms.LevelRoomsEnum _ghostRoom;
@@ -33,6 +37,9 @@ namespace Items.ItemsLogic
 
         void Start()
         {
+            _photoReward = GetComponent<PhotoReward>();
+            _photoReward.enabled = false;
+
             _roomIdentifire.OnRoomChanged += OnCurrentRoomChanged;
             _levelSetUp = AllServices.Container.Single<LevelSetUp>();
 
@@ -46,7 +53,6 @@ namespace Items.ItemsLogic
             _ghostRoom = _levelSetUp.CurrGhostRoom;
 
             if (_ghostInfo == null) return;
-            Debug.Log("Seted up");
             _ghostAttackChecker = _ghostInfo.GetComponent<AttackChecker>();
         }
 
@@ -64,10 +70,12 @@ namespace Items.ItemsLogic
 
         public void ConsumeCrucifix()
         {
-            Debug.Log("Crucifix Consumed");
             IsConsumed = true;
+            _photoReward.enabled = true;
+
             _crucifixRenderer.material.EnableKeyword("_EMISSION");
             _crucifixRenderer.material.SetColor("_EmissionColor", _consumedEmmisionColor);
+
         }
 
         void OnCurrentRoomChanged()
