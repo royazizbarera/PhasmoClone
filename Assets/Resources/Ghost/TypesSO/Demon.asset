@@ -30,7 +30,7 @@ MonoBehaviour:
   MaxDistanceToPlayerAggr: 15
   AttackChanceCoef: 0.4
   MinAttackCD: 30
-  GhostEventChanceCoef: 0.35
+  GhostEventChanceCoef: 0.3
   DefaultInterectionChance: 15
   InterectionsCoef: 0.2
   GhostFindInerectionsCD: 2

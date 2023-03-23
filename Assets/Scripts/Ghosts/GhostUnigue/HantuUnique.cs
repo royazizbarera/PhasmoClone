@@ -1,3 +1,4 @@
+using GameFeatures;
 using Ghosts;
 using Infrastructure;
 using Infrastructure.Services;
@@ -5,13 +6,17 @@ using System.Collections;
 using UnityEngine;
 using Utilities.Constants;
 
-public class JinnUnique : MonoBehaviour
+public class HantuUnique : MonoBehaviour
 {
     [SerializeField]
-    private float _minGhostSpeed;
+    private float _speedInColdRoom;
+
+    private LevelRooms.LevelRoomsEnum _ghostRoom;
+    private LevelSetUp _levelSetUp;
 
     private AttackPatrol _attackPatrol;
     private GhostInfo _ghostInfo;
+    private RoomIdentifire _roomIdentifire;
 
     private float _normalGhostSpeed;
     private float _speedPlusPerTick = 0.1f;
@@ -22,26 +27,29 @@ public class JinnUnique : MonoBehaviour
 
     void Start()
     {
+        _levelSetUp = AllServices.Container.Single<LevelSetUp>();
+        _ghostRoom = _levelSetUp.CurrGhostRoom;
 
         _attackPatrol = GetComponentInParent<AttackPatrol>();
         _ghostInfo = GetComponentInParent<GhostInfo>();
+        _roomIdentifire = GetComponentInParent<RoomIdentifire>();
 
         _jinnCheckCD = new WaitForSeconds(_waitForSpeedChange);
         _normalGhostSpeed = _ghostInfo.GhostData.GhostAttackSpeed;
 
-        StartCoroutine(nameof(JinnSpeedCalc));
+        StartCoroutine(nameof(SpeedCalc));
     }
 
-    private IEnumerator JinnSpeedCalc()
+    private IEnumerator SpeedCalc()
     {
         while (true)
         {
             if (_attackPatrol.IsAttacking)
             {
-                if (_attackPatrol.IsFollowing)
-                    _attackPatrol.ChangeGhostSpeed(Mathf.Max((_attackPatrol.GhostCurrAttackSpeed - _speedMinusPerTick), _minGhostSpeed));
+                if (_roomIdentifire.CurrRoom == _ghostRoom)
+                    _attackPatrol.ChangeGhostSpeed(Mathf.Max((_attackPatrol.GhostCurrAttackSpeed + _speedPlusPerTick), _speedInColdRoom));
                 else
-                    _attackPatrol.ChangeGhostSpeed(Mathf.Min((_attackPatrol.GhostCurrAttackSpeed + _speedPlusPerTick), _normalGhostSpeed));
+                    _attackPatrol.ChangeGhostSpeed(Mathf.Min((_attackPatrol.GhostCurrAttackSpeed - _speedMinusPerTick), _normalGhostSpeed));
             }
             yield return _jinnCheckCD;
         }

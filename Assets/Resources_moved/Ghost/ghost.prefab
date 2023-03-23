@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 6122911376710045331}
   - component: {fileID: 5865089821569186404}
   - component: {fileID: 8711796354620789087}
+  - component: {fileID: 4969557726962080307}
   - component: {fileID: 4359138492573950966}
   - component: {fileID: 2899112494535937462}
   - component: {fileID: 4489104536002497239}
@@ -747,6 +748,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Value: 10
   Name: Ghost
+--- !u!114 &4969557726962080307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874926961459402408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2158ea2c68c2b42a38d84ed72bfac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrRoom: 24
+  _nextRooms: 
 --- !u!114 &4359138492573950966
 MonoBehaviour:
   m_ObjectHideFlags: 0

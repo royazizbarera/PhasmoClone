@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 035a751c97309db4c840d995a05355bb, type: 3}
-  m_Name: Jinn
+  m_Name: Hantu
   m_EditorClassIdentifier: 
   GhostNormalSpeed: 2
-  GhostAttackSpeed: 4
-  GhostEvidences: 000000000100000003000000
+  GhostAttackSpeed: 2.3
+  GhostEvidences: 000000000300000005000000
   PatrolRandomMultiplier: 5
   StartGhostAnger: 30
-  GhostAngerPlusPerSec: 0.12
-  GhostAngerInGhostRoomPlusPerSec: 0.16
+  GhostAngerPlusPerSec: 0.1
+  GhostAngerInGhostRoomPlusPerSec: 0.2
   MaxGhostAnger: 110
   StartLateGhostAnger: 70
-  PlayerSanityMinusPerSecond: 0.07
-  PlayerSanityMinusInGhostRoomPerSecond: 0.14
+  PlayerSanityMinusPerSecond: 0.055
+  PlayerSanityMinusInGhostRoomPerSecond: 0.2
   PlayerSanityMinusPerGhostInterection: 0.5
   PlayerSanityMinusPerGhostGhostEvent: 4
   PlayerSanityMinusPerHunt: 10
@@ -44,14 +44,7 @@ MonoBehaviour:
   MinMeshDisabledTime: 0.55
   MaxMeshDisabledTime: 0.9
   UniqueAbilities:
-  - {fileID: 6984824946924457315, guid: 677b8d7eae967464aa199848967fc1c0, type: 3}
-  GhostDescription: 'A Jinn is a territorial ghost that will attack when threatened.
-    It has also been known to travel at significant speed
+  - {fileID: 6984824946924457315, guid: 9d873d3a4b541ba4b8ed30346df4d1d3, type: 3}
+  GhostDescription: 'Default ghost
 
-
-    Strenghts:  A Jinn
-    will travel at a faster speed if its victim is far away.
-
-
-    Weakness: A Jinn
-    will travel at a normal speed if chasing victim'
+'
