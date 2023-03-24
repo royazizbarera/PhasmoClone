@@ -20,7 +20,7 @@ public class HantuUnique : MonoBehaviour
 
     private float _normalGhostSpeed;
     private float _speedPlusPerTick = 0.1f;
-    private float _speedMinusPerTick = 0.13f;
+    private float _speedMinusPerTick = 0.09f;
 
     private float _waitForSpeedChange = 0.2f;
     private WaitForSeconds _jinnCheckCD;

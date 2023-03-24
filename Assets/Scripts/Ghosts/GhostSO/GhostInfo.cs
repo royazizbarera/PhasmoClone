@@ -18,10 +18,18 @@ public class GhostInfo : MonoBehaviour
 
     public SanityHandler PlayerSanity;
     public RoomIdentifire PlayerRoom;
+
     public bool SetedUp = false;
     public float FinalGhostAnger = 0f;
 
     public Action GhostSetedUp;
+
+    [SerializeField]
+    private Transform _ghostMeshObject;
+    [SerializeField]
+    private GameObject[] _ghostModels;
+
+    private int ghostModelType;
     public void SetUpGhost(DifficultySO currDifficulty, GhostDataSO currGhostData, GameObject mainHero, Transform playerTransformPoint, LevelRooms.LevelRoomsEnum _ghostRoom, RoomIdentifire playerRoom, SanityHandler playerSanity, LevelSizeConst.LevelSize levelSize, DoorDraggable[] mainDoors, LightButton[] lightButtons)
     {
         GhostData = currGhostData;
@@ -40,6 +48,7 @@ public class GhostInfo : MonoBehaviour
         LightButtons = lightButtons;
 
         CreateUniques();
+        AddGhostMesh();
 
         GhostSetedUp?.Invoke();
         SetedUp = true;
@@ -51,7 +60,15 @@ public class GhostInfo : MonoBehaviour
         foreach (GameObject unique in GhostData.UniqueAbilities)
         {
             Instantiate(unique, transform);
-        }
-       
+        } 
+    }
+
+    private void AddGhostMesh()
+    {
+        ghostModelType = UnityEngine.Random.Range(0, _ghostModels.Length);
+        GameObject ghostMesh = Instantiate(_ghostModels[ghostModelType], _ghostMeshObject);
+
+        ghostMesh.transform.localPosition = Vector3.zero;
+        ghostMesh.transform.localRotation = Quaternion.identity;
     }
 }
