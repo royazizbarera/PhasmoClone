@@ -45,6 +45,14 @@ MonoBehaviour:
   MaxMeshDisabledTime: 0.9
   UniqueAbilities:
   - {fileID: 6984824946924457315, guid: 9d873d3a4b541ba4b8ed30346df4d1d3, type: 3}
-  GhostDescription: 'Default ghost
+  GhostDescription: 'A Hantu is a rare ghost that thrives in the coldest climates.
+    The cold seems to make them more aggressive and empowered.
 
-'
+
+    Strength: Lower
+    temperatures allow the Hantu to move at faster speeds.
+
+    
+
+    Weakness:
+    Hantus move slower and less aggressive in warmer areas.'

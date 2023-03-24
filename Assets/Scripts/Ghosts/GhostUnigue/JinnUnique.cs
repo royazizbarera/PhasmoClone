@@ -22,7 +22,6 @@ public class JinnUnique : MonoBehaviour
 
     void Start()
     {
-
         _attackPatrol = GetComponentInParent<AttackPatrol>();
         _ghostInfo = GetComponentInParent<GhostInfo>();
 

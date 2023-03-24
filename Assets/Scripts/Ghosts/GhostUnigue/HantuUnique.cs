@@ -47,9 +47,9 @@ public class HantuUnique : MonoBehaviour
             if (_attackPatrol.IsAttacking)
             {
                 if (_roomIdentifire.CurrRoom == _ghostRoom)
-                    _attackPatrol.ChangeGhostSpeed(Mathf.Max((_attackPatrol.GhostCurrAttackSpeed + _speedPlusPerTick), _speedInColdRoom));
+                    _attackPatrol.ChangeGhostSpeed(Mathf.Min((_attackPatrol.GhostCurrAttackSpeed + _speedPlusPerTick), _speedInColdRoom));
                 else
-                    _attackPatrol.ChangeGhostSpeed(Mathf.Min((_attackPatrol.GhostCurrAttackSpeed - _speedMinusPerTick), _normalGhostSpeed));
+                    _attackPatrol.ChangeGhostSpeed(Mathf.Max((_attackPatrol.GhostCurrAttackSpeed - _speedMinusPerTick), _normalGhostSpeed));
             }
             yield return _jinnCheckCD;
         }
