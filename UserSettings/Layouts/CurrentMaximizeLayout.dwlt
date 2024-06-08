@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 9229
+  controlID: 12792
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 9230
+  controlID: 12793
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 9231
+  controlID: 12794
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 9222
+  controlID: 12795
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -212,8 +212,8 @@ MonoBehaviour:
     y: 0
     width: 872.8
     height: 474.4
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 7}
   m_Panes:
   - {fileID: 7}
@@ -478,9 +478,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -20.95923, y: 2.348351, z: 7.835093}
+    m_Target: {x: -16.03, y: 2.39, z: -30.45}
     speed: 2
-    m_Value: {x: -20.95923, y: 2.348351, z: 7.835093}
+    m_Value: {x: -16.03, y: 2.39, z: -30.45}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 24
@@ -527,13 +527,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.15852779, y: -0.4373847, z: 0.07864156, w: 0.88169616}
+    m_Target: {x: -0.273542, y: -0.63533956, z: 0.2575997, w: -0.6746592}
     speed: 2
-    m_Value: {x: 0.15852708, y: -0.43738273, z: 0.078641206, w: 0.8816922}
+    m_Value: {x: -0.2735414, y: -0.6353382, z: 0.25759915, w: -0.67465776}
   m_Size:
-    m_Target: 1.7493383
+    m_Target: 0.8660254
     speed: 2
-    m_Value: 1.7493383
+    m_Value: 0.8660254
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -698,7 +698,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 4ef20100
       m_LastClickedID: 0
-      m_ExpandedIDs: a817fbff288efbff2ca0fcff4c54fdff5ce0fdff4e50feff9edcfeff1e30ffff7492ffffe8faffff58830000aa8300009a850000b6850000ca8700001c8800006e880000ea8800001c330200cc820200ee840200cc210300
+      m_ExpandedIDs: a81ef9ff6e8ef9ffa2fdf9ffa817fbff288efbff2ca0fcff4c54fdff5ce0fdff4e50feff9edcfeff1e30ffff7492ffffe8faffff58830000aa8300009a850000b6850000ca8700001c8800006e880000ea8800001c330200cc820200ee840200cc21030004dd0300
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 9232
+  controlID: 12658
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1187,22 +1187,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes/Levels
+    - Assets/Assets/Additional/Script
     m_Globs: []
     m_OriginalText: boot
   m_ViewMode: 1
   m_StartGridSize: 53
   m_LastFolders:
-  - Assets/Scenes/Levels
+  - Assets/Assets/Additional/Script
   m_LastFoldersGridSize: 53
   m_LastProjectPath: D:\1Kuliah\Game\PhasmoClone\PhasmoClone-main
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 768.6}
-    m_SelectedIDs: ca110100
-    m_LastClickedID: 70090
-    m_ExpandedIDs: 00000000b2110100b4110100b6110100b8110100ba110100bc110100be110100c0110100c2110100c4110100c6110100c8110100ca110100cc110100ce110100d0110100d2110100281201005412010000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 66.00098}
+    m_SelectedIDs: f8cc0100
+    m_LastClickedID: 118008
+    m_ExpandedIDs: 00000000b2110100b4110100b6110100b8110100ba110100bc110100be110100c0110100c2110100c4110100c6110100c8110100ca110100cc110100ce110100d0110100d21101002812010000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1274,7 +1274,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 19}
+      m_ClientGUIView: {fileID: 13}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -1310,7 +1310,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 9266
+  controlID: 12709
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52

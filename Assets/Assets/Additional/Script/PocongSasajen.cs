@@ -66,11 +66,12 @@ public class PocongSasajen : MonoBehaviour
 
     private IEnumerator BlinkLight()
     {
-        while (true)
+        for (int i = 0; i < 1000; i++)
         {
             float randomDelay = Random.Range(0.01f, 0.2f);
             yield return new WaitForSeconds(randomDelay);
             light.enabled = !light.enabled;
+            
         }
     }
 }
