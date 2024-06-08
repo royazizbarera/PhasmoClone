@@ -11,13 +11,6 @@ public class PocongSasajen : MonoBehaviour
 
     private Coroutine lightCoroutine;
 
-    private void Update()
-    {
-        if(Pocong.active == false)
-        {
-            StopTrigger();
-        }
-    }
     void Start()
     {
         isTrigger = true;
@@ -44,7 +37,7 @@ public class PocongSasajen : MonoBehaviour
 
     private IEnumerator ShowPocong()
     {
-        yield return new WaitForSeconds(10);  // Delay before showing Pocong
+        yield return new WaitForSeconds(20);  // Delay before showing Pocong
         Pocong.SetActive(true);
         light.intensity = 4;
         light.enabled = true;
@@ -55,7 +48,6 @@ public class PocongSasajen : MonoBehaviour
             lightCoroutine = StartCoroutine(BlinkLight());
         }
     }
-
 
     private void StopTrigger()
     {
