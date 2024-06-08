@@ -21,6 +21,7 @@ public class Salam : MonoBehaviour
             if (other.gameObject.name == "hero(Clone)")
             {
                 audioSource.Play();
+                isTrigger = false;
             }
         }
     }
